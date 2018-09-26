@@ -189,6 +189,7 @@ namespace elecion.tickets
 
             int idhistorial = 0;
             int folioventa = 0;
+            int idmovimiento = 0;
           
             using (MySqlConnection con = new MySqlConnection(System.Web.Configuration.WebConfigurationManager.ConnectionStrings["DBconexion"].ConnectionString))
             {
@@ -293,6 +294,48 @@ namespace elecion.tickets
 
                     cmd.ExecuteNonQuery();
 
+
+
+                    if (!idO.Value.Equals("100"))
+                    {
+
+                        // MOVIMIENTOS DIARIOS
+                        cmd.Parameters.Clear();
+                        cmd.CommandText = "SELECT COALESCE(MAX(idmovimiento),0)as idmovimiento FROM movimientos where idsucursal=" + idS.Value + " ;";
+
+
+                        reader = cmd.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            idmovimiento = reader.GetInt32(0) + 1;
+                        }
+                        reader.Close();
+
+
+                        cmd.Parameters.Clear();
+                        query = "insert into movimientos(idmovimiento, idsucursal, idusuario, fecha, hora, concepto, importe, tipo) " +
+                                "values(@idmovimiento, @idsucursal, @idusuario, current_date, current_time, @concepto, @importe, 'A'); ";
+
+                        cmd.CommandText = query;
+                        cmd.Parameters.AddWithValue("@idmovimiento", idmovimiento);
+                        cmd.Parameters.AddWithValue("@idsucursal", idS.Value);
+                        cmd.Parameters.AddWithValue("@idusuario", idusuario);
+
+
+                        if (idO.Value.Equals("4"))
+                        {
+                            cmd.Parameters.AddWithValue("@concepto", "ABONO DEL APARTADO DEL FOLIO " + idF.Value);
+                            cmd.Parameters.AddWithValue("@importe", cantidad.Text);
+                        }
+
+
+
+                        cmd.ExecuteNonQuery();
+
+                    }
+
+
+
                     //SI SE ABONO EL RESTANTE DEL ARTICULO, SE PRODUCE UNA VENTA
                     if (vender.Value.Equals("1"))
                     {
@@ -309,8 +352,8 @@ namespace elecion.tickets
                         reader.Close();
                         cmd.Parameters.Clear();
 
-                        query = "insert into historialempeno(idhistorial, idempeno, idsucursal, idtipomovimiento, idsucursalmovimiento, idusuario, fecha, hora, estatus, importe, idtipoventa, folioventa, fechainicia) " +
-                                                    "values(@idhistorial, @idempeno, @idsucursal, @idtipomovimiento, @idsucursalmovimiento, @idusuario, current_date, current_time, 'CERRADO',(select e.precio from empeno e where e.idempeno = @idempeno and e.idsucursal=@idsucursal), 1, @folioventa, (select e.fechainicia from empeno e where e.idempeno = @idempeno and idsucursal=@idsucursal)); ";
+                        query = "insert into historialempeno(idhistorial, idempeno, idsucursal, idtipomovimiento, idsucursalmovimiento, idusuario, fecha, hora, estatus, importe, idtipoventa, folioventa, fechainicia, ignorar) " +
+                                                    "values(@idhistorial, @idempeno, @idsucursal, @idtipomovimiento, @idsucursalmovimiento, @idusuario, current_date, current_time, 'CERRADO',(select e.precio from empeno e where e.idempeno = @idempeno and e.idsucursal=@idsucursal), 1, @folioventa, (select e.fechainicia from empeno e where e.idempeno = @idempeno and idsucursal=@idsucursal), 1); ";
 
                         cmd.CommandText = query;
                         cmd.Parameters.AddWithValue("@idhistorial", idhistorial+1);
@@ -333,10 +376,26 @@ namespace elecion.tickets
                         cmd.Parameters.AddWithValue("@etapa", "VENTA");                      
                         cmd.ExecuteNonQuery();
 
+
+
+                        //MOVIMIENTOS
+                        cmd.Parameters.Clear();
+                        query = "insert into movimientos(idmovimiento, idsucursal, idusuario, fecha, hora, concepto, importe, tipo) " +
+                                "values(@idmovimiento, @idsucursal, @idusuario, current_date, current_time, @concepto, (select e.precio from empeno e where e.idempeno = @idempeno and e.idsucursal=@idsucursal), 'V'); ";
+
+                        cmd.CommandText = query;
+                        cmd.Parameters.AddWithValue("@idmovimiento", idmovimiento+1);                        
+                        cmd.Parameters.AddWithValue("@idsucursal", idS.Value);
+                        cmd.Parameters.AddWithValue("@idusuario", idusuario);
+                        cmd.Parameters.AddWithValue("@idempeno", idP.Value);
+                        cmd.Parameters.AddWithValue("@concepto", "VENTA DEL FOLIO " + idF.Value);
+
+                        cmd.ExecuteNonQuery();
+
                     }
 
 
-                    //SI NO SE ACTUALIZAN LOS DATOS DEL CLIENTE
+                    //SI NO SE ACTUALIZAN LOS DATOS DEL CLIENTEa
 
                     transaction.Commit();
 

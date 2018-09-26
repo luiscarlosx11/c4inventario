@@ -104,6 +104,7 @@
                 <asp:HiddenField runat="server" ID="idP" />
                 <asp:HiddenField runat="server" ID="idS" />
                 <asp:HiddenField runat="server" ID="idO" />
+                <asp:HiddenField runat="server" ID="idF" />
                 <asp:Button runat="server" ID="Bnuevo" OnClick="nuevoRegistro" Style="display: none" />
                 <asp:Button runat="server" ID="Beditar" OnClick="editarRegistro" Style="display: none" />
                 <asp:Button runat="server" ID="Bconsultar" OnClick="listadoTickets" Style="display: none" />
@@ -141,17 +142,24 @@
 										</div>
 									</div>
 
-                                     <div class="col-md-4">
+                                     <div class="col-md-3">
 										<div class="form-group">
 											<label for="cliente" class="text-bold-600">Cliente</label>
 											<asp:TextBox ID="bcliente" CssClass="form-control text-uppercase"  placeholder="Cliente" name="cliente" runat="server" OnTextChanged="listadoTickets" AutoPostBack="true"></asp:TextBox>
 										</div>
 									</div>
 
-                                   <div class="col-md-4">
+                                   <div class="col-md-3">
 										<div class="form-group">
 											<label for="cliente" class="text-bold-600">Artículo</label>
 											<asp:TextBox ID="barticulo" CssClass="form-control text-uppercase"  placeholder="Artículo" name="articulo" runat="server" OnTextChanged="listadoTickets" AutoPostBack="true"></asp:TextBox>
+										</div>
+									</div>
+
+                                     <div class="col-md-3">
+										<div class="form-group">
+											<label for="cliente" class="text-bold-600">Código</label>
+											<asp:TextBox ID="bcodigo" CssClass="form-control text-uppercase"  placeholder="Código" name="bcodigo" runat="server" OnTextChanged="listadoTickets" AutoPostBack="true"></asp:TextBox>
 										</div>
 									</div>
                               </div>
@@ -638,6 +646,7 @@
             $("*[id$='idP']").val(idempeno);
             $("*[id$='idS']").val(idsucursal);
             $("*[id$='idO']").val(op);
+            $("*[id$='idF']").val(folio);
 
             $("*[id$='lfolio']").text(folio);
             $("*[id$='lnombre']").text(cliente);

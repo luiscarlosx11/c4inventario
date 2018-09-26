@@ -58,6 +58,15 @@ namespace elecion.tickets {
         protected global::System.Web.UI.WebControls.HiddenField idO;
         
         /// <summary>
+        /// Control idF.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField idF;
+        
+        /// <summary>
         /// Control Bnuevo.
         /// </summary>
         /// <remarks>
@@ -137,6 +146,15 @@ namespace elecion.tickets {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox barticulo;
+        
+        /// <summary>
+        /// Control bcodigo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox bcodigo;
         
         /// <summary>
         /// Control Button1.

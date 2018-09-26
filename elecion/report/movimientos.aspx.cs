@@ -8,9 +8,9 @@ using System.Data;
 using MySql.Data.MySqlClient;
 using System.Web.Security;
 
-namespace elecion.caja
+namespace elecion.report
 {
-    public partial class ingresos : System.Web.UI.Page
+    public partial class movimientos : System.Web.UI.Page
     {
         private int idusuario;
         private int idsucursal;
@@ -42,12 +42,10 @@ namespace elecion.caja
                 try
                 {
                     con2.Open();
-                    string query = "select count(d.iddetallecaja)as total "+
-                            "from sucursal s " +
-                            "left join detallecaja d on d.idsucursal = s.idsucursal " +
-                            "left join tipogasto t on t.idtipogasto = d.idtipogasto " +
-                            "left join usuario u on u.idusuario = d.idusuario " +
-                            "where d.tipo = 'I' ";
+                    /*string query = "select count(d.idmovimiento)as total " +
+                            "from movimientos d " +
+                            "left join sucursal s on d.idsucursal = s.idsucursal " +
+                            "left join usuario u on u.idusuario = d.idusuario where true ";
 
 
                     if (bfolio.Text.Trim() != "")
@@ -65,7 +63,38 @@ namespace elecion.caja
                         labelConteo.Text = rdr["total"].ToString();
 
                     }
+                    */
 
+                    lventas.Text = "$ 0.00";
+                    lapartados.Text = "$ 0.00";
+                    lrefrendos.Text = "$ 0.00";
+                    lprestamos.Text = "$ 0.00";
+
+                    string query = "select d.tipo, sum(d.importe)as total " +
+                                    "from movimientos d " +
+                                    "where d.fecha = '" + bfecha.Text + "' and d.ignorar = 0 " +
+                                    "group by d.tipo";
+
+                    MySqlCommand cmd2 = new MySqlCommand(query, con2);
+
+                    MySqlDataReader rdr = cmd2.ExecuteReader();
+                    if (rdr.HasRows)
+                    {
+                        while (rdr.Read())
+                        {
+
+                            if(rdr["tipo"].Equals("V"))
+                                lventas.Text = "$ "+rdr["total"].ToString();
+                            else if (rdr["tipo"].Equals("A"))
+                                lapartados.Text = "$ " + rdr["total"].ToString();                           
+                            else if (rdr["tipo"].Equals("R"))
+                                lrefrendos.Text = "$ " + rdr["total"].ToString();
+                            else if (rdr["tipo"].Equals("P"))
+                                lprestamos.Text = "$ " + rdr["total"].ToString();
+
+                        }
+
+                    }
 
                 }
                 catch (Exception ex)
@@ -95,14 +124,11 @@ namespace elecion.caja
 
             lgastos.DataSourceID = DsListadoGastos.ID;
 
-            String query = "select s.nombre as sucursal, d.iddetallecaja, d.idsucursal, d.concepto, d.importe, cast(d.fecha as char) as fecha, cast(d.hora as char)as hora, t.tipogasto, "+
-                            "(CONCAT(COALESCE(u.nombre, ''), ' ', COALESCE(u.apaterno, ''), ' ', COALESCE(u.amaterno, ''))) as usuario, d.estatus,  " +
-                            "case d.estatus when 'CANCELADO' then 'danger' else 'success' end as statustext " +
-                            "from sucursal s " +
-                            "left join detallecaja d on d.idsucursal = s.idsucursal " +
-                            "left join tipogasto t on t.idtipogasto = d.idtipogasto " +
-                            "left join usuario u on u.idusuario = d.idusuario " +
-                            "where d.tipo = 'I' ";
+            String query = "select s.nombre as sucursal, d.idmovimiento, d.idsucursal, d.concepto, d.importe, cast(d.fecha as char) as fecha, cast(d.hora as char)as hora,  "+
+                            "(CONCAT(COALESCE(u.nombre, ''), ' ', COALESCE(u.apaterno, ''), ' ', COALESCE(u.amaterno, ''))) as usuario, d.tipo " +
+                            "from movimientos d " +
+                            "left join sucursal s on d.idsucursal = s.idsucursal " +
+                            "left join usuario u on u.idusuario = d.idusuario where true ";
 
 
             if (bfolio.Text.Trim() != "")
@@ -111,7 +137,7 @@ namespace elecion.caja
             if (bfecha.Text.Trim() != "")
                 query = query + " AND d.fecha ='" + bfecha.Text + "' ";
 
-            //query = query + " LIMIT "+limit+" OFFSET "+offset;
+            query = query + " order by d.fecha desc, d.hora desc ";
             DsListadoGastos.SelectCommand = query;
 
             DsListadoGastos.DataBind();

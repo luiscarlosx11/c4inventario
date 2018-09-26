@@ -55,7 +55,7 @@ namespace elecion.catalogos
                                "(CONCAT(COALESCE(u.domicilio, ''), ' COL. ', COALESCE(u.colonia, ''), ' - ', COALESCE(u.localidad, ''), ', ', COALESCE(e.entidad, ''))) as domicilio " +
                                "from cliente u " +
                                "left join entidad e on u.identidad = e.identidad "+
-                               "and u.idsucursal="+idsucursal+" ";
+                               "where u.idsucursal="+idsucursal+" ";
 
            
                 if (bnombre.Text.Trim() != "")
@@ -109,7 +109,7 @@ namespace elecion.catalogos
                     con2.Open();
                     string query = "SELECT COUNT(idcliente) as total " +
                                             "FROM cliente " +
-                                            "WHERE true ";
+                                            "WHERE idsucursal ="+idsucursal+" ";
 
                     if (bnombre.Text.Trim() != "")
                         query = query + " AND ncompleto LIKE '%" + bnombre.Text.Trim().ToUpper() + "%' ";

@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/template.Master" AutoEventWireup="true" EnableEventValidation="false" 
-    CodeBehind="ingresos.aspx.cs" Inherits="elecion.caja.ingresos" %>
+    CodeBehind="egresos.aspx.cs" Inherits="elecion.caja.egresos" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
         .ascending a {
@@ -47,7 +47,7 @@
                 </li>
                 <li class="breadcrumb-item"><a href="#">Caja</a>
                 </li>
-                <li class="breadcrumb-item active"><a href="#">Ingresos</a>
+                <li class="breadcrumb-item active"><a href="#">Egresos</a>
                 </li>
               </ol>
             </div>
@@ -63,7 +63,7 @@
                 <div class="col-xs-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">LISTADO DE INGRESOS</h4>
+                            <h4 class="card-title">LISTADO DE EGRESOS</h4>
                             <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
                             <div class="heading-elements">
                                 <ul class="list-inline mb-0">
@@ -189,7 +189,7 @@
 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 				        <span aria-hidden="true">&times;</span>
 			        </button>
-			        <h3 class="modal-title" id="myModalLabel35">INGRESO</h3>
+			        <h3 class="modal-title" id="myModalLabel35">EGRESO</h3>
 			        </div>
 			   
                        
@@ -209,7 +209,7 @@
                                                                 <label>Concepto</label>
                                                                 <asp:HiddenField runat="server" ID="idP" />
                                                                 <asp:HiddenField runat="server" ID="idS" />
-                                                                <asp:TextBox ID="concepto" CssClass="form-control text-uppercase" placeholder="Concepto" name="concepto" runat="server"></asp:TextBox>
+                                                                <asp:TextBox ID="concepto" CssClass="form-control text-uppercase" name="concepto" placeholder="Concepto"  runat="server"></asp:TextBox>
                                                                 
                                                                
                                                             </div>
@@ -218,13 +218,23 @@
                                                         </div>
                                                     </div>
 
+
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label>Importe</label>                                                                
-                                                                <asp:TextBox ID="importe" CssClass="form-control text-uppercase" name="idtipogasto" placeholder="Importe" runat="server"></asp:TextBox>                                                     </div>
+                                                                <label>Tipo de gasto</label>
+                                                                <asp:DropDownList runat="server" ID="tipogasto" CssClass="select2 form-control" DataSourceID="DsTipoGasto" DataTextField="tipogasto" DataValueField="idtipogasto" style="width:100%"></asp:DropDownList>
+                                                                <asp:SqlDataSource ID="DsTipoGasto" runat="server" ProviderName="MySql.Data.MySqlClient" ConnectionString="<%$ ConnectionStrings:DBconexion %>" SelectCommand="SELECT idtipogasto, tipogasto FROM tipogasto ORDER BY tipogasto"></asp:SqlDataSource>
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
-
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Importe</label>
+                                                                <asp:TextBox ID="importe" CssClass="form-control text-uppercase" name="idtipogasto" placeholder="Importe" runat="server"></asp:TextBox>
+                                                            </div>
                                                         </div>
                                                     </div>
 
@@ -288,14 +298,15 @@
     <script>
         
         $(".nav-item>ul>li.active").removeClass("active");
-        $("#ingresos").addClass("active");
+        $("#egresos").addClass("active");
 
-        function abrirModal(idp, ids, concepto, importe) {
+        function abrirModal(idp, ids, concepto, importe, idtipogasto) {
                                    
             $("*[id$='idP']").val(idp);
             $("*[id$='idS']").val(ids);
             $("*[id$='concepto']").val(concepto);
             $("*[id$='importe']").val(importe);
+            $("*[id$='tipogasto']").val(idtipogasto);
         
             $("#bootstrap").modal('show');
         }

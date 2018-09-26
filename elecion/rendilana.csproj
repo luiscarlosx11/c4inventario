@@ -2138,6 +2138,7 @@
     <Content Include="assets\js\cyrpto\mode-cfb.js" />
     <Content Include="assets\js\scripts.js" />
     <Content Include="AuthyClient_LICENSE.txt" />
+    <Content Include="caja\egresos.aspx" />
     <Content Include="caja\ingresos.aspx" />
     <Content Include="catalogos\articulos\catsubcategorias.aspx" />
     <Content Include="catalogos\articulos\catcategorias.aspx" />
@@ -2170,6 +2171,9 @@
     <Content Include="historico\listadoconsulta.aspx" />
     <Content Include="prestamos\listadoprestamos.aspx" />
     <Content Include="reportes\RVBoleta.aspx" />
+    <Content Include="reportes\RVTicketCorte.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="reportes\RVTicketAbono.aspx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -2185,6 +2189,8 @@
     <Content Include="reportes\RVTicket.aspx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="report\cierre.aspx" />
+    <Content Include="report\movimientos.aspx" />
     <Content Include="tablero.aspx" />
     <Content Include="default.aspx" />
     <Content Include="encuesta\listadoencuestas.aspx" />
@@ -2668,6 +2674,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="caja\egresos.aspx.cs">
+      <DependentUpon>egresos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="caja\egresos.aspx.designer.cs">
+      <DependentUpon>egresos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="caja\ingresos.aspx.cs">
       <DependentUpon>ingresos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2870,6 +2883,15 @@
     <Compile Include="reportes\RVBoleta.aspx.designer.cs">
       <DependentUpon>RVBoleta.aspx</DependentUpon>
     </Compile>
+    <Compile Include="reportes\RVTicketCorte.aspx.cs">
+      <DependentUpon>RVTicketCorte.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="reportes\RVTicketCorte.aspx.designer.cs">
+      <DependentUpon>RVTicketCorte.aspx</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="reportes\RVTicketAbono.aspx.cs">
       <DependentUpon>RVTicketAbono.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2914,6 +2936,20 @@
     <Compile Include="reportes\RVTicket.aspx.designer.cs">
       <DependentUpon>RVTicket.aspx</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="report\cierre.aspx.cs">
+      <DependentUpon>cierre.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="report\cierre.aspx.designer.cs">
+      <DependentUpon>cierre.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="report\movimientos.aspx.cs">
+      <DependentUpon>movimientos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="report\movimientos.aspx.designer.cs">
+      <DependentUpon>movimientos.aspx</DependentUpon>
     </Compile>
     <Compile Include="tablero.aspx.cs">
       <DependentUpon>tablero.aspx</DependentUpon>

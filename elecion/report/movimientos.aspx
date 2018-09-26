@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/template.Master" AutoEventWireup="true" EnableEventValidation="false" 
-    CodeBehind="ingresos.aspx.cs" Inherits="elecion.caja.ingresos" %>
+    CodeBehind="movimientos.aspx.cs" Inherits="elecion.report.movimientos" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
         .ascending a {
@@ -38,16 +38,16 @@
     
     <div class="content-header row">
         <div class="content-header-left col-md-6 col-xs-12 mb-1">
-            <h3 class="content-header-title">Caja</h3>
+            <h3 class="content-header-title">Reportes</h3>
           </div>
           <div class="content-header-right breadcrumbs-right breadcrumbs-top col-md-6 col-xs-12">
             <div class="breadcrumb-wrapper col-xs-12">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Inicio</a>
                 </li>
-                <li class="breadcrumb-item"><a href="#">Caja</a>
+                <li class="breadcrumb-item"><a href="#">Reportes</a>
                 </li>
-                <li class="breadcrumb-item active"><a href="#">Ingresos</a>
+                <li class="breadcrumb-item active"><a href="#">Movimientos</a>
                 </li>
               </ol>
             </div>
@@ -63,7 +63,7 @@
                 <div class="col-xs-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">LISTADO DE INGRESOS</h4>
+                            <h4 class="card-title">MOVIMIENTOS DE CAJA</h4>
                             <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
                             <div class="heading-elements">
                                 <ul class="list-inline mb-0">
@@ -72,31 +72,91 @@
                             </div>
                         </div>
                         <div class="card-body collapse in">
-                            <div class="col-md-12">
-                                <div class="card overflow-hidden">
-                                    <div class="card-body">
-                                        <div class="card-block cleartfix">
-                                            <div class="media">
-                                                <div class="media-left media-middle">
-                                                    <i class="icon-speech primary font-large-2 mr-2"></i>
-                                                </div>
-                                                <div class="media-body">
-                                                    <h4>Elementos registrados</h4>
-                                                    <span>
-                                                        <asp:Label runat="server" ID="labelConteo"></asp:Label>
-                                                        actualmente</span>
-                                                </div>
-                                                <div class="media-right media-middle">
-                                                    <button type="button" id="nuevo" runat="server" onclick="abrirModal(0,'')" class="btn btn-icon btn-primary mr-1" data-toggle="modal">
-                                                        <i class="ft-file"></i>Nuevo registro 
-                                                    </button>
+                            
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="card no-border">
+                                        <div class="card-body">
+                                            <div class="card-block">
+                                                <div class="media">
+                                                    <div class="media-body">
+                                                        <h1 class="display-4">
+                                                            <asp:Label runat="server" ID="lventas">$0.00</asp:Label></h1>
+                                                        <span class="text-muted">Ventas</span>
+                                                    </div>
+                                                    <div class="media-right media-middle">
+                                                        <i class="icon-bulb font-large-2 blue-grey lighten-3"></i>
+                                                    </div>
                                                 </div>
                                             </div>
+                                            <div id="sp-line-total-cost"></div>
                                         </div>
-                                        
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="card no-border">
+                                        <div class="card-body">
+                                            <div class="card-block">
+                                                <div class="media">
+                                                    <div class="media-body">
+                                                        <h1 class="display-4">
+                                                            <asp:Label runat="server" ID="lrefrendos">$0.00</asp:Label></h1>
+                                                        <span class="text-muted">Refrendos</span>
+                                                    </div>
+                                                    <div class="media-right media-middle">
+                                                        <i class="icon-bulb font-large-2 blue-grey lighten-3"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="sp-line-total-cost2"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="card no-border">
+                                        <div class="card-body">
+                                            <div class="card-block">
+                                                <div class="media">
+                                                    <div class="media-body">
+                                                        <h1 class="display-4">
+                                                            <asp:Label runat="server" ID="lapartados">$0.00</asp:Label></h1>
+                                                        <span class="text-muted">Apartados / Abonos</span>
+                                                    </div>
+                                                    <div class="media-right media-middle">
+                                                        <i class="icon-bulb font-large-2 blue-grey lighten-3"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="sp-line-total-cost3"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                
+
+                                <div class="col-md-3">
+                                    <div class="card no-border">
+                                        <div class="card-body">
+                                            <div class="card-block">
+                                                <div class="media">
+                                                    <div class="media-body">
+                                                        <h1 class="display-4">
+                                                            <asp:Label runat="server" ID="lprestamos">$0.00</asp:Label></h1>
+                                                        <span class="text-muted">Préstamos</span>
+                                                    </div>
+                                                    <div class="media-right media-middle">
+                                                        <i class="icon-bulb font-large-2 blue-grey lighten-3"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="sp-line-total-cost5"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            
 
                             <div class="card-block card-dashboard">
                                  <div class="row">
@@ -111,7 +171,9 @@
                                      <div class="col-md-2">
 										<div class="form-group">
 											<label for="cliente" class="text-bold-600">Fecha</label>
-											<asp:TextBox ID="bfecha" CssClass="form-control pickadate text-uppercase" placeholder="Fecha" name="bfecha" runat="server" AutoPostBack="true" OnTextChanged="listadoTickets"></asp:TextBox>
+											<asp:TextBox ID="bfecha" CssClass="form-control pickadate text-uppercase" placeholder="Fecha" name="bfecha" runat="server" AutoPostBack="true" OnTextChanged="listadoTickets" Text="2018-09-26">
+
+											</asp:TextBox>
 										</div>
 									</div>                                  
                               </div>                              
@@ -139,35 +201,13 @@
                                                     <%# Container.DataItemIndex + 1 %>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
+                                            <asp:BoundField DataField="tipo" HeaderText="Tipo" SortExpression="tipo" ItemStyle-CssClass="centrarCelda " HeaderStyle-CssClass="centrarCelda"/>
                                             <asp:BoundField DataField="sucursal" HeaderText="Sucursal" SortExpression="sucursal" /> 
-                                            <asp:BoundField DataField="concepto" HeaderText="Concepto" SortExpression="concepto" ItemStyle-Width="600px"/> 
+                                            <asp:BoundField DataField="concepto" HeaderText="Concepto" SortExpression="concepto" ItemStyle-Width="900px"/> 
                                             <asp:BoundField DataField="fecha" HeaderText="Fecha" SortExpression="fecha" ItemStyle-Width="150px" ItemStyle-CssClass="centrarCelda " HeaderStyle-CssClass="centrarCelda" /> 
                                             <asp:BoundField DataField="hora" HeaderText="Hora" SortExpression="hora" ItemStyle-Width="150px" ItemStyle-CssClass="centrarCelda " HeaderStyle-CssClass="centrarCelda"/> 
                                             <asp:BoundField DataField="importe" HeaderText="Importe" SortExpression="importe" ItemStyle-Width="150px" ItemStyle-CssClass="centrarCelda " HeaderStyle-CssClass="centrarCelda" DataFormatString="{0:c}" HtmlEncode="False"/>
-                                            
-                                            <asp:TemplateField HeaderText="Estatus" ItemStyle-Width="100px" ItemStyle-CssClass="valign-middle centrarCelda" HeaderStyle-CssClass="centrarCelda">
-                                            <ItemTemplate>
-                                                <span class="">
-                                                    <span class="tag bg-<%# Eval("statustext")%>"><%# Eval("estatus")%></span>		
-                                                </span>
-                                            </ItemTemplate>
-                                            </asp:TemplateField>
-                                                                       
-                                            <asp:TemplateField HeaderText="Acciones" ItemStyle-Width="180px">
-                                                <ItemTemplate>
-
-                                                    <button type="button" id="editar" onclick="abrirModal(<%# Eval("iddetallecaja")%>, <%# Eval("idsucursal")%>,'<%# Eval("concepto").ToString() %>','<%# Eval("importe").ToString() %>')" class="btn btn-icon btn-success mr-1"
-                                                        data-toggle="tooltip" data-original-title="Editar" >
-                                                         <i class="ft-edit"></i>
-                                                    </button>
-
-                                                     <button type="button" id="borrar" onclick="eliminarRegistro(<%# Eval("iddetallecaja")%>, <%# Eval("idsucursal")%>,'<%# Eval("concepto").ToString() %>');" class="btn btn-icon btn-danger mr-1"
-                                                        data-toggle="tooltip" data-original-title="Cancelar" >
-                                                         <i class="ft-delete"></i>
-                                                    </button>
-                                                                                                         
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
+                                                                                                                                                                                                          
                                         </Columns>
                                 
                                     </asp:GridView>
@@ -283,12 +323,21 @@
     <script src="/app-assets/vendors/js/pickers/pickadate/picker.time.js" type="text/javascript"></script>
     <script src="/app-assets/vendors/js/pickers/pickadate/legacy.js" type="text/javascript"></script>
 
+    <script src="/app-assets/data/jvector/visitor-data.js" type="text/javascript"></script>
+    <script src="/app-assets/vendors/js/charts/chart.min.js" type="text/javascript"></script>
+    <script src="/app-assets/vendors/js/charts/jquery.sparkline.min.js" type="text/javascript"></script>
+    <script src="/app-assets/vendors/js/extensions/unslider-min.js" type="text/javascript"></script>
+
+    <script src="/app-assets/js/scripts/cards/card-statistics.js" type="text/javascript"></script>
+
 
 
     <script>
         
         $(".nav-item>ul>li.active").removeClass("active");
-        $("#ingresos").addClass("active");
+        $("#movimientos").addClass("active");
+
+        
 
         function abrirModal(idp, ids, concepto, importe) {
                                    
@@ -395,7 +444,82 @@
                     today: 'Hoy',
                     clear: 'Limpiar',
                 });
+                
 
+                $("#sp-line-total-cost").sparkline([14, 12, 4, 9, 3, 6, 11, 10, 13, 9, 14, 11, 16, 20, 15], {
+                    type: 'line',
+                    width: '100%',
+                    height: '100px',
+                    lineColor: '#16D39A',
+                    fillColor: '#16D39A',
+                    spotColor: '',
+                    minSpotColor: '',
+                    maxSpotColor: '',
+                    highlightSpotColor: '',
+                    highlightLineColor: '',
+                    chartRangeMin: 0,
+                    chartRangeMax: 20,
+                });
+
+                $("#sp-line-total-cost2").sparkline([14, 12, 4, 9, 3, 6, 11, 10, 13, 9, 14, 11, 16, 20, 15], {
+                    type: 'line',
+                    width: '100%',
+                    height: '100px',
+                    lineColor: '#FFA87D',
+                    fillColor: '#FFA87D',
+                    spotColor: '',
+                    minSpotColor: '',
+                    maxSpotColor: '',
+                    highlightSpotColor: '',
+                    highlightLineColor: '',
+                    chartRangeMin: 0,
+                    chartRangeMax: 20,
+                });
+
+                $("#sp-line-total-cost3").sparkline([14, 12, 4, 9, 3, 6, 11, 10, 13, 9, 14, 11, 16, 20, 15], {
+                    type: 'line',
+                    width: '100%',
+                    height: '100px',
+                    lineColor: '#2DCEE3',
+                    fillColor: '#2DCEE3',
+                    spotColor: '',
+                    minSpotColor: '',
+                    maxSpotColor: '',
+                    highlightSpotColor: '',
+                    highlightLineColor: '',
+                    chartRangeMin: 0,
+                    chartRangeMax: 20,
+                });
+
+                $("#sp-line-total-cost4").sparkline([14, 12, 4, 9, 3, 6, 11, 10, 13, 9, 14, 11, 16, 20, 15], {
+                    type: 'line',
+                    width: '100%',
+                    height: '100px',
+                    lineColor: '#FF7588',
+                    fillColor: '#FF7588',
+                    spotColor: '',
+                    minSpotColor: '',
+                    maxSpotColor: '',
+                    highlightSpotColor: '',
+                    highlightLineColor: '',
+                    chartRangeMin: 0,
+                    chartRangeMax: 20,
+                });
+
+                $("#sp-line-total-cost5").sparkline([14, 12, 4, 9, 3, 6, 11, 10, 13, 9, 14, 11, 16, 20, 15], {
+                    type: 'line',
+                    width: '100%',
+                    height: '100px',
+                    lineColor: '#FF7588',
+                    fillColor: '#FF7588',
+                    spotColor: '',
+                    minSpotColor: '',
+                    maxSpotColor: '',
+                    highlightSpotColor: '',
+                    highlightLineColor: '',
+                    chartRangeMin: 0,
+                    chartRangeMax: 20,
+                });
                 //loadJS("/app-assets/vendors/js/forms/icheck/icheck.min.js");
                 //loadJS("/app-assets/js/scripts/forms/checkbox-radio.js");
 

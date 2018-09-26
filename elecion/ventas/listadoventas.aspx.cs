@@ -179,6 +179,7 @@ namespace elecion.tickets
 
             int idhistorial = 0;
             int folioventa = 0;
+            int idmovimiento = 0;
           
             using (MySqlConnection con = new MySqlConnection(System.Web.Configuration.WebConfigurationManager.ConnectionStrings["DBconexion"].ConnectionString))
             {
@@ -228,8 +229,8 @@ namespace elecion.tickets
                         reader.Close();
                         cmd.Parameters.Clear();
 
-                        query = "insert into historialempeno(idhistorial, idempeno, idsucursal, idtipomovimiento, idsucursalmovimiento, idusuario, fecha, hora, estatus, importe, idtipoventa, folioventa, fechainicia) " +
-                                                    "values(@idhistorial, @idempeno, @idsucursal, @idtipomovimiento, @idsucursalmovimiento, @idusuario, current_date, current_time, 'CERRADO', @importe, @idtipoventa, @folioventa, (select e.fechainicia from empeno e where e.idempeno = @idempeno and idsucursal=@idsucursal)); ";
+                        query = "insert into historialempeno(idhistorial, idempeno, idsucursal, idtipomovimiento, idsucursalmovimiento, idusuario, fecha, hora, estatus, importe, idtipoventa, folioventa, fechainicia, fechavence) " +
+                                                    "values(@idhistorial, @idempeno, @idsucursal, @idtipomovimiento, @idsucursalmovimiento, @idusuario, current_date, current_time, 'CERRADO', @importe, @idtipoventa, @folioventa, (select e.fechainicia from empeno e where e.idempeno = @idempeno and idsucursal=@idsucursal), (select ADDDATE(current_date, INTERVAL (e.diasapartado) DAY) from empeno e where e.idempeno = @idempeno and idsucursal=@idsucursal)); ";
 
                         cmd.CommandText = query;
                         cmd.Parameters.AddWithValue("@idhistorial", idhistorial);
@@ -304,7 +305,52 @@ namespace elecion.tickets
                     cmd.ExecuteNonQuery();
 
 
-                    //SI NO SE ACTUALIZAN LOS DATOS DEL CLIENTE
+                    if (!idO.Value.Equals("99"))
+                    {
+
+                        // MOVIMIENTOS DIARIOS
+                        cmd.Parameters.Clear();
+                        cmd.CommandText = "SELECT COALESCE(MAX(idmovimiento),0)as idmovimiento FROM movimientos where idsucursal=" + idS.Value + " ;";
+
+
+                        reader = cmd.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            idmovimiento = reader.GetInt32(0) + 1;
+                        }
+                        reader.Close();
+
+
+                        cmd.Parameters.Clear();
+                        query = "insert into movimientos(idmovimiento, idsucursal, idusuario, fecha, hora, concepto, importe, tipo) " +
+                                "values(@idmovimiento, @idsucursal, @idusuario, current_date, current_time, @concepto, @importe, @tipo); ";
+
+                        cmd.CommandText = query;
+                        cmd.Parameters.AddWithValue("@idmovimiento", idmovimiento);
+                        cmd.Parameters.AddWithValue("@idsucursal", idS.Value);
+                        cmd.Parameters.AddWithValue("@idusuario", idusuario);
+
+
+                        if (idO.Value.Equals("3"))
+                        {
+                            cmd.Parameters.AddWithValue("@concepto", "APARTADO DEL FOLIO " + idF.Value);
+                            cmd.Parameters.AddWithValue("@importe", cantidad.Text);
+                            cmd.Parameters.AddWithValue("@tipo", "A");
+
+                        }
+
+
+                        else if (idO.Value.Equals("5"))
+                        {
+                            cmd.Parameters.AddWithValue("@concepto", "VENTA DEL FOLIO " + idF.Value);
+                            cmd.Parameters.AddWithValue("@importe", hpago.Value);
+                            cmd.Parameters.AddWithValue("@tipo", "VENTA");
+                        }
+
+                        cmd.ExecuteNonQuery();
+
+                    }
+
 
                     transaction.Commit();
 

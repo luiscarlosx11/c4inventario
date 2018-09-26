@@ -449,6 +449,7 @@ namespace elecion.tickets
             int folio = 0;
             int idarticulo = 0;
             int consecutivo = 0;
+            int idmovimiento = 0;
             string folioi;
             string tipo;
 
@@ -687,7 +688,36 @@ namespace elecion.tickets
 
                         cmd.Parameters.AddWithValue("@codigo", idempeno.ToString() + idS.Value + idarticulo.ToString() + idC.Value + idempeno.ToString() + idS.Value + consecutivo.ToString() );
 
-                        cmd.ExecuteNonQuery();                                             
+                        cmd.ExecuteNonQuery();
+
+
+                        cmd.Parameters.Clear();
+
+
+                        //MOVIMIENTOS DIARIOS
+                        cmd.Parameters.Clear();
+                        cmd.CommandText = "SELECT COALESCE(MAX(idmovimiento),0)as idmovimiento FROM movimientos where idsucursal=" + idS.Value + " ;";
+
+
+                        reader = cmd.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            idmovimiento = reader.GetInt32(0) + 1;
+                        }
+                        reader.Close();
+
+
+                        cmd.Parameters.Clear();
+                        query = "insert into movimientos(idmovimiento, idsucursal, idusuario, fecha, hora, concepto, importe, tipo) " +
+                                "values(@idmovimiento, @idsucursal, @idusuario, current_date, current_time, @concepto, @importe, 'P'); ";
+
+                        cmd.CommandText = query;
+                        cmd.Parameters.AddWithValue("@idmovimiento", idmovimiento);
+                        cmd.Parameters.AddWithValue("@idsucursal", idS.Value);
+                        cmd.Parameters.AddWithValue("@idusuario", idusuario);
+                        cmd.Parameters.AddWithValue("@concepto", "PRESTAMO DEL FOLIO "+ folioi);
+                        cmd.Parameters.AddWithValue("@importe", prestamo.Text);
+                        cmd.ExecuteNonQuery();
 
 
                     }

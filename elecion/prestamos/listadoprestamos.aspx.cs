@@ -89,6 +89,9 @@ namespace elecion.tickets
                     if (barticulo.Text.Trim() != "")
                         query = query + " AND a.descripcion LIKE '%" + barticulo.Text.ToUpper() + "%' ";
 
+                    if (bcodigo.Text.Trim() != "")
+                        query = query + " AND e.codigo ='" + bcodigo.Text.Trim() + "' ";
+
                     MySqlCommand cmd2 = new MySqlCommand(query, con2);
                     
                     MySqlDataReader rdr = cmd2.ExecuteReader();
@@ -235,6 +238,9 @@ namespace elecion.tickets
             if (barticulo.Text.Trim() != "")
                 query = query + " AND a.descripcion LIKE '%" + barticulo.Text.ToUpper() + "%' ";
 
+            if (bcodigo.Text.Trim() != "")
+                query = query + " AND e.codigo ='" + bcodigo.Text.Trim() + "' ";
+
             query = query + " ORDER BY e.fechaempeno desc, e.horaempeno desc ";
             //query = query + " LIMIT "+limit+" OFFSET "+offset;
             DSTickets.SelectCommand = query;
@@ -255,6 +261,7 @@ namespace elecion.tickets
         {
 
             int idhistorial = 0;
+            int idmovimiento = 0;
           
             using (MySqlConnection con = new MySqlConnection(System.Web.Configuration.WebConfigurationManager.ConnectionStrings["DBconexion"].ConnectionString))
             {
@@ -292,8 +299,8 @@ namespace elecion.tickets
                         reader.Close();
 
                         cmd.Parameters.Clear();
-                        query = "insert into historialempeno(idhistorial, idempeno, idsucursal, idtipomovimiento, idsucursalmovimiento, idusuario, fecha, hora, estatus, importe, fechainicia) " +
-                                                    "values(@idhistorial, @idempeno, @idsucursal, @idtipomovimiento, @idsucursalmovimiento, @idusuario, current_date, current_time, 'CERRADO', @importe, (select e.fechainicia from empeno e where e.idempeno = @idempeno and idsucursal=@idsucursal)); ";
+                        query = "insert into historialempeno(idhistorial, idempeno, idsucursal, idtipomovimiento, idsucursalmovimiento, idusuario, fecha, hora, estatus, importe, fechainicia, fechavence, fechacomercializacion) " +
+                                                    "values(@idhistorial, @idempeno, @idsucursal, @idtipomovimiento, @idsucursalmovimiento, @idusuario, current_date, current_time, 'CERRADO', @importe, (select e.fechainicia from empeno e where e.idempeno = @idempeno and idsucursal=@idsucursal) , (select ADDDATE(current_date, INTERVAL (e.diasventa) DAY) from empeno e where e.idempeno = @idempeno and idsucursal=@idsucursal), (select ADDDATE(current_date, INTERVAL (e.diasventa+e.diastolerancia) DAY) from empeno e where e.idempeno = @idempeno and idsucursal=@idsucursal) ); ";
 
                         cmd.CommandText = query;
                         cmd.Parameters.AddWithValue("@idhistorial", idhistorial);
@@ -308,13 +315,10 @@ namespace elecion.tickets
 
 
                     //UPDATE A TABLA EMPEÑO
-
-
-
                     cmd.Parameters.Clear();
 
                     if (idO.Value.Equals("1"))
-                        query = "update empeno set fecharefrendo=current_date, horarefrendo=current_time, fechainicia=current_date, fechavence=ADDDATE(current_date, INTERVAL diasventa DAY), fechacomercializacion=ADDDATE(current_date, INTERVAL (diasventa+diastolerancia) DAY), etapa=@etapa where idempeno=@idempeno and idsucursal=@idsucursal;";
+                        query = "update empeno set fecharefrendo=current_date, horarefrendo=current_time, fechainicia=current_date, fechavence=ADDDATE(current_date, INTERVAL (diasventa) DAY), fechacomercializacion=ADDDATE(current_date, INTERVAL (diasventa+diastolerancia) DAY), etapa=@etapa where idempeno=@idempeno and idsucursal=@idsucursal;";
                     else if (idO.Value.Equals("2"))
                         query = "update empeno set fechaenajenacion=current_date, horaenajenacion=current_time, etapa=@etapa where idempeno=@idempeno and idsucursal=@idsucursal;";
                     else if (idO.Value.Equals("6"))
@@ -335,7 +339,53 @@ namespace elecion.tickets
                     cmd.ExecuteNonQuery();
 
 
-                    //SI NO SE ACTUALIZAN LOS DATOS DEL CLIENTE
+                    if (!idO.Value.Equals("2"))
+                    {
+
+                        // MOVIMIENTOS DIARIOS
+                        cmd.Parameters.Clear();
+                        cmd.CommandText = "SELECT COALESCE(MAX(idmovimiento),0)as idmovimiento FROM movimientos where idsucursal=" + idS.Value + " ;";
+
+
+                        reader = cmd.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            idmovimiento = reader.GetInt32(0) + 1;
+                        }
+                        reader.Close();
+
+
+                        cmd.Parameters.Clear();
+                        query = "insert into movimientos(idmovimiento, idsucursal, idusuario, fecha, hora, concepto, importe, tipo) " +
+                                "values(@idmovimiento, @idsucursal, @idusuario, current_date, current_time, @concepto, @importe, @tipo); ";
+
+                        cmd.CommandText = query;
+                        cmd.Parameters.AddWithValue("@idmovimiento", idmovimiento);
+                        cmd.Parameters.AddWithValue("@idsucursal", idS.Value);
+                        cmd.Parameters.AddWithValue("@idusuario", idusuario);
+
+
+                        if (idO.Value.Equals("1"))
+                        {
+                            cmd.Parameters.AddWithValue("@concepto", "REFRENDO DEL FOLIO " + idF.Value);
+                            cmd.Parameters.AddWithValue("@tipo", "R");
+                        }
+                            
+
+                        else if (idO.Value.Equals("6"))
+                        {
+                            cmd.Parameters.AddWithValue("@concepto", "DESEMPEÑO DEL FOLIO " + idF.Value);
+                            cmd.Parameters.AddWithValue("@tipo", "D");
+                        }
+                            
+
+
+                        cmd.Parameters.AddWithValue("@importe", hpago.Value);
+                        cmd.ExecuteNonQuery();
+
+                    }
+
+
 
                     transaction.Commit();
 

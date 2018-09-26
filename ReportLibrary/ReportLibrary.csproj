@@ -79,6 +79,12 @@
     <Compile Include="ReportTicketApartado.Designer.cs">
       <DependentUpon>ReportTicketApartado.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportTicketCorte.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportTicketCorte.Designer.cs">
+      <DependentUpon>ReportTicketCorte.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportTicketVenta.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -111,6 +117,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportTicketApartado.resx">
       <DependentUpon>ReportTicketApartado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTicketCorte.resx">
+      <DependentUpon>ReportTicketCorte.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportTicketVenta.resx">
       <DependentUpon>ReportTicketVenta.cs</DependentUpon>

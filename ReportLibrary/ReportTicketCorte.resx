@@ -547,69 +547,71 @@
 </value>
   </data>
   <metadata name="sqlDataSource1.ParameterValues" xml:space="preserve">
-    <value>{"@idsucursal":"1","@idempeno":"1","@idhistorial":"1"}</value>
+    <value>{"@idsucursal":"1","@idcierre":"2"}</value>
   </metadata>
   <data name="sqlDataSource1.SelectCommand" xml:space="preserve">
-    <value>select s.calle, concat(" Col. ",(s.colonia)," CP ",s.cp)as direccion, s.email,s.telefono,
-e.folio, a.descripcion, e.prestamo, h.fechavence, h.fechacomercializacion as comercializacion, 
-h.importe,
-c.ncompleto,
+    <value>select s.calle, concat(" Col. ",(s.colonia)," CP ",s.cp)as direccion, s.email, s.telefono,
+concat(u.nombre," ",u.apaterno," ",u.amaterno)as usuario, c.fecha, c.hora,
+(
+   select d.saldoinicial
+   from cierre d
+   where d.idsucursal=s.idsucursal
+   and d.fecha &lt; c.fecha   
+   order by d.idcierre desc
+   limit 1
+)as saldoinicial,
+(
+select coalesce(sum(d.importe),0)as total
+from movimientos d
+where d.fecha=c.fecha and d.ignorar =0
+and d.tipo in('V')
+and d.idsucursal=s.idsucursal
+)as ventas,
+(
+select coalesce(sum(d.importe),0) as total
+from movimientos d
+where d.fecha=c.fecha and d.ignorar =0
+and d.tipo in('R')
+and d.idsucursal=s.idsucursal
+)as refrendos,
+(
+select coalesce(sum(d.importe),0) as total
+from movimientos d
+where d.fecha=c.fecha and d.ignorar =0
+and d.tipo in('A')
+and d.idsucursal=1
+)as apartados,
+(
+select coalesce(sum(d.prestamo),0)as total
+from empeno d
+where d.fechaempeno=c.fecha and d.estatus='ACTIVO'
+and d.idsucursal=s.idsucursal
+)as prestamos,
+(
+select coalesce(sum(d.importe),0) as total
+from detallecaja d
+where d.fecha=c.fecha and d.estatus='ACTIVO'
+and d.idsucursal=s.idsucursal
+and tipo='I'
+)as ingresos,
 
-d.interes, d.almacenaje, d.gastosadmin,
-round(d.interes/100 * e.prestamo,2)as pinteres, 
-round(d.almacenaje/100 * e.prestamo,2)as palmacenaje, 
-round(d.gastosadmin/100 * e.prestamo,2)as pgastosadmin,
-d2.iddetalle,
-d2.texto,
-
-round(d2.porcentaje/100 * e.prestamo,2)as pinteres2,
-(round(d.interes/100 * e.prestamo,2) + round(d.almacenaje/100 * e.prestamo,2) + round(d.gastosadmin/100 * e.prestamo,2))as pagar,
-
-
-case 
-when DATEDIFF(h.fecha, h.fechainicia) &lt; (select d.diafin from detalleplazoempeno d where d.idplazo = e.idplazo order by d.diafin desc limit 1) then 0
-else 
-
-   CASE
-     when DATE_ADD(h.fechainicia, INTERVAL (select d.diafin + 10 from detalleplazoempeno d where d.idplazo = e.idplazo order by d.diafin desc limit 1) DAY)&gt;=h.fecha and DAYOFWEEK(h.fecha) = 5 then 0
-     else
-			(
-			e.interesdiario * (DATEDIFF(h.fecha, h.fechainicia) - (select d.diafin from detalleplazoempeno d where d.idplazo = e.idplazo order by d.diafin desc limit 1))
-			*e.prestamo
-			)
-		end
-
-end as recargos,
-
-
-
-DATE_ADD(h.fecha, INTERVAL d2.dias DAY)as fecha, 
-concat(u.nombre," ",u.apaterno," ",u.amaterno)as usuario, h.fecha as fechah, h.hora as horah
+(
+select coalesce(sum(d.importe),0) as total
+from detallecaja d
+where d.fecha=c.fecha and d.estatus='ACTIVO'
+and d.idsucursal=s.idsucursal
+and tipo='E'
+)as egresos
 
 from sucursal s
-left join empeno e on s.idsucursal = e.idsucursal
-left join articulo a on e.idarticulo = a.idarticulo and e.idsucursal = a.idsucursal
-left join historialempeno h on h.idempeno = e.idempeno and h.idsucursal = e.idsucursal
-left join cliente c on e.idcliente = c.idcliente and e.idsucursal = c.idsucursal
-left join detalleplazoempeno d on e.idplazo = d.idplazo 
-left join usuario u on h.idusuario = u.idusuario and h.idsucursal = u.idsucursal
-left join detalleplazoempeno d2 on d2.idplazo = e.idplazo
+left join cierre c on s.idsucursal = c.idsucursal 
+left join usuario u on c.idusuario = u.idusuario and c.idsucursal = u.idsucursal
 
-where s.idsucursal=@idsucursal
-and e.idempeno=@idempeno
-and d.iddetalle =
-(
-select d.iddetalle
-from detalleplazoempeno d
-left join empeno e on e.idplazo = d.idplazo
-where DATEDIFF(h.fecha, h.fechainicia) between d.diainicio and d.diafin
-or
-DATEDIFF(h.fecha, h.fechainicia) &gt; (select max(d.dias))
-and e.idempeno=@idempeno
-and e.idsucursal=@idsucursal
-order by iddetalle desc
-limit 1
-)
-and h.idhistorial=@idhistorial</value>
+where s.idsucursal=@idsucursal	
+and c.idcierre=@idcierre
+</value>
   </data>
+  <metadata name="$this.Zoom" type="System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>1.5</value>
+  </metadata>
 </root>

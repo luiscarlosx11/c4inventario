@@ -93,6 +93,7 @@
                 <asp:HiddenField runat="server" ID="idP" />
                 <asp:HiddenField runat="server" ID="idS" />
                 <asp:HiddenField runat="server" ID="idO" />
+                <asp:HiddenField runat="server" ID="idF" />
                 <asp:Button runat="server" ID="Bnuevo" OnClick="nuevoRegistro" Style="display: none" />
                 <asp:Button runat="server" ID="Beditar" OnClick="editarRegistro" Style="display: none" />
                 <asp:Button runat="server" ID="Bconsultar" OnClick="listadoTickets" Style="display: none" />
@@ -674,6 +675,8 @@
             $("*[id$='idP']").val(idempeno);
             $("*[id$='idS']").val(idsucursal);
             $("*[id$='idO']").val(op);
+
+            $("*[id$='idF']").val(folio);
 
             $("*[id$='lfolio']").text(folio);
             $("*[id$='lnombre']").text(cliente);

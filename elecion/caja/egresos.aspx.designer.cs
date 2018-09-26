@@ -10,7 +10,7 @@
 namespace elecion.caja {
     
     
-    public partial class ingresos {
+    public partial class egresos {
         
         /// <summary>
         /// Control ScriptManager1.
@@ -110,6 +110,24 @@ namespace elecion.caja {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox concepto;
+        
+        /// <summary>
+        /// Control tipogasto.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList tipogasto;
+        
+        /// <summary>
+        /// Control DsTipoGasto.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource DsTipoGasto;
         
         /// <summary>
         /// Control importe.

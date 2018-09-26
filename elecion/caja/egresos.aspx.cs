@@ -10,7 +10,7 @@ using System.Web.Security;
 
 namespace elecion.caja
 {
-    public partial class ingresos : System.Web.UI.Page
+    public partial class egresos : System.Web.UI.Page
     {
         private int idusuario;
         private int idsucursal;
@@ -47,7 +47,7 @@ namespace elecion.caja
                             "left join detallecaja d on d.idsucursal = s.idsucursal " +
                             "left join tipogasto t on t.idtipogasto = d.idtipogasto " +
                             "left join usuario u on u.idusuario = d.idusuario " +
-                            "where d.tipo = 'I' ";
+                            "where d.tipo = 'E' ";
 
 
                     if (bfolio.Text.Trim() != "")
@@ -97,12 +97,12 @@ namespace elecion.caja
 
             String query = "select s.nombre as sucursal, d.iddetallecaja, d.idsucursal, d.concepto, d.importe, cast(d.fecha as char) as fecha, cast(d.hora as char)as hora, t.tipogasto, "+
                             "(CONCAT(COALESCE(u.nombre, ''), ' ', COALESCE(u.apaterno, ''), ' ', COALESCE(u.amaterno, ''))) as usuario, d.estatus,  " +
-                            "case d.estatus when 'CANCELADO' then 'danger' else 'success' end as statustext " +
+                            "case d.estatus when 'CANCELADO' then 'danger' else 'success' end as statustext, d.idtipogasto " +
                             "from sucursal s " +
                             "left join detallecaja d on d.idsucursal = s.idsucursal " +
                             "left join tipogasto t on t.idtipogasto = d.idtipogasto " +
                             "left join usuario u on u.idusuario = d.idusuario " +
-                            "where d.tipo = 'I' ";
+                            "where d.tipo = 'E' ";
 
 
             if (bfolio.Text.Trim() != "")
@@ -156,7 +156,7 @@ namespace elecion.caja
                     //Si el idmunicipio es mayor que cero se hace UPDATE
                     if (Int32.Parse(idP.Value) > 0)
                     {
-                        query = "UPDATE detallecaja set concepto=@concepto, importe=@importe where iddetallecaja=@idP and idsucursal=@idS;";
+                        query = "UPDATE detallecaja set concepto=@concepto, importe=@importe, idtipogasto=@idtipogasto where iddetallecaja=@idP and idsucursal=@idS;";
                         iddet = Convert.ToInt32(idP.Value);
                     }
                         
@@ -175,8 +175,8 @@ namespace elecion.caja
 
                         cmd.Parameters.Clear();
 
-                        query = "INSERT INTO detallecaja(iddetallecaja, idsucursal, idusuario, fecha, hora, concepto, importe, tipo, estatus) " +
-                                                "values( @idP, @idS, @idU, current_date, current_time, @concepto, @importe, 'I', 'ACTIVO');";
+                        query = "INSERT INTO detallecaja(iddetallecaja, idsucursal, idusuario, fecha, hora, concepto, importe, tipo, estatus, idtipogasto) " +
+                                                "values( @idP, @idS, @idU, current_date, current_time, @concepto, @importe, 'E', 'ACTIVO', @idtipogasto);";
                     }
 
                     cmd.CommandText = query;
@@ -187,6 +187,7 @@ namespace elecion.caja
                     cmd.Parameters.AddWithValue("@idU", idusuario);
                     cmd.Parameters.AddWithValue("@concepto", concepto.Text.ToUpper());
                     cmd.Parameters.AddWithValue("@importe", importe.Text);
+                    cmd.Parameters.AddWithValue("@idtipogasto", tipogasto.SelectedValue);
                     cmd.ExecuteNonQuery();
 
                     transaction.Commit();

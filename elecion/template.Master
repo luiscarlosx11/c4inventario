@@ -426,10 +426,10 @@
                 </li>
                 
 
-                        <li id="egeneral" class="menu-item"><a href="/estadisticas/cortediario.aspx" >
+                        <li id="corted" class="menu-item"><a href="/report/cierre.aspx" >
                             <i class="icon-docs"></i><span data-i18n="" class="menu-title">Corte Diario</span></a>                            
                         </li>
-                         <li id="esatisfaccion" class="menu-item" ><a href="/estadisticas/movimientos.aspx" >
+                         <li id="movimientos" class="menu-item" ><a href="/report/movimientos.aspx" >
                              <i class="icon-directions"></i><span data-i18n="" class="menu-title">Movimientos de Caja</span>  </a>                          
                         </li>
                         <!--<li class="nav-item"><a href="/estadisticas/rendimiento.aspx"><i class="ft-star"></i><span data-i18n="" class="menu-title">Rendimiento</span> </a>                           

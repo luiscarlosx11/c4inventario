@@ -7,10 +7,10 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace elecion.caja {
+namespace elecion.report {
     
     
-    public partial class ingresos {
+    public partial class movimientos {
         
         /// <summary>
         /// Control ScriptManager1.
@@ -31,22 +31,40 @@ namespace elecion.caja {
         protected global::System.Web.UI.UpdatePanel pU;
         
         /// <summary>
-        /// Control labelConteo.
+        /// Control lventas.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labelConteo;
+        protected global::System.Web.UI.WebControls.Label lventas;
         
         /// <summary>
-        /// Control nuevo.
+        /// Control lrefrendos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton nuevo;
+        protected global::System.Web.UI.WebControls.Label lrefrendos;
+        
+        /// <summary>
+        /// Control lapartados.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lapartados;
+        
+        /// <summary>
+        /// Control lprestamos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lprestamos;
         
         /// <summary>
         /// Control bfolio.
