@@ -1,0 +1,76 @@
+/*================================================================================
+	Item Name: Stack - Responsive Admin Theme
+	Version: 1.0
+	Author: PIXINVENT
+	Author URL: http://www.themeforest.net/user/pixinvent
+================================================================================
+
+NOTE:
+------
+PLACE HERE YOUR OWN SCSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
+WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
+.ocultar{
+    display:none
+}
+
+.rendila-color {
+    background: #004FA7;
+}
+
+
+.centrarCelda{
+            text-align:center;
+        }
+
+.item{cursor:pointer;}
+.item:hover{background-color:#E6F0FA;}
+
+.rounded_corners
+    {
+        border: 1px solid #808080;
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        border-radius: 8px;
+        overflow: hidden;
+         margin-left: auto;
+        margin-right: auto;
+    }
+    .rounded_corners td, .rounded_corners th
+    {
+        border: 0px solid #808080;
+        font-family: Arial;
+        font-size: 10pt;
+        text-align: center;
+    }
+    .rounded_corners table table td
+    {
+      
+         border-style: none;
+         border-bottom: 10px solid #808080;
+         vertical-align: middle;
+    }
+
+     .rounded_corners table td
+    {
+         border-style: solid;
+         border-bottom: 3px solid #858585;
+         vertical-align: middle;
+    }
+    .centered-table {
+   margin-left: auto;
+   margin-right: auto;
+
+}
+      .enmedio{
+                vertical-align: middle;
+           }
+      .negrita{
+          font-weight:bold;
+          font-size:medium;
+      }
+      
+#btn_s{
+    width:100px;
+    margin-left:auto;
+    margin-right:auto;
+}
