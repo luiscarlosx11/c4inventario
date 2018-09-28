@@ -85,7 +85,7 @@
                                                         <span class="text-muted">Ventas</span>
                                                     </div>
                                                     <div class="media-right media-middle">
-                                                        <i class="icon-bulb font-large-2 blue-grey lighten-3"></i>
+                                                        <i class="fa fa-shopping-cart font-large-2 blue-grey lighten-3"></i>
                                                     </div>
                                                 </div>
                                             </div>
@@ -105,7 +105,7 @@
                                                         <span class="text-muted">Refrendos</span>
                                                     </div>
                                                     <div class="media-right media-middle">
-                                                        <i class="icon-bulb font-large-2 blue-grey lighten-3"></i>
+                                                        <i class="fa fa-undo font-large-2 blue-grey lighten-3"></i>
                                                     </div>
                                                 </div>
                                             </div>
@@ -125,7 +125,7 @@
                                                         <span class="text-muted">Apartados / Abonos</span>
                                                     </div>
                                                     <div class="media-right media-middle">
-                                                        <i class="icon-bulb font-large-2 blue-grey lighten-3"></i>
+                                                        <i class="fa fa-hand-paper-o font-large-2 blue-grey lighten-3"></i>
                                                     </div>
                                                 </div>
                                             </div>
@@ -147,7 +147,7 @@
                                                         <span class="text-muted">Préstamos</span>
                                                     </div>
                                                     <div class="media-right media-middle">
-                                                        <i class="icon-bulb font-large-2 blue-grey lighten-3"></i>
+                                                        <i class="icon-docs font-large-2 blue-grey lighten-3"></i>
                                                     </div>
                                                 </div>
                                             </div>

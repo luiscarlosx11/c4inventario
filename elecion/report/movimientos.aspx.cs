@@ -30,7 +30,7 @@ namespace elecion.report
             if (!IsPostBack)
             {
                 //if (String.IsNullOrEmpty(lgastos.SortExpression)) lgastos.Sort("fecha", SortDirection.Ascending);
-
+                setFecha(sender, e);
                 listadoTickets(sender, e);
             }
         }
@@ -148,6 +148,38 @@ namespace elecion.report
             //ScriptManager.RegisterClientScriptBlock(Page, typeof(string), "myScriptName", "cerrarLoading();", true);
             //gridSeguimiento.DataBind();
 
+        }
+
+        protected void setFecha(Object sender, EventArgs e)
+        {
+            using (MySqlConnection con2 = new MySqlConnection(System.Web.Configuration.WebConfigurationManager.ConnectionStrings["DBconexion"].ConnectionString))
+            {
+                try
+                {
+                    con2.Open();
+                    string query = "select DATE_FORMAT(current_date,'%Y-%m-%d') as fecha;";
+
+                    MySqlCommand cmd2 = new MySqlCommand(query, con2);
+
+                    MySqlDataReader rdr = cmd2.ExecuteReader();
+                    if (rdr.HasRows)
+                    {
+                        while (rdr.Read())
+                        {
+                            bfecha.Text = rdr["fecha"].ToString();
+                        }
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("ERROR:" + ex.Message.Replace("\r\n", ""));
+                }
+                finally
+                {
+                    con2.Close();
+                }
+            }
         }
 
         protected void refrescaGrid(object sender, EventArgs e)

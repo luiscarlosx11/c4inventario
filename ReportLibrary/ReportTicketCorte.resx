@@ -547,50 +547,50 @@
 </value>
   </data>
   <metadata name="sqlDataSource1.ParameterValues" xml:space="preserve">
-    <value>{"@idsucursal":"1","@idcierre":"2"}</value>
+    <value>{"@fecha":"2018-09-26","@idsucursal":"1"}</value>
   </metadata>
   <data name="sqlDataSource1.SelectCommand" xml:space="preserve">
     <value>select s.calle, concat(" Col. ",(s.colonia)," CP ",s.cp)as direccion, s.email, s.telefono,
-concat(u.nombre," ",u.apaterno," ",u.amaterno)as usuario, c.fecha, c.hora,
+concat(u.nombre," ",u.apaterno," ",u.amaterno)as usuario, current_date as fecha, current_time as hora,
 (
-   select d.saldoinicial
+   select d.caja
    from cierre d
    where d.idsucursal=s.idsucursal
-   and d.fecha &lt; c.fecha   
+   and d.fecha &lt; @fecha   
    order by d.idcierre desc
    limit 1
 )as saldoinicial,
 (
 select coalesce(sum(d.importe),0)as total
 from movimientos d
-where d.fecha=c.fecha and d.ignorar =0
+where d.fecha=@fecha and d.ignorar =0
 and d.tipo in('V')
 and d.idsucursal=s.idsucursal
 )as ventas,
 (
 select coalesce(sum(d.importe),0) as total
 from movimientos d
-where d.fecha=c.fecha and d.ignorar =0
+where d.fecha=@fecha and d.ignorar =0
 and d.tipo in('R')
 and d.idsucursal=s.idsucursal
 )as refrendos,
 (
 select coalesce(sum(d.importe),0) as total
 from movimientos d
-where d.fecha=c.fecha and d.ignorar =0
+where d.fecha=@fecha and d.ignorar =0
 and d.tipo in('A')
 and d.idsucursal=1
 )as apartados,
 (
 select coalesce(sum(d.prestamo),0)as total
 from empeno d
-where d.fechaempeno=c.fecha and d.estatus='ACTIVO'
+where d.fechaempeno=@fecha and d.estatus='ACTIVO'
 and d.idsucursal=s.idsucursal
 )as prestamos,
 (
 select coalesce(sum(d.importe),0) as total
 from detallecaja d
-where d.fecha=c.fecha and d.estatus='ACTIVO'
+where d.fecha=@fecha and d.estatus='ACTIVO'
 and d.idsucursal=s.idsucursal
 and tipo='I'
 )as ingresos,
@@ -598,17 +598,16 @@ and tipo='I'
 (
 select coalesce(sum(d.importe),0) as total
 from detallecaja d
-where d.fecha=c.fecha and d.estatus='ACTIVO'
+where d.fecha=@fecha and d.estatus='ACTIVO'
 and d.idsucursal=s.idsucursal
 and tipo='E'
 )as egresos
 
-from sucursal s
-left join cierre c on s.idsucursal = c.idsucursal 
-left join usuario u on c.idusuario = u.idusuario and c.idsucursal = u.idsucursal
+from sucursal s, usuario u
 
-where s.idsucursal=@idsucursal	
-and c.idcierre=@idcierre
+where s.idsucursal=@idsucursal
+and u.idusuario=@idsucursal
+
 </value>
   </data>
   <metadata name="$this.Zoom" type="System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">

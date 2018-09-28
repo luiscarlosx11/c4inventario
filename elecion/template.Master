@@ -311,9 +311,12 @@
                         
                         <li class="nav-item" id="Li1" runat="server"><a href="index.html"><i class="icon-settings"></i><span data-i18n="" class="menu-title">Configuración</span>
                             <span class="tag tag tag-primary tag-pill float-xs-right mr-2"></span></a>
-                            <ul class="menu-content">                       
-                                <li id="catconfig"><a href="/catalogos/sistema/cattipoventa.aspx" class="menu-item">Adicional</a>
-                                </li>                                                        
+                            <ul class="menu-content">  
+                                <li id="catsucursales"><a href="/configuracion/catsucursales.aspx" class="menu-item">Sucursales</a>
+                                </li>                      
+                                <li id="catconfig"><a href="#" class="menu-item">Plazos</a>
+                                </li> 
+                                                                                        
                             </ul>
                         </li>
 

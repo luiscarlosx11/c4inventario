@@ -2160,6 +2160,7 @@
     <Content Include="catalogos\sistema\cattipoventa.aspx" />
     <Content Include="catalogos\sistema\catprioridades.aspx" />
     <Content Include="catalogos\sistema\catareas.aspx" />
+    <Content Include="configuracion\catsucursales.aspx" />
     <Content Include="historico\agregarprestamoconsulta.aspx" />
     <Content Include="images\rendilana.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -2827,6 +2828,13 @@
     </Compile>
     <Compile Include="catalogos\sistema\catareas.aspx.designer.cs">
       <DependentUpon>catareas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="configuracion\catsucursales.aspx.cs">
+      <DependentUpon>catsucursales.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="configuracion\catsucursales.aspx.designer.cs">
+      <DependentUpon>catsucursales.aspx</DependentUpon>
     </Compile>
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="cs\datasets.cs" />

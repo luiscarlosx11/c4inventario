@@ -33,7 +33,8 @@
             <ReportSource IdentifierType="TypeReportSource" Identifier="ReportLibrary.ReportTicketCorte, ReportLibrary">
                 <Parameters>
                     <telerik:Parameter Name="idsucursal" />
-                    <telerik:Parameter Name="idcierre" />
+                    <telerik:Parameter Name="idusuario" />
+                    <telerik:Parameter Name="fecha" />
                 </Parameters>
             </ReportSource>
         </telerik:ReportViewer>

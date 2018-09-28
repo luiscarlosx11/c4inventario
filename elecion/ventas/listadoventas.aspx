@@ -173,17 +173,17 @@
 
                                                 <button type="button" id="bauxrefrendar" onclick="abrirModalRefrendo(3);" class="btn btn-icon btn-warning"
                                                    >
-                                                    <i class="ft-edit"></i>Apartar
+                                                    <i class="fa fa-hand-paper-o"></i> Apartar
                                                 </button>
 
                                                 <button type="button" id="bauxdesempenar" onclick="abrirModalRefrendo(5);" class="btn btn-icon btn-success"
                                                     >
-                                                    <i class="ft-edit"></i>Vender
+                                                    <i class="fa fa-usd"></i> Vender
                                                 </button>
 
                                                 <button type="button" id="bauxenajenar" onclick="abrirModalRefrendo(99);" class="btn btn-icon btn-danger"
                                                     >
-                                                    <i class="ft-edit"></i>Modificar precio
+                                                    <i class="ft-edit"></i> Modificar precio
                                                 </button>
 
                                                 

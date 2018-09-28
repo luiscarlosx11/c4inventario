@@ -167,17 +167,17 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <button type="button" id="bauxhistorial" onclick="abrirModalHistorial();" class="btn btn-icon btn-blue-grey lighten-1">
-                                                    <i class="fa fa-calendar"></i> Historial
+                                                    <i class="fa fa-calendar"></i>  Historial
                                                 </button>
                                                
                                                 <button type="button" id="bauxrefrendar" onclick="abrirModalRefrendo(4);" class="btn btn-icon btn-warning"
                                                    >
-                                                    <i class="ft-edit"></i>Abonar
+                                                    <i class="fa fa-undo"></i> Abonar
                                                 </button>
 
                                                 <button type="button" id="bauxenajenar" onclick="abrirModalRefrendo(100);" class="btn btn-icon btn-danger"
                                                     >
-                                                    <i class="ft-edit"></i>Cancelar apartado
+                                                    <i class="ft-x"></i> Cancelar apartado
                                                 </button>
 
                                                 

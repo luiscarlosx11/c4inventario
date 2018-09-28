@@ -82,7 +82,7 @@ namespace elecion.report
                     Decimal caja =  new Decimal(0);
                     string query = "select "+
                                     "( " +
-                                    "   select d.saldoinicial " +
+                                    "   select d.caja " +
                                     "   from cierre d " +
                                     "   where d.idsucursal = s.idsucursal " +
                                     "   and d.fecha < '" + bfecha.Text+ "'  " +

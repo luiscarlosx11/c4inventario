@@ -12,6 +12,7 @@ namespace ReportLibrary
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportTicketCorte));
             Telerik.Reporting.ReportParameter reportParameter1 = new Telerik.Reporting.ReportParameter();
             Telerik.Reporting.ReportParameter reportParameter2 = new Telerik.Reporting.ReportParameter();
+            Telerik.Reporting.ReportParameter reportParameter3 = new Telerik.Reporting.ReportParameter();
             Telerik.Reporting.Drawing.StyleRule styleRule1 = new Telerik.Reporting.Drawing.StyleRule();
             this.pageHeaderSection1 = new Telerik.Reporting.PageHeaderSection();
             this.textBox9 = new Telerik.Reporting.TextBox();
@@ -194,7 +195,7 @@ namespace ReportLibrary
             this.textBox40.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(9D);
             this.textBox40.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
             this.textBox40.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox40.Value = "= Fields.fecha";
+            this.textBox40.Value = "= Parameters.fecha.Value";
             // 
             // textBox41
             // 
@@ -400,8 +401,8 @@ namespace ReportLibrary
             this.sqlDataSource1.ConnectionString = "ReportLibrary.Properties.Settings.rendilana";
             this.sqlDataSource1.Name = "sqlDataSource1";
             this.sqlDataSource1.Parameters.AddRange(new Telerik.Reporting.SqlDataSourceParameter[] {
-            new Telerik.Reporting.SqlDataSourceParameter("@idsucursal", System.Data.DbType.Int32, "= Parameters.idsucursal.Value"),
-            new Telerik.Reporting.SqlDataSourceParameter("@idcierre", System.Data.DbType.Int32, "= Parameters.idcierre.Value")});
+            new Telerik.Reporting.SqlDataSourceParameter("@fecha", System.Data.DbType.String, "= Parameters.fecha.Value"),
+            new Telerik.Reporting.SqlDataSourceParameter("@idsucursal", System.Data.DbType.Int32, "= Parameters.idsucursal.Value")});
             this.sqlDataSource1.SelectCommand = resources.GetString("sqlDataSource1.SelectCommand");
             // 
             // ReportTicketCorte
@@ -423,8 +424,11 @@ namespace ReportLibrary
             reportParameter2.Name = "idcierre";
             reportParameter2.Type = Telerik.Reporting.ReportParameterType.Integer;
             reportParameter2.Value = "3";
+            reportParameter3.Name = "fecha";
+            reportParameter3.Value = "2018-09-26";
             this.ReportParameters.Add(reportParameter1);
             this.ReportParameters.Add(reportParameter2);
+            this.ReportParameters.Add(reportParameter3);
             styleRule1.Selectors.AddRange(new Telerik.Reporting.Drawing.ISelector[] {
             new Telerik.Reporting.Drawing.TypeSelector(typeof(Telerik.Reporting.TextItemBase)),
             new Telerik.Reporting.Drawing.TypeSelector(typeof(Telerik.Reporting.HtmlTextBox))});

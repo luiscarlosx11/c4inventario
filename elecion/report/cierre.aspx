@@ -87,8 +87,8 @@
                                                         <span class="text-muted">Saldo en Caja</span>
                                                     </div>
                                                     <div class="media-right media-middle">
-                                                        <button type="button" id="nuevo" runat="server" onclick="insertar()" class="btn btn-icon btn-primary mr-1" data-toggle="modal">
-                                                            <i class="ft-file"></i>Nuevo empeño 
+                                                        <button type="button" id="nuevo" runat="server" onclick="reimprimir()" class="btn btn-icon btn-primary mr-1" data-toggle="modal">
+                                                            <i class="ft-print"></i>Imprimir Corte 
                                                         </button>
                                                     </div>
                                                 </div>
@@ -109,7 +109,7 @@
                                         <div class="card-body">
                                             <div class="media">
                                                 <div class="media-left bg-teal p-2 media-middle">
-                                                    <i class="icon-pencil font-large-2 white"></i>
+                                                    <i class="icon-briefcase font-large-2 white"></i>
                                                 </div>
                                                 <div class="media-body p-2">
                                                     <h4>Saldo</h4>
@@ -129,7 +129,7 @@
                                         <div class="card-body">
                                             <div class="media">
                                                 <div class="media-left bg-success p-2 media-middle">
-                                                    <i class="icon-pencil font-large-2 white"></i>
+                                                    <i class="fa fa-shopping-cart font-large-2 white"></i>
                                                 </div>
                                                 <div class="media-body p-2">
                                                     <h4>Total</h4>
@@ -149,7 +149,7 @@
                                         <div class="card-body">
                                             <div class="media">
                                                 <div class="media-left bg-warning p-2 media-middle">
-                                                    <i class="icon-pencil font-large-2 white"></i>
+                                                    <i class="fa fa-undo font-large-2 white"></i>
                                                 </div>
                                                 <div class="media-body p-2">
                                                     <h4>Total</h4>
@@ -169,7 +169,7 @@
                                         <div class="card-body">
                                             <div class="media">
                                                 <div class="media-left bg-cyan p-2 media-middle">
-                                                    <i class="icon-pencil font-large-2 white"></i>
+                                                    <i class="fa fa-hand-paper-o font-large-2 white"></i>
                                                 </div>
                                                 <div class="media-body p-2">
                                                     <h4>Total</h4>
@@ -191,7 +191,7 @@
                                         <div class="card-body">
                                             <div class="media">
                                                 <div class="media-left bg-danger p-2 media-middle">
-                                                    <i class="icon-pencil font-large-2 white"></i>
+                                                    <i class="icon-docs font-large-2 white"></i>
                                                 </div>
                                                 <div class="media-body p-2">
                                                     <h4>Total</h4>
@@ -231,7 +231,7 @@
                                         <div class="card-body">
                                             <div class="media">
                                                 <div class="media-left bg-success p-2 media-middle">
-                                                    <i class="icon-pencil font-large-2 white"></i>
+                                                    <i class="fa fa-sign-in font-large-2 white"></i>
                                                 </div>
                                                 <div class="media-body p-2">
                                                     <h4>Total</h4>
@@ -252,7 +252,7 @@
                                         <div class="card-body">
                                             <div class="media">
                                                 <div class="media-left bg-danger p-2 media-middle">
-                                                    <i class="icon-pencil font-large-2 white"></i>
+                                                    <i class="fa fa-sign-out font-large-2 white"></i>
                                                 </div>
                                                 <div class="media-body p-2">
                                                     <h4>Total</h4>
@@ -383,9 +383,15 @@
                 mostrarLoading();
 
                 $('#bootstrap').modal('hide');
-;                return true;
+                return true;
                                
             
+        }
+
+        function reimprimir() {
+            var url = "../reportes/RVTicketCorte.aspx?fecha=" + $("*[id$='bfecha']").val() + "&idsucursal=" + $("*[id$='idS']").val();
+
+            window.open(url, '_blank');
         }
        
 

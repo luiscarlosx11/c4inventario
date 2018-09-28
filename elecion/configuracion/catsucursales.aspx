@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/template.Master" AutoEventWireup="true" EnableEventValidation="false" 
-    CodeBehind="cattipomov.aspx.cs" Inherits="elecion.catalogos.sistema.cattipomov" %>
+    CodeBehind="catsucursales.aspx.cs" Inherits="elecion.catalogos.configuracion.catsucursales" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
         .ascending a {
@@ -33,7 +33,7 @@
     
     <div class="content-header row">
         <div class="content-header-left col-md-6 col-xs-12 mb-1">
-            <h3 class="content-header-title">Sistema</h3>
+            <h3 class="content-header-title">Configuración</h3>
           </div>
           <div class="content-header-right breadcrumbs-right breadcrumbs-top col-md-6 col-xs-12">
             <div class="breadcrumb-wrapper col-xs-12">
@@ -42,7 +42,7 @@
                 </li>
                 <li class="breadcrumb-item"><a href="#">Catálogos</a>
                 </li>
-                <li class="breadcrumb-item active"><a href="#">Tipos de Movimiento</a>
+                <li class="breadcrumb-item active"><a href="#">Configuración</a>
                 </li>
               </ol>
             </div>
@@ -58,11 +58,11 @@
                 <div class="col-xs-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">LISTADO DE TIPOS DE MOVIMIENTO</h4>
+                            <h4 class="card-title">LISTADO DE SUCURSALES</h4>
                             <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
                             <div class="heading-elements">
                                 <ul class="list-inline mb-0">
-                                   
+                                  <asp:HiddenField ID="idS" runat="server" />
                                 </ul>
                             </div>
                         </div>
@@ -81,17 +81,14 @@
                                                         <asp:Label runat="server" ID="labelConteo"></asp:Label>
                                                         actualmente</span>
                                                 </div>
-                                                <div class="media-right media-middle">
-                                                    <button type="button" id="nuevo" runat="server" onclick="abrirModal(0,'')" class="btn btn-icon btn-primary mr-1" data-toggle="modal">
-                                                        <i class="ft-file"></i>Nuevo registro 
-                                                    </button>
-                                                </div>
+                                               
                                             </div>
                                         </div>
                                         
                                     </div>
                                 </div>
                             </div>
+                           
                            
                             </div>
                             
@@ -100,7 +97,7 @@
                             <asp:GridView runat="server" ID="lgastos" PageSize="10" AllowPaging="true" AllowSorting="true" CssClass="table table-striped table-bordered zero-configuration" 
                                 AutoGenerateColumns="False" DataSourceID="DsListadoGastos" OnSorting="lgastos_Sorting" EnableSortingAndPagingCallbacks="true"
                                 AlternatingRowStyle-BackColor="#F5F7FA" OnDataBinding="conteoRegistros">
-                               <SortedAscendingHeaderStyle CssClass="ascending rendila-color" ForeColor="White" />
+                                <SortedAscendingHeaderStyle CssClass="ascending rendila-color" ForeColor="White" />
                                 <SortedDescendingHeaderStyle CssClass="descending rendila-color" ForeColor="White"/>
                                         <Columns>
                                             <asp:TemplateField HeaderText="No." HeaderStyle-HorizontalAlign="Center" ItemStyle-Width="20px">
@@ -108,27 +105,30 @@
                                                     <%# Container.DataItemIndex + 1 %>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:BoundField DataField="tipomovimiento" HeaderText="Tipo de Movimiento" SortExpression="tipomovimiento" />                           
-                                            <asp:TemplateField HeaderText="Acciones" ItemStyle-Width="180px">
+                                            <asp:BoundField DataField="nombre" HeaderText="Nombre" SortExpression="nombre" /> 
+                                            <asp:BoundField DataField="abreviado" HeaderText="Abreviado" SortExpression="abreviado" /> 
+                                            <asp:BoundField DataField="direccion" HeaderText="Dirección" SortExpression="direccion" />                          
+                                            <asp:BoundField DataField="telefono" HeaderText="Teléfono" SortExpression="telefono" />                          
+                                            <asp:BoundField DataField="email" HeaderText="Email" SortExpression="email" />                          
+                                            <asp:TemplateField HeaderText="Acciones" ItemStyle-Width="180px" HeaderStyle-CssClass="centrarCelda" ItemStyle-CssClass="centrarCelda">
                                                 <ItemTemplate>
 
-                                                    <button type="button" id="editar" onclick="abrirModal(<%# Eval("idtipomovimiento")%>,'<%# Eval("tipomovimiento").ToString() %>')" class="btn btn-icon btn-success mr-1"
+                                                    <button type="button" id="editar" onclick="abrirModal(<%# Eval("idsucursal")%>,'<%# Eval("nombre").ToString() %>')" class="btn btn-icon btn-success mr-1"
                                                         data-toggle="tooltip" data-original-title="Editar" >
                                                          <i class="ft-edit"></i>
                                                     </button>
-
-                                                     <button type="button" id="borrar" onclick="eliminarRegistro(<%# Eval("idtipomovimiento")%>,'<%# Eval("tipomovimiento").ToString() %>');" class="btn btn-icon btn-danger mr-1"
-                                                        data-toggle="tooltip" data-original-title="Borrar" >
-                                                         <i class="ft-delete"></i>
-                                                    </button>
-                                                                                                         
+                                                                                                                                                             
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                         </Columns>
                                 
                                     </asp:GridView>
                             
-                                    <asp:SqlDataSource ID="DsListadoGastos" ProviderName="MySql.Data.MySqlClient" runat="server" ConnectionString="<%$ ConnectionStrings:DBconexion %>" SelectCommand="select idtipomovimiento, tipomovimiento from tipomovimiento order by tipomovimiento"></asp:SqlDataSource>
+                                    <asp:SqlDataSource ID="DsListadoGastos" ProviderName="MySql.Data.MySqlClient" runat="server" ConnectionString="<%$ ConnectionStrings:DBconexion %>" SelectCommand="select s.idsucursal, s.nombre, s.abreviado,  s.calle, s.colonia, s.cp, s.telefono, s.email, concat(s.calle,' Col. ',(s.colonia),' CP ',coalesce(s.cp,''))as direccion
+                                        from sucursal s
+                                        where s.idsucursal>0">
+
+                                    </asp:SqlDataSource>
                                </div>
                             </div>
                         
@@ -145,41 +145,117 @@
 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 				        <span aria-hidden="true">&times;</span>
 			        </button>
-			        <h3 class="modal-title" id="myModalLabel35">TIPO DE MOVIMIENTO</h3>
+			        <h3 class="modal-title" id="myModalLabel35">SUCURSAL</h3>
 			        </div>
 			   
                        
 			        <div class="modal-body">
-                    <section class="input-validation inputmask">
-	                            <div class="row">
-	                                <div class="col-md-12">
-	                                    <div class="card">
-	                                        <div class="card-header">
-	                                            
-	                                        </div>
-                                            <div class="card-body collapse in">
-                                                <div class="card-block">
-                                                  <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <div class="form-group">
-                                                                        <label >Nombre</label>
+                   
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                    </div>
+                                    <div class="card-body collapse in">
+                                        <div class="card-block">
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    <div class="form-group">
+                                                        <label>Nombre</label>
+                                                        <asp:TextBox ID="tipogasto" CssClass="form-control text-uppercase" required="required" data-validation-required-message="Campo requerido" MaxLength="60" placeholder="Tipo de venta" name="tipogasto" runat="server"></asp:TextBox>
 
-                                                                        <asp:HiddenField runat="server" ID="idg" />
-                                                                        <asp:TextBox ID="idtipog" CssClass="ocultar" name="idtipogasto" runat="server" ReadOnly="true"></asp:TextBox>
-                                                                        <asp:TextBox ID="tipogasto" CssClass="form-control text-uppercase" required="required" data-validation-required-message="Campo requerido" MaxLength="60" placeholder="Tipo de movimiento" name="tipogasto" runat="server"></asp:TextBox>
-                                                                        <div class="help-block"></div>
-                                                                    </div>
-
-
-                                                                </div>
-                                                            </div>                                                                                                                       
-                                                        
                                                     </div>
+
+
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>Abreviado</label>                                                       
+                                                        <asp:TextBox ID="abreviado" CssClass="form-control text-uppercase" required="required" data-validation-required-message="Campo requerido" MaxLength="60" placeholder="Abreviado" name="tipogasto" runat="server"></asp:TextBox>
+
+                                                    </div>
+
 
                                                 </div>
                                             </div>
-	                                    </div>
-	                                </div>
+                                            <div class="row">
+                                                <div class="col-md-9">
+                                                    <div class="form-group">
+                                                        <label>Calle</label>
+                                                        
+                                                        <asp:TextBox ID="calle" CssClass="form-control" required="required" data-validation-required-message="Campo requerido" MaxLength="60" placeholder="Calle" name="tipogasto" runat="server"></asp:TextBox>
+
+                                                    </div>
+
+
+                                                </div>
+                                                 <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label>Num. Ext</label>
+
+                                                        <asp:TextBox ID="numext" CssClass="form-control" required="required" data-validation-required-message="Campo requerido" MaxLength="60" placeholder="Num" name="tipogasto" runat="server"></asp:TextBox>
+
+                                                    </div>
+
+
+                                                </div>
+                                                </div>
+
+
+                                            <div class="row">
+                                                <div class="col-md-9">
+                                                    <div class="form-group">
+                                                        <label>Colonia</label>
+                                                        <asp:TextBox ID="colonia" CssClass="form-control" required="required" data-validation-required-message="Campo requerido" MaxLength="60" placeholder="Colonia" name="tipogasto" runat="server"></asp:TextBox>
+
+                                                    </div>
+
+
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label>CP</label>
+
+                                                        <asp:TextBox ID="cp" CssClass="form-control" required="required" data-validation-required-message="Campo requerido" MaxLength="60" placeholder="CP" name="tipogasto" runat="server"></asp:TextBox>
+
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    <div class="form-group">
+                                                        <label>Email</label>
+
+                                                        <asp:HiddenField runat="server" ID="HiddenField6" />
+                                                        <asp:TextBox ID="email" CssClass="form-control" required="required" data-validation-required-message="Campo requerido" MaxLength="60" placeholder="Email" name="tipogasto" runat="server"></asp:TextBox>
+
+                                                    </div>
+
+
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>Teléfono</label>
+                                                        <asp:TextBox ID="TextBox7" CssClass="form-control" required="required" data-validation-required-message="Campo requerido" MaxLength="60" placeholder="Teléfono" name="tlefono" runat="server"></asp:TextBox>
+
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 	                            </div>
 
                         
@@ -227,7 +303,7 @@
     <script>
         
         $(".nav-item>ul>li.active").removeClass("active");
-        $("#cattipomov").addClass("active");
+        $("#catsucursales").addClass("active");
 
         function abrirModal(idtipogasto, tipogasto) {
             
