@@ -257,6 +257,41 @@ namespace elecion.tickets
 
         }
 
+
+        protected void listadoHistorial(object sender, EventArgs e)
+        {
+            /*int limit = 12;
+            int pag = Convert.ToInt32(pagina.Value);
+
+            int offset = 0;
+
+            if (pag > 1)
+            {
+                offset = limit * (pag - 1);
+            }*/
+
+            ghistorial.DataSourceID = DShistorial.ID;
+
+            String query = "select h.idhistorial, h.idempeno, h.idsucursal, h.idtipomovimiento, cast(h.fecha as char)as fecha, cast(h.hora as char)as hora, t.tipomovimiento, h.importe, h.estatus, e.folio " +
+                           " from historialempeno h " +
+                           " left join tipomovimiento t on t.idtipomovimiento = h.idtipomovimiento " +
+                           " left join empeno e on e.idempeno= h.idempeno and e.idsucursal = h.idsucursal " +
+                           " where h.idempeno = " +idP.Value+ " " +
+                           " and h.idsucursal = "+idS.Value;
+
+            DShistorial.SelectCommand = query;
+
+            DShistorial.DataBind();
+            ghistorial.DataBind();
+
+
+           // ScriptManager.RegisterClientScriptBlock(Page, typeof(string), "myScriptName", "cerrarLoading(); $('#mhistorial').modal('show');", true);
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "myScriptName", "cerrarLoading(); $('#mhistorial').modal('show');", true);
+
+            //gridSeguimiento.DataBind();
+
+        }
         protected void refrendaEmpeno(object sender, EventArgs e)
         {
 

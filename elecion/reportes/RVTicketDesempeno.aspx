@@ -29,7 +29,7 @@
 			Width="100%"
 			Height="100%"
 			EnableAccessibility="false"
-            runat="server" PrintMode="ForcePDFPlugin">
+            runat="server" PrintMode="ForcePDFPlugin" ViewMode="PrintPreview">
             <ReportSource IdentifierType="TypeReportSource" Identifier="ReportLibrary.ReportTicketDesempeno, ReportLibrary">
                 <Parameters>
                     <telerik:Parameter Name="idempeno" />

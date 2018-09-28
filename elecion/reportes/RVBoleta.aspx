@@ -7,7 +7,7 @@
 <head runat="server">
     <title>Rendilana - Boleta de Empeño</title>
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
 	<style>
 		#reportViewer1 {
 			position: absolute;
@@ -22,13 +22,13 @@
 
 </head>
 <body>
-    <form runat="server">
+    <form runat="server" >
         <telerik:ReportViewer
             ID="reportViewer1" 
 			Width="100%"
 			Height="100%"
 			EnableAccessibility="true"
-            runat="server">
+            runat="server" ViewMode="PrintPreview">
             <ReportSource IdentifierType="TypeReportSource" Identifier="ReportLibrary.ReportBoleta, ReportLibrary, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
                  <Parameters>
                     <telerik:Parameter Name="idempeno" />

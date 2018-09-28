@@ -110,6 +110,7 @@
                 <asp:Button runat="server" ID="Bconsultar" OnClick="listadoTickets" Style="display: none" />
                 <asp:Button runat="server" ID="Brefrendo" OnClick="refrendaEmpeno" Style="display: none" />
                 
+                
             <div class="col-md-12">
                     <div class="card overflow-hidden">
                         <div class="card-body">
@@ -174,8 +175,12 @@
                                                     <i class="fa fa-pencil"></i> Detalles
                                                 </button>
 
-                                                <button type="button" id="Button1" runat="server" onclick="algo()" class="btn btn-icon btn-success" data-toggle="modal">
+                                                <button type="button" id="bboleta" runat="server" onclick="algo()" class="btn btn-icon btn-success" data-toggle="modal">
                                                     <i class="fa fa-file-text-o"></i> Boleta
+                                                </button>
+
+                                                <button type="button" id="bauxhistorial" onclick="abrirModalHistorial();" class="btn btn-icon btn-blue-grey lighten-1">
+                                                    <i class="fa fa-calendar"></i> Historial
                                                 </button>
 
                                                 <button type="button" id="bauxrefrendar" onclick="abrirModalRefrendo(1);" class="btn btn-icon btn-warning">
@@ -190,6 +195,8 @@
                                                     <i class="fa fa-random"></i> Enajenar
                                                 </button>
 
+
+                                                
 
                                             </div>
                                         </div>
@@ -292,103 +299,108 @@
                         </div>
 
                         <div class="modal-body">
-
-                            <div class="row">
-                                <div class="col-md-5">
-
+                          
                                     <div class="row">
+                                        <div class="col-md-5">
 
-                                        <div class="col-md-12">
+                                            <div class="row">
 
-                                            <asp:Image ID="fotoarticulo" runat="server" Height="300" Width="100%" />
+                                                <div class="col-md-12">
+
+                                                    <asp:Image ID="fotoarticulo" runat="server" Height="300" Width="100%" />
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-7">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label for="cliente" class="text-bold-600">Folio</label>
+                                                        <asp:Label ID="lfolio" runat="server" CssClass="col-md-12"></asp:Label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label for="cliente" class="text-bold-600">Cliente</label>
+                                                        <asp:Label ID="lnombre" runat="server" CssClass="col-md-12"></asp:Label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label for="cliente" class="text-bold-600">Artículo</label>
+                                                        <asp:Label ID="larticulo" runat="server" CssClass="col-md-12"></asp:Label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="cliente" class="text-bold-600">Préstamo</label>
+                                                        <asp:Label ID="lprestamo" runat="server" CssClass="col-md-12"></asp:Label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="cliente" class="text-bold-600">Ultimo refrendo hace</label>
+                                                        <asp:Label ID="ldias" runat="server" CssClass="col-md-12"></asp:Label>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="cliente" class="text-bold-600">Tasa de Interés</label>
+                                                        <asp:Label ID="ltasa" runat="server" CssClass="col-md-12"></asp:Label>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="cliente" class="text-bold-600">Intereses</label>
+                                                        <asp:Label ID="lintereses" runat="server" CssClass="col-md-12"></asp:Label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="cliente" class="text-bold-600">Recargos</label>
+                                                        <asp:Label ID="lrecargos" runat="server" CssClass="col-md-12"></asp:Label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label for="cliente" class="text-bold-600">Total a pagar</label>
+                                                        <asp:HiddenField ID="hpago" runat="server" />
+                                                        <asp:Label ID="lpago" runat="server" CssClass="col-md-12"></asp:Label>
+                                                    </div>
+                                                </div>
+                                            </div>
 
                                         </div>
                                     </div>
 
-                                </div>
-                                <div class="col-md-7">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label for="cliente" class="text-bold-600">Folio</label>
-                                                <asp:Label ID="lfolio" runat="server" CssClass="col-md-12"></asp:Label>
-                                            </div>
-                                        </div>
-                                    </div>  
-
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label for="cliente" class="text-bold-600">Cliente</label>
-                                                <asp:Label ID="lnombre" runat="server" CssClass="col-md-12"></asp:Label>
-                                            </div>
-                                        </div>
-                                    </div> 
-                            
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label for="cliente" class="text-bold-600">Artículo</label>
-                                                <asp:Label ID="larticulo" runat="server" CssClass="col-md-12"></asp:Label>
-                                            </div>
-                                        </div>
-                                    </div> 
-                            
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="cliente" class="text-bold-600">Préstamo</label>
-                                                <asp:Label ID="lprestamo" runat="server" CssClass="col-md-12"></asp:Label>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="cliente" class="text-bold-600">Ultimo refrendo hace</label>
-                                                <asp:Label ID="ldias" runat="server" CssClass="col-md-12"></asp:Label>
-                                            </div>
-                                        </div>
-                                       
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="cliente" class="text-bold-600">Tasa de Interés</label>
-                                                <asp:Label ID="ltasa" runat="server" CssClass="col-md-12"></asp:Label>
-                                            </div>
-                                        </div>
+                               
 
 
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="cliente" class="text-bold-600">Intereses</label>
-                                                <asp:Label ID="lintereses" runat="server" CssClass="col-md-12"></asp:Label>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="cliente" class="text-bold-600">Recargos</label>
-                                                <asp:Label ID="lrecargos" runat="server" CssClass="col-md-12"></asp:Label>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label for="cliente" class="text-bold-600">Total a pagar</label>
-                                                <asp:HiddenField ID="hpago" runat="server"/>
-                                                <asp:Label ID="lpago" runat="server" CssClass="col-md-12"></asp:Label>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                </div>
-                                
                         </div>
 
                         <div class="modal-footer">
+                           
+
                              <button class="btn btn-primary" onclick="procesoRefrendo()" type="button" id="bmrefrendar">
                                <i class="ft-file"></i>Refrendar 
                              </button>
@@ -406,7 +418,8 @@
                             </button>
 
                         </div>
-                    </div>
+
+
 
 
                 </div>
@@ -417,7 +430,7 @@
     </asp:UpdatePanel>
 
 
-     <div class="modal fade" id="boleta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel35" aria-hidden="true">
+     <div class="modal fade" id="mhistorial" tabindex="-1" role="dialog" aria-labelledby="myModalLabel35" aria-hidden="true">
 
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
@@ -425,14 +438,65 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <h3 class="modal-title" id="myModalLabel36"><asp:Label ID="Label1" runat="server"></asp:Label></h3>
+                            <h3 class="modal-title" id="myModalLabel36"><asp:Label ID="titulohistorial" runat="server"></asp:Label></h3>
                         </div>
 
                         <div class="modal-body">
 
                             <div class="row">
                                 <div class="col-md-12">
-                                    
+                                    <asp:UpdatePanel runat="server">
+                                <ContentTemplate>
+                              
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <asp:Button runat="server" ID="bhistorial" OnClick="listadoHistorial" Style="display: none" />
+                                            <div class="card-block card-dashboard">
+                                                <div style="overflow-x: auto; width: 100%">
+                                                    <asp:GridView runat="server" ID="ghistorial" PageSize="10" AllowPaging="true" AllowSorting="true" CssClass="table table-striped table-bordered zero-configuration"
+                                                        AutoGenerateColumns="False" DataSourceID="DShistorial" 
+                                                        AlternatingRowStyle-BackColor="#F5F7FA">
+                                                        <SortedAscendingHeaderStyle CssClass="ascending rendila-color" ForeColor="White" />
+                                                        <SortedDescendingHeaderStyle CssClass="descending rendila-color" ForeColor="White" />
+                                                        <Columns>
+                                                            <asp:TemplateField HeaderText="No." HeaderStyle-HorizontalAlign="Center" ItemStyle-Width="20px">
+                                                                <ItemTemplate>
+                                                                    <%# Container.DataItemIndex + 1 %>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            
+                                                            <asp:BoundField DataField="tipomovimiento" HeaderText="Tipo" SortExpression="tipomovimiento" ItemStyle-Width="200px" />
+                                                            <asp:BoundField DataField="fecha" HeaderText="Fecha" SortExpression="fecha" ItemStyle-Width="150px" ItemStyle-CssClass="centrarCelda" HeaderStyle-CssClass="centrarCelda" />
+                                                            <asp:BoundField DataField="hora" HeaderText="Hora" SortExpression="hora" ItemStyle-Width="150px" ItemStyle-CssClass="centrarCelda " HeaderStyle-CssClass="centrarCelda" />
+                                                            <asp:BoundField DataField="importe" HeaderText="Importe" SortExpression="importe" ItemStyle-Width="150px" ItemStyle-CssClass="centrarCelda " HeaderStyle-CssClass="centrarCelda" DataFormatString="{0:c}" HtmlEncode="False" />
+
+                                                            <asp:TemplateField HeaderText="Acciones" ItemStyle-Width="0px" ItemStyle-CssClass="centrarCelda" HeaderStyle-CssClass="centrarCelda">
+                                                            <ItemTemplate>
+                                                                
+                                                                    <div class="<%# Eval("idtipomovimiento").Equals(2)?"ocultar":"" %>">
+                                                                    <button type="button"  onclick="reimprimir(<%# Eval("idhistorial")%>,<%# Eval("idempeno")%>,<%# Eval("idsucursal")%>,<%# Eval("idtipomovimiento")%>,'<%# Eval("folio")%>');" class="btn btn-icon btn-success btn-sm"
+                                                                        data-toggle="tooltip" data-original-title="Refrendar">
+                                                                        <i class="ft-printer"></i>
+                                                                    </button>
+
+                                                                    </div>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+
+                                                        </Columns>
+
+                                                    </asp:GridView>
+
+                                                    <asp:SqlDataSource ID="DShistorial" ProviderName="MySql.Data.MySqlClient" runat="server" ConnectionString="<%$ ConnectionStrings:DBconexion %>" SelectCommand=""></asp:SqlDataSource>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    </ContentTemplate>
+                                    </asp:UpdatePanel>
                                     
                                 </div>
                             </div>
@@ -443,7 +507,7 @@
                              
 
                             <button type="button" class="btn btn-danger mr-1" data-dismiss="modal" id="cerrarM2">
-                                <i class="ft-x"></i>Cancelar	                    
+                                <i class="ft-x"></i>Cerrar	                    
                             </button>
 
                         </div>
@@ -655,18 +719,31 @@
             $("*[id$='ltasa']").text(tasa+" %");
             $("*[id$='lintereses']").text(pago);
             $("*[id$='lrecargos']").text(recargos);
-            $("*[id$='ldias']").text(dias+" dias");
-
-            
-           
-            
+            $("*[id$='ldias']").text(dias+" dias");                                  
             //$("#refrendo").modal('show');
             
         }
        
+        function abrirModalHistorial() {
+
+            var id = $("*[id$='idP']").val();
+
+            if (id == 0) {
+                swal("Atención", "Seleccione un empeño para realizar operaciones sobre él", "warning");
+                return false;
+
+            }
+
+            mostrarLoading();
+            $("*[id$='titulohistorial']").text('HISTORIAL - ' + $("*[id$='lfolio']").text());
+
+            $('#<%= bhistorial.ClientID %>').click();
+            
+        }
 
         function abrirModalRefrendo(op) {
             
+                        
             var id= $("*[id$='idP']").val();
 
             if(id==0){
@@ -690,6 +767,8 @@
                 $("#bmrefrendar").show();
                 $("#bmdesempeno").hide();
                 $("#bmenajenar").hide();
+                $("#profileIcon-tab1").hide();
+                
 
                 if(total==0){
                     swal("Atención", "No existe un monto generado por intereses, no es posible realizar un refrendo sobre este empeño", "warning");
@@ -728,6 +807,21 @@
             $("#refrendo").modal('hide');
         }
 
+
+        function reimprimir(idhistorial, idempeno, idsucursal, idtipomovimiento, folio) {  
+            var url = "";
+            
+            if(idtipomovimiento==1)
+                url = "../reportes/RVTicket.aspx?idempeno=" + idempeno + "&idsucursal=" + idsucursal + "&idhistorial=" + idhistorial;
+            else  if(idtipomovimiento==3 || idtipomovimiento==4)
+                url = "../reportes/RVTicketApartado.aspx?idempeno=" + idempeno + "&idsucursal=" + idsucursal + "&idhistorial=" + idhistorial;
+            else if (idtipomovimiento == 5 )
+                url = "../reportes/RVTicketVenta.aspx?idempeno=" + idempeno + "&idsucursal=" + idsucursal + "&idhistorial=" + idhistorial;
+            else if (idtipomovimiento == 6)
+                url = "../reportes/RVTicketDesempeno.aspx?idempeno=" + idempeno + "&idsucursal=" + idsucursal + "&idhistorial=" + idhistorial;
+
+            window.open(url,'_blank');
+        }
 
 
 

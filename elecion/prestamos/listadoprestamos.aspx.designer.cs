@@ -157,13 +157,13 @@ namespace elecion.tickets {
         protected global::System.Web.UI.WebControls.TextBox bcodigo;
         
         /// <summary>
-        /// Control Button1.
+        /// Control bboleta.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton Button1;
+        protected global::System.Web.UI.HtmlControls.HtmlButton bboleta;
         
         /// <summary>
         /// Control dlCustomers.
@@ -301,12 +301,39 @@ namespace elecion.tickets {
         protected global::System.Web.UI.WebControls.Label lpago;
         
         /// <summary>
-        /// Control Label1.
+        /// Control titulohistorial.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label titulohistorial;
+        
+        /// <summary>
+        /// Control bhistorial.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button bhistorial;
+        
+        /// <summary>
+        /// Control ghistorial.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView ghistorial;
+        
+        /// <summary>
+        /// Control DShistorial.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource DShistorial;
     }
 }
