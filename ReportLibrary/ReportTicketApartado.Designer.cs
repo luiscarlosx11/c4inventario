@@ -50,11 +50,13 @@ namespace ReportLibrary
             this.textBox19 = new Telerik.Reporting.TextBox();
             this.textBox20 = new Telerik.Reporting.TextBox();
             this.sqlDataSource1 = new Telerik.Reporting.SqlDataSource();
+            this.textBox24 = new Telerik.Reporting.TextBox();
+            this.textBox25 = new Telerik.Reporting.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // pageHeaderSection1
             // 
-            this.pageHeaderSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(11.540972709655762D);
+            this.pageHeaderSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(12.340972900390625D);
             this.pageHeaderSection1.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
             this.textBox8,
             this.textBox9,
@@ -82,7 +84,9 @@ namespace ReportLibrary
             this.textBox41,
             this.textBox42,
             this.textBox43,
-            this.textBox44});
+            this.textBox44,
+            this.textBox25,
+            this.textBox24});
             this.pageHeaderSection1.Name = "pageHeaderSection1";
             // 
             // textBox8
@@ -125,7 +129,7 @@ namespace ReportLibrary
             // 
             // textBox29
             // 
-            this.textBox29.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.21146103739738464D), Telerik.Reporting.Drawing.Unit.Cm(11.100000381469727D));
+            this.textBox29.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.21146103739738464D), Telerik.Reporting.Drawing.Unit.Cm(11.899999618530273D));
             this.textBox29.Name = "textBox29";
             this.textBox29.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.9999992847442627D), Telerik.Reporting.Drawing.Unit.Cm(0.44097232818603516D));
             this.textBox29.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
@@ -134,7 +138,7 @@ namespace ReportLibrary
             // 
             // textBox30
             // 
-            this.textBox30.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(3.5924477577209473D), Telerik.Reporting.Drawing.Unit.Cm(11.100000381469727D));
+            this.textBox30.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(3.5924477577209473D), Telerik.Reporting.Drawing.Unit.Cm(11.899999618530273D));
             this.textBox30.Name = "textBox30";
             this.textBox30.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.8999992609024048D), Telerik.Reporting.Drawing.Unit.Cm(0.44097232818603516D));
             this.textBox30.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
@@ -428,6 +432,29 @@ namespace ReportLibrary
             new Telerik.Reporting.SqlDataSourceParameter("@idhistorial", System.Data.DbType.Int32, "= Parameters.idhistorial.Value")});
             this.sqlDataSource1.SelectCommand = resources.GetString("sqlDataSource1.SelectCommand");
             // 
+            // textBox24
+            // 
+            this.textBox24.Format = "{0:dd-MMM-yy}";
+            this.textBox24.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(4.4114632606506348D), Telerik.Reporting.Drawing.Unit.Cm(11.199999809265137D));
+            this.textBox24.Name = "textBox24";
+            this.textBox24.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.8999979496002197D), Telerik.Reporting.Drawing.Unit.Cm(0.44097232818603516D));
+            this.textBox24.Style.Font.Bold = true;
+            this.textBox24.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(10D);
+            this.textBox24.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Right;
+            this.textBox24.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
+            this.textBox24.Value = "= Fields.fechavence";
+            // 
+            // textBox25
+            // 
+            this.textBox25.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.21146157383918762D), Telerik.Reporting.Drawing.Unit.Cm(11.199999809265137D));
+            this.textBox25.Name = "textBox25";
+            this.textBox25.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(3.6000003814697266D), Telerik.Reporting.Drawing.Unit.Cm(0.44097232818603516D));
+            this.textBox25.Style.Font.Bold = true;
+            this.textBox25.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(10D);
+            this.textBox25.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
+            this.textBox25.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
+            this.textBox25.Value = "= \"Fecha vencimiento:\"";
+            // 
             // ReportTicketApartado
             // 
             this.DataSource = this.sqlDataSource1;
@@ -502,5 +529,7 @@ namespace ReportLibrary
         private Telerik.Reporting.TextBox textBox42;
         private Telerik.Reporting.TextBox textBox43;
         private Telerik.Reporting.TextBox textBox44;
+        private Telerik.Reporting.TextBox textBox25;
+        private Telerik.Reporting.TextBox textBox24;
     }
 }

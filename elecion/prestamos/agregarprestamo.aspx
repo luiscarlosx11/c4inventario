@@ -474,6 +474,16 @@
                                                 <asp:SqlDataSource ID="DsUsuarios" ProviderName="MySql.Data.MySqlClient" runat="server" ConnectionString="<%$ ConnectionStrings:DBconexion %>"></asp:SqlDataSource>
                                             </div>
                                         </div>
+
+                                         <div id="divResultados" >
+                                            
+                                                                                   
+                                            <label class="col-md-6 label-control" >No se encontraron registros, desea realizar un registro manual?</label>
+                                            <button type="button" class="btn btn-danger" onclick="">
+                                                        <i class="fa fa-check-square-o"></i>Registro Manual
+                                             </button>  
+
+                                        </div>
                                     </div>
                                     
                                 </ContentTemplate>
@@ -697,6 +707,7 @@
 
         function abrirModal() {            
             //$(".modal-backdrop").remove();
+            $("#divResultados").hide();
             $("#bootstrap").modal('show');
         }
 

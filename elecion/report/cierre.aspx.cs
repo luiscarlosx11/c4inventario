@@ -108,12 +108,13 @@ namespace elecion.report
                                     "from movimientos d " +
                                     "where d.fecha = '" + bfecha.Text+ "' and d.ignorar = 0 " +
                                     "and d.tipo in('A') " +
-                                    "and d.idsucursal = 1 " +
+                                    "and d.idsucursal = s.idsucursal " +
                                     ")as apartados, " +
                                     "( " +
-                                    "select coalesce(sum(d.prestamo), 0) as total " +
-                                    "from empeno d " +
-                                    "where d.fechaempeno = '" + bfecha.Text+ "' and d.estatus = 'ACTIVO' " +
+                                    "select coalesce(sum(d.importe), 0) as total " +
+                                    "from movimientos d " +
+                                    "where d.fecha = '" + bfecha.Text+ "' and d.ignorar = 0 " +
+                                    "and d.tipo in('P') " +
                                     "and d.idsucursal = s.idsucursal " +
                                     ")as prestamos, " +
                                     "( " +

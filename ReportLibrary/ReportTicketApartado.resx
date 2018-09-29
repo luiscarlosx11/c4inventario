@@ -551,7 +551,7 @@
   </metadata>
   <data name="sqlDataSource1.SelectCommand" xml:space="preserve">
     <value>select s.calle, concat(" Col. ",(s.colonia)," CP ",s.cp)as direccion, s.email, s.telefono,
-e.folio, a.descripcion, e.prestamo, e.fechavence, DATE_ADD(h.fechainicia, INTERVAL (e.diasventa+e.diastolerancia) DAY)as comercializacion, 
+e.folio, a.descripcion, e.prestamo, h.fechavence, DATE_ADD(h.fechainicia, INTERVAL (e.diasventa+e.diastolerancia) DAY)as comercializacion, 
 h.importe,
 c.ncompleto,
 concat(u.nombre," ",u.apaterno," ",u.amaterno)as usuario, h.fecha as fechah, h.hora as horah,

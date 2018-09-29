@@ -643,8 +643,8 @@
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Aceptar",
-                cancelButtonText: "Cancelar",
+                confirmButtonText: "Si",
+                cancelButtonText: "No",
                 closeOnConfirm: true,
                 closeOnCancel: true
             },
@@ -682,8 +682,8 @@
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Aceptar",
-                cancelButtonText: "Cancelar",
+                confirmButtonText: "Si",
+                cancelButtonText: "No",
                 closeOnConfirm: true,
                 closeOnCancel: true
             },
@@ -709,8 +709,8 @@
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Aceptar",
-                cancelButtonText: "Cancelar",
+                confirmButtonText: "Si",
+                cancelButtonText: "No",
                 closeOnConfirm: true,
                 closeOnCancel: true
             },

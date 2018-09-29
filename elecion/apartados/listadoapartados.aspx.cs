@@ -275,10 +275,10 @@ namespace elecion.tickets
                         reader.Close();
                         cmd.Parameters.Clear();
 
-                        query = "insert into historialempeno(idhistorial, idempeno, idsucursal, idtipomovimiento, idsucursalmovimiento, idusuario, fecha, hora, estatus, importe, idtipoventa, folioventa) " +
-                                                    "values(@idhistorial, @idempeno, @idsucursal, @idtipomovimiento, @idsucursalmovimiento, @idusuario, current_date, current_time, 'CERRADO', @importe, null, 0); ";
+                        query = "insert into historialempeno(idhistorial, idempeno, idsucursal, idtipomovimiento, idsucursalmovimiento, idusuario, fecha, hora, estatus, importe, idtipoventa, folioventa, fechainicia, fechavence) " +
+                                                    "values(@idhistorial, @idempeno, @idsucursal, @idtipomovimiento, @idsucursalmovimiento, @idusuario, current_date, current_time, 'CERRADO', @importe, null, 0, (select e.fechainicia from empeno e where e.idempeno = @idempeno and idsucursal=@idsucursal), (select ADDDATE(e.fechainicia, INTERVAL (e.diasapartado) DAY) from empeno e where e.idempeno = @idempeno and idsucursal=@idsucursal)); ";
 
-                        cmd.CommandText = query;
+                    cmd.CommandText = query;
                         cmd.Parameters.AddWithValue("@idhistorial", idhistorial);
                         cmd.Parameters.AddWithValue("@idempeno", idP.Value);
                         cmd.Parameters.AddWithValue("@idsucursal", idS.Value);

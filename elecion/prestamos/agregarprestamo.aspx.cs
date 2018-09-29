@@ -124,9 +124,13 @@ namespace elecion.tickets
                 DsUsuarios.DataBind();
                 lusuarios.DataBind();
 
-               
+                int numero = lusuarios.Rows.Count;
 
-                ScriptManager.RegisterClientScriptBlock(Page, typeof(string), "myScriptName", "cerrarLoading();", true);
+                
+                if (numero > 0)
+                    ScriptManager.RegisterClientScriptBlock(this, typeof(string), "myScriptName", " cerrarLoading();", true);
+                else
+                    ScriptManager.RegisterClientScriptBlock(this, typeof(string), "myScriptName", " cerrarLoading();", true);
 
                 //if (String.IsNullOrEmpty(lusuarios.SortExpression)) lusuarios.Sort("ncompleto", SortDirection.Ascending);
 
