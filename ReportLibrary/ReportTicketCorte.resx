@@ -578,6 +578,13 @@ and d.idsucursal=s.idsucursal
 select coalesce(sum(d.importe),0) as total
 from movimientos d
 where d.fecha=@fecha and d.ignorar =0
+and d.tipo in('D')
+and d.idsucursal=s.idsucursal
+)as desempenos,
+(
+select coalesce(sum(d.importe),0) as total
+from movimientos d
+where d.fecha=@fecha and d.ignorar =0
 and d.tipo in('A')
 and d.idsucursal=s.idsucursal
 )as apartados,
@@ -612,6 +619,6 @@ and u.idusuario=@idsucursal
 </value>
   </data>
   <metadata name="$this.Zoom" type="System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>1.5</value>
+    <value>2</value>
   </metadata>
 </root>

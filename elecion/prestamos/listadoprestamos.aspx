@@ -212,7 +212,7 @@
                                                         <asp:TemplateField HeaderText="" ItemStyle-Width="10px" ItemStyle-HorizontalAlign="Center">
                                                             <ItemTemplate>
 
-                                                                <input id="<%# Eval("idempeno") %>" type="checkbox" class="cks" value="<%# Container.DataItemIndex%>">
+                                                                <input id="<%# Eval("idempeno")+"_"+Eval("idsucursal") %>" type="checkbox" class="cks" value="<%# Container.DataItemIndex%>">
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
 
@@ -228,7 +228,7 @@
                                                             <ItemTemplate>
                                                                 <div class="ocultar">
                                                                     
-                                                                    <button type="button" id="refrendar_<%# Eval("idempeno")%>" onclick="ModalRefrendo(<%# Eval("idempeno")%>,<%# Eval("idsucursal")%>,<%# Eval("idarticulo")%>,'<%# Eval("folio")%>','<%# Eval("cliente")%>','<%# Eval("descripcion")%>',<%# Eval("prestamo")%>,'<%# Eval("pagar")%>',<%# Eval("tasa")%>,<%# Eval("dias")%>,<%# Eval("recargos")%>,1);" class="btn btn-icon btn-success btn-sm"
+                                                                    <button type="button" id="refrendar_<%# Eval("idempeno")+"_"+Eval("idsucursal") %>" onclick="ModalRefrendo(<%# Eval("idempeno")%>,<%# Eval("idsucursal")%>,<%# Eval("idarticulo")%>,'<%# Eval("folio")%>','<%# Eval("cliente")%>','<%# Eval("descripcion")%>',<%# Eval("prestamo")%>,'<%# Eval("pagar")%>',<%# Eval("tasa")%>,<%# Eval("dias")%>,<%# Eval("recargos")%>,1);" class="btn btn-icon btn-success btn-sm"
                                                                         data-toggle="tooltip" data-original-title="Refrendar">
                                                                         <i class="ft-edit"></i>
                                                                     </button>
@@ -582,7 +582,12 @@
             var actual = this;  
             
             $("#refrendar_" + actual.id).click();
-            $("*[id$='idP']").val(actual.id);
+
+            var aux = actual.id;
+            var res = aux.split("_");
+            
+            $("*[id$='idP']").val(res[0]);
+            $("*[id$='idS']").val(res[1]);
             
 
             $('.cks').each(function (id) {                    

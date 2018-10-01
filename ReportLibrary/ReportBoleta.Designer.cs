@@ -57,6 +57,7 @@ namespace ReportLibrary
             this.textBox18 = new Telerik.Reporting.TextBox();
             this.textBox19 = new Telerik.Reporting.TextBox();
             this.sqlDataSource1 = new Telerik.Reporting.SqlDataSource();
+            this.textBox36 = new Telerik.Reporting.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // groupFooterSection
@@ -272,12 +273,13 @@ namespace ReportLibrary
             this.textBox10,
             this.textBox11,
             this.textBox33,
-            this.textBox32});
+            this.textBox32,
+            this.textBox36});
             this.pageHeaderSection1.Name = "pageHeaderSection1";
             // 
             // textBox4
             // 
-            this.textBox4.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(2.2999999523162842D), Telerik.Reporting.Drawing.Unit.Cm(0.29999995231628418D));
+            this.textBox4.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(2.2999999523162842D), Telerik.Reporting.Drawing.Unit.Cm(0D));
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(4.900001049041748D), Telerik.Reporting.Drawing.Unit.Cm(0.44097232818603516D));
             this.textBox4.Style.Font.Bold = true;
@@ -520,6 +522,18 @@ namespace ReportLibrary
             new Telerik.Reporting.SqlDataSourceParameter("@idempeno", System.Data.DbType.Int32, "= Parameters.idempeno.Value")});
             this.sqlDataSource1.SelectCommand = resources.GetString("sqlDataSource1.SelectCommand");
             // 
+            // textBox36
+            // 
+            this.textBox36.Format = "{0:dd-MMM-yy}";
+            this.textBox36.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(12.599998474121094D), Telerik.Reporting.Drawing.Unit.Cm(0.00010012308484874666D));
+            this.textBox36.Name = "textBox36";
+            this.textBox36.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(8.159027099609375D), Telerik.Reporting.Drawing.Unit.Cm(0.44097232818603516D));
+            this.textBox36.Style.Font.Bold = true;
+            this.textBox36.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(7D);
+            this.textBox36.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Right;
+            this.textBox36.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
+            this.textBox36.Value = "= \"JUEVES DE PROMOCIÓN:\" + Fields.jueves";
+            // 
             // ReportBoleta
             // 
             this.DataSource = this.sqlDataSource1;
@@ -603,5 +617,6 @@ namespace ReportLibrary
         private Telerik.Reporting.TextBox textBox34;
         private Telerik.Reporting.TextBox textBox35;
         private Telerik.Reporting.Barcode barcode1;
+        private Telerik.Reporting.TextBox textBox36;
     }
 }

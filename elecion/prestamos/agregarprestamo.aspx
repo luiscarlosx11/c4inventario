@@ -110,7 +110,7 @@
                                 <div class="card-body collapse in datos">
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <asp:Button runat="server" ID="asignar" OnClick="getCliente" class="ocultar" />
+                                            
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <asp:Image ID="fotopa" runat="server" Height="300" Width="100%" />
@@ -118,7 +118,7 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12 centrarCelda">
-
+                                                    <asp:Button runat="server" ID="asignar" OnClick="getCliente" class="ocultar" />
                                                     <asp:FileUpload ID="Bfoto" runat="server" accept="image/*" onchange="showpreview(this);" class="ocultar"></asp:FileUpload>
                                                     <button class="btn btn-primary" onclick="dialogCliente()" type="button" id="BBfoto" runat="server">
                                                         <i class="fa fa-check-square-o"></i>Seleccionar foto
@@ -158,6 +158,8 @@
                                                         <button class="btn btn-primary" onclick="abrirModal()" type="button" id="BBbuscarcliente" runat="server">
                                                             <i class="fa fa-check-square-o"></i>Buscar Cliente
                                                         </button>
+
+                                                        
                                                     </div>
                                                 </div>
 
@@ -405,8 +407,7 @@
     </div>
     
                                                
-    <asp:UpdatePanel runat="server" ID="updatePanelTop" UpdateMode="Conditional" ChildrenAsTriggers="True">
-        <ContentTemplate>
+   
             <div class="modal fade" id="bootstrap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel35" aria-hidden="true">
 
                 <div class="modal-dialog modal-lg" role="document">
@@ -434,7 +435,7 @@
                                     </div>
 
 
-
+                                    
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div style="overflow-x: auto; width: 100%">
@@ -475,11 +476,11 @@
                                             </div>
                                         </div>
 
-                                         <div id="divResultados" >
+                                         <div id="divResultados" runat="server" visible="false">
                                             
                                                                                    
                                             <label class="col-md-6 label-control" >No se encontraron registros, desea realizar un registro manual?</label>
-                                            <button type="button" class="btn btn-danger" onclick="">
+                                            <button type="button" class="btn btn-danger" onclick="registroManual()">
                                                         <i class="fa fa-check-square-o"></i>Registro Manual
                                              </button>  
 
@@ -505,8 +506,7 @@
 
             </div>
 
-        </ContentTemplate>
-    </asp:UpdatePanel>
+      
 
 
 </asp:Content>
@@ -712,6 +712,11 @@
         }
 
         function cerrarModal() {
+            $("#bootstrap").modal('hide');
+        }
+
+        function registroManual() {
+            $("*[id$='idC']").val(0);
             $("#bootstrap").modal('hide');
         }
 

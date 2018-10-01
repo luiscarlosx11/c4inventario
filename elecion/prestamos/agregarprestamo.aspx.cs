@@ -36,14 +36,8 @@ namespace elecion.tickets
             sucursalnombre = datos2[5].ToString();
             idS.Value = idsucursal.ToString();
 
-            if (!bnombre.Text.Equals(""))
-            {
-                listadoClientes(sender, e);
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "abrirModal();", true);
-            }else
-            {
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "cerrarModal();", true);
-            }
+           
+            
             
             
 
@@ -60,6 +54,16 @@ namespace elecion.tickets
                         getEmpeno(idprestamo);
                                                          
                     getConfiguracion(sender, e);
+
+                    if (!bnombre.Text.Equals(""))
+                    {
+                        listadoClientes(sender, e);
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "abrirModal();", true);
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "cerrarModal();", true);
+                    }
                     //Session.Remove("idP");
                     //ScriptManager.RegisterStartupScript(this, GetType(), "abrirModal", "window.onload = function(){ $(document).prop('title', 'PLACEL - Editar Usuario'); };", true);
                 }
@@ -106,7 +110,7 @@ namespace elecion.tickets
 
                 lusuarios.DataSourceID = DsUsuarios.ID;
 
-                String query = "SELECT u.idcliente, u.idsucursal, u.ncompleto,  CAST(u.fecharegistro as char)as fecharegistro, u.email, u.telefono, u.celular, " +
+               String query = "SELECT u.idcliente, u.idsucursal, u.ncompleto,  CAST(u.fecharegistro as char)as fecharegistro, u.email, u.telefono, u.celular, " +
                                "CASE WHEN u.activo = 1 THEN 'checked' ELSE '' END as activo, " +
                                "(CONCAT(COALESCE(u.domicilio, ''), ' COL. ', COALESCE(u.colonia, ''), ' - ', COALESCE(u.localidad, ''), ', ', COALESCE(e.entidad, ''))) as domicilio " +
                                "from cliente u " +
@@ -128,11 +132,20 @@ namespace elecion.tickets
 
                 
                 if (numero > 0)
-                    ScriptManager.RegisterClientScriptBlock(this, typeof(string), "myScriptName", " cerrarLoading();", true);
-                else
-                    ScriptManager.RegisterClientScriptBlock(this, typeof(string), "myScriptName", " cerrarLoading();", true);
+                {
+                    // ScriptManager.RegisterClientScriptBlock(this, typeof(string), "myScriptName", " $('#divResultados').hide(); cerrarLoading();", true);
+                    divResultados.Visible = false;
+                }
+                    
+                else{
+                    // ScriptManager.RegisterClientScriptBlock(this, typeof(string), "myScriptName", " $('#divResultados').show(); cerrarLoading();", true);
+                    divResultados.Visible = true;
+                }
+                    
 
                 //if (String.IsNullOrEmpty(lusuarios.SortExpression)) lusuarios.Sort("ncompleto", SortDirection.Ascending);
+
+               ScriptManager.RegisterClientScriptBlock(this, typeof(string), "myScriptName", " cerrarLoading();", true);
 
             }
             catch (Exception ex)
@@ -416,7 +429,7 @@ namespace elecion.tickets
                     if (!idPlz.Value.Equals("0"))
                         sql = sql + " where idplazo=" + idPlz.Value;
                     else
-                        sql = sql + " where activo=1";
+                        sql = sql + " where activo=1 and tipo='B' ";
 
                     MySqlCommand cmd2 = new MySqlCommand(sql, con);
 
@@ -638,7 +651,26 @@ namespace elecion.tickets
                                 consecutivo = reader.GetInt32(0) + 1;
                             }
                             reader.Close();
-                        }else
+
+                            //SI SON CARROS SE APLICA OTRO PLAZO DISTINTO
+                            if (Convert.ToInt32(categorias.SelectedValue) == 4)
+                            {
+                                //Y EL PLAZO DISTINTO
+
+                                cmd.Parameters.Clear();
+                                cmd.CommandText = "select idplazo, nombre from plazoempeno where activo=1 and tipo='A'; ";
+
+
+                                reader = cmd.ExecuteReader();
+                                while (reader.Read())
+                                {
+                                    idPlz.Value = reader["idplazo"].ToString();
+                                }
+                                reader.Close();
+                            }
+
+                        }
+                        else
                         {
                             consecutivo = 0;
                             tipo = "N";

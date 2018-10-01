@@ -103,7 +103,16 @@ namespace elecion.report
                                     "and d.tipo in('R') " +
                                     "and d.idsucursal = s.idsucursal " +
                                     ")as refrendos, " +
+                                    
                                     "( " +
+                                    "select coalesce(sum(d.importe), 0) as total " +
+                                    "from movimientos d " +
+                                    "where d.fecha = '" + bfecha.Text + "' and d.ignorar = 0 " +
+                                    "and d.tipo in('D') " +
+                                    "and d.idsucursal = s.idsucursal " +
+                                    ")as desempenos, " +
+                                    "( " +
+
                                     "select coalesce(sum(d.importe), 0) as total " +
                                     "from movimientos d " +
                                     "where d.fecha = '" + bfecha.Text+ "' and d.ignorar = 0 " +
@@ -151,6 +160,8 @@ namespace elecion.report
                             lapartados.Text = caja.ToString("C", new CultureInfo("es-MX"));
                             caja = Decimal.Parse(rdr["refrendos"].ToString());
                             lrefrendos.Text = caja.ToString("C", new CultureInfo("es-MX"));
+                            caja = Decimal.Parse(rdr["desempenos"].ToString());
+                            ldesempenos.Text = caja.ToString("C", new CultureInfo("es-MX"));
                             caja = Decimal.Parse(rdr["prestamos"].ToString());
                             lprestamos.Text = caja.ToString("C", new CultureInfo("es-MX"));
 
@@ -160,7 +171,7 @@ namespace elecion.report
                             caja = Decimal.Parse(rdr["egresos"].ToString());
                             legresos.Text = caja.ToString("C", new CultureInfo("es-MX"));
 
-                            caja = Decimal.Parse(rdr["saldoinicial"].ToString()) + Decimal.Parse(rdr["ingresos"].ToString()) - Decimal.Parse(rdr["egresos"].ToString()) + Decimal.Parse(rdr["ventas"].ToString()) + Decimal.Parse(rdr["apartados"].ToString()) + Decimal.Parse(rdr["refrendos"].ToString()) - Decimal.Parse(rdr["prestamos"].ToString());
+                            caja = Decimal.Parse(rdr["saldoinicial"].ToString()) + Decimal.Parse(rdr["ingresos"].ToString()) - Decimal.Parse(rdr["egresos"].ToString()) + Decimal.Parse(rdr["ventas"].ToString()) + Decimal.Parse(rdr["apartados"].ToString()) + Decimal.Parse(rdr["desempenos"].ToString()) + Decimal.Parse(rdr["refrendos"].ToString()) - Decimal.Parse(rdr["prestamos"].ToString());
 
                             lsaldocaja.Text = caja.ToString("C", new CultureInfo("es-MX")); 
 

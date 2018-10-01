@@ -121,7 +121,9 @@
     <value>{"@idsucursal":"1","@idempeno":"1"}</value>
   </metadata>
   <data name="sqlDataSource1.SelectCommand" xml:space="preserve">
-    <value>select s.calle, concat(" Col. ",(s.colonia)," CP ",s.cp)as direccion, s.email,s.telefono,
+    <value>SET lc_time_names = 'es_MX';
+
+select s.calle, concat(" Col. ",(s.colonia)," CP ",s.cp)as direccion, s.email,s.telefono,
 e.idempeno, e.idsucursal, c.idcliente, a.idarticulo, e.folio, a.descripcion, e.prestamo, e.fechavence, DATE_ADD(e.fechaempeno, INTERVAL (e.diasventa+e.diastolerancia) DAY)as comercializacion,
 e.porcentajeavaluo, e.avaluo, c.clave, e.codigo,
 e.cotitular, c.ncompleto, c.domicilio, c.colonia, localidad, 
@@ -134,7 +136,23 @@ round(d.almacenaje/100 * e.prestamo,2)as palmacenaje,
 round(d.gastosadmin/100 * e.prestamo,2)as pgastosadmin,
 d.texto, DATE_ADD(e.fechaempeno, INTERVAL d.dias DAY)as fechapago,
 
-(round(d.interes/100 * e.prestamo,2) + round(d.almacenaje/100 * e.prestamo,2) + round(d.gastosadmin/100 * e.prestamo,2))as pagar
+(round(d.interes/100 * e.prestamo,2) + round(d.almacenaje/100 * e.prestamo,2) + round(d.gastosadmin/100 * e.prestamo,2))as pagar,
+
+
+(
+select GROUP_CONCAT(DATE_FORMAT(selected_date, '%d-%b-%Y') SEPARATOR ', ') from 
+(select adddate('2015-10-01',t4*10000 + t3*1000 + t2*100 + t1*10 + t0) selected_date from
+ (select 0 t0 union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t0,
+ (select 0 t1 union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t1,
+ (select 0 t2 union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t2,
+ (select 0 t3 union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t3,
+ (select 0 t4 union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t4) v
+where selected_date between e.fechaempeno and DATE_ADD(e.fechaempeno, INTERVAL 10 DAY) 
+and DAYOFWEEK(selected_date)=5
+
+)as jueves
+
+
 
 from sucursal s
 left join empeno e on s.idsucursal = e.idsucursal
@@ -150,7 +168,4 @@ and e.idempeno=@idempeno
 
 order by d.dias desc</value>
   </data>
-  <metadata name="$this.Zoom" type="System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>3</value>
-  </metadata>
 </root>

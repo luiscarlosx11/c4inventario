@@ -164,6 +164,27 @@
                                     </div>
                                 </div>
 
+
+                                <div class="col-md-12">
+                                    <div class="card overflow-hidden">
+                                        <div class="card-body">
+                                            <div class="media">
+                                                <div class="media-left bg-yellow p-2 media-middle">
+                                                    <i class="fa fa-undo font-large-2 white"></i>
+                                                </div>
+                                                <div class="media-body p-2">
+                                                    <h4>Total</h4>
+                                                    <span>Desempeños</span>
+                                                </div>
+                                                <div class="media-right p-2 media-middle">
+                                                    <h1 class="black">
+                                                        <asp:Label runat="server" ID="ldesempenos">$0.00</asp:Label></h1>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="col-md-12">
                                     <div class="card overflow-hidden">
                                         <div class="card-body">

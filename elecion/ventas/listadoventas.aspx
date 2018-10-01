@@ -203,7 +203,7 @@
                                                         <asp:TemplateField HeaderText="" ItemStyle-Width="20px" ItemStyle-HorizontalAlign="Center">
                                                             <ItemTemplate>
 
-                                                                <input id="<%# Eval("idempeno") %>" type="checkbox" class="cks" value="<%# Container.DataItemIndex%>">
+                                                                <input id="<%# Eval("idempeno")+"_"+Eval("idsucursal") %>" type="checkbox" class="cks" value="<%# Container.DataItemIndex%>">
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
 
@@ -218,7 +218,7 @@
                                                             <ItemTemplate>
                                                                 <div class="ocultar">
                                                                     
-                                                                    <button type="button" id="refrendar_<%# Eval("idempeno")%>" onclick="ModalRefrendo(<%# Eval("idempeno")%>,<%# Eval("idsucursal")%>,<%# Eval("idarticulo")%>,'<%# Eval("folio")%>','<%# Eval("cliente")%>','<%# Eval("descripcion")%>',<%# Eval("precio")%>,1);" class="btn btn-icon btn-success btn-sm"
+                                                                    <button type="button" id="refrendar_<%# Eval("idempeno")+"_"+Eval("idsucursal") %>" onclick="ModalRefrendo(<%# Eval("idempeno")%>,<%# Eval("idsucursal")%>,<%# Eval("idarticulo")%>,'<%# Eval("folio")%>','<%# Eval("cliente")%>','<%# Eval("descripcion")%>',<%# Eval("precio")%>,1);" class="btn btn-icon btn-success btn-sm"
                                                                         data-toggle="tooltip" data-original-title="Refrendar">
                                                                         <i class="ft-edit"></i>
                                                                     </button>
@@ -562,19 +562,24 @@
 
         });
 
-        $('.cks').on('ifChecked', function (event) {           
-            var actual = this;  
-            
-            $("#refrendar_" + actual.id).click();
-            $("*[id$='idP']").val(actual.id);
-            
+        $('.cks').on('ifChecked', function (event) {
+            var actual = this;
 
-            $('.cks').each(function (id) {                    
+            $("#refrendar_" + actual.id).click();
+
+            var aux = actual.id;
+            var res = aux.split("_");
+
+            $("*[id$='idP']").val(res[0]);
+            $("*[id$='idS']").val(res[1]);
+
+
+            $('.cks').each(function (id) {
                 if (this.id != actual.id) {
                     $(this).iCheck('uncheck');
-                }                     
+                }
             });
-                                  
+
         });
                 
 

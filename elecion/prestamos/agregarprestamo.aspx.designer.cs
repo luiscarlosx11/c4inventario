@@ -211,15 +211,6 @@ namespace elecion.tickets {
         protected global::System.Web.UI.UpdatePanel updatePanelTop2;
         
         /// <summary>
-        /// Control asignar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button asignar;
-        
-        /// <summary>
         /// Control fotopa.
         /// </summary>
         /// <remarks>
@@ -227,6 +218,15 @@ namespace elecion.tickets {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image fotopa;
+        
+        /// <summary>
+        /// Control asignar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button asignar;
         
         /// <summary>
         /// Control Bfoto.
@@ -481,15 +481,6 @@ namespace elecion.tickets {
         protected global::System.Web.UI.WebControls.TextBox precio;
         
         /// <summary>
-        /// Control updatePanelTop.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel updatePanelTop;
-        
-        /// <summary>
         /// Control bnombre.
         /// </summary>
         /// <remarks>
@@ -515,6 +506,15 @@ namespace elecion.tickets {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource DsUsuarios;
+        
+        /// <summary>
+        /// Control divResultados.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divResultados;
         
         /// <summary>
         /// Control Button1.
