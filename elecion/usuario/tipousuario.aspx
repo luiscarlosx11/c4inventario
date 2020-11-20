@@ -80,7 +80,7 @@
                                                         actualmente</span>
                                                 </div>
                                                 <div class="media-right media-middle">
-                                                    <button type="button" id="nuevo" runat="server" onclick="abrirModal(0,'')" class="btn btn-icon btn-primary mr-1" data-toggle="modal">
+                                                    <button type="button" id="nuevo" runat="server" onclick="abrirModal(0,'')" class="btn btn-icon btn-primary mr-1 " data-toggle="modal">
                                                         <i class="ft-file"></i>Nuevo registro 
                                                     </button>
                                                 </div>
@@ -108,18 +108,14 @@
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:BoundField DataField="tipousuario" HeaderText="Rol de Acceso" SortExpression="tipousuario" />                           
-                                            <asp:TemplateField HeaderText="Acciones" ItemStyle-Width="180px">
+                                            <asp:TemplateField HeaderText="Acciones" ItemStyle-Width="50px">
                                                 <ItemTemplate>
 
-                                                    <button type="button" id="editar" onclick="abrirModal(<%# Eval("idtipousuario")%>,'<%# Eval("tipousuario").ToString() %>');" class="btn btn-icon btn-success mr-1"
+                                                    <button type="button" id="editar" onclick="abrirModal(<%# Eval("idtipousuario")%>,'<%# Eval("tipousuario").ToString() %>');" class="btn btn-icon btn-warning mr-1 btn-sm"
                                                         data-toggle="tooltip" data-original-title="Editar" >
                                                          <i class="ft-edit"></i>
                                                     </button>
 
-                                                     <button type="button" id="borrar" onclick="eliminarRegistro(<%# Eval("idtipousuario")%>,'<%# Eval("tipousuario").ToString() %>');" class="btn btn-icon btn-danger mr-1"
-                                                        data-toggle="tooltip" data-original-title="Borrar" >
-                                                         <i class="ft-delete"></i>
-                                                    </button>
                                                                                                          
                                                 </ItemTemplate>
                                             </asp:TemplateField>

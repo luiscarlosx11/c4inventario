@@ -40,18 +40,20 @@ namespace elecion.tickets
                
                 listadoTickets(sender, e);
             }
-        
-            ScriptManager.RegisterClientScriptBlock(Page, typeof(string), "myScriptName", "$('.cks').iCheck({checkboxClass: 'icheckbox_flat-green',increaseArea: '20%'});"+
+
+            /*ScriptManager.RegisterClientScriptBlock(this, GetType(), "myScriptName", "$('.cks').iCheck({checkboxClass: 'icheckbox_flat-green',increaseArea: '20%'});"+
             "$('.cks').on('ifChecked', function (event) { "+
             "var actual = this;           "+
             "$('#refrendar_' + actual.id).click(); " +
+            "var aux = actual.id; "+
+
             "$('.cks').each(function(id) { " +
             "    if (this.id != actual.id) " +
             "    {" +
             "        $(this).iCheck('uncheck'); " +
             "    } " +
             "}); " +
-          "});", true);
+          "});", true);*/
         }
 
         protected void nuevoRegistro(object sender, EventArgs e)
@@ -78,7 +80,7 @@ namespace elecion.tickets
                            "from empeno e left " +
                            "join cliente c on c.idcliente = e.idcliente and c.idsucursal = e.idsucursal " +
                            "left join articulo a on a.idarticulo = e.idarticulo and a.idsucursal = e.idsucursal " +
-                           "left join usuario u on u.idusuario = e.idusuario where true and e.etapa in ('PRESTAMO','PRESTAMO REFRENDO') ";
+                           "left join usuario u on u.idusuario = e.idusuario and u.idsucursal = e.idsucursal where e.idsucursal = " + idsucursal+" and e.etapa in ('PRESTAMO','PRESTAMO REFRENDO') ";
 
                     if (bfolio.Text.Trim() != "")
                         query = query + " AND e.folio LIKE '%" + bfolio.Text.ToUpper() + "%' ";
@@ -225,7 +227,7 @@ namespace elecion.tickets
                             "from empeno e " +
                             "left join cliente c on c.idcliente = e.idcliente and c.idsucursal = e.idsucursal " +
                             "left join articulo a on a.idarticulo = e.idarticulo and a.idsucursal = e.idsucursal " +
-                            "left join usuario u on u.idusuario = e.idusuario " +
+                            "left join usuario u on u.idusuario = e.idusuario and u.idsucursal = e.idsucursal " +
                             "where e.idsucursal = " +idsucursal+" and e.etapa in ('PRESTAMO','PRESTAMO REFRENDO') ";
 
            
@@ -451,6 +453,133 @@ namespace elecion.tickets
                     con.Close();
                 }
 
+                //ScriptManager.RegisterStartupScript(this, GetType(), "cerrar", "$('.modal-backdrop').remove();", true);
+                // refrescaGrid(sender, e);
+
+            }
+
+
+        }
+
+
+
+        protected void cancelaEmpeno(object sender, EventArgs e)
+        {
+
+            int idhistorial = 0;
+            int idmovimiento = 0;
+
+            using (MySqlConnection con = new MySqlConnection(System.Web.Configuration.WebConfigurationManager.ConnectionStrings["DBconexion"].ConnectionString))
+            {
+
+                MySqlTransaction transaction = null;
+                MySqlDataReader reader = null;
+
+                String query = "";
+
+                try
+                {
+
+                    con.Open();
+
+                    MySqlCommand cmd = con.CreateCommand();
+
+                    // Start a local transaction
+                    transaction = con.BeginTransaction();
+                    // Must assign both transaction object and connection
+                    // to Command object for a pending local transaction
+                    cmd.Connection = con;
+                    cmd.Transaction = transaction;
+
+                    //SI EL CLIENTE ES NUEVO SE GUARDA PRIMERO 
+
+                    //cmd.Parameters.Clear();
+                    cmd.CommandText = "SELECT COALESCE(MAX(idhistorial),0)as idhistorial FROM historialempeno where idempeno=" + idP.Value + " and idsucursal=" + idS.Value + ";";
+
+
+                    reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        idhistorial = reader.GetInt32(0) + 1;
+                    }
+                    reader.Close();
+
+                    cmd.Parameters.Clear();
+                    query = "insert into historialempeno(idhistorial, idempeno, idsucursal, idtipomovimiento, idsucursalmovimiento, idusuario, fecha, hora, estatus, importe, fechainicia, fechavence, fechacomercializacion) " +
+                                                "values(@idhistorial, @idempeno, @idsucursal, @idtipomovimiento, @idsucursalmovimiento, @idusuario, current_date, current_time, 'CERRADO',(select e.prestamo*-1 from empeno e where e.idempeno = @idempeno and idsucursal=@idsucursal) , (select e.fechainicia from empeno e where e.idempeno = @idempeno and idsucursal=@idsucursal) , (select ADDDATE(current_date, INTERVAL (e.diasventa) DAY) from empeno e where e.idempeno = @idempeno and idsucursal=@idsucursal), (select ADDDATE(current_date, INTERVAL (e.diasventa+e.diastolerancia) DAY) from empeno e where e.idempeno = @idempeno and idsucursal=@idsucursal) ); ";
+
+                    cmd.CommandText = query;
+                    cmd.Parameters.AddWithValue("@idhistorial", idhistorial);
+                    cmd.Parameters.AddWithValue("@idempeno", idP.Value);
+                    cmd.Parameters.AddWithValue("@idsucursal", idS.Value);
+
+                    cmd.Parameters.AddWithValue("@idtipomovimiento", 101);
+                    cmd.Parameters.AddWithValue("@idsucursalmovimiento", idsucursal);
+                    cmd.Parameters.AddWithValue("@idusuario", idusuario);
+                   
+                    cmd.ExecuteNonQuery();
+
+
+                    //UPDATE A TABLA EMPEÑO
+                    cmd.Parameters.Clear();
+                   
+                    query = "update empeno set estatus='CANCELADO', etapa='CANCELADO' where idempeno=@idempeno and idsucursal=@idsucursal;";
+                    cmd.CommandText = query;
+                    cmd.Parameters.AddWithValue("@idempeno", idP.Value);
+                    cmd.Parameters.AddWithValue("@idsucursal", idS.Value);
+
+                    cmd.ExecuteNonQuery();
+
+                    
+                        // MOVIMIENTOS DIARIOS
+                        cmd.Parameters.Clear();
+                        cmd.CommandText = "SELECT COALESCE(MAX(idmovimiento),0)as idmovimiento FROM movimientos where idsucursal=" + idS.Value + " ;";
+
+
+                        reader = cmd.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            idmovimiento = reader.GetInt32(0) + 1;
+                        }
+                        reader.Close();
+
+
+                        cmd.Parameters.Clear();
+                        query = "insert into movimientos(idmovimiento, idsucursal, idusuario, fecha, hora, concepto, importe, tipo) " +
+                                "values(@idmovimiento, @idsucursal, @idusuario, current_date, current_time, @concepto, (select e.prestamo*-1 from empeno e where e.idempeno = @idempeno and idsucursal=@idsucursal) , @tipo); ";
+
+                        cmd.CommandText = query;
+                        cmd.Parameters.AddWithValue("@idmovimiento", idmovimiento);
+                        cmd.Parameters.AddWithValue("@idsucursal", idS.Value);
+                        cmd.Parameters.AddWithValue("@idempeno", idP.Value);
+                        cmd.Parameters.AddWithValue("@idusuario", idusuario);
+                        cmd.Parameters.AddWithValue("@concepto", "CANCELACIÓN EL EMPEÑO FOLIO " + idF.Value);
+                        cmd.Parameters.AddWithValue("@tipo", "C");                        
+
+                        
+                        cmd.ExecuteNonQuery();
+                    
+                    transaction.Commit();
+
+                    
+                    listadoTickets(sender, e);
+
+                    idP.Value = "0";
+                    idS.Value = "0";
+
+                }
+                catch (Exception ex)
+                {
+                    //transaction.Rollback();
+                    System.Diagnostics.Debug.WriteLine("error:" + ex.ToString());
+                    Console.WriteLine("error:" + ex.ToString());
+                }
+                finally
+                {
+                    con.Close();
+                }
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "myScriptName", "cerrarLoading();", true);
                 //ScriptManager.RegisterStartupScript(this, GetType(), "cerrar", "$('.modal-backdrop').remove();", true);
                 // refrescaGrid(sender, e);
 

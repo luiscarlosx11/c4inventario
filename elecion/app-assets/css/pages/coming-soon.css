@@ -7,8 +7,9 @@
   border-radius: .50rem; }
 
 .comingsoonOne {
-  background-image: url(../../../app-assets/images/backgrounds/bg-12.jpg);
+  background-image: url(/app-assets/images/backgrounds/bg-12.jpg);
   background-repeat: no-repeat;
+  -webkit-background-size: cover;
   background-size: cover; }
 
 .getting-started {
@@ -29,6 +30,7 @@
   border-radius: 60px; }
 
 .comingsoonFlat {
-  background-image: url(../../../app-assets/images/backgrounds/bg-14.jpg);
+  background-image: url(/app-assets/images/backgrounds/bg-14.jpg);
   background-repeat: no-repeat;
+  -webkit-background-size: cover;
   background-size: cover; }

@@ -119,7 +119,7 @@ namespace elecion.tickets
                            "from empeno e left " +
                            "join cliente c on c.idcliente = e.idcliente and c.idsucursal = e.idsucursal " +
                            "left join articulo a on a.idarticulo = e.idarticulo and a.idsucursal = e.idsucursal " +
-                           "left join usuario u on u.idusuario = e.idusuario where true and e.etapa in ('ENAJENACION') ";
+                           "left join usuario u on u.idusuario = e.idusuario where e.idsucursal = " + idsucursal + " and e.etapa in ('ENAJENACION') ";
 
                     if (bfolio.Text.Trim() != "")
                         query = query + " AND e.folio LIKE '%" + bfolio.Text.ToUpper() + "%' ";

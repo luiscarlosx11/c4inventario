@@ -55,7 +55,7 @@ namespace elecion.catalogos.sistema
 
                    
                     cmd.Parameters.AddWithValue("@idarea", idg.Value);
-                    cmd.Parameters.AddWithValue("@area", tipogasto.Text.ToUpper());
+                    cmd.Parameters.AddWithValue("@area", descripcion.Text.ToUpper());
 
                    
 

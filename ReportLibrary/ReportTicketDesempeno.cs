@@ -6,7 +6,7 @@ namespace ReportLibrary
     using System.Windows.Forms;
     using Telerik.Reporting;
     using Telerik.Reporting.Drawing;
-    using MySql.Data.MySqlClient;
+  
 
     /// <summary>
     /// Summary description for ReportTicket.

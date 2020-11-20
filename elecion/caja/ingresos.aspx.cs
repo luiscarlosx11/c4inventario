@@ -47,7 +47,7 @@ namespace elecion.caja
                             "left join detallecaja d on d.idsucursal = s.idsucursal " +
                             "left join tipogasto t on t.idtipogasto = d.idtipogasto " +
                             "left join usuario u on u.idusuario = d.idusuario " +
-                            "where d.tipo = 'I' ";
+                            "where d.tipo = 'I' and d.idsucursal = " + idsucursal + " ";
 
 
                     if (bfolio.Text.Trim() != "")
@@ -102,7 +102,7 @@ namespace elecion.caja
                             "left join detallecaja d on d.idsucursal = s.idsucursal " +
                             "left join tipogasto t on t.idtipogasto = d.idtipogasto " +
                             "left join usuario u on u.idusuario = d.idusuario " +
-                            "where d.tipo = 'I' ";
+                            "where d.tipo = 'I' and d.idsucursal = " + idsucursal + " ";
 
 
             if (bfolio.Text.Trim() != "")

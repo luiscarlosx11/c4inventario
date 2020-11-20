@@ -1,0 +1,464 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="_UpgradeWizard_Files\UpgradeWizardLog.xslt"?>
+<log>
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\LUIS\source\repos\Icaten\elecion\icaten.csproj" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\acreditacion\diplomas.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\acreditacion\diplomas.aspx" />
+  <event action="Analyze" type="Success" name="diplomas.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\acreditacion\diplomas.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\acreditacion\frmacreditacion.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\acreditacion\frmacreditacion.aspx" />
+  <event action="Analyze" type="Success" name="frmacreditacion.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\acreditacion\frmacreditacion.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\apartados\listadoapartados.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\apartados\listadoapartados.aspx" />
+  <event action="Analyze" type="Success" name="listadoapartados.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\apartados\listadoapartados.aspx" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\LUIS\source\repos\Icaten\elecion\ApplicationInsights.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\Users\LUIS\source\repos\Icaten\elecion\ApplicationInsights.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\Users\LUIS\source\repos\Icaten\elecion\ApplicationInsights.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\Users\LUIS\source\repos\Icaten\elecion\ApplicationInsights.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\Users\LUIS\source\repos\Icaten\elecion\ApplicationInsights.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\Users\LUIS\source\repos\Icaten\elecion\ApplicationInsights.config" />
+  <event action="Analyze" type="Success" name="ApplicationInsights.config" path="C:\Users\LUIS\source\repos\Icaten\elecion\ApplicationInsights.config" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\ayuda\documentacion.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\ayuda\documentacion.aspx" />
+  <event action="Analyze" type="Success" name="documentacion.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\ayuda\documentacion.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\caja\depositos.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\caja\depositos.aspx" />
+  <event action="Analyze" type="Success" name="depositos.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\caja\depositos.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\caja\egresos.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\caja\egresos.aspx" />
+  <event action="Analyze" type="Success" name="egresos.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\caja\egresos.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\caja\ingresos.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\caja\ingresos.aspx" />
+  <event action="Analyze" type="Success" name="ingresos.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\caja\ingresos.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\caja\pagos.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\caja\pagos.aspx" />
+  <event action="Analyze" type="Success" name="pagos.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\caja\pagos.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\articulos\catcategorias.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\articulos\catcategorias.aspx" />
+  <event action="Analyze" type="Success" name="catcategorias.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\articulos\catcategorias.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\articulos\catsubcategorias.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\articulos\catsubcategorias.aspx" />
+  <event action="Analyze" type="Success" name="catsubcategorias.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\articulos\catsubcategorias.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\campana\catgasto.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\campana\catgasto.aspx" />
+  <event action="Analyze" type="Success" name="catgasto.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\campana\catgasto.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\campana\catgestion.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\campana\catgestion.aspx" />
+  <event action="Analyze" type="Success" name="catgestion.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\campana\catgestion.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\capacitacion\catmedios.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\capacitacion\catmedios.aspx" />
+  <event action="Analyze" type="Success" name="catmedios.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\capacitacion\catmedios.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\capacitacion\catmotivos.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\capacitacion\catmotivos.aspx" />
+  <event action="Analyze" type="Success" name="catmotivos.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\capacitacion\catmotivos.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\ciclo\calendario.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\ciclo\calendario.aspx" />
+  <event action="Analyze" type="Success" name="calendario.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\ciclo\calendario.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\ciclo\catciclos.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\ciclo\catciclos.aspx" />
+  <event action="Analyze" type="Success" name="catciclos.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\ciclo\catciclos.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\clientes\agregarcliente.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\clientes\agregarcliente.aspx" />
+  <event action="Analyze" type="Success" name="agregarcliente.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\clientes\agregarcliente.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\clientes\catclientes.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\clientes\catclientes.aspx" />
+  <event action="Analyze" type="Success" name="catclientes.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\clientes\catclientes.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\clientes\catentidades.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\clientes\catentidades.aspx" />
+  <event action="Analyze" type="Success" name="catentidades.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\clientes\catentidades.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\clientes\registroclientes.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\clientes\registroclientes.aspx" />
+  <event action="Analyze" type="Success" name="registroclientes.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\clientes\registroclientes.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\directorio\catinstructores.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\directorio\catinstructores.aspx" />
+  <event action="Analyze" type="Success" name="catinstructores.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\directorio\catinstructores.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\directorio\frminstructor.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\directorio\frminstructor.aspx" />
+  <event action="Analyze" type="Success" name="frminstructor.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\directorio\frminstructor.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\generales\catdocumentacion.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\generales\catdocumentacion.aspx" />
+  <event action="Analyze" type="Success" name="catdocumentacion.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\generales\catdocumentacion.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\generales\catescolaridad.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\generales\catescolaridad.aspx" />
+  <event action="Analyze" type="Success" name="catescolaridad.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\generales\catescolaridad.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\geograficos\catentidades.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\geograficos\catentidades.aspx" />
+  <event action="Analyze" type="Success" name="catentidades.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\geograficos\catentidades.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\geograficos\catmunicipios.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\geograficos\catmunicipios.aspx" />
+  <event action="Analyze" type="Success" name="catmunicipios.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\geograficos\catmunicipios.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\geograficos\listadocalles.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\geograficos\listadocalles.aspx" />
+  <event action="Analyze" type="Success" name="listadocalles.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\geograficos\listadocalles.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\geograficos\listadocol.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\geograficos\listadocol.aspx" />
+  <event action="Analyze" type="Success" name="listadocol.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\geograficos\listadocol.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\geograficos\listadomun.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\geograficos\listadomun.aspx" />
+  <event action="Analyze" type="Success" name="listadomun.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\geograficos\listadomun.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\geograficos\listadoMunicipios.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\geograficos\listadoMunicipios.aspx" />
+  <event action="Analyze" type="Success" name="listadoMunicipios.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\geograficos\listadoMunicipios.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\geograficos\listadosecc.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\geograficos\listadosecc.aspx" />
+  <event action="Analyze" type="Success" name="listadosecc.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\geograficos\listadosecc.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\oferta\catareas.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\oferta\catareas.aspx" />
+  <event action="Analyze" type="Success" name="catareas.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\oferta\catareas.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\oferta\catcursos.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\oferta\catcursos.aspx" />
+  <event action="Analyze" type="Success" name="catcursos.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\oferta\catcursos.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\oferta\catespecialidades.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\oferta\catespecialidades.aspx" />
+  <event action="Analyze" type="Success" name="catespecialidades.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\oferta\catespecialidades.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\oferta\catofertas.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\oferta\catofertas.aspx" />
+  <event action="Analyze" type="Success" name="catofertas.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\oferta\catofertas.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\oferta\catregulares.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\oferta\catregulares.aspx" />
+  <event action="Analyze" type="Success" name="catregulares.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\oferta\catregulares.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\oferta\catrocos.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\oferta\catrocos.aspx" />
+  <event action="Analyze" type="Success" name="catrocos.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\oferta\catrocos.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\oferta\frmcurso.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\oferta\frmcurso.aspx" />
+  <event action="Analyze" type="Success" name="frmcurso.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\oferta\frmcurso.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\oferta\WebForm1.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\oferta\WebForm1.aspx" />
+  <event action="Analyze" type="Success" name="WebForm1.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\oferta\WebForm1.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\otros\catbancos.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\otros\catbancos.aspx" />
+  <event action="Analyze" type="Success" name="catbancos.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\otros\catbancos.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\otros\catconvenios.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\otros\catconvenios.aspx" />
+  <event action="Analyze" type="Success" name="catconvenios.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\otros\catconvenios.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\personales\catdiscapacidad.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\personales\catdiscapacidad.aspx" />
+  <event action="Analyze" type="Success" name="catdiscapacidad.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\personales\catdiscapacidad.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\personales\catedocivil.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\personales\catedocivil.aspx" />
+  <event action="Analyze" type="Success" name="catedocivil.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\personales\catedocivil.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\personales\catenfermedades.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\personales\catenfermedades.aspx" />
+  <event action="Analyze" type="Success" name="catenfermedades.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\personales\catenfermedades.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\personales\cattiposangre.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\personales\cattiposangre.aspx" />
+  <event action="Analyze" type="Success" name="cattiposangre.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\personales\cattiposangre.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\servicio\catclasificacion.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\servicio\catclasificacion.aspx" />
+  <event action="Analyze" type="Success" name="catclasificacion.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\servicio\catclasificacion.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\servicio\catlugares.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\servicio\catlugares.aspx" />
+  <event action="Analyze" type="Success" name="catlugares.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\servicio\catlugares.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\servicio\catterminacion.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\servicio\catterminacion.aspx" />
+  <event action="Analyze" type="Success" name="catterminacion.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\servicio\catterminacion.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\sistema\catareas.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\sistema\catareas.aspx" />
+  <event action="Analyze" type="Success" name="catareas.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\sistema\catareas.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\sistema\catprioridades.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\sistema\catprioridades.aspx" />
+  <event action="Analyze" type="Success" name="catprioridades.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\sistema\catprioridades.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\sistema\cattipogasto.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\sistema\cattipogasto.aspx" />
+  <event action="Analyze" type="Success" name="cattipogasto.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\sistema\cattipogasto.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\sistema\cattipomov.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\sistema\cattipomov.aspx" />
+  <event action="Analyze" type="Success" name="cattipomov.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\sistema\cattipomov.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\sistema\cattipoventa.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\sistema\cattipoventa.aspx" />
+  <event action="Analyze" type="Success" name="cattipoventa.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\catalogos\sistema\cattipoventa.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\configuracion\catinstalaciones.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\configuracion\catinstalaciones.aspx" />
+  <event action="Analyze" type="Success" name="catinstalaciones.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\configuracion\catinstalaciones.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\configuracion\catsucursales.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\configuracion\catsucursales.aspx" />
+  <event action="Analyze" type="Success" name="catsucursales.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\configuracion\catsucursales.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\default.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\default.aspx" />
+  <event action="Analyze" type="Success" name="default.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\default.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\encuesta\listadoencuestas.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\encuesta\listadoencuestas.aspx" />
+  <event action="Analyze" type="Success" name="listadoencuestas.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\encuesta\listadoencuestas.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\encuesta\registroEncuestas.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\encuesta\registroEncuestas.aspx" />
+  <event action="Analyze" type="Success" name="registroEncuestas.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\encuesta\registroEncuestas.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\errores.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\errores.aspx" />
+  <event action="Analyze" type="Success" name="errores.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\errores.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\estadisticas\general.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\estadisticas\general.aspx" />
+  <event action="Analyze" type="Success" name="general.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\estadisticas\general.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\estadisticas\satisfaccion.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\estadisticas\satisfaccion.aspx" />
+  <event action="Analyze" type="Success" name="satisfaccion.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\estadisticas\satisfaccion.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\estructuras\agregar.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\estructuras\agregar.aspx" />
+  <event action="Analyze" type="Success" name="agregar.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\estructuras\agregar.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\estructuras\coordinador.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\estructuras\coordinador.aspx" />
+  <event action="Analyze" type="Success" name="coordinador.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\estructuras\coordinador.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\estructuras\estructura.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\estructuras\estructura.aspx" />
+  <event action="Analyze" type="Success" name="estructura.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\estructuras\estructura.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\estructuras\estructuras.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\estructuras\estructuras.aspx" />
+  <event action="Analyze" type="Success" name="estructuras.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\estructuras\estructuras.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\estructuras\listadoEstructura.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\estructuras\listadoEstructura.aspx" />
+  <event action="Analyze" type="Success" name="listadoEstructura.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\estructuras\listadoEstructura.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\forosol\graficasforo.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\forosol\graficasforo.aspx" />
+  <event action="Analyze" type="Success" name="graficasforo.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\forosol\graficasforo.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\forosol\listadoforo.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\forosol\listadoforo.aspx" />
+  <event action="Analyze" type="Success" name="listadoforo.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\forosol\listadoforo.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\forosol\registrarforo.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\forosol\registrarforo.aspx" />
+  <event action="Analyze" type="Success" name="registrarforo.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\forosol\registrarforo.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\historico\agregarprestamoconsulta.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\historico\agregarprestamoconsulta.aspx" />
+  <event action="Analyze" type="Success" name="agregarprestamoconsulta.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\historico\agregarprestamoconsulta.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\historico\listadoconsulta.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\historico\listadoconsulta.aspx" />
+  <event action="Analyze" type="Success" name="listadoconsulta.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\historico\listadoconsulta.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\inscripcion\frminscripcion.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\inscripcion\frminscripcion.aspx" />
+  <event action="Analyze" type="Success" name="frminscripcion.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\inscripcion\frminscripcion.aspx" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\login.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\login.aspx" />
+  <event action="Analyze" type="Success" name="login.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\login.aspx" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\LUIS\source\repos\Icaten\elecion\packages.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\Users\LUIS\source\repos\Icaten\elecion\packages.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\Users\LUIS\source\repos\Icaten\elecion\packages.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\Users\LUIS\source\repos\Icaten\elecion\packages.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\Users\LUIS\source\repos\Icaten\elecion\packages.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\Users\LUIS\source\repos\Icaten\elecion\packages.config" />
+  <event action="Analyze" type="Success" name="packages.config" path="C:\Users\LUIS\source\repos\Icaten\elecion\packages.config" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\prep\altacasas.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\prep\altacasas.aspx" />
+  <event action="Analyze" type="Success" name="altacasas.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\prep\altacasas.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\prep\casas.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\prep\casas.aspx" />
+  <event action="Analyze" type="Success" name="casas.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\prep\casas.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\prep\graficas.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\prep\graficas.aspx" />
+  <event action="Analyze" type="Success" name="graficas.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\prep\graficas.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\prep\listacasas.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\prep\listacasas.aspx" />
+  <event action="Analyze" type="Success" name="listacasas.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\prep\listacasas.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\prep\prep.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\prep\prep.aspx" />
+  <event action="Analyze" type="Success" name="prep.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\prep\prep.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\prep\resultados.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\prep\resultados.aspx" />
+  <event action="Analyze" type="Success" name="resultados.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\prep\resultados.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\prestamos\agregarprestamo.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\prestamos\agregarprestamo.aspx" />
+  <event action="Analyze" type="Success" name="agregarprestamo.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\prestamos\agregarprestamo.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\prestamos\listadoprestamos.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\prestamos\listadoprestamos.aspx" />
+  <event action="Analyze" type="Success" name="listadoprestamos.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\prestamos\listadoprestamos.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\presupuesto\gastos\balance.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\presupuesto\gastos\balance.aspx" />
+  <event action="Analyze" type="Success" name="balance.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\presupuesto\gastos\balance.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\presupuesto\gastos\listadogastos.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\presupuesto\gastos\listadogastos.aspx" />
+  <event action="Analyze" type="Success" name="listadogastos.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\presupuesto\gastos\listadogastos.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\presupuesto\gastos\registrogastos.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\presupuesto\gastos\registrogastos.aspx" />
+  <event action="Analyze" type="Success" name="registrogastos.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\presupuesto\gastos\registrogastos.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\promocion\agenda.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\promocion\agenda.aspx" />
+  <event action="Analyze" type="Success" name="agenda.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\promocion\agenda.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\promocion\agregarevento.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\promocion\agregarevento.aspx" />
+  <event action="Analyze" type="Success" name="agregarevento.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\promocion\agregarevento.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\promovidos\graficas.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\promovidos\graficas.aspx" />
+  <event action="Analyze" type="Success" name="graficas.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\promovidos\graficas.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\promovidos\listado.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\promovidos\listado.aspx" />
+  <event action="Analyze" type="Success" name="listado.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\promovidos\listado.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\promovidos\listado2.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\promovidos\listado2.aspx" />
+  <event action="Analyze" type="Success" name="listado2.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\promovidos\listado2.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\promovidos\registrar.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\promovidos\registrar.aspx" />
+  <event action="Analyze" type="Success" name="registrar.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\promovidos\registrar.aspx" />
+  <event action="Analyze" type="Success" name="RepListadoPromovidos.resx" path="C:\Users\LUIS\source\repos\Icaten\elecion\promovidos\RepListadoPromovidos.resx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\promovidos\ReportViewerForm1.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\promovidos\ReportViewerForm1.aspx" />
+  <event action="Analyze" type="Success" name="ReportViewerForm1.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\promovidos\ReportViewerForm1.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\report\anexos.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\report\anexos.aspx" />
+  <event action="Analyze" type="Success" name="anexos.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\report\anexos.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\report\cierre.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\report\cierre.aspx" />
+  <event action="Analyze" type="Success" name="cierre.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\report\cierre.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\report\movimientos.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\report\movimientos.aspx" />
+  <event action="Analyze" type="Success" name="movimientos.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\report\movimientos.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\reportes\RVBoleta.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\reportes\RVBoleta.aspx" />
+  <event action="Analyze" type="Success" name="RVBoleta.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\reportes\RVBoleta.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\reportes\RVComisiones.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\reportes\RVComisiones.aspx" />
+  <event action="Analyze" type="Success" name="RVComisiones.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\reportes\RVComisiones.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\reportes\RVFiscal.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\reportes\RVFiscal.aspx" />
+  <event action="Analyze" type="Success" name="RVFiscal.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\reportes\RVFiscal.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\reportes\RVGeneral.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\reportes\RVGeneral.aspx" />
+  <event action="Analyze" type="Success" name="RVGeneral.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\reportes\RVGeneral.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\reportes\RVIntereses.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\reportes\RVIntereses.aspx" />
+  <event action="Analyze" type="Success" name="RVIntereses.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\reportes\RVIntereses.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\reportes\RVMovDiarios.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\reportes\RVMovDiarios.aspx" />
+  <event action="Analyze" type="Success" name="RVMovDiarios.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\reportes\RVMovDiarios.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\reportes\RVTicket.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\reportes\RVTicket.aspx" />
+  <event action="Analyze" type="Success" name="RVTicket.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\reportes\RVTicket.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\reportes\RVTicketAbono.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\reportes\RVTicketAbono.aspx" />
+  <event action="Analyze" type="Success" name="RVTicketAbono.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\reportes\RVTicketAbono.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\reportes\RVTicketApartado.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\reportes\RVTicketApartado.aspx" />
+  <event action="Analyze" type="Success" name="RVTicketApartado.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\reportes\RVTicketApartado.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\reportes\RVTicketCorte.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\reportes\RVTicketCorte.aspx" />
+  <event action="Analyze" type="Success" name="RVTicketCorte.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\reportes\RVTicketCorte.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\reportes\RVTicketDesempeno.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\reportes\RVTicketDesempeno.aspx" />
+  <event action="Analyze" type="Success" name="RVTicketDesempeno.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\reportes\RVTicketDesempeno.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\reportes\RVTicketVenta.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\reportes\RVTicketVenta.aspx" />
+  <event action="Analyze" type="Success" name="RVTicketVenta.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\reportes\RVTicketVenta.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\reportes\RVVentas.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\reportes\RVVentas.aspx" />
+  <event action="Analyze" type="Success" name="RVVentas.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\reportes\RVVentas.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\salir.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\salir.aspx" />
+  <event action="Analyze" type="Success" name="salir.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\salir.aspx" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\tablero.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\tablero.aspx" />
+  <event action="Analyze" type="Success" name="tablero.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\tablero.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\tecnicoaca\catautcursos.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\tecnicoaca\catautcursos.aspx" />
+  <event action="Analyze" type="Success" name="catautcursos.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\tecnicoaca\catautcursos.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\template.Master" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\template.Master" />
+  <event action="Analyze" type="Success" name="template.Master" path="C:\Users\LUIS\source\repos\Icaten\elecion\template.Master" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\test.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\test.aspx" />
+  <event action="Analyze" type="Success" name="test.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\test.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\tickets\agregar.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\tickets\agregar.aspx" />
+  <event action="Analyze" type="Success" name="agregar.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\tickets\agregar.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\tickets\agregarhistorico.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\tickets\agregarhistorico.aspx" />
+  <event action="Analyze" type="Success" name="agregarhistorico.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\tickets\agregarhistorico.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\tickets\listado.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\tickets\listado.aspx" />
+  <event action="Analyze" type="Success" name="listado.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\tickets\listado.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\tickets\listadohistorico.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\tickets\listadohistorico.aspx" />
+  <event action="Analyze" type="Success" name="listadohistorico.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\tickets\listadohistorico.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\usuario\agregar.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\usuario\agregar.aspx" />
+  <event action="Analyze" type="Success" name="agregar.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\usuario\agregar.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\usuario\control.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\usuario\control.aspx" />
+  <event action="Analyze" type="Success" name="control.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\usuario\control.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\usuario\tipousuario.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\usuario\tipousuario.aspx" />
+  <event action="Analyze" type="Success" name="tipousuario.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\usuario\tipousuario.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\usuario\usuario.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\usuario\usuario.aspx" />
+  <event action="Analyze" type="Success" name="usuario.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\usuario\usuario.aspx" />
+  <event action="Analyze" type="Success" name="Register Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\ventas\listadoventas.aspx" />
+  <event action="Analyze" type="Success" name="Assembly Directives" path="C:\Users\LUIS\source\repos\Icaten\elecion\ventas\listadoventas.aspx" />
+  <event action="Analyze" type="Success" name="listadoventas.aspx" path="C:\Users\LUIS\source\repos\Icaten\elecion\ventas\listadoventas.aspx" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\LUIS\source\repos\Icaten\elecion\Web.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\Users\LUIS\source\repos\Icaten\elecion\Web.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\Users\LUIS\source\repos\Icaten\elecion\Web.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\Users\LUIS\source\repos\Icaten\elecion\Web.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\Users\LUIS\source\repos\Icaten\elecion\Web.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\Users\LUIS\source\repos\Icaten\elecion\Web.config" />
+  <event action="Analyze" type="Success" name="Web.config" path="C:\Users\LUIS\source\repos\Icaten\elecion\Web.config" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\LUIS\source\repos\Icaten\elecion\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\Users\LUIS\source\repos\Icaten\elecion\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\Users\LUIS\source\repos\Icaten\elecion\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\Users\LUIS\source\repos\Icaten\elecion\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\Users\LUIS\source\repos\Icaten\elecion\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\Users\LUIS\source\repos\Icaten\elecion\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Web.Debug.config" path="C:\Users\LUIS\source\repos\Icaten\elecion\Web.Debug.config" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\LUIS\source\repos\Icaten\elecion\Web.Release.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\Users\LUIS\source\repos\Icaten\elecion\Web.Release.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\Users\LUIS\source\repos\Icaten\elecion\Web.Release.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\Users\LUIS\source\repos\Icaten\elecion\Web.Release.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\Users\LUIS\source\repos\Icaten\elecion\Web.Release.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\Users\LUIS\source\repos\Icaten\elecion\Web.Release.config" />
+  <event action="Analyze" type="Success" name="Web.Release.config" path="C:\Users\LUIS\source\repos\Icaten\elecion\Web.Release.config" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\LUIS\source\repos\Icaten\elecion\ws\Web.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\Users\LUIS\source\repos\Icaten\elecion\ws\Web.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\Users\LUIS\source\repos\Icaten\elecion\ws\Web.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\Users\LUIS\source\repos\Icaten\elecion\ws\Web.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\Users\LUIS\source\repos\Icaten\elecion\ws\Web.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\Users\LUIS\source\repos\Icaten\elecion\ws\Web.config" />
+  <event action="Analyze" type="Success" name="Web.config" path="C:\Users\LUIS\source\repos\Icaten\elecion\ws\Web.config" />
+  <event action="Analyze" type="Success" name="icaten" path="C:\Users\LUIS\source\repos\Icaten\elecion\icaten.csproj" />
+  <event>Get project references.</event>
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\LUIS\source\repos\Icaten\ReportLibrary\ReportLibrary.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="C:\Users\LUIS\source\repos\Icaten\ReportLibrary\app.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="C:\Users\LUIS\source\repos\Icaten\ReportLibrary\app.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="C:\Users\LUIS\source\repos\Icaten\ReportLibrary\app.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="C:\Users\LUIS\source\repos\Icaten\ReportLibrary\app.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="C:\Users\LUIS\source\repos\Icaten\ReportLibrary\app.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="C:\Users\LUIS\source\repos\Icaten\ReportLibrary\app.config" />
+  <event action="Analyze" type="Success" name="app.config" path="C:\Users\LUIS\source\repos\Icaten\ReportLibrary\app.config" />
+  <event action="Analyze" type="Success" name="Resources.resx" path="C:\Users\LUIS\source\repos\Icaten\ReportLibrary\Properties\Resources.resx" />
+  <event action="Analyze" type="Success" name="Report1.resx" path="C:\Users\LUIS\source\repos\Icaten\ReportLibrary\Report1.resx" />
+  <event action="Analyze" type="Success" name="ReportAsistencia.resx" path="C:\Users\LUIS\source\repos\Icaten\ReportLibrary\ReportAsistencia.resx" />
+  <event action="Analyze" type="Success" name="ReportComisiones.resx" path="C:\Users\LUIS\source\repos\Icaten\ReportLibrary\ReportComisiones.resx" />
+  <event action="Analyze" type="Success" name="ReportCredencial.resx" path="C:\Users\LUIS\source\repos\Icaten\ReportLibrary\ReportCredencial.resx" />
+  <event action="Analyze" type="Success" name="ReportCursoDias.resx" path="C:\Users\LUIS\source\repos\Icaten\ReportLibrary\ReportCursoDias.resx" />
+  <event action="Analyze" type="Success" name="ReportCursos.resx" path="C:\Users\LUIS\source\repos\Icaten\ReportLibrary\ReportCursos.resx" />
+  <event action="Analyze" type="Success" name="ReportDiploma.resx" path="C:\Users\LUIS\source\repos\Icaten\ReportLibrary\ReportDiploma.resx" />
+  <event action="Analyze" type="Success" name="ReportDiplomasConstancias.resx" path="C:\Users\LUIS\source\repos\Icaten\ReportLibrary\ReportDiplomasConstancias.resx" />
+  <event action="Analyze" type="Success" name="ReportEscolaridadMex.resx" path="C:\Users\LUIS\source\repos\Icaten\ReportLibrary\ReportEscolaridadMex.resx" />
+  <event action="Analyze" type="Success" name="ReportFiscal.resx" path="C:\Users\LUIS\source\repos\Icaten\ReportLibrary\ReportFiscal.resx" />
+  <event action="Analyze" type="Success" name="ReportGeneral.resx" path="C:\Users\LUIS\source\repos\Icaten\ReportLibrary\ReportGeneral.resx" />
+  <event action="Analyze" type="Success" name="ReportGruposVulnerables.resx" path="C:\Users\LUIS\source\repos\Icaten\ReportLibrary\ReportGruposVulnerables.resx" />
+  <event action="Analyze" type="Success" name="ReportKardex.resx" path="C:\Users\LUIS\source\repos\Icaten\ReportLibrary\ReportKardex.resx" />
+  <event action="Analyze" type="Success" name="ReportMovDiarios.resx" path="C:\Users\LUIS\source\repos\Icaten\ReportLibrary\ReportMovDiarios.resx" />
+  <event action="Analyze" type="Success" name="ReportPoliza.resx" path="C:\Users\LUIS\source\repos\Icaten\ReportLibrary\ReportPoliza.resx" />
+  <event action="Analyze" type="Success" name="ReportRecibo.resx" path="C:\Users\LUIS\source\repos\Icaten\ReportLibrary\ReportRecibo.resx" />
+  <event action="Analyze" type="Success" name="ReportRIACD.resx" path="C:\Users\LUIS\source\repos\Icaten\ReportLibrary\ReportRIACD.resx" />
+  <event action="Analyze" type="Success" name="ReportSolicitudInscripcion.resx" path="C:\Users\LUIS\source\repos\Icaten\ReportLibrary\ReportSolicitudInscripcion.resx" />
+  <event action="Analyze" type="Success" name="ReportTicketApartado.resx" path="C:\Users\LUIS\source\repos\Icaten\ReportLibrary\ReportTicketApartado.resx" />
+  <event action="Analyze" type="Success" name="ReportTicketCorte.resx" path="C:\Users\LUIS\source\repos\Icaten\ReportLibrary\ReportTicketCorte.resx" />
+  <event action="Analyze" type="Success" name="ReportTicketDesempeno.resx" path="C:\Users\LUIS\source\repos\Icaten\ReportLibrary\ReportTicketDesempeno.resx" />
+  <event action="Analyze" type="Success" name="ReportTicketRefrendo.resx" path="C:\Users\LUIS\source\repos\Icaten\ReportLibrary\ReportTicketRefrendo.resx" />
+  <event action="Analyze" type="Success" name="ReportTicketVenta.resx" path="C:\Users\LUIS\source\repos\Icaten\ReportLibrary\ReportTicketVenta.resx" />
+  <event action="Analyze" type="Success" name="ReportVentas.resx" path="C:\Users\LUIS\source\repos\Icaten\ReportLibrary\ReportVentas.resx" />
+  <event action="Analyze" type="Success" name="SubReportDiscapacidad.resx" path="C:\Users\LUIS\source\repos\Icaten\ReportLibrary\SubReportDiscapacidad.resx" />
+  <event action="Analyze" type="Success" name="SubReportDocumentacion.resx" path="C:\Users\LUIS\source\repos\Icaten\ReportLibrary\SubReportDocumentacion.resx" />
+  <event action="Analyze" type="Success" name="SubReportEdoCivil.resx" path="C:\Users\LUIS\source\repos\Icaten\ReportLibrary\SubReportEdoCivil.resx" />
+  <event action="Analyze" type="Success" name="SubReportMedio.resx" path="C:\Users\LUIS\source\repos\Icaten\ReportLibrary\SubReportMedio.resx" />
+  <event action="Analyze" type="Success" name="SubReportMotivo.resx" path="C:\Users\LUIS\source\repos\Icaten\ReportLibrary\SubReportMotivo.resx" />
+  <event action="Analyze" type="Success" name="ReportLibrary" path="C:\Users\LUIS\source\repos\Icaten\ReportLibrary\ReportLibrary.csproj" />
+  <event action="Analyze" type="Success" name="icaten" path="C:\Users\LUIS\source\repos\Icaten\icaten.sln" />
+  <event action="Upgrade" type="Success" name="Assembly References" path="C:\Users\LUIS\source\repos\Icaten\elecion\icaten.csproj" />
+  <event action="Upgrade" type="Success" name="Assembly References" path="C:\Users\LUIS\source\repos\Icaten\elecion\Web.config" />
+  <event action="Upgrade" type="Success" name="Web.config" path="C:\Users\LUIS\source\repos\Icaten\elecion\Web.config" />
+  <event action="Upgrade" type="Success" name="icaten" path="C:\Users\LUIS\source\repos\Icaten\elecion\icaten.csproj" />
+  <event action="Upgrade" type="Success" name="Assembly References" path="C:\Users\LUIS\source\repos\Icaten\ReportLibrary\ReportLibrary.csproj" />
+  <event action="Upgrade" type="Success" name="ReportLibrary" path="C:\Users\LUIS\source\repos\Icaten\ReportLibrary\ReportLibrary.csproj" />
+  <event action="Upgrade" type="Success" name="icaten" path="C:\Users\LUIS\source\repos\Icaten\icaten.sln" />
+</log>

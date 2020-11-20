@@ -40,18 +40,20 @@ namespace elecion.tickets
                
                 listadoTickets(sender, e);
             }
-        
-            ScriptManager.RegisterClientScriptBlock(Page, typeof(string), "myScriptName", "$('.cks').iCheck({checkboxClass: 'icheckbox_flat-green',increaseArea: '20%'});"+
-            "$('.cks').on('ifChecked', function (event) { "+
-            "var actual = this;           "+
-            "$('#refrendar_' + actual.id).click(); " +
-            "$('.cks').each(function(id) { " +
-            "    if (this.id != actual.id) " +
-            "    {" +
-            "        $(this).iCheck('uncheck'); " +
-            "    } " +
-            "}); " +
-          "});", true);
+
+            ScriptManager.RegisterClientScriptBlock(Page, typeof(string), "myScriptName", "$('.cks').iCheck({checkboxClass: 'icheckbox_flat-green',increaseArea: '20%'});" +
+             "$('.cks').on('ifChecked', function (event) { " +
+             "var actual = this;           " +
+             "$('#refrendar_' + actual.id).click(); " +
+             "var aux = actual.id; " +
+
+             "$('.cks').each(function(id) { " +
+             "    if (this.id != actual.id) " +
+             "    {" +
+             "        $(this).iCheck('uncheck'); " +
+             "    } " +
+             "}); " +
+           "});", true);
         }
 
 
@@ -114,7 +116,7 @@ namespace elecion.tickets
                            "from empeno e left " +
                            "join cliente c on c.idcliente = e.idcliente and c.idsucursal = e.idsucursal " +
                            "left join articulo a on a.idarticulo = e.idarticulo and a.idsucursal = e.idsucursal " +
-                           "left join usuario u on u.idusuario = e.idusuario where true  ";
+                           "left join usuario u on u.idusuario = e.idusuario where e.idsucursal = " + idsucursal + "  ";
 
                     if (bfolio.Text.Trim() != "")
                         query = query + " AND e.folio LIKE '%" + bfolio.Text.ToUpper() + "%' ";
@@ -281,7 +283,7 @@ namespace elecion.tickets
             idP.Value = "0";
             idS.Value = "0";
 
-
+           
             //ScriptManager.RegisterClientScriptBlock(Page, typeof(string), "myScriptName", "cerrarLoading();", true);
             //gridSeguimiento.DataBind();
 

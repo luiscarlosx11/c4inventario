@@ -121,6 +121,33 @@ namespace elecion.usuarios {
         protected global::System.Web.UI.WebControls.SqlDataSource DsTipos;
         
         /// <summary>
+        /// Control tagsdiscap.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField tagsdiscap;
+        
+        /// <summary>
+        /// Control xxdiscapacidad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList xxdiscapacidad;
+        
+        /// <summary>
+        /// Control DStipousuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource DStipousuario;
+        
+        /// <summary>
         /// Control area.
         /// </summary>
         /// <remarks>

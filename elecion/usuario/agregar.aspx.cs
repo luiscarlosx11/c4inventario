@@ -52,7 +52,7 @@ namespace elecion.usuarios
                 try
                 {
                     con.Open();
-                    string sql = "SELECT IDUSUARIO, IDTIPOUSUARIO, IDSUCURSAL, NOMBRE, APATERNO, AMATERNO, ACTIVO, EMAIL, TELEFONO, LOGIN, PASS from usuario where idusuario=@idP";
+                    string sql = "SELECT IDUSUARIO, IDTIPOUSUARIO, IDSUCURSAL, NOMBRE, APATERNO, AMATERNO, ACTIVO, EMAIL, TELEFONO, LOGIN, PASS, ROLES from usuario where idusuario=@idP";
                    
                     MySqlCommand cmd = new MySqlCommand(sql, con);
                     cmd.Parameters.AddWithValue("@idP", idUser);
@@ -74,6 +74,8 @@ namespace elecion.usuarios
                         tipo.SelectedValue = rdr["idtipousuario"].ToString();
                         area.SelectedValue = rdr["idsucursal"].ToString();
 
+                        tagsdiscap.Value = rdr["roles"].ToString();
+
 
                         if (rdr["activo"].ToString()=="1") 
                           activo.Checked = true;
@@ -86,7 +88,7 @@ namespace elecion.usuarios
                 }
                 catch (Exception ex)
                 {
-                   System.Diagnostics.Debug.WriteLine("ERROR:" + ex.Message.Replace("\r\n", ""));
+                    ScriptManager.RegisterStartupScript(this, GetType(), "myScriptName", "cargatags(); ", true);
                 }
                 finally
                 {
@@ -293,12 +295,12 @@ namespace elecion.usuarios
                         idUsuario = Convert.ToInt32(cmdu.ExecuteScalar()) + 1;
 
 
-                        query = "INSERT INTO usuario(idusuario, idtipousuario, idsucursal, nombre, apaterno, amaterno, activo,  email, telefono, login, pass) " +
-                      "values(@idu, @idtipousuario,@idsucursal,@nombre,@apaterno,@amaterno,@activo,@email,@telefono,@login,@pass)";
+                        query = "INSERT INTO usuario( idtipousuario, idsucursal, nombre, apaterno, amaterno, activo,  email, telefono, login, pass, roles) " +
+                      "values(@idtipousuario,@idsucursal,@nombre,@apaterno,@amaterno,@activo,@email,@telefono,@login,@pass, @roles)";
                     }
                     else
                     {                       
-                        query = "UPDATE usuario set idtipousuario=@idtipousuario, idsucursal=@idsucursal, nombre=@nombre, apaterno=@apaterno, amaterno=@amaterno, activo=@activo, email=@email, telefono=@telefono, login=@login, pass=@pass WHERE idusuario = @idu and idsucursal=@idsucursal"; 
+                        query = "UPDATE usuario set idtipousuario=@idtipousuario, idsucursal=@idsucursal, nombre=@nombre, apaterno=@apaterno, amaterno=@amaterno, activo=@activo, email=@email, telefono=@telefono, login=@login, pass=@pass, roles=@roles WHERE idusuario = @idu and idsucursal=@idsucursal"; 
                     }
 
                     MySqlCommand cmd = new MySqlCommand(query, con);
@@ -330,6 +332,7 @@ namespace elecion.usuarios
                     cmd.Parameters.AddWithValue("@login", usuario.Text);
                     cmd.Parameters.AddWithValue("@pass", pass.Text);
 
+                    cmd.Parameters.AddWithValue("@roles", tagsdiscap.Value.Replace(',','|'));
                     cmd.ExecuteNonQuery();
 
                     if (idUsuario == 0)

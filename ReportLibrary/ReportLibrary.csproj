@@ -33,9 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MySql.Data, Version=6.10.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+    <Reference Include="MySql.Data, Version=8.0.15.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\tickets\elecion\packages\MySql.Data.6.7.9\lib\net45\MySql.Data.dll</HintPath>
+      <HintPath>..\packages\MySql.Data.8.0.15\lib\net452\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -46,10 +46,18 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Telerik.Reporting, Version=11.2.17.1025, Culture=neutral, PublicKeyToken=a9d7983dfcc261be" />
+    <Reference Include="Telerik.Reporting, Version=13.2.19.918, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
+      <SpecificVersion>True</SpecificVersion>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="cs\conversion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -61,11 +69,155 @@
     <Compile Include="Report1.Designer.cs">
       <DependentUpon>Report1.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportBoleta.cs">
+    <Compile Include="ReportAsistencia.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ReportBoleta.Designer.cs">
-      <DependentUpon>ReportBoleta.cs</DependentUpon>
+    <Compile Include="ReportAsistencia.Designer.cs">
+      <DependentUpon>ReportAsistencia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportDiploma.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportDiploma.Designer.cs">
+      <DependentUpon>ReportDiploma.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportCredencial.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportCredencial.Designer.cs">
+      <DependentUpon>ReportCredencial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportCursos.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportCursos.Designer.cs">
+      <DependentUpon>ReportCursos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportGruposVulnerables.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportGruposVulnerables.Designer.cs">
+      <DependentUpon>ReportGruposVulnerables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportRecibo.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportRecibo.Designer.cs">
+      <DependentUpon>ReportRecibo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSubsidios.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportSubsidios.Designer.cs">
+      <DependentUpon>ReportSubsidios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportReciboBlanco.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportReciboBlanco.Designer.cs">
+      <DependentUpon>ReportReciboBlanco.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportKardex.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportKardex.Designer.cs">
+      <DependentUpon>ReportKardex.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportDiplomasConstancias.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportDiplomasConstancias.Designer.cs">
+      <DependentUpon>ReportDiplomasConstancias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportPoliza.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportPoliza.Designer.cs">
+      <DependentUpon>ReportPoliza.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SubReportEdoCivil.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SubReportEdoCivil.Designer.cs">
+      <DependentUpon>SubReportEdoCivil.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SubReportDocumentacion.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SubReportDocumentacion.Designer.cs">
+      <DependentUpon>SubReportDocumentacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SubReportMotivo.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SubReportMotivo.Designer.cs">
+      <DependentUpon>SubReportMotivo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SubReportMedio.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SubReportMedio.Designer.cs">
+      <DependentUpon>SubReportMedio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SubReportDiscapacidad.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SubReportDiscapacidad.Designer.cs">
+      <DependentUpon>SubReportDiscapacidad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportCursoDias.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportCursoDias.Designer.cs">
+      <DependentUpon>ReportCursoDias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportEscolaridadMex.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportEscolaridadMex.Designer.cs">
+      <DependentUpon>ReportEscolaridadMex.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportRIACD.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportRIACD.Designer.cs">
+      <DependentUpon>ReportRIACD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportMovDiarios.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportMovDiarios.Designer.cs">
+      <DependentUpon>ReportMovDiarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportFiscal.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportFiscal.Designer.cs">
+      <DependentUpon>ReportFiscal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportComisiones.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportComisiones.Designer.cs">
+      <DependentUpon>ReportComisiones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportVentas.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportVentas.Designer.cs">
+      <DependentUpon>ReportVentas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportGeneral.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportGeneral.Designer.cs">
+      <DependentUpon>ReportGeneral.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSolicitudInscripcion.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportSolicitudInscripcion.Designer.cs">
+      <DependentUpon>ReportSolicitudInscripcion.cs</DependentUpon>
     </Compile>
     <Compile Include="ReportTicketDesempeno.cs">
       <SubType>Component</SubType>
@@ -97,6 +249,7 @@
     <Compile Include="ReportTicketRefrendo.Designer.cs">
       <DependentUpon>ReportTicketRefrendo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Settings.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
@@ -109,8 +262,87 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />
-    <EmbeddedResource Include="ReportBoleta.resx">
-      <DependentUpon>ReportBoleta.cs</DependentUpon>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report1.resx">
+      <DependentUpon>Report1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportAsistencia.resx">
+      <DependentUpon>ReportAsistencia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportDiploma.resx">
+      <DependentUpon>ReportDiploma.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportCredencial.resx">
+      <DependentUpon>ReportCredencial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportCursos.resx">
+      <DependentUpon>ReportCursos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportGruposVulnerables.resx">
+      <DependentUpon>ReportGruposVulnerables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportRecibo.resx">
+      <DependentUpon>ReportRecibo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSubsidios.resx">
+      <DependentUpon>ReportSubsidios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportReciboBlanco.resx">
+      <DependentUpon>ReportReciboBlanco.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportKardex.resx">
+      <DependentUpon>ReportKardex.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportDiplomasConstancias.resx">
+      <DependentUpon>ReportDiplomasConstancias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportPoliza.resx">
+      <DependentUpon>ReportPoliza.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubReportEdoCivil.resx">
+      <DependentUpon>SubReportEdoCivil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubReportDocumentacion.resx">
+      <DependentUpon>SubReportDocumentacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubReportMotivo.resx">
+      <DependentUpon>SubReportMotivo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubReportMedio.resx">
+      <DependentUpon>SubReportMedio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubReportDiscapacidad.resx">
+      <DependentUpon>SubReportDiscapacidad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportCursoDias.resx">
+      <DependentUpon>ReportCursoDias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportEscolaridadMex.resx">
+      <DependentUpon>ReportEscolaridadMex.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportRIACD.resx">
+      <DependentUpon>ReportRIACD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportMovDiarios.resx">
+      <DependentUpon>ReportMovDiarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportFiscal.resx">
+      <DependentUpon>ReportFiscal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportComisiones.resx">
+      <DependentUpon>ReportComisiones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportVentas.resx">
+      <DependentUpon>ReportVentas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportGeneral.resx">
+      <DependentUpon>ReportGeneral.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSolicitudInscripcion.resx">
+      <DependentUpon>ReportSolicitudInscripcion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportTicketDesempeno.resx">
       <DependentUpon>ReportTicketDesempeno.cs</DependentUpon>
@@ -127,6 +359,24 @@
     <EmbeddedResource Include="ReportTicketRefrendo.resx">
       <DependentUpon>ReportTicketRefrendo.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\membrete.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\membrete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sep.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\recibo.fw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\recibo.fw1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fondo.fw.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

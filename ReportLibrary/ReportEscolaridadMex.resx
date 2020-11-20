@@ -1,0 +1,473 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <metadata name="sqlDataSource1.ParameterValues" xml:space="preserve">
+    <value>{"@idsucursal":"1"}</value>
+  </metadata>
+  <data name="sqlDataSource1.SelectCommand" xml:space="preserve">
+    <value>select r.rango as edad, 1 as tipo, 
+(
+select count(s.idalumno)
+from solicitudinscripcion s
+left join alumno a on s.idalumno = a.idalumno
+where year(s.fecha)=2019
+and a.sexo = 'M'
+and timestampdiff(YEAR,a.fechanacimiento,now())  between r.minimo and r.maximo
+and s.idsucursal=@idsucursal
+)as inscritosmujeres,
+(
+select count(s.idalumno)
+from solicitudinscripcion s
+left join alumno a on s.idalumno = a.idalumno
+where year(s.fecha)=2019
+and a.sexo = 'H'
+and timestampdiff(YEAR,a.fechanacimiento,now())  between r.minimo and r.maximo
+and s.idsucursal=@idsucursal
+)as inscritoshombres,
+
+(
+select count(s.idalumno)
+from solicitudinscripcion s
+left join alumno a on s.idalumno = a.idalumno
+where year(s.fecha)=2019
+and a.sexo = 'M'
+and timestampdiff(YEAR,a.fechanacimiento,now())  between r.minimo and r.maximo
+and s.idcondicion = 1
+
+)as acreditadosmujeres,
+(
+select count(s.idalumno)
+from solicitudinscripcion s
+left join alumno a on s.idalumno = a.idalumno
+where year(s.fecha)=2019
+and a.sexo = 'H'
+and timestampdiff(YEAR,a.fechanacimiento,now())  between r.minimo and r.maximo
+and s.idcondicion = 1
+and s.idsucursal=@idsucursal
+)as acreditadoshombres,
+
+
+(
+select count(s.idalumno)
+from solicitudinscripcion s
+left join alumno a on s.idalumno = a.idalumno
+where year(s.fecha)=2019
+and a.sexo = 'M'
+and timestampdiff(YEAR,a.fechanacimiento,now())  between r.minimo and r.maximo
+and s.idcondicion = 2
+and s.idsucursal=@idsucursal
+)as noacreditadosmujeres,
+(
+select count(s.idalumno)
+from solicitudinscripcion s
+left join alumno a on s.idalumno = a.idalumno
+where year(s.fecha)=2019
+and a.sexo = 'H'
+and timestampdiff(YEAR,a.fechanacimiento,now())  between r.minimo and r.maximo
+and s.idcondicion = 2
+and s.idsucursal=@idsucursal
+)as noacreditadoshombres,
+
+
+(
+select count(s.idalumno)
+from solicitudinscripcion s
+left join alumno a on s.idalumno = a.idalumno
+where year(s.fecha)=2019
+and a.sexo = 'M'
+and timestampdiff(YEAR,a.fechanacimiento,now())  between r.minimo and r.maximo
+and s.idcondicion =3
+and s.idsucursal=@idsucursal
+)as desertoresmujeres,
+(
+select count(s.idalumno)
+from solicitudinscripcion s
+left join alumno a on s.idalumno = a.idalumno
+where year(s.fecha)=2019
+and a.sexo = 'H'
+and timestampdiff(YEAR,a.fechanacimiento,now())  between r.minimo and r.maximo
+and s.idcondicion = 3
+and s.idsucursal=@idsucursal
+)as desertoreshombres,
+
+
+
+(
+select count(s.idalumno)
+from solicitudinscripcion s
+left join alumno a on s.idalumno = a.idalumno
+where year(s.fecha)=2019
+and a.sexo = 'M'
+and timestampdiff(YEAR,a.fechanacimiento,now())  between r.minimo and r.maximo
+and s.becado = 1
+and s.idsucursal=@idsucursal
+)as becadosmujeres,
+(
+select count(s.idalumno)
+from solicitudinscripcion s
+left join alumno a on s.idalumno = a.idalumno
+where year(s.fecha)=2019
+and a.sexo = 'H'
+and timestampdiff(YEAR,a.fechanacimiento,now())  between r.minimo and r.maximo
+and s.becado= 1
+and s.idsucursal=@idsucursal
+)as becadoshombres
+
+from rangoedad r
+
+UNION
+
+select e.escolaridad as edad, 2 as tipo, 
+(
+select count(s.idalumno)
+from solicitudinscripcion s, rangoedad r, alumno a
+where s.idalumno = a.idalumno
+and year(s.fecha)=2019
+and a.sexo = 'M'
+and timestampdiff(YEAR,a.fechanacimiento,now())  between r.minimo and r.maximo
+and s.idescolaridad = e.idescolaridad
+and s.idsucursal=@idsucursal
+)as inscritosmujeres,
+(
+select count(s.idalumno)
+from solicitudinscripcion s, rangoedad r, alumno a
+where s.idalumno = a.idalumno
+and year(s.fecha)=2019
+and a.sexo = 'H'
+and timestampdiff(YEAR,a.fechanacimiento,now())  between r.minimo and r.maximo
+and s.idescolaridad = e.idescolaridad
+)as inscritoshombres,
+
+(
+select count(s.idalumno)
+from solicitudinscripcion s, rangoedad r, alumno a
+where s.idalumno = a.idalumno
+and year(s.fecha)=2019
+and a.sexo = 'M'
+and timestampdiff(YEAR,a.fechanacimiento,now())  between r.minimo and r.maximo
+and s.idcondicion = 1
+and s.idescolaridad = e.idescolaridad
+and s.idsucursal=@idsucursal
+)as acreditadosmujeres,
+(
+select count(s.idalumno)
+from solicitudinscripcion s, rangoedad r, alumno a
+where s.idalumno = a.idalumno
+and year(s.fecha)=2019
+and a.sexo = 'H'
+and timestampdiff(YEAR,a.fechanacimiento,now())  between r.minimo and r.maximo
+and s.idcondicion = 1
+and s.idescolaridad = e.idescolaridad
+and s.idsucursal=@idsucursal
+)as acreditadoshombres,
+
+(
+select count(s.idalumno)
+from solicitudinscripcion s, rangoedad r, alumno a
+where s.idalumno = a.idalumno
+and year(s.fecha)=2019
+and a.sexo = 'M'
+and timestampdiff(YEAR,a.fechanacimiento,now())  between r.minimo and r.maximo
+and s.idcondicion = 2
+and s.idescolaridad = e.idescolaridad
+and s.idsucursal=@idsucursal
+)as noacreditadosmujeres,
+(
+select count(s.idalumno)
+from solicitudinscripcion s, rangoedad r, alumno a
+where s.idalumno = a.idalumno
+and year(s.fecha)=2019
+and a.sexo = 'H'
+and timestampdiff(YEAR,a.fechanacimiento,now())  between r.minimo and r.maximo
+and s.idcondicion = 2
+and s.idescolaridad = e.idescolaridad
+and s.idsucursal=@idsucursal
+)as noacreditadoshombres,
+
+
+(
+select count(s.idalumno)
+from solicitudinscripcion s, rangoedad r, alumno a
+where s.idalumno = a.idalumno
+and year(s.fecha)=2019
+and a.sexo = 'M'
+and timestampdiff(YEAR,a.fechanacimiento,now())  between r.minimo and r.maximo
+and s.idcondicion =3
+and s.idescolaridad = e.idescolaridad
+and s.idsucursal=@idsucursal
+)as desertoresmujeres,
+(
+select count(s.idalumno)
+from solicitudinscripcion s, rangoedad r, alumno a
+where s.idalumno = a.idalumno
+and year(s.fecha)=2019
+and a.sexo = 'H'
+and timestampdiff(YEAR,a.fechanacimiento,now())  between r.minimo and r.maximo
+and s.idcondicion = 3
+and s.idescolaridad = e.idescolaridad
+and s.idsucursal=@idsucursal
+)as desertoreshombres,
+
+
+
+(
+select count(s.idalumno)
+from solicitudinscripcion s, rangoedad r, alumno a
+where s.idalumno = a.idalumno
+and year(s.fecha)=2019
+and a.sexo = 'M'
+and timestampdiff(YEAR,a.fechanacimiento,now())  between r.minimo and r.maximo
+and s.becado = 1
+and s.idescolaridad = e.idescolaridad
+and s.idsucursal=@idsucursal
+)as becadosmujeres,
+(
+select count(s.idalumno)
+from solicitudinscripcion s, rangoedad r, alumno a
+where s.idalumno = a.idalumno
+and year(s.fecha)=2019
+and a.sexo = 'H'
+and timestampdiff(YEAR,a.fechanacimiento,now())  between r.minimo and r.maximo
+and s.becado= 1
+and s.idescolaridad = e.idescolaridad
+and s.idsucursal=@idsucursal
+)as becadoshombres
+
+from escolaridad e</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="pictureBox1.Value" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+</value>
+  </data>
+  <data name="pictureBox2.Value" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+        hcHDxNuGi1HXkcMMXn//2Q==
+</value>
+  </data>
+</root>

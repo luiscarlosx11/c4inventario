@@ -12,7 +12,11 @@ namespace elecion
 
         protected void Application_Start(object sender, EventArgs e)
         {
-            Telerik.Reporting.Services.WebApi.ReportsControllerConfiguration.RegisterRoutes(System.Web.Http.GlobalConfiguration.Configuration);                   
+            
+
+            Telerik.Reporting.Services.WebApi.ReportsControllerConfiguration.RegisterRoutes(System.Web.Http.GlobalConfiguration.Configuration);
+
+            
 
             System.Web.Routing.RouteTable.Routes.MapPageRoute("Promovidos",
               "promovidos/"
@@ -92,7 +96,7 @@ namespace elecion
 
         protected void Session_Start(object sender, EventArgs e)
         {
-
+            Session.Timeout = 1;
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)

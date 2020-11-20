@@ -63,27 +63,29 @@
                 <div class="col-xs-12">
                     <div class="card">
                         <div class="card-header">
-                            <asp:HiddenField ID="idS" runat="server"/>
+                            <asp:HiddenField ID="idS" runat="server" />
                             <h4 class="card-title">CORTE DIARIO</h4>
                             <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
                             <div class="heading-elements">
                                 <ul class="list-inline mb-0">
-                                  
                                 </ul>
                             </div>
                         </div>
                         <div class="card-body collapse in">
+                            </div>
+                    
+
                             <div class="row">
 
                                 <div class="col-md-12">
-                                    
+
                                     <div class="card no-border">
                                         <div class="card-body">
                                             <div class="card-block">
                                                 <div class="media">
                                                     <div class="media-body">
-                                                        <h1 class="display-4">
-                                                            <asp:Label runat="server" ID="lsaldocaja">$0.00</asp:Label></h1>
+                                                        <h2 class="display-4">
+                                                            <asp:Label runat="server" ID="lsaldocaja">$0.00</asp:Label></h2>
                                                         <span class="text-muted">Saldo en Caja</span>
                                                     </div>
                                                     <div class="media-right media-middle">
@@ -96,218 +98,209 @@
                                             <div id="sp-line-total-cost"></div>
                                         </div>
                                     </div>
-                                 
+
                                 </div>
 
                             </div>
+
+                        </div>
                             <div class="row">
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="cliente" class="text-bold-600">Fecha</label>
+                                        <asp:TextBox ID="bfecha" CssClass="form-control pickadate text-uppercase" placeholder="Fecha" name="bfecha" runat="server" AutoPostBack="true" Text="" OnTextChanged="getDatos">
 
-                                <div class="col-md-6">
-
-                                    <div class="col-md-12">
-                                    <div class="card overflow-hidden">
-                                        <div class="card-body">
-                                            <div class="media">
-                                                <div class="media-left bg-teal p-2 media-middle">
-                                                    <i class="icon-briefcase font-large-2 white"></i>
-                                                </div>
-                                                <div class="media-body p-2">
-                                                    <h4>Saldo</h4>
-                                                    <span>Inicial</span>
-                                                </div>
-                                                <div class="media-right p-2 media-middle">
-                                                    <h1 class="black">
-                                                        <asp:Label runat="server" ID="lsaldoinicial">$0.00</asp:Label></h1>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        </asp:TextBox>
                                     </div>
-                                </div>
-
-                                <div class="col-md-12">
-                                    <div class="card overflow-hidden">
-                                        <div class="card-body">
-                                            <div class="media">
-                                                <div class="media-left bg-success p-2 media-middle">
-                                                    <i class="fa fa-shopping-cart font-large-2 white"></i>
-                                                </div>
-                                                <div class="media-body p-2">
-                                                    <h4>Total</h4>
-                                                    <span>Ventas</span>
-                                                </div>
-                                                <div class="media-right p-2 media-middle">
-                                                    <h1 class="black">
-                                                        <asp:Label runat="server" ID="lventas">$0.00</asp:Label></h1>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12">
-                                    <div class="card overflow-hidden">
-                                        <div class="card-body">
-                                            <div class="media">
-                                                <div class="media-left bg-warning p-2 media-middle">
-                                                    <i class="fa fa-undo font-large-2 white"></i>
-                                                </div>
-                                                <div class="media-body p-2">
-                                                    <h4>Total</h4>
-                                                    <span>Refrendos</span>
-                                                </div>
-                                                <div class="media-right p-2 media-middle">
-                                                    <h1 class="black">
-                                                        <asp:Label runat="server" ID="lrefrendos">$0.00</asp:Label></h1>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="col-md-12">
-                                    <div class="card overflow-hidden">
-                                        <div class="card-body">
-                                            <div class="media">
-                                                <div class="media-left bg-yellow p-2 media-middle">
-                                                    <i class="fa fa-undo font-large-2 white"></i>
-                                                </div>
-                                                <div class="media-body p-2">
-                                                    <h4>Total</h4>
-                                                    <span>Desempeños</span>
-                                                </div>
-                                                <div class="media-right p-2 media-middle">
-                                                    <h1 class="black">
-                                                        <asp:Label runat="server" ID="ldesempenos">$0.00</asp:Label></h1>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12">
-                                    <div class="card overflow-hidden">
-                                        <div class="card-body">
-                                            <div class="media">
-                                                <div class="media-left bg-cyan p-2 media-middle">
-                                                    <i class="fa fa-hand-paper-o font-large-2 white"></i>
-                                                </div>
-                                                <div class="media-body p-2">
-                                                    <h4>Total</h4>
-                                                    <span>Apartados</span>
-                                                </div>
-                                                <div class="media-right p-2 media-middle">
-                                                    <h1 class="black">
-                                                        <asp:Label runat="server" ID="lapartados">$0.00</asp:Label></h1>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-                                <div class="col-md-12">
-                                    <div class="card overflow-hidden">
-                                        <div class="card-body">
-                                            <div class="media">
-                                                <div class="media-left bg-danger p-2 media-middle">
-                                                    <i class="icon-docs font-large-2 white"></i>
-                                                </div>
-                                                <div class="media-body p-2">
-                                                    <h4>Total</h4>
-                                                    <span>Préstamos</span>
-                                                </div>
-                                                <div class="media-right p-2 media-middle">
-                                                    <h1 class="black">
-                                                        <asp:Label runat="server" ID="lprestamos">$0.00</asp:Label></h1>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                </div>                                
                             </div>
-
-                                <div class="col-md-6">
-                                    <div class="col-md-12">
-                                        <div class="row">
-
-                                    
-
-                                     <div class="col-md-6">
-										<div class="form-group">
-											<label for="cliente" class="text-bold-600">Fecha</label>
-											<asp:TextBox ID="bfecha" CssClass="form-control pickadate text-uppercase" placeholder="Fecha" name="bfecha" runat="server" AutoPostBack="true" Text="" OnTextChanged="getDatos">
-
-											</asp:TextBox>
-										</div>
-									</div>                                  
-                                 </div>  
-                                    
-                                </div>
-
-
-                                    <div class="col-md-12">
-                                    <div class="card overflow-hidden">
-                                        <div class="card-body">
-                                            <div class="media">
-                                                <div class="media-left bg-success p-2 media-middle">
-                                                    <i class="fa fa-sign-in font-large-2 white"></i>
-                                                </div>
-                                                <div class="media-body p-2">
-                                                    <h4>Total</h4>
-                                                    <span>Ingresos</span>
-                                                </div>
-                                                <div class="media-right p-2 media-middle">
-                                                    <h1 class="black">
-                                                        <asp:Label runat="server" ID="lingresos">$0.00</asp:Label></h1>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                    <div class="col-md-12">
-                                    <div class="card overflow-hidden">
-                                        <div class="card-body">
-                                            <div class="media">
-                                                <div class="media-left bg-danger p-2 media-middle">
-                                                    <i class="fa fa-sign-out font-large-2 white"></i>
-                                                </div>
-                                                <div class="media-body p-2">
-                                                    <h4>Total</h4>
-                                                    <span>Egresos</span>
-                                                </div>
-                                                <div class="media-right p-2 media-middle">
-                                                    <h1 class="black">
-                                                        <asp:Label runat="server" ID="legresos">$0.00</asp:Label></h1>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                </div>
-                             </div>
-                            
-                            
-
-                           
-                           
-                            </div>
-                            
-                           
                         
+
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <div class="card overflow-hidden">
+                                <div class="card-body">
+                                    <div class="media">
+                                        <div class="media-left bg-blue-grey p-2 media-middle">
+                                            <i class="icon-briefcase font-large-2 white"></i>
+                                        </div>
+                                        <div class="media-body p-2">
+                                            <h4>Saldo</h4>
+                                            <span>Inicial</span>
+                                        </div>
+                                        <div class="media-right p-2 media-middle">
+                                            <h4 class="black">
+                                                <asp:Label runat="server" ID="lsaldoinicial">$0.00</asp:Label></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="card overflow-hidden">
+                                <div class="card-body">
+                                    <div class="media">
+                                        <div class="media-left bg-success p-2 media-middle">
+                                            <i class="fa fa-shopping-cart font-large-2 white"></i>
+                                        </div>
+                                        <div class="media-body p-2">
+                                            <h4>Total</h4>
+                                            <span>Ventas</span>
+                                        </div>
+                                        <div class="media-right p-2 media-middle">
+                                            <h4 class="black">
+                                                <asp:Label runat="server" ID="lventas">$0.00</asp:Label></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="card overflow-hidden">
+                                <div class="card-body">
+                                    <div class="media">
+                                        <div class="media-left bg-warning p-2 media-middle">
+                                            <i class="fa fa-undo font-large-2 white"></i>
+                                        </div>
+                                        <div class="media-body p-2">
+                                            <h4>Total</h4>
+                                            <span>Refrendos</span>
+                                        </div>
+                                        <div class="media-right p-2 media-middle">
+                                            <h4 class="black">
+                                                <asp:Label runat="server" ID="lrefrendos">$0.00</asp:Label></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <div class="card overflow-hidden">
+                                <div class="card-body">
+                                    <div class="media">
+                                        <div class="media-left bg-yellow p-2 media-middle">
+                                            <i class="fa fa-undo font-large-2 white"></i>
+                                        </div>
+                                        <div class="media-body p-2">
+                                            <h4>Total</h4>
+                                            <span>Desempeños</span>
+                                        </div>
+                                        <div class="media-right p-2 media-middle">
+                                            <h4 class="black">
+                                                <asp:Label runat="server" ID="ldesempenos">$0.00</asp:Label></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="card overflow-hidden">
+                                <div class="card-body">
+                                    <div class="media">
+                                        <div class="media-left bg-cyan p-2 media-middle">
+                                            <i class="fa fa-hand-paper-o font-large-2 white"></i>
+                                        </div>
+                                        <div class="media-body p-2">
+                                            <h4>Total</h4>
+                                            <span>Apartados</span>
+                                        </div>
+                                        <div class="media-right p-2 media-middle">
+                                            <h4 class="black">
+                                                <asp:Label runat="server" ID="lapartados">$0.00</asp:Label></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-md-4">
+                            <div class="card overflow-hidden">
+                                <div class="card-body">
+                                    <div class="media">
+                                        <div class="media-left bg-danger p-2 media-middle">
+                                            <i class="icon-docs font-large-2 white"></i>
+                                        </div>
+                                        <div class="media-body p-2">
+                                            <h4>Total</h4>
+                                            <span>Préstamos</span>
+                                        </div>
+                                        <div class="media-right p-2 media-middle">
+                                            <h4 class="black">
+                                                <asp:Label runat="server" ID="lprestamos">$0.00</asp:Label></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+                        <div class="col-md-4">
+                            <div class="card overflow-hidden">
+                                <div class="card-body">
+                                    <div class="media">
+                                        <div class="media-left bg-success p-2 media-middle">
+                                            <i class="fa fa-sign-in font-large-2 white"></i>
+                                        </div>
+                                        <div class="media-body p-2">
+                                            <h4>Total</h4>
+                                            <span>Ingresos</span>
+                                        </div>
+                                        <div class="media-right p-2 media-middle">
+                                            <h4 class="black">
+                                                <asp:Label runat="server" ID="lingresos">$0.00</asp:Label></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <div class="card overflow-hidden">
+                                <div class="card-body">
+                                    <div class="media">
+                                        <div class="media-left bg-danger p-2 media-middle">
+                                            <i class="fa fa-sign-out font-large-2 white"></i>
+                                        </div>
+                                        <div class="media-body p-2">
+                                            <h4>Total</h4>
+                                            <span>Egresos</span>
+                                        </div>
+                                        <div class="media-right p-2 media-middle">
+                                            <h4 class="black">
+                                                <asp:Label runat="server" ID="legresos">$0.00</asp:Label></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
                     </div>
+
+
+
+
+
+
+
+
+
+
                 </div>
             </div>
-
-     
-   
-            
-                </section>
-	        </div>
             
   
     </ContentTemplate>
@@ -414,7 +407,6 @@
 
             window.open(url, '_blank');
         }
-       
 
         
     </script>

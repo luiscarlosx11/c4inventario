@@ -186,8 +186,8 @@
                            
                    
 			        <div class="modal-footer">
-                        <asp:Button runat="server" ID="guardar" OnClick="guardaEdita" style="display:none" CausesValidation="true"/>     
-                        <asp:Button runat="server" ID="borrar" OnClick="borrarRegistro" style="display:none" />
+                        <asp:Button runat="server" ID="guardar" OnClick="guardaEdita" style="display:none" CausesValidation="true" UseSubmitBehavior="false"/>     
+                        <asp:Button runat="server" ID="borrar" OnClick="borrarRegistro" style="display:none" UseSubmitBehavior="false"/>
                         
 				        <button class="btn btn-primary" onclick="valida()" type="button" data-backdrop="false"> 
 	                        <i class="fa fa-check-square-o"></i> Aceptar

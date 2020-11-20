@@ -13,14 +13,14 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
     display:none
 }
 
-.rendila-color {
-    background: #004FA7;
-}
-
-
 .centrarCelda{
             text-align:center;
         }
+
+
+.rendila-color {
+    background: #00B5B8;
+}
 
 .item{cursor:pointer;}
 .item:hover{background-color:#E6F0FA;}

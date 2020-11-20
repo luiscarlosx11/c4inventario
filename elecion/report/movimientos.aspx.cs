@@ -26,6 +26,7 @@ namespace elecion.report
             idusuario = Convert.ToInt32(datos[0]);
             idsucursal = Convert.ToInt32(datos2[4]);           
             idS.Value = idsucursal.ToString();
+            
 
             if (!IsPostBack)
             {
@@ -37,7 +38,7 @@ namespace elecion.report
 
         protected void conteoRegistros(object sender, EventArgs e)
         {
-            using (MySqlConnection con2 = new MySqlConnection(System.Web.Configuration.WebConfigurationManager.ConnectionStrings["DBconexion"].ConnectionString))
+            /*using (MySqlConnection con2 = new MySqlConnection(System.Web.Configuration.WebConfigurationManager.ConnectionStrings["DBconexion"].ConnectionString))
             {
                 try
                 {
@@ -63,7 +64,7 @@ namespace elecion.report
                         labelConteo.Text = rdr["total"].ToString();
 
                     }
-                    */
+                    
 
                     lventas.Text = "$ 0.00";
                     lapartados.Text = "$ 0.00";
@@ -72,7 +73,7 @@ namespace elecion.report
 
                     string query = "select d.tipo, sum(d.importe)as total " +
                                     "from movimientos d " +
-                                    "where d.fecha = '" + bfecha.Text + "' and d.ignorar = 0 " +
+                                    "where d.fecha = '" + bfecha.Text + "' and d.ignorar = 0 and d.idsucursal="+idsucursal+" " +
                                     "group by d.tipo";
 
                     MySqlCommand cmd2 = new MySqlCommand(query, con2);
@@ -106,7 +107,7 @@ namespace elecion.report
                     con2.Close();
                 }
             }
-
+*/
         }
 
 
@@ -121,32 +122,42 @@ namespace elecion.report
             {
                 offset = limit * (pag - 1);
             }*/
+            try
+            {
+                lgastos.DataSourceID = DsListadoGastos.ID;
 
-            lgastos.DataSourceID = DsListadoGastos.ID;
-
-            String query = "select s.nombre as sucursal, d.idmovimiento, d.idsucursal, d.concepto, d.importe, cast(d.fecha as char) as fecha, cast(d.hora as char)as hora,  "+
-                            "(CONCAT(COALESCE(u.nombre, ''), ' ', COALESCE(u.apaterno, ''), ' ', COALESCE(u.amaterno, ''))) as usuario, d.tipo " +
-                            "from movimientos d " +
-                            "left join sucursal s on d.idsucursal = s.idsucursal " +
-                            "left join usuario u on u.idusuario = d.idusuario where true ";
+                String query = "select s.nombre as sucursal, d.idmovimiento, d.idsucursal, d.concepto, d.importe, cast(d.fecha as char) as fecha, cast(d.hora as char)as hora,  " +
+                                "(CONCAT(COALESCE(u.nombre, ''), ' ', COALESCE(u.apaterno, ''), ' ', COALESCE(u.amaterno, ''))) as usuario, d.tipo " +
+                                "from movimientos d " +
+                                "left join sucursal s on d.idsucursal = s.idsucursal " +
+                                "left join usuario u on u.idusuario = d.idusuario where d.idsucursal=" + idsucursal + " ";
 
 
-            if (bfolio.Text.Trim() != "")
-                query = query + " AND d.concepto LIKE '%" + bfolio.Text.ToUpper() + "%' ";
+                if (bfolio.Text.Trim() != "")
+                    query = query + " AND d.concepto LIKE '%" + bfolio.Text.ToUpper() + "%' ";
 
-            if (bfecha.Text.Trim() != "")
-                query = query + " AND d.fecha ='" + bfecha.Text + "' ";
+                if (bfecha.Text.Trim() != "")
+                    query = query + " AND d.fecha between '" + bfecha.Text + "' and  '" + bfechafin.Text + "'";
 
-            query = query + " order by d.fecha desc, d.hora desc ";
-            DsListadoGastos.SelectCommand = query;
+                query = query + " order by d.fecha desc, d.hora desc ";
+                DsListadoGastos.SelectCommand = query;
 
-            DsListadoGastos.DataBind();
-            lgastos.DataBind();
+                DsListadoGastos.DataBind();
+                lgastos.DataBind();
 
-            idP.Value = "0";            
+                idP.Value = "0";
 
-            //ScriptManager.RegisterClientScriptBlock(Page, typeof(string), "myScriptName", "cerrarLoading();", true);
-            //gridSeguimiento.DataBind();
+                //ScriptManager.RegisterClientScriptBlock(Page, typeof(string), "myScriptName", "cerrarLoading();", true);
+                //gridSeguimiento.DataBind();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("ERROR:" + ex.Message.Replace("\r\n", ""));
+            }
+            finally
+            {
+
+            }
 
         }
 
@@ -167,6 +178,7 @@ namespace elecion.report
                         while (rdr.Read())
                         {
                             bfecha.Text = rdr["fecha"].ToString();
+                            bfechafin.Text = rdr["fecha"].ToString();
                         }
 
                     }

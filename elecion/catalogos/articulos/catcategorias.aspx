@@ -134,71 +134,70 @@
             </div>
 
      
-    <div class="modal fade text-xs-left" id="bootstrap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel35" aria-hidden="true">
-        
-		        <div class="modal-dialog" role="document">
-		        <div class="modal-content">
-			        <div class="modal-header bg-primary white">
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				        <span aria-hidden="true">&times;</span>
-			        </button>
-			        <h3 class="modal-title" id="myModalLabel35">CATEGORÍA</h3>
-			        </div>
-			   
-                       
-			        <div class="modal-body">
-                    <section class="input-validation inputmask">
-	                            <div class="row">
-	                                <div class="col-md-12">
-	                                    <div class="card">
-	                                        <div class="card-header">
-	                                            
-	                                        </div>
+            <div class="modal fade text-xs-left" id="bootstrap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel35" aria-hidden="true">
+
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bg-primary white">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h3 class="modal-title" id="myModalLabel35">CATEGORÍA</h3>
+                        </div>
+
+
+                        <div class="modal-body">
+                            <section class="input-validation inputmask">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                            </div>
                                             <div class="card-body collapse in">
                                                 <div class="card-block">
-                                                  <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <div class="form-group">
-                                                                        <label >Nombre</label>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Nombre</label>
 
-                                                                        <asp:HiddenField runat="server" ID="idg" />
-                                                                        <asp:TextBox ID="idtipog" CssClass="ocultar" name="idtipogasto" runat="server" ReadOnly="true"></asp:TextBox>
-                                                                        <asp:TextBox ID="tipogasto" CssClass="form-control text-uppercase" required="required" data-validation-required-message="Campo requerido" MaxLength="60" placeholder="Categoría" name="tipogasto" runat="server"></asp:TextBox>
-                                                                        <div class="help-block"></div>
-                                                                    </div>
+                                                                <asp:HiddenField runat="server" ID="idg" />
+                                                                <asp:TextBox ID="idtipog" CssClass="ocultar" name="idtipogasto" runat="server" ReadOnly="true"></asp:TextBox>
+                                                                <asp:TextBox ID="tipogasto" CssClass="form-control text-uppercase" required="required" data-validation-required-message="Campo requerido" MaxLength="60" placeholder="Categoría" name="tipogasto" runat="server"></asp:TextBox>
+                                                                <div class="help-block"></div>
+                                                            </div>
 
 
-                                                                </div>
-                                                            </div>                                                                                                                       
-                                                        
+                                                        </div>
                                                     </div>
 
                                                 </div>
+
                                             </div>
-	                                    </div>
-	                                </div>
-	                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
 
-                        
-                           
-                   
-			        <div class="modal-footer">
-                        <asp:Button runat="server" ID="guardar" OnClick="guardaEdita" style="display:none" CausesValidation="true"/>     
-                        <asp:Button runat="server" ID="borrar" OnClick="borrarRegistro" style="display:none" />
-                        
-				        <button class="btn btn-primary" onclick="valida()" type="button" data-backdrop="false"> 
-	                        <i class="fa fa-check-square-o"></i> Aceptar
-	                     </button>
-                 
-	                     <button type="button" class="btn btn-danger mr-1" data-dismiss="modal" id="cerrarModal">
-	                        <i class="ft-x"></i> Cancelar
-	                     </button>
-			        </div>
-</div>
 
-			       
-		        </div>
-		        </div>
+
+
+                        <div class="modal-footer">
+                            <asp:Button runat="server" ID="guardar" OnClick="guardaEdita" Style="display: none" CausesValidation="true" />
+                            <asp:Button runat="server" ID="borrar" OnClick="borrarRegistro" Style="display: none" />
+
+                            <button class="btn btn-primary" onclick="valida()" type="button" data-backdrop="false">
+                                <i class="fa fa-check-square-o"></i>Aceptar
+                            </button>
+
+                            <button type="button" class="btn btn-danger mr-1" data-dismiss="modal" id="cerrarModal">
+                                <i class="ft-x"></i>Cancelar
+                            </button>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
             
                 </section>
 	        </div>

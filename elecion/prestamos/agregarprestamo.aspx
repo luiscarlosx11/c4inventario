@@ -69,25 +69,13 @@
                             
 
                             
-                            <asp:Button runat="server" ID="volver" OnClick="volverListado" class="ocultar" />
+                            <asp:Button runat="server" ID="volver" OnClick="volverListado" class="ocultar" UseSubmitBehavior="false"/>
 
 
                         </ul>
                     </div>
 
-                    <span class="right">
-                        <asp:Button runat="server" ID="bguardar" OnClick="guardaEdita" Style="display: none" CausesValidation="true" />
-                        <button class="btn btn-primary" onclick="valida()" type="button" id="BBguardar" runat="server">
-                            <i class="fa fa-check-square-o"></i>Guardar
-                        </button>
-
-                        <button type="button" class="btn btn-danger mr-1" onclick="regresar()" id="cancelar">
-                            <i class="ft-x"></i>Volver
-                        </button>
-
-                        <button type="reset" class="btn btn-danger" style="display: none" id="reset">Reset <i class="fa fa-refresh position-right"></i></button>
-
-                    </span>
+                   
                 </div>
                 <div class="card-body collapse in">
                     <div class="card-block">
@@ -106,7 +94,7 @@
                                 </div>
 
                                 <asp:UpdatePanel runat="server" ID="updatePanelTop2" UpdateMode="Conditional" ChildrenAsTriggers="True">
-                                            <ContentTemplate>
+                                 <ContentTemplate>
                                 <div class="card-body collapse in datos">
                                     <div class="row">
                                         <div class="col-md-3">
@@ -243,7 +231,7 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label class="text-bold-600">Observaciones</label>
-                                                        <asp:TextBox ID="observaciones" CssClass="form-control text-uppercase" Rows="4" TextMode="MultiLine" placeholder="Nota o comentario" name="nota" runat="server"></asp:TextBox>
+                                                        <asp:TextBox ID="observaciones" CssClass="form-control text-uppercase" Rows="2" TextMode="MultiLine" placeholder="Nota o comentario" name="nota" runat="server"></asp:TextBox>
 
                                                     </div>
                                                 </div>
@@ -396,6 +384,20 @@
                             </div>
                         </div>
 
+                        <div class="modal-footer">
+                            <span class="right">
+                                <asp:Button runat="server" ID="bguardar" OnClick="guardaEdita" Style="display: block" CausesValidation="true" UseSubmitBehavior="false" />
+                                <button class="btn btn-primary" onclick="valida()" type="button" id="BBguardar" runat="server">
+                                    <i class="fa fa-check-square-o"></i>Guardar
+                                </button>
+
+                                <button type="button" class="btn btn-danger mr-1" onclick="regresar()" id="cancelar">
+                                    <i class="ft-x"></i>Volver
+                                </button>
+
+                            </span>
+
+                        </div>
 
 
 
@@ -429,7 +431,9 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="cliente" class="text-bold-600">Nombre</label>
-                                                <asp:TextBox ID="bnombre" CssClass="form-control text-uppercase" placeholder="Nombre" name="nombre" runat="server" OnTextChanged="listadoClientes" AutoPostBack="true"></asp:TextBox>
+                                                <asp:TextBox ID="bnombre" CssClass="form-control text-uppercase" placeholder="Nombre" name="nombre" runat="server" OnTextChanged="listadoClientes" AutoPostBack="true">
+
+                                                </asp:TextBox>
                                             </div>
                                         </div>
                                     </div>
@@ -441,7 +445,7 @@
                                             <div style="overflow-x: auto; width: 100%">
                                                 <asp:GridView runat="server" ID="lusuarios" PageSize="10" AllowPaging="true" AllowSorting="true" CssClass="table table-striped table-bordered base-style"
                                                     AutoGenerateColumns="False" DataSourceID="DsUsuarios" DataKeyNames="idcliente"
-                                                    AlternatingRowStyle-BackColor="#F5F7FA" OnDataBinding="conteoRegistros">
+                                                    AlternatingRowStyle-BackColor="#F5F7FA" OnDataBinding="conteoRegistros" OnPageIndexChanged="listadoClientes">
                                                     <SortedAscendingHeaderStyle CssClass="ascending rendila-color" ForeColor="White" />
                                                     <SortedDescendingHeaderStyle CssClass="descending rendila-color" ForeColor="White" />
                                                     <Columns>
@@ -454,7 +458,7 @@
 
                                                         <asp:BoundField DataField="domicilio" HeaderText="Domicilio" SortExpression="domicilio" />
 
-                                                        <asp:TemplateField HeaderText="Acciones" ItemStyle-Width="100px">
+                                                        <asp:TemplateField HeaderText="Seleccionar" ItemStyle-Width="80px" ItemStyle-CssClass="centrarCelda" HeaderStyle-CssClass="centrarCelda">
                                                             <ItemTemplate>
 
                                                                 <button type="button" id="" onclick="seleccionar(<%# Eval("idcliente")%>,<%# Eval("idsucursal")%>)" class="btn btn-icon btn-success mr-1" data-toggle="tooltip" data-original-title="Seleccionar">
@@ -468,8 +472,7 @@
                                                     </Columns>
 
                                                     <PagerSettings Mode="NumericFirstLast"
-                                                        FirstPageText="Inicio"
-                                                        LastPageText="Fin"
+                                                        
                                                         Position="Bottom" />
                                                 </asp:GridView>
                                                 <asp:SqlDataSource ID="DsUsuarios" ProviderName="MySql.Data.MySqlClient" runat="server" ConnectionString="<%$ ConnectionStrings:DBconexion %>"></asp:SqlDataSource>
@@ -559,7 +562,11 @@
         $(".nav-item>ul>li.active").removeClass("active");
         $("#ticketsact").addClass("active");
         $(document).ready(function () {
-           
+            $('textarea').keypress(function (event) {
+                if (event.keyCode == 13) {
+                    event.preventDefault();
+                }
+            });
         });
 
          function regresar() {
@@ -698,18 +705,44 @@
                 return false;
             }
 
-            mostrarLoading();
-            $('#<%= bguardar.ClientID %>').click();
-            return true;
+            
+            swal({
+                title: "Se generará el préstamo con los datos indicados, ¿Desea continuar?",
+                text: "",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Si",
+                cancelButtonText: "No",
+                closeOnConfirm: true,
+                closeOnCancel: true
+            },
+            function (isConfirm) {
+                if (isConfirm) {
+                    mostrarLoading();                    
+                    $('#<%= bguardar.ClientID %>').click();                
+                } 
+            });
 
-        }
+       }
+
+
 
 
         function abrirModal() {            
             //$(".modal-backdrop").remove();
+
+            $("*[id$='bnombre']").focus();
             $("#divResultados").hide();
             $("#bootstrap").modal('show');
+
+                      
         }
+
+        $('#bootstrap').on('shown.bs.modal', function () {
+            $("*[id$='bnombre']").val('');
+            $("*[id$='bnombre']").focus();
+        })
 
         function cerrarModal() {
             $("#bootstrap").modal('hide');

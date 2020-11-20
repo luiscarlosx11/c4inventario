@@ -184,24 +184,6 @@ namespace elecion.tickets {
         protected global::System.Web.UI.WebControls.Button volver;
         
         /// <summary>
-        /// Control bguardar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button bguardar;
-        
-        /// <summary>
-        /// Control BBguardar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton BBguardar;
-        
-        /// <summary>
         /// Control updatePanelTop2.
         /// </summary>
         /// <remarks>
@@ -479,6 +461,24 @@ namespace elecion.tickets {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox precio;
+        
+        /// <summary>
+        /// Control bguardar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button bguardar;
+        
+        /// <summary>
+        /// Control BBguardar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton BBguardar;
         
         /// <summary>
         /// Control bnombre.

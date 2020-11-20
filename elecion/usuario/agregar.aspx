@@ -122,26 +122,33 @@
                                 
 
                              <div class="row">
-                                 <div class="col-md-4">
+                                 <div class="col-md-4 ocultar">
                                  <div class="form-group">
                                     <label  for="tipo">Tipo </label>
                                     
                                      
                                          <asp:DropDownList runat="server" ID="tipo" CssClass="select2 form-control" DataSourceID="DsTipos" DataTextField="tipoUsuario" DataValueField="idtipousuario" AutoPostBack="false" ></asp:DropDownList>
-                                         <asp:SqlDataSource ID="DsTipos" runat="server" ProviderName="MySql.Data.MySqlClient" ConnectionString="<%$ ConnectionStrings:DBconexion %>" SelectCommand="SELECT IDTIPOUSUARIO, TIPOUSUARIO FROM tipousuario ORDER BY TIPOUSUARIO"></asp:SqlDataSource>
+                                         <asp:SqlDataSource ID="DsTipos" runat="server" ProviderName="MySql.Data.MySqlClient" ConnectionString="<%$ ConnectionStrings:DBconexion %>" SelectCommand="SELECT IDTIPOUSUARIO, TIPOUSUARIO FROM tipousuario ORDER BY ORDEN"></asp:SqlDataSource>
                                           
                                     </div>
                                 </div>
 
+                                 <div class="col-md-8">
+                                                <div class="form-group">
+                                                    <label class="text-bold-600">Roles</label>
+                                                    <asp:HiddenField runat="server" ID="tagsdiscap" />
+                                                    <asp:DropDownList runat="server" ID="xxdiscapacidad" CssClass="select2 form-control" DataSourceID="DStipousuario" DataTextField="tipousuario" DataValueField="idtipousuario" Style="width: 100%" multiple="multiple" onchange=""></asp:DropDownList>
+                                                    <asp:SqlDataSource ID="DStipousuario" ProviderName="MySql.Data.MySqlClient" runat="server" ConnectionString="<%$ ConnectionStrings:DBconexion %>" SelectCommand="SELECT idtipousuario, tipousuario FROM tipousuario ORDER BY tipousuario"></asp:SqlDataSource>
+
+                                                </div>
+                                            </div>
+
                                  
                                  <div class="col-md-4">
                                  <div class="form-group">
-                                    <label  for="tipo">Área </label>
-                                    
-                                     
+                                    <label  for="tipo">Plantel </label>                                                                         
                                          <asp:DropDownList runat="server" ID="area" CssClass="select2 form-control" DataSourceID="DsAreas" DataTextField="nombre" DataValueField="idsucursal" AutoPostBack="false" ></asp:DropDownList>
-                                         <asp:SqlDataSource ID="DsAreas" runat="server" ProviderName="MySql.Data.MySqlClient" ConnectionString="<%$ ConnectionStrings:DBconexion %>" SelectCommand="SELECT idsucursal, nombre FROM sucursal ORDER BY nombre"></asp:SqlDataSource>
-                                          
+                                         <asp:SqlDataSource ID="DsAreas" runat="server" ProviderName="MySql.Data.MySqlClient" ConnectionString="<%$ ConnectionStrings:DBconexion %>" SelectCommand="SELECT idsucursal, nombre FROM sucursal ORDER BY nombre"></asp:SqlDataSource>                                          
                                     </div>
                                 </div>
                                 
@@ -239,7 +246,7 @@
 
         //$(document).prop('title', 'PLACEL - Agregar Usuario');
         $(".nav-item>ul>li.active").removeClass("active");
-        $("#catun").addClass("active");
+        $("#catusuarios").addClass("active");
 
         function exito() {
              swal({
@@ -287,11 +294,7 @@
                 swal("Atención", "Ingrese una contraseña para el usuario", "warning");
                 return false;
             }
-            if (email == '') {
-                swal("Atención", "Ingrese una dirección de correo para el usuario", "warning");
-                return false;
-            }
-                             
+                         
             mostrarLoading();
             $('#<%= guardar.ClientID %>').click();                   
             return true;
@@ -299,25 +302,22 @@
         }
 
         function regresar() {
-           
-             swal({
-                title: "Los datos no guardados se perderán, ¿Desea continuar?",
-                text: "",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Si",
-                cancelButtonText: "No",
-                closeOnConfirm: true,
-                closeOnCancel: true
-            },
-            function (isConfirm) {
-                if (isConfirm) {
-                    mostrarLoading();
-                    $('#<%= volver.ClientID %>').click();                    
-                } 
-            });
 
+            swal({
+              title: "Los datos no guardados se perderán, ¿Desea continuar?",
+              text: "",
+              type: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: "#DD6B55",
+              confirmButtonText: "Si",
+              cancelButtonText: "No",
+            }).then((result) => {
+              if (result.value) {
+                mostrarLoading();
+                    $('#<%= volver.ClientID %>').click();
+              }
+            })
+                        
         }
           
         function checarP(value) {
@@ -358,6 +358,24 @@
                 text += possible.charAt(Math.floor(Math.random() * possible.length));
 
             return text;
+        }
+
+        function cargatags() {     
+           
+            var discap = $("*[id$='tagsdiscap']").val(); 
+            var arreglo = discap.split("|"); 
+            $("*[id$='discapacidad']").val(arreglo);            
+            $("*[id$='discapacidad']").trigger('change');
+        }
+
+        function cargatagsInv() {
+           
+            $("*[id$='tagsdiscap']").val($("*[id$='xxdiscapacidad']").val()); 
+            $("*[id$='tagsmot']").val($("*[id$='motivo']").val());  
+            $("*[id$='tagsmed']").val($("*[id$='medio']").val());
+           
+
+
         }
 
         <%
@@ -412,7 +430,21 @@
                 loadJS("/app-assets/js/scripts/forms/select/form-select2.js");
                 loadJS("/app-assets/js/scripts/forms/extended/form-inputmask.js");
                 loadJS("/app-assets/js/scripts/forms/validation/form-validation.js");
-                loadJS("/app-assets/js/scripts/extensions/sweet-alerts.js");
+            loadJS("/app-assets/js/scripts/extensions/sweet-alerts.js");
+
+             $("*[id$='xxdiscapacidad']").on("select2:select", function (e) { cargatagsInv(); });
+            $("*[id$='xxdiscapacidad']").on("select2:unselect", function (e) { cargatagsInv(); var self = $(this);
+            setTimeout(function() {
+                self.select2('close');
+                }, 0);
+            });
+
+            $("*[id$='xxdiscapacidad']").on('select2:opening select2:closing', function( event ) {
+                var $searchfield = $(this).parent().find('.select2-search__field');
+                $searchfield.prop('disabled', true);
+            });
+
+           cargatags();
 
         }
     </script>

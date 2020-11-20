@@ -100,20 +100,20 @@
                                                     <%# Container.DataItemIndex + 1 %>
                                                 </ItemTemplate>
                                 </asp:TemplateField>                                
-                                <asp:BoundField DataField="sucursal" ItemStyle-Width="110px" HeaderText="Sucursal" SortExpression="sucursal" /> 
+                                <asp:BoundField DataField="sucursal" ItemStyle-Width="200px" HeaderText="Plantel" SortExpression="sucursal" /> 
                                 <asp:BoundField DataField="nombre" HeaderText="Nombre" SortExpression="nombre" /> 
-                                <asp:BoundField DataField="tipousuario" HeaderText="Rol" SortExpression="tipousuario" />                                                               
+                                <asp:BoundField DataField="rol" HeaderText="Rol" SortExpression="rol" />                                                               
                                 <asp:TemplateField HeaderText="Activo" ItemStyle-Width="20px"  ItemStyle-HorizontalAlign="Center">
                                      <ItemTemplate>  
                                          <div class="row skin skin-flat">
-                                         <div class="state icheckbox_flat-green <%# Eval("activo")%> mr-1"></div>
-                                             </div>
+                                            <div class="state icheckbox_flat-green <%# Eval("activo")%> mr-1"></div>
+                                         </div>
                                      </ItemTemplate>
                                 </asp:TemplateField>                                                               
                                 <asp:TemplateField HeaderText="Acciones" ItemStyle-Width="100px">
                                      <ItemTemplate>                                                                                                      
 
-                                                    <button type="button" id="editar" onclick="editarRegistro(<%# Eval("idusuario")%>)" class="btn btn-icon btn-success mr-1" data-toggle="tooltip" data-original-title="Editar">
+                                                    <button type="button" id="editar" onclick="editarRegistro(<%# Eval("idusuario")%>)" class="btn btn-icon btn-warning mr-1 btn-sm" data-toggle="tooltip" data-original-title="Editar">
                                                          <i class="ft-edit"></i>
                                                     </button>
 
@@ -124,7 +124,10 @@
                             </Columns>
                         </asp:GridView>
                         <asp:SqlDataSource ID="DsUsuarios" ProviderName="MySql.Data.MySqlClient" runat="server" ConnectionString="<%$ ConnectionStrings:DBconexion %>" 
-                            SelectCommand="SELECT u.idusuario, (CONCAT(COALESCE(u.nombre,''),' ',COALESCE(u.apaterno,''),' ',COALESCE(u.amaterno,'')))as nombre, u.email, u.telefono,  CASE WHEN u.activo=1 THEN 'checked' ELSE '' END as activo, t.TIPOUSUARIO, s.nombre as sucursal
+                            SelectCommand="SELECT u.idusuario, (CONCAT(COALESCE(u.nombre,''),' ',COALESCE(u.apaterno,''),' ',COALESCE(u.amaterno,'')))as nombre, u.email, u.telefono,  CASE WHEN u.activo=1 THEN 'checked' ELSE '' END as activo, t.TIPOUSUARIO, s.nombre as sucursal, 
+                                                (
+                                            select GROUP_CONCAT(t.tipousuario) from tipousuario t where FIND_IN_SET (cast(t.idtipousuario as char) , replace(u.roles,'|',','))
+                                            )  as rol
                                                 from usuario u
                                                 left join tipousuario t on u.idtipousuario = t.idtipousuario
                                                 left join sucursal s on s.idsucursal = u.idsucursal

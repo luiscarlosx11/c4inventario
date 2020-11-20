@@ -72,8 +72,19 @@
                             </div>
                         </div>
                         <div class="card-body collapse in">
-                            
                             <div class="row">
+                                <div class="col-md-12">
+
+                                    <div class="media-right media-middle">
+                                        <button type="button" id="Button1" runat="server" onclick="reimprimirMov()" class="btn btn-icon btn-primary mr-1" data-toggle="modal">
+                                            <i class="ft-print"></i>Imprimir Movimientos 
+                                        </button>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <!--<div class="row">
                                 <div class="col-md-3">
                                     <div class="card no-border">
                                         <div class="card-body">
@@ -92,6 +103,8 @@
                                             <div id="sp-line-total-cost"></div>
                                         </div>
                                     </div>
+
+
                                 </div>
 
                                 <div class="col-md-3">
@@ -155,7 +168,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>-->
                             
 
                             <div class="card-block card-dashboard">
@@ -170,8 +183,17 @@
 
                                      <div class="col-md-2">
 										<div class="form-group">
-											<label for="cliente" class="text-bold-600">Fecha</label>
-											<asp:TextBox ID="bfecha" CssClass="form-control pickadate text-uppercase" placeholder="Fecha" name="bfecha" runat="server" AutoPostBack="true" OnTextChanged="listadoTickets" Text="2018-09-26">
+											<label for="cliente" class="text-bold-600">Fecha inicial</label>
+											<asp:TextBox ID="bfecha" CssClass="form-control pickadate text-uppercase" placeholder="Desde" name="bfecha" runat="server" AutoPostBack="true" OnTextChanged="listadoTickets" Text="">
+
+											</asp:TextBox>
+										</div>
+									</div>  
+                                     
+                                     <div class="col-md-2">
+										<div class="form-group">
+											<label for="cliente" class="text-bold-600">Fecha final</label>
+											<asp:TextBox ID="bfechafin" CssClass="form-control pickadate text-uppercase" placeholder="Hasta" name="bfecha" runat="server" AutoPostBack="true" OnTextChanged="listadoTickets" Text="">
 
 											</asp:TextBox>
 										</div>
@@ -190,9 +212,9 @@
                             
                             <div class="card-block card-dashboard">
                             <div style="overflow-x:auto;width:100%"> 
-                            <asp:GridView runat="server" ID="lgastos" PageSize="10" AllowPaging="true" AllowSorting="true" CssClass="table table-striped table-bordered zero-configuration" 
+                            <asp:GridView runat="server" ID="lgastos" PageSize="25" AllowPaging="true" AllowSorting="true" CssClass="table table-striped table-bordered zero-configuration" 
                                 AutoGenerateColumns="False" DataSourceID="DsListadoGastos" OnSorting="lgastos_Sorting" EnableSortingAndPagingCallbacks="true"
-                                AlternatingRowStyle-BackColor="#F5F7FA" OnDataBinding="conteoRegistros">
+                                AlternatingRowStyle-BackColor="#F5F7FA" OnDataBinding="conteoRegistros" OnPageIndexChanged="listadoTickets">
                                 <SortedAscendingHeaderStyle CssClass="ascending rendila-color" ForeColor="White" />
                                 <SortedDescendingHeaderStyle CssClass="descending rendila-color" ForeColor="White"/>
                                         <Columns>
@@ -204,9 +226,10 @@
                                             <asp:BoundField DataField="tipo" HeaderText="Tipo" SortExpression="tipo" ItemStyle-CssClass="centrarCelda " HeaderStyle-CssClass="centrarCelda"/>
                                             <asp:BoundField DataField="sucursal" HeaderText="Sucursal" SortExpression="sucursal" /> 
                                             <asp:BoundField DataField="concepto" HeaderText="Concepto" SortExpression="concepto" ItemStyle-Width="900px"/> 
+                                            <asp:BoundField DataField="importe" HeaderText="Importe" SortExpression="importe" ItemStyle-Width="150px" ItemStyle-CssClass="centrarCelda " HeaderStyle-CssClass="centrarCelda" DataFormatString="{0:c}" HtmlEncode="False"/>
                                             <asp:BoundField DataField="fecha" HeaderText="Fecha" SortExpression="fecha" ItemStyle-Width="150px" ItemStyle-CssClass="centrarCelda " HeaderStyle-CssClass="centrarCelda" /> 
                                             <asp:BoundField DataField="hora" HeaderText="Hora" SortExpression="hora" ItemStyle-Width="150px" ItemStyle-CssClass="centrarCelda " HeaderStyle-CssClass="centrarCelda"/> 
-                                            <asp:BoundField DataField="importe" HeaderText="Importe" SortExpression="importe" ItemStyle-Width="150px" ItemStyle-CssClass="centrarCelda " HeaderStyle-CssClass="centrarCelda" DataFormatString="{0:c}" HtmlEncode="False"/>
+                                            
                                                                                                                                                                                                           
                                         </Columns>
                                 
@@ -400,6 +423,16 @@
                                
             
         }
+
+
+
+        function reimprimirMov() {
+            var url = "../reportes/RVMovDiarios.aspx?idsucursal=" + $("*[id$='idS']").val() + "&fechaini=" + $("*[id$='bfecha']").val() + "&fechafin=" + $("*[id$='bfechafin']").val();
+
+            window.open(url, '_blank');
+        }
+
+
        
 
         

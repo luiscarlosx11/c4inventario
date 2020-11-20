@@ -15,7 +15,7 @@ namespace elecion.catalogos.configuracion
         {
             if (!IsPostBack)
             {
-               
+                if (String.IsNullOrEmpty(lgastos.SortExpression)) lgastos.Sort("nombre", SortDirection.Ascending);
             }
         }
 
@@ -24,6 +24,7 @@ namespace elecion.catalogos.configuracion
             DataView dv = (DataView)DsListadoGastos.Select(DataSourceSelectArguments.Empty);
             int numberOfRows = int.Parse(dv.Table.Compute("Count(idsucursal)", "").ToString());
 
+            
             labelConteo.Text = numberOfRows.ToString();
         }
 
@@ -47,21 +48,36 @@ namespace elecion.catalogos.configuracion
 
                     //Si el idmunicipio es mayor que cero se hace UPDATE
                     if (Int32.Parse(idS.Value) > 0)
-                        query = "UPDATE tipoventa set tipoventa=@area where idtipoventa=@idarea;";
+                        query = "UPDATE sucursal set idtiposucursal=@idtiposucursal, nombre=@nombre, clavecct=@clavecct, calle=@calle, numext=@numext, colonia=@colonia, cp=@cp, telefono=@telefono, activo=@activo, telefono2=@telefono2, localidad=@localidad, encargado=@encargado where idsucursal=@idsucursal;";
                     else
-                        query = "INSERT INTO tipoventa(tipoventa) values(@area);";
+                        query = "INSERT INTO sucursal(idtiposucursal, nombre, clavecct, calle, numext, colonia, cp, telefono, activo, telefono2, localidad, encargado) values(@idtiposucursal, @nombre, @clavecct, @calle, @numext, @colonia, @cp, @telefono, @activo, @telefono2, @localidad, @encargado);";
 
                     MySqlCommand cmd = new MySqlCommand(query, con);
 
                    
-                    cmd.Parameters.AddWithValue("@idarea", idS.Value);
-                    cmd.Parameters.AddWithValue("@area", tipogasto.Text.ToUpper());
+                    cmd.Parameters.AddWithValue("@idsucursal", idS.Value);
+                    cmd.Parameters.AddWithValue("@nombre", nombre.Text.ToUpper().Trim());
+                    cmd.Parameters.AddWithValue("@clavecct", clavecct.Text.ToUpper().Trim());
+                    cmd.Parameters.AddWithValue("@calle", calle.Text.ToUpper().Trim());
+                    cmd.Parameters.AddWithValue("@numext", numext.Text.ToUpper().Trim());
+                    cmd.Parameters.AddWithValue("@colonia", colonia.Text.ToUpper().Trim());
+                    cmd.Parameters.AddWithValue("@cp", cp.Text.ToUpper().Trim());
+                    cmd.Parameters.AddWithValue("@telefono", telefono.Text.Replace("-", "").Replace("(","").Replace(") ","").Trim());
+                    cmd.Parameters.AddWithValue("@telefono2", adicional.Text.Replace("-", "").Replace("(", "").Replace(") ", "").Trim());
+                    cmd.Parameters.AddWithValue("@localidad", localidad.Text.ToUpper().Trim());
+                    cmd.Parameters.AddWithValue("@idtiposucursal", tiposucursal.SelectedValue);
+                    cmd.Parameters.AddWithValue("@encargado", encargado.Text.ToUpper().Trim());
 
-                   
+                    if (activo.Checked)
+                        uactivo = 1;
+                    else
+                        uactivo = 0;
+
+                    cmd.Parameters.AddWithValue("@activo", uactivo);
 
                     cmd.ExecuteNonQuery();
 
-                    ScriptManager.RegisterClientScriptBlock(Page, typeof(string), "myScriptName", "cerrarLoading();", true);
+                    ScriptManager.RegisterClientScriptBlock(Page, typeof(string), "myScriptName", "cerrarLoading(); ", true);
 
 
                 }

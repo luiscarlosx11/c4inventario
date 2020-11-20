@@ -42,6 +42,8 @@ namespace ReportLibrary
             this.textBox42 = new Telerik.Reporting.TextBox();
             this.textBox43 = new Telerik.Reporting.TextBox();
             this.textBox44 = new Telerik.Reporting.TextBox();
+            this.textBox25 = new Telerik.Reporting.TextBox();
+            this.textBox24 = new Telerik.Reporting.TextBox();
             this.detail = new Telerik.Reporting.DetailSection();
             this.textBox32 = new Telerik.Reporting.TextBox();
             this.textBox33 = new Telerik.Reporting.TextBox();
@@ -50,8 +52,6 @@ namespace ReportLibrary
             this.textBox19 = new Telerik.Reporting.TextBox();
             this.textBox20 = new Telerik.Reporting.TextBox();
             this.sqlDataSource1 = new Telerik.Reporting.SqlDataSource();
-            this.textBox24 = new Telerik.Reporting.TextBox();
-            this.textBox25 = new Telerik.Reporting.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // pageHeaderSection1
@@ -358,6 +358,29 @@ namespace ReportLibrary
             this.textBox44.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox44.Value = "= \"Tel. \"+Fields.telefono";
             // 
+            // textBox25
+            // 
+            this.textBox25.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.21146157383918762D), Telerik.Reporting.Drawing.Unit.Cm(11.199999809265137D));
+            this.textBox25.Name = "textBox25";
+            this.textBox25.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(3.6000003814697266D), Telerik.Reporting.Drawing.Unit.Cm(0.44097232818603516D));
+            this.textBox25.Style.Font.Bold = true;
+            this.textBox25.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(10D);
+            this.textBox25.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
+            this.textBox25.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
+            this.textBox25.Value = "= \"Fecha vencimiento:\"";
+            // 
+            // textBox24
+            // 
+            this.textBox24.Format = "{0:dd-MMM-yy}";
+            this.textBox24.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(4.4114632606506348D), Telerik.Reporting.Drawing.Unit.Cm(11.199999809265137D));
+            this.textBox24.Name = "textBox24";
+            this.textBox24.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.8999979496002197D), Telerik.Reporting.Drawing.Unit.Cm(0.44097232818603516D));
+            this.textBox24.Style.Font.Bold = true;
+            this.textBox24.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(10D);
+            this.textBox24.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Right;
+            this.textBox24.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
+            this.textBox24.Value = "= Fields.fechavence";
+            // 
             // detail
             // 
             this.detail.Height = Telerik.Reporting.Drawing.Unit.Cm(0.49236187338829041D);
@@ -431,29 +454,6 @@ namespace ReportLibrary
             new Telerik.Reporting.SqlDataSourceParameter("@idsucursal", System.Data.DbType.Int32, "= Parameters.idsucursal.Value"),
             new Telerik.Reporting.SqlDataSourceParameter("@idhistorial", System.Data.DbType.Int32, "= Parameters.idhistorial.Value")});
             this.sqlDataSource1.SelectCommand = resources.GetString("sqlDataSource1.SelectCommand");
-            // 
-            // textBox24
-            // 
-            this.textBox24.Format = "{0:dd-MMM-yy}";
-            this.textBox24.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(4.4114632606506348D), Telerik.Reporting.Drawing.Unit.Cm(11.199999809265137D));
-            this.textBox24.Name = "textBox24";
-            this.textBox24.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.8999979496002197D), Telerik.Reporting.Drawing.Unit.Cm(0.44097232818603516D));
-            this.textBox24.Style.Font.Bold = true;
-            this.textBox24.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(10D);
-            this.textBox24.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Right;
-            this.textBox24.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox24.Value = "= Fields.fechavence";
-            // 
-            // textBox25
-            // 
-            this.textBox25.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.21146157383918762D), Telerik.Reporting.Drawing.Unit.Cm(11.199999809265137D));
-            this.textBox25.Name = "textBox25";
-            this.textBox25.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(3.6000003814697266D), Telerik.Reporting.Drawing.Unit.Cm(0.44097232818603516D));
-            this.textBox25.Style.Font.Bold = true;
-            this.textBox25.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(10D);
-            this.textBox25.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
-            this.textBox25.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox25.Value = "= \"Fecha vencimiento:\"";
             // 
             // ReportTicketApartado
             // 

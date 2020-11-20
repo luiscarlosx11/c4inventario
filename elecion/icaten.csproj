@@ -1,0 +1,1377 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.2.3.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.3.2\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{55929DFA-346A-4F5C-90B6-A6CE79C1CCE2}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>elecion</RootNamespace>
+    <AssemblyName>elecion</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <ApplicationInsightsResourceId>/subscriptions/04b249e6-ff15-428e-8c78-f76a40808ebe/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/elecion</ApplicationInsightsResourceId>
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PublishDatabases>false</PublishDatabases>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AuthyClient, Version=1.0.6424.36199, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\authy-net-client.1.0.17\lib\net451\AuthyClient.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Google.Protobuf, Version=3.5.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Protobuf.3.5.1\lib\net45\Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.4.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.4.1\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.4.1\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.4.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=2.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.4.1\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=2.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.4.1\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.4.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.TelemetryCorrelation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.TelemetryCorrelation.1.0.0\lib\net45\Microsoft.AspNet.TelemetryCorrelation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.2015.Runtime.12.0.2.2402\lib\Microsoft.ReportViewer.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.2015.Runtime.12.0.2.2402\lib\Microsoft.ReportViewer.ProcessingObjectModel.DLL</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.2015.Runtime.12.0.2.2402\lib\Microsoft.ReportViewer.WebForms.DLL</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Data, Version=8.0.15.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.8.0.15\lib\net452\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net452\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.2.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.4.1\lib\net45\System.Diagnostics.DiagnosticSource.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.4\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.4\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.4\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Telerik.Reporting, Version=13.2.19.918, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
+      <SpecificVersion>True</SpecificVersion>
+    </Reference>
+    <Reference Include="Telerik.Reporting.Services.WebApi, Version=13.2.19.918, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
+      <SpecificVersion>True</SpecificVersion>
+    </Reference>
+    <Reference Include="Telerik.Reporting.XpsRendering, Version=13.2.19.918, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
+      <SpecificVersion>True</SpecificVersion>
+    </Reference>
+    <Reference Include="Telerik.ReportViewer.Html5.WebForms, Version=13.2.19.918, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
+      <SpecificVersion>True</SpecificVersion>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="acreditacion\diplomas.aspx" />
+    <Content Include="acreditacion\frmacreditacion.aspx" />
+    <Content Include="AuthyClient_LICENSE.txt" />
+    <Content Include="ayuda\documentacion.aspx" />
+    <Content Include="caja\depositos.aspx" />
+    <Content Include="caja\egresos.aspx" />
+    <Content Include="caja\ingresos.aspx" />
+    <Content Include="catalogos\articulos\catsubcategorias.aspx" />
+    <Content Include="catalogos\articulos\catcategorias.aspx" />
+    <Content Include="catalogos\campana\catgasto.aspx" />
+    <Content Include="catalogos\campana\catgestion.aspx" />
+    <Content Include="catalogos\capacitacion\catmotivos.aspx" />
+    <Content Include="catalogos\capacitacion\catmedios.aspx" />
+    <Content Include="catalogos\ciclo\calendario.aspx" />
+    <Content Include="catalogos\ciclo\catciclos.aspx" />
+    <Content Include="catalogos\clientes\agregarcliente.aspx" />
+    <Content Include="catalogos\clientes\catclientes.aspx" />
+    <Content Include="catalogos\clientes\registroclientes.aspx" />
+    <Content Include="catalogos\clientes\catentidades.aspx" />
+    <Content Include="catalogos\directorio\frminstructor.aspx" />
+    <Content Include="catalogos\directorio\catinstructores.aspx" />
+    <Content Include="catalogos\generales\catdocumentacion.aspx" />
+    <Content Include="catalogos\generales\catescolaridad.aspx" />
+    <Content Include="catalogos\geograficos\catentidades.aspx" />
+    <Content Include="catalogos\geograficos\catmunicipios.aspx" />
+    <Content Include="catalogos\geograficos\listadomun.aspx" />
+    <Content Include="catalogos\geograficos\listadoMunicipios.aspx" />
+    <Content Include="catalogos\geograficos\listadocol.aspx" />
+    <Content Include="catalogos\geograficos\listadosecc.aspx" />
+    <Content Include="catalogos\geograficos\listadocalles.aspx" />
+    <Content Include="catalogos\oferta\catofertas.aspx" />
+    <Content Include="catalogos\oferta\catregulares.aspx" />
+    <Content Include="catalogos\oferta\catrocos.aspx" />
+    <Content Include="catalogos\oferta\catespecialidades.aspx" />
+    <Content Include="catalogos\oferta\catcursos.aspx" />
+    <Content Include="catalogos\oferta\frmcurso.aspx" />
+    <Content Include="catalogos\oferta\WebForm1.aspx" />
+    <Content Include="catalogos\otros\catconvenios.aspx" />
+    <Content Include="catalogos\otros\catbancos.aspx" />
+    <Content Include="catalogos\personales\cattiposangre.aspx" />
+    <Content Include="catalogos\personales\catenfermedades.aspx" />
+    <Content Include="catalogos\personales\catdiscapacidad.aspx" />
+    <Content Include="catalogos\personales\catedocivil.aspx" />
+    <Content Include="catalogos\servicio\catterminacion.aspx" />
+    <Content Include="catalogos\servicio\catlugares.aspx" />
+    <Content Include="catalogos\servicio\catclasificacion.aspx" />
+    <Content Include="catalogos\sistema\cattipomov.aspx" />
+    <Content Include="catalogos\sistema\cattipogasto.aspx" />
+    <Content Include="catalogos\sistema\cattipoventa.aspx" />
+    <Content Include="catalogos\sistema\catprioridades.aspx" />
+    <Content Include="catalogos\sistema\catareas.aspx" />
+    <Content Include="configuracion\catinstalaciones.aspx" />
+    <Content Include="configuracion\catsucursales.aspx" />
+    <Content Include="historico\agregarprestamoconsulta.aspx" />
+    <Content Include="images\rendilana.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\rendilanatb.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="caja\pagos.aspx" />
+    <Content Include="inscripcion\frminscripcion.aspx" />
+    <Content Include="catalogos\oferta\catareas.aspx" />
+    <Content Include="prestamos\agregarprestamo.aspx" />
+    <Content Include="historico\listadoconsulta.aspx" />
+    <Content Include="prestamos\listadoprestamos.aspx" />
+    <Content Include="reportes\RVBoleta.aspx" />
+    <Content Include="reportes\RVFiscal.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="reportes\RVComisiones.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="reportes\RVIntereses.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="reportes\RVVentas.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="reportes\RVMovDiarios.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="reportes\RVGeneral.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="reportes\RVTicketCorte.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="reportes\RVTicketAbono.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="reportes\RVTicketVenta.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="reportes\RVTicketApartado.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="reportes\RVTicketDesempeno.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="reportes\RVTicket.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="report\subsidios.aspx" />
+    <Content Include="report\cierre.aspx" />
+    <Content Include="report\anexos.aspx" />
+    <Content Include="report\movimientos.aspx" />
+    <Content Include="tablero.aspx" />
+    <Content Include="default.aspx" />
+    <Content Include="encuesta\listadoencuestas.aspx" />
+    <Content Include="encuesta\registroEncuestas.aspx" />
+    <Content Include="errores.aspx" />
+    <Content Include="estadisticas\satisfaccion.aspx" />
+    <Content Include="estadisticas\general.aspx" />
+    <Content Include="estructuras\agregar.aspx" />
+    <Content Include="estructuras\coordinador.aspx" />
+    <Content Include="estructuras\estructura.aspx" />
+    <Content Include="estructuras\estructuras.aspx" />
+    <Content Include="estructuras\listadoEstructura.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="images\ascending.png" />
+    <Content Include="images\descending.png" />
+    <Content Include="images\ipsec.png" />
+    <Content Include="images\pae.png" />
+    <Content Include="images\placel.svg" />
+    <Content Include="images\printer.png" />
+    <Content Include="images\processing.gif" />
+    <Content Include="jquery-1.9.1.min.js" />
+    <Content Include="login.aspx" />
+    <Content Include="packages.config" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="prep\altacasas.aspx" />
+    <Content Include="prep\casas.aspx" />
+    <Content Include="prep\graficas.aspx" />
+    <Content Include="prep\imgs\partidos\1logo.png" />
+    <Content Include="prep\imgs\partidos\ci.png" />
+    <Content Include="prep\imgs\partidos\es.png" />
+    <Content Include="prep\imgs\partidos\idp.png" />
+    <Content Include="prep\imgs\partidos\juntos.png" />
+    <Content Include="prep\imgs\partidos\logo.png" />
+    <Content Include="prep\imgs\partidos\morena.png" />
+    <Content Include="prep\imgs\partidos\mvc.png" />
+    <Content Include="prep\imgs\partidos\na.png" />
+    <Content Include="prep\imgs\partidos\nulo.png" />
+    <Content Include="prep\imgs\partidos\nyt.png" />
+    <Content Include="prep\imgs\partidos\pan.png" />
+    <Content Include="prep\imgs\partidos\pm.gif" />
+    <Content Include="prep\imgs\partidos\prd.png" />
+    <Content Include="prep\imgs\partidos\pri.png" />
+    <Content Include="prep\imgs\partidos\prs.png" />
+    <Content Include="prep\imgs\partidos\pt.png" />
+    <Content Include="prep\imgs\partidos\pv.png" />
+    <Content Include="prep\imgs\partidos\pvme.png" />
+    <Content Include="prep\listacasas.aspx" />
+    <Content Include="prep\prep.aspx" />
+    <Content Include="prep\resultados.aspx" />
+    <Content Include="presupuesto\gastos\listadogastos.aspx" />
+    <Content Include="presupuesto\gastos\registrogastos.aspx" />
+    <Content Include="presupuesto\gastos\balance.aspx" />
+    <Content Include="promocion\agenda.aspx" />
+    <Content Include="forosol\graficasforo.aspx" />
+    <Content Include="forosol\listadoforo.aspx" />
+    <Content Include="forosol\registrarforo.aspx" />
+    <Content Include="promocion\agregarevento.aspx" />
+    <Content Include="promovidos\graficas.aspx" />
+    <Content Include="promovidos\listado2.aspx" />
+    <Content Include="promovidos\listado.aspx" />
+    <Content Include="promovidos\registrar.aspx" />
+    <Content Include="promovidos\ReportViewerForm1.aspx" />
+    <Content Include="salir.aspx" />
+    <Content Include="tecnicoaca\catautcursos.aspx" />
+    <Content Include="template.Master" />
+    <Content Include="DataSources.xsc">
+      <DependentUpon>DataSources.xsd</DependentUpon>
+    </Content>
+    <Content Include="tickets\agregarhistorico.aspx" />
+    <Content Include="tickets\agregar.aspx" />
+    <Content Include="tickets\listadohistorico.aspx" />
+    <Content Include="tickets\listado.aspx" />
+    <Content Include="usuario\tipousuario.aspx" />
+    <Content Include="apartados\listadoapartados.aspx" />
+    <Content Include="ventas\listadoventas.aspx" />
+    <Content Include="ws\webserv.asmx" />
+    <Content Include="cs\HandlerImageArticulo.ashx" />
+    <Content Include="cs\SessionHeartbeat.ashx" />
+    <None Include="DataSources.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="DataSources.xss">
+      <DependentUpon>DataSources.xsd</DependentUpon>
+    </Content>
+    <None Include="Properties\PublishProfiles\FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\ipsectickets.pubxml" />
+    <None Include="Properties\PublishProfiles\paes - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\paes - Web Deploy.pubxml" />
+    <Content Include="Service References\Application Insights\ConnectedService.json" />
+    <None Include="Properties\PublishProfiles\Pergil.pubxml" />
+    <None Include="Properties\PublishProfiles\placel.com.mx - Web Deploy %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\placel.com.mx - Web Deploy.pubxml" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <Content Include="ws\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="scripts\ai.0.22.9-build00167.js" />
+    <Content Include="scripts\ai.0.22.9-build00167.min.js" />
+    <Content Include="test.aspx" />
+    <Content Include="usuario\agregar.aspx" />
+    <Content Include="usuario\control.aspx" />
+    <Content Include="usuario\usuario.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="acreditacion\diplomas.aspx.cs">
+      <DependentUpon>diplomas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="acreditacion\diplomas.aspx.designer.cs">
+      <DependentUpon>diplomas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="acreditacion\frmacreditacion.aspx.cs">
+      <DependentUpon>frmacreditacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="acreditacion\frmacreditacion.aspx.designer.cs">
+      <DependentUpon>frmacreditacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ayuda\documentacion.aspx.cs">
+      <DependentUpon>documentacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ayuda\documentacion.aspx.designer.cs">
+      <DependentUpon>documentacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="caja\depositos.aspx.cs">
+      <DependentUpon>depositos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="caja\depositos.aspx.designer.cs">
+      <DependentUpon>depositos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="caja\egresos.aspx.cs">
+      <DependentUpon>egresos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="caja\egresos.aspx.designer.cs">
+      <DependentUpon>egresos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="caja\ingresos.aspx.cs">
+      <DependentUpon>ingresos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="caja\ingresos.aspx.designer.cs">
+      <DependentUpon>ingresos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="catalogos\articulos\catsubcategorias.aspx.cs">
+      <DependentUpon>catsubcategorias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="catalogos\articulos\catsubcategorias.aspx.designer.cs">
+      <DependentUpon>catsubcategorias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="catalogos\articulos\catcategorias.aspx.cs">
+      <DependentUpon>catcategorias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="catalogos\articulos\catcategorias.aspx.designer.cs">
+      <DependentUpon>catcategorias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="catalogos\campana\catgasto.aspx.cs">
+      <DependentUpon>catgasto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="catalogos\campana\catgasto.aspx.designer.cs">
+      <DependentUpon>catgasto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="catalogos\campana\catgestion.aspx.cs">
+      <DependentUpon>catgestion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="catalogos\campana\catgestion.aspx.designer.cs">
+      <DependentUpon>catgestion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="catalogos\capacitacion\catmotivos.aspx.cs">
+      <DependentUpon>catmotivos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="catalogos\capacitacion\catmotivos.aspx.designer.cs">
+      <DependentUpon>catmotivos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="catalogos\capacitacion\catmedios.aspx.cs">
+      <DependentUpon>catmedios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="catalogos\capacitacion\catmedios.aspx.designer.cs">
+      <DependentUpon>catmedios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="catalogos\ciclo\calendario.aspx.cs">
+      <DependentUpon>calendario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="catalogos\ciclo\calendario.aspx.designer.cs">
+      <DependentUpon>calendario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="catalogos\ciclo\catciclos.aspx.cs">
+      <DependentUpon>catciclos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="catalogos\ciclo\catciclos.aspx.designer.cs">
+      <DependentUpon>catciclos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="catalogos\clientes\agregarcliente.aspx.cs">
+      <DependentUpon>agregarcliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="catalogos\clientes\agregarcliente.aspx.designer.cs">
+      <DependentUpon>agregarcliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="catalogos\clientes\catclientes.aspx.cs">
+      <DependentUpon>catclientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="catalogos\clientes\catclientes.aspx.designer.cs">
+      <DependentUpon>catclientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="catalogos\clientes\registroclientes.aspx.cs">
+      <DependentUpon>registroclientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="catalogos\clientes\registroclientes.aspx.designer.cs">
+      <DependentUpon>registroclientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="catalogos\clientes\catentidades.aspx.cs">
+      <DependentUpon>catentidades.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="catalogos\clientes\catentidades.aspx.designer.cs">
+      <DependentUpon>catentidades.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="catalogos\directorio\frminstructor.aspx.cs">
+      <DependentUpon>frminstructor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="catalogos\directorio\frminstructor.aspx.designer.cs">
+      <DependentUpon>frminstructor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="catalogos\directorio\catinstructores.aspx.cs">
+      <DependentUpon>catinstructores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="catalogos\directorio\catinstructores.aspx.designer.cs">
+      <DependentUpon>catinstructores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="catalogos\generales\catdocumentacion.aspx.cs">
+      <DependentUpon>catdocumentacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="catalogos\generales\catdocumentacion.aspx.designer.cs">
+      <DependentUpon>catdocumentacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="catalogos\generales\catescolaridad.aspx.cs">
+      <DependentUpon>catescolaridad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="catalogos\generales\catescolaridad.aspx.designer.cs">
+      <DependentUpon>catescolaridad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="catalogos\geograficos\catentidades.aspx.cs">
+      <DependentUpon>catentidades.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="catalogos\geograficos\catentidades.aspx.designer.cs">
+      <DependentUpon>catentidades.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="catalogos\geograficos\catmunicipios.aspx.cs">
+      <DependentUpon>catmunicipios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="catalogos\geograficos\catmunicipios.aspx.designer.cs">
+      <DependentUpon>catmunicipios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="catalogos\geograficos\listadomun.aspx.cs">
+      <DependentUpon>listadomun.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="catalogos\geograficos\listadomun.aspx.designer.cs">
+      <DependentUpon>listadomun.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="catalogos\geograficos\listadoMunicipios.aspx.cs">
+      <DependentUpon>listadoMunicipios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="catalogos\geograficos\listadoMunicipios.aspx.designer.cs">
+      <DependentUpon>listadoMunicipios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="catalogos\geograficos\listadocol.aspx.cs">
+      <DependentUpon>listadocol.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="catalogos\geograficos\listadocol.aspx.designer.cs">
+      <DependentUpon>listadocol.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="catalogos\geograficos\listadosecc.aspx.cs">
+      <DependentUpon>listadosecc.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="catalogos\geograficos\listadosecc.aspx.designer.cs">
+      <DependentUpon>listadosecc.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="catalogos\geograficos\listadocalles.aspx.cs">
+      <DependentUpon>listadocalles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="catalogos\geograficos\listadocalles.aspx.designer.cs">
+      <DependentUpon>listadocalles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="catalogos\oferta\catofertas.aspx.cs">
+      <DependentUpon>catofertas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="catalogos\oferta\catofertas.aspx.designer.cs">
+      <DependentUpon>catofertas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="catalogos\oferta\catregulares.aspx.cs">
+      <DependentUpon>catregulares.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="catalogos\oferta\catregulares.aspx.designer.cs">
+      <DependentUpon>catregulares.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="catalogos\oferta\catrocos.aspx.cs">
+      <DependentUpon>catrocos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="catalogos\oferta\catrocos.aspx.designer.cs">
+      <DependentUpon>catrocos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="catalogos\oferta\catespecialidades.aspx.cs">
+      <DependentUpon>catespecialidades.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="catalogos\oferta\catespecialidades.aspx.designer.cs">
+      <DependentUpon>catespecialidades.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="catalogos\oferta\catcursos.aspx.cs">
+      <DependentUpon>catcursos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="catalogos\oferta\catcursos.aspx.designer.cs">
+      <DependentUpon>catcursos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="catalogos\oferta\frmcurso.aspx.cs">
+      <DependentUpon>frmcurso.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="catalogos\oferta\frmcurso.aspx.designer.cs">
+      <DependentUpon>frmcurso.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="catalogos\oferta\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="catalogos\oferta\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="catalogos\otros\catconvenios.aspx.cs">
+      <DependentUpon>catconvenios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="catalogos\otros\catconvenios.aspx.designer.cs">
+      <DependentUpon>catconvenios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="catalogos\otros\catbancos.aspx.cs">
+      <DependentUpon>catbancos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="catalogos\otros\catbancos.aspx.designer.cs">
+      <DependentUpon>catbancos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="catalogos\personales\cattiposangre.aspx.cs">
+      <DependentUpon>cattiposangre.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="catalogos\personales\cattiposangre.aspx.designer.cs">
+      <DependentUpon>cattiposangre.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="catalogos\personales\catenfermedades.aspx.cs">
+      <DependentUpon>catenfermedades.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="catalogos\personales\catenfermedades.aspx.designer.cs">
+      <DependentUpon>catenfermedades.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="catalogos\personales\catdiscapacidad.aspx.cs">
+      <DependentUpon>catdiscapacidad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="catalogos\personales\catdiscapacidad.aspx.designer.cs">
+      <DependentUpon>catdiscapacidad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="catalogos\personales\catedocivil.aspx.cs">
+      <DependentUpon>catedocivil.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="catalogos\personales\catedocivil.aspx.designer.cs">
+      <DependentUpon>catedocivil.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="catalogos\servicio\catterminacion.aspx.cs">
+      <DependentUpon>catterminacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="catalogos\servicio\catterminacion.aspx.designer.cs">
+      <DependentUpon>catterminacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="catalogos\servicio\catlugares.aspx.cs">
+      <DependentUpon>catlugares.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="catalogos\servicio\catlugares.aspx.designer.cs">
+      <DependentUpon>catlugares.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="catalogos\servicio\catclasificacion.aspx.cs">
+      <DependentUpon>catclasificacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="catalogos\servicio\catclasificacion.aspx.designer.cs">
+      <DependentUpon>catclasificacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="catalogos\sistema\cattipomov.aspx.cs">
+      <DependentUpon>cattipomov.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="catalogos\sistema\cattipomov.aspx.designer.cs">
+      <DependentUpon>cattipomov.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="catalogos\sistema\cattipogasto.aspx.cs">
+      <DependentUpon>cattipogasto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="catalogos\sistema\cattipogasto.aspx.designer.cs">
+      <DependentUpon>cattipogasto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="catalogos\sistema\cattipoventa.aspx.cs">
+      <DependentUpon>cattipoventa.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="catalogos\sistema\cattipoventa.aspx.designer.cs">
+      <DependentUpon>cattipoventa.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="catalogos\sistema\catprioridades.aspx.cs">
+      <DependentUpon>catprioridades.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="catalogos\sistema\catprioridades.aspx.designer.cs">
+      <DependentUpon>catprioridades.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="catalogos\sistema\catareas.aspx.cs">
+      <DependentUpon>catareas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="catalogos\sistema\catareas.aspx.designer.cs">
+      <DependentUpon>catareas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="configuracion\catinstalaciones.aspx.cs">
+      <DependentUpon>catinstalaciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="configuracion\catinstalaciones.aspx.designer.cs">
+      <DependentUpon>catinstalaciones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="configuracion\catsucursales.aspx.cs">
+      <DependentUpon>catsucursales.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="configuracion\catsucursales.aspx.designer.cs">
+      <DependentUpon>catsucursales.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ReportsController.cs" />
+    <Compile Include="cs\datasets.cs" />
+    <Compile Include="cs\fechascurso.cs" />
+    <Compile Include="cs\datos.cs" />
+    <Compile Include="cs\datosGrafica.cs" />
+    <Compile Include="cs\datosGraficaBar.cs" />
+    <Compile Include="cs\DoughnutData.cs" />
+    <Compile Include="cs\EchartsData.cs" />
+    <Compile Include="cs\Estado.cs" />
+    <Compile Include="cs\HandlerImageArticulo.ashx.cs">
+      <DependentUpon>HandlerImageArticulo.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="cs\info.cs" />
+    <Compile Include="cs\SessionHeartbeat.ashx.cs">
+      <DependentUpon>SessionHeartbeat.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="cs\Mantenimiento.cs" />
+    <Compile Include="cs\Promovidos.cs" />
+    <Compile Include="cs\Usuarios.cs" />
+    <Compile Include="DataSources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSources.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="historico\agregarprestamoconsulta.aspx.cs">
+      <DependentUpon>agregarprestamoconsulta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="historico\agregarprestamoconsulta.aspx.designer.cs">
+      <DependentUpon>agregarprestamoconsulta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="caja\pagos.aspx.cs">
+      <DependentUpon>pagos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="caja\pagos.aspx.designer.cs">
+      <DependentUpon>pagos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="inscripcion\frminscripcion.aspx.cs">
+      <DependentUpon>frminscripcion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="inscripcion\frminscripcion.aspx.designer.cs">
+      <DependentUpon>frminscripcion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="catalogos\oferta\catareas.aspx.cs">
+      <DependentUpon>catareas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="catalogos\oferta\catareas.aspx.designer.cs">
+      <DependentUpon>catareas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="prestamos\agregarprestamo.aspx.cs">
+      <DependentUpon>agregarprestamo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="prestamos\agregarprestamo.aspx.designer.cs">
+      <DependentUpon>agregarprestamo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="historico\listadoconsulta.aspx.cs">
+      <DependentUpon>listadoconsulta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="historico\listadoconsulta.aspx.designer.cs">
+      <DependentUpon>listadoconsulta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="prestamos\listadoprestamos.aspx.cs">
+      <DependentUpon>listadoprestamos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="prestamos\listadoprestamos.aspx.designer.cs">
+      <DependentUpon>listadoprestamos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="reportes\RVBoleta.aspx.cs">
+      <DependentUpon>RVBoleta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="reportes\RVBoleta.aspx.designer.cs">
+      <DependentUpon>RVBoleta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="reportes\RVFiscal.aspx.cs">
+      <DependentUpon>RVFiscal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="reportes\RVFiscal.aspx.designer.cs">
+      <DependentUpon>RVFiscal.aspx</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="reportes\RVComisiones.aspx.cs">
+      <DependentUpon>RVComisiones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="reportes\RVComisiones.aspx.designer.cs">
+      <DependentUpon>RVComisiones.aspx</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="reportes\RVIntereses.aspx.cs">
+      <DependentUpon>RVIntereses.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="reportes\RVIntereses.aspx.designer.cs">
+      <DependentUpon>RVIntereses.aspx</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="reportes\RVVentas.aspx.cs">
+      <DependentUpon>RVVentas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="reportes\RVVentas.aspx.designer.cs">
+      <DependentUpon>RVVentas.aspx</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="reportes\RVMovDiarios.aspx.cs">
+      <DependentUpon>RVMovDiarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="reportes\RVMovDiarios.aspx.designer.cs">
+      <DependentUpon>RVMovDiarios.aspx</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="reportes\RVGeneral.aspx.cs">
+      <DependentUpon>RVGeneral.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="reportes\RVGeneral.aspx.designer.cs">
+      <DependentUpon>RVGeneral.aspx</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="reportes\RVTicketCorte.aspx.cs">
+      <DependentUpon>RVTicketCorte.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="reportes\RVTicketCorte.aspx.designer.cs">
+      <DependentUpon>RVTicketCorte.aspx</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="reportes\RVTicketAbono.aspx.cs">
+      <DependentUpon>RVTicketAbono.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="reportes\RVTicketAbono.aspx.designer.cs">
+      <DependentUpon>RVTicketAbono.aspx</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="reportes\RVTicketVenta.aspx.cs">
+      <DependentUpon>RVTicketVenta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="reportes\RVTicketVenta.aspx.designer.cs">
+      <DependentUpon>RVTicketVenta.aspx</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="reportes\RVTicketApartado.aspx.cs">
+      <DependentUpon>RVTicketApartado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="reportes\RVTicketApartado.aspx.designer.cs">
+      <DependentUpon>RVTicketApartado.aspx</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="reportes\RVTicketDesempeno.aspx.cs">
+      <DependentUpon>RVTicketDesempeno.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="reportes\RVTicketDesempeno.aspx.designer.cs">
+      <DependentUpon>RVTicketDesempeno.aspx</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="reportes\RVTicket.aspx.cs">
+      <DependentUpon>RVTicket.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="reportes\RVTicket.aspx.designer.cs">
+      <DependentUpon>RVTicket.aspx</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="report\subsidios.aspx.cs">
+      <DependentUpon>subsidios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="report\subsidios.aspx.designer.cs">
+      <DependentUpon>subsidios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="report\cierre.aspx.cs">
+      <DependentUpon>cierre.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="report\cierre.aspx.designer.cs">
+      <DependentUpon>cierre.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="report\anexos.aspx.cs">
+      <DependentUpon>anexos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="report\anexos.aspx.designer.cs">
+      <DependentUpon>anexos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="report\movimientos.aspx.cs">
+      <DependentUpon>movimientos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="report\movimientos.aspx.designer.cs">
+      <DependentUpon>movimientos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="tablero.aspx.cs">
+      <DependentUpon>tablero.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tablero.aspx.designer.cs">
+      <DependentUpon>tablero.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="encuesta\listadoencuestas.aspx.cs">
+      <DependentUpon>listadoencuestas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="encuesta\listadoencuestas.aspx.designer.cs">
+      <DependentUpon>listadoencuestas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="encuesta\registroEncuestas.aspx.cs">
+      <DependentUpon>registroEncuestas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="encuesta\registroEncuestas.aspx.designer.cs">
+      <DependentUpon>registroEncuestas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="errores.aspx.cs">
+      <DependentUpon>errores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="errores.aspx.designer.cs">
+      <DependentUpon>errores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="estadisticas\satisfaccion.aspx.cs">
+      <DependentUpon>satisfaccion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="estadisticas\satisfaccion.aspx.designer.cs">
+      <DependentUpon>satisfaccion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="estadisticas\general.aspx.cs">
+      <DependentUpon>general.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="estadisticas\general.aspx.designer.cs">
+      <DependentUpon>general.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="estructuras\agregar.aspx.cs">
+      <DependentUpon>agregar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="estructuras\agregar.aspx.designer.cs">
+      <DependentUpon>agregar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="estructuras\coordinador.aspx.cs">
+      <DependentUpon>coordinador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="estructuras\coordinador.aspx.designer.cs">
+      <DependentUpon>coordinador.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="estructuras\estructura.aspx.cs">
+      <DependentUpon>estructura.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="estructuras\estructura.aspx.designer.cs">
+      <DependentUpon>estructura.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="estructuras\estructuras.aspx.cs">
+      <DependentUpon>estructuras.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="estructuras\estructuras.aspx.designer.cs">
+      <DependentUpon>estructuras.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="estructuras\listadoEstructura.aspx.cs">
+      <DependentUpon>listadoEstructura.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="estructuras\listadoEstructura.aspx.designer.cs">
+      <DependentUpon>listadoEstructura.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="login.aspx.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="login.aspx.designer.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="prep\altacasas.aspx.cs">
+      <DependentUpon>altacasas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="prep\altacasas.aspx.designer.cs">
+      <DependentUpon>altacasas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="prep\casas.aspx.cs">
+      <DependentUpon>casas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="prep\casas.aspx.designer.cs">
+      <DependentUpon>casas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="prep\graficas.aspx.cs">
+      <DependentUpon>graficas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="prep\graficas.aspx.designer.cs">
+      <DependentUpon>graficas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="prep\listacasas.aspx.cs">
+      <DependentUpon>listacasas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="prep\listacasas.aspx.designer.cs">
+      <DependentUpon>listacasas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="prep\prep.aspx.cs">
+      <DependentUpon>prep.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="prep\prep.aspx.designer.cs">
+      <DependentUpon>prep.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="prep\resultados.aspx.cs">
+      <DependentUpon>resultados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="prep\resultados.aspx.designer.cs">
+      <DependentUpon>resultados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="presupuesto\gastos\listadogastos.aspx.cs">
+      <DependentUpon>listadogastos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="presupuesto\gastos\listadogastos.aspx.designer.cs">
+      <DependentUpon>listadogastos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="presupuesto\gastos\registrogastos.aspx.cs">
+      <DependentUpon>registrogastos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="presupuesto\gastos\registrogastos.aspx.designer.cs">
+      <DependentUpon>registrogastos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="presupuesto\gastos\balance.aspx.cs">
+      <DependentUpon>balance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="presupuesto\gastos\balance.aspx.designer.cs">
+      <DependentUpon>balance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="promocion\agenda.aspx.cs">
+      <DependentUpon>agenda.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="promocion\agenda.aspx.designer.cs">
+      <DependentUpon>agenda.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="forosol\graficasforo.aspx.cs">
+      <DependentUpon>graficasforo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forosol\graficasforo.aspx.designer.cs">
+      <DependentUpon>graficasforo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="forosol\listadoforo.aspx.cs">
+      <DependentUpon>listadoforo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forosol\listadoforo.aspx.designer.cs">
+      <DependentUpon>listadoforo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="forosol\registrarforo.aspx.cs">
+      <DependentUpon>registrarforo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forosol\registrarforo.aspx.designer.cs">
+      <DependentUpon>registrarforo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="promocion\agregarevento.aspx.cs">
+      <DependentUpon>agregarevento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="promocion\agregarevento.aspx.designer.cs">
+      <DependentUpon>agregarevento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="promovidos\graficas.aspx.cs">
+      <DependentUpon>graficas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="promovidos\graficas.aspx.designer.cs">
+      <DependentUpon>graficas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="promovidos\listado2.aspx.cs">
+      <DependentUpon>listado2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="promovidos\listado2.aspx.designer.cs">
+      <DependentUpon>listado2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="promovidos\listado.aspx.cs">
+      <DependentUpon>listado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="promovidos\listado.aspx.designer.cs">
+      <DependentUpon>listado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="promovidos\registrar.aspx.cs">
+      <DependentUpon>registrar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="promovidos\registrar.aspx.designer.cs">
+      <DependentUpon>registrar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="promovidos\RepListadoPromovidos.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="promovidos\RepListadoPromovidos.Designer.cs">
+      <DependentUpon>RepListadoPromovidos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="promovidos\ReportViewerForm1.aspx.cs">
+      <DependentUpon>ReportViewerForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="promovidos\ReportViewerForm1.aspx.designer.cs">
+      <DependentUpon>ReportViewerForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="salir.aspx.cs">
+      <DependentUpon>salir.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="salir.aspx.designer.cs">
+      <DependentUpon>salir.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="tecnicoaca\catautcursos.aspx.cs">
+      <DependentUpon>catautcursos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tecnicoaca\catautcursos.aspx.designer.cs">
+      <DependentUpon>catautcursos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="template.Master.cs">
+      <DependentUpon>template.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="template.Master.designer.cs">
+      <DependentUpon>template.Master</DependentUpon>
+    </Compile>
+    <Compile Include="test.aspx.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="test.aspx.designer.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="tickets\agregarhistorico.aspx.cs">
+      <DependentUpon>agregarhistorico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tickets\agregarhistorico.aspx.designer.cs">
+      <DependentUpon>agregarhistorico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="tickets\agregar.aspx.cs">
+      <DependentUpon>agregar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tickets\agregar.aspx.designer.cs">
+      <DependentUpon>agregar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="tickets\listadohistorico.aspx.cs">
+      <DependentUpon>listadohistorico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tickets\listadohistorico.aspx.designer.cs">
+      <DependentUpon>listadohistorico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="tickets\listado.aspx.cs">
+      <DependentUpon>listado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tickets\listado.aspx.designer.cs">
+      <DependentUpon>listado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="usuario\agregar.aspx.cs">
+      <DependentUpon>agregar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usuario\agregar.aspx.designer.cs">
+      <DependentUpon>agregar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="usuario\tipousuario.aspx.cs">
+      <DependentUpon>tipousuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usuario\tipousuario.aspx.designer.cs">
+      <DependentUpon>tipousuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="usuario\control.aspx.cs">
+      <DependentUpon>control.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usuario\control.aspx.designer.cs">
+      <DependentUpon>control.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="usuario\usuario.aspx.cs">
+      <DependentUpon>usuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="usuario\usuario.aspx.designer.cs">
+      <DependentUpon>usuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="apartados\listadoapartados.aspx.cs">
+      <DependentUpon>listadoapartados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="apartados\listadoapartados.aspx.designer.cs">
+      <DependentUpon>listadoapartados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ventas\listadoventas.aspx.cs">
+      <DependentUpon>listadoventas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ventas\listadoventas.aspx.designer.cs">
+      <DependentUpon>listadoventas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ws\webserv.asmx.cs">
+      <DependentUpon>webserv.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="errores\" />
+    <Folder Include="forosol\afiliaciones\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="promovidos\RepListadoPromovidos.resx">
+      <DependentUpon>RepListadoPromovidos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ReportLibrary\ReportLibrary.csproj">
+      <Project>{D1998425-0BB3-4406-A210-A6AD6C2EEE80}</Project>
+      <Name>ReportLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>1973</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:1973/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.3.2\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.3.2\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

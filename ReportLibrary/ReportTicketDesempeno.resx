@@ -599,9 +599,11 @@ and d.iddetalle =
 select d.iddetalle
 from detalleplazoempeno d
 left join empeno e on e.idplazo = d.idplazo
-where DATEDIFF(h.fecha, h.fechainicia) between d.diainicio and d.diafin
+where (
+DATEDIFF(h.fecha, h.fechainicia) between d.diainicio and d.diafin
 or
 DATEDIFF(h.fecha, h.fechainicia) &gt; (select max(d.dias))
+)
 and e.idempeno=@idempeno
 and e.idsucursal=@idsucursal
 order by iddetalle desc

@@ -51,10 +51,10 @@ namespace elecion
 
             using (MySqlConnection con = new MySqlConnection(System.Web.Configuration.WebConfigurationManager.ConnectionStrings["DBconexion"].ConnectionString))
             {
-                String SQL = "select u.idusuario, u.nombre, u.apaterno, u.idtipousuario, u.telefono, u.idsucursal, s.abreviado "+
+                String SQL = "select u.idusuario, u.nombre, u.apaterno, u.idtipousuario, u.telefono, u.idsucursal, s.abreviado, u.roles "+
                             "from usuario u "+
                             "left join sucursal s on u.idsucursal = s.idsucursal " +
-                            "where login = @u and pass=@p and activo=1;"; //1 = pwdcompare(@p,palabra,0)";
+                            "where u.login = @u and u.pass=@p and u.activo=1;"; //1 = pwdcompare(@p,palabra,0)";
                 con.Open();
                 try
                 {
@@ -70,7 +70,7 @@ namespace elecion
                         usr = new Usuarios();
                         usr.nombre = rdr.GetString(1);
                         usr.usuario = rdr.GetString(2);
-                        usr.rol = rdr.GetString(3);
+                        usr.rol = rdr.GetString(7);
                         usr.id = rdr.GetInt32(0);
                         usr.idsucursal = rdr.GetInt32(5);
                         //usr.entidad = rdr.GetInt16(6);
@@ -82,14 +82,14 @@ namespace elecion
                         authyUserId = client.CreateAuthyUser("salvador.cb@infix.com.mx", rdr.GetString(4), 52);
                         client.SendToken(authyUserId, true);*/
                         
-                        String datos = usr.nombre + ";" + usr.usuario + ";" + usr.usuario + ";"+ usr.rol+";"+usr.idsucursal+";"+rdr.GetString(6);
+                        String datos = usr.nombre + ";" + usr.usuario + ";" + usr.usuario + ";"+ usr.rol+";"+usr.idsucursal+";"+rdr.GetString(6) + ";" + rdr.GetString(7);
                         FormsAuthenticationTicket tkt;
                         string cookiestr;
                         HttpCookie ck;
                         tkt = new FormsAuthenticationTicket(1,
                              usr.nombre,
                             DateTime.Now,
-                        DateTime.Now.AddMinutes(30), true, usr.id + "," + datos + "," + usr.rol+","+usr.idsucursal+"," +rdr.GetString(6));
+                        DateTime.Now.AddMinutes(30), true, usr.id + "," + datos + "," + usr.rol+ ","+ usr.idsucursal+ "," + rdr.GetString(6)+ "," + rdr.GetString(7));
                         cookiestr = FormsAuthentication.Encrypt(tkt);
                         ck = new HttpCookie(FormsAuthentication.FormsCookieName, cookiestr);
                         if (true)
@@ -99,14 +99,9 @@ namespace elecion
 
                         string url = Request["ReturnUrl"];
 
-                        if (!(url == null))
-                        {
-                            Response.Redirect(url);
-                        }else
-                        {
-                            Response.Redirect("/tablero.aspx");
-                        }
-                        /*
+                        
+                        Response.Redirect("default.aspx");
+                                               /*
 
                        ScriptManager.RegisterStartupScript(this, GetType(), "abrirModal", "window.onload = function(){ cerrarLoading(); modal(); };", true);*/
                        
@@ -328,13 +323,9 @@ namespace elecion
 
                 string url = Request["ReturnUrl"];
 
-                if (!(url == null))
-                {
-                    Response.Redirect(url);
-                } else
-                {
-                    Response.Redirect("/");
-                }
+               
+                    Response.Redirect("default.aspx");
+               
             }
             else
             {

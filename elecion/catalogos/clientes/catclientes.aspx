@@ -15,6 +15,8 @@
     <div class="content-header row">
         <div class="content-header-left col-md-6 col-xs-12 mb-1">
             <h3 class="content-header-title">Directorio</h3>
+
+
           </div>
           <div class="content-header-right breadcrumbs-right breadcrumbs-top col-md-6 col-xs-12">
             <div class="breadcrumb-wrapper col-xs-12">
@@ -100,6 +102,9 @@
                                     
 
                         </div>
+
+                        </div>
+                        <div class="card">
                         <div class="card-block card-dashboard"> 
                         <div style="overflow-x:auto;width:100%"> 
                         <asp:GridView runat="server" ID="lusuarios" PageSize="25" AllowPaging="true" AllowSorting="true" CssClass="table table-striped table-bordered base-style" 
@@ -145,9 +150,9 @@
                         <asp:SqlDataSource ID="DsUsuarios" ProviderName="MySql.Data.MySqlClient" runat="server" ConnectionString="<%$ ConnectionStrings:DBconexion %>" ></asp:SqlDataSource>
                         </div>
                         </div>
+                        </div>
 
-
-                </div>
+                
             </div>
         </div>
          </ContentTemplate>

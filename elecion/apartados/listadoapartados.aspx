@@ -25,8 +25,7 @@
           /* max-height = line-height (1.2) * lines max number (3) */
           max-height: 4.8em; 
           /* fix problem when last visible word doesn't adjoin right side  */
-          text-align: justify;  
-          /* place for '...' */
+          text-align: justify;  /* place for '...' */
           margin-right: 0em;
           padding-right: 1em;
          
@@ -211,7 +210,7 @@
                                                             <ItemTemplate>
                                                                 <div class="ocultar">
                                                                     
-                                                                    <button type="button" id="refrendar_<%# Eval("idempeno")+"_"+Eval("idsucursal") %>" onclick="ModalRefrendo(<%# Eval("idempeno")%>,<%# Eval("idsucursal")%>,<%# Eval("idarticulo")%>,'<%# Eval("folio")%>','<%# Eval("cliente")%>','<%# Eval("descripcion")%>',<%# Eval("precio")%>,'<%# Eval("cliente2")%>',<%# Eval("abonototal")%> ,1);" class="btn btn-icon btn-success btn-sm"
+                                                                    <button type="button" id="refrendar_<%# Eval("idempeno")+"_"+Eval("idsucursal") %>" onclick="ModalRefrendo(<%# Eval("idempeno")%>,<%# Eval("idsucursal")%>,<%# Eval("idarticulo")%>,'<%# Eval("folio")%>','<%# Eval("cliente")%>','<%# Eval("descripcion")%>',<%# Eval("precio")%>,'<%# Eval("cliente2")%>',<%# Eval("abonototal")%> ,1, <%# Eval("dias")%>);" class="btn btn-icon btn-success btn-sm"
                                                                         data-toggle="tooltip" data-original-title="Refrendar">
                                                                         <i class="ft-edit"></i>
                                                                     </button>
@@ -731,7 +730,7 @@
 
         }
 
-        function ModalRefrendo(idempeno, idsucursal, idarticulo, folio, cliente, articulo, prestamo, cliente2, abonototal, op) {
+        function ModalRefrendo(idempeno, idsucursal, idarticulo, folio, cliente, articulo, prestamo, cliente2, abonototal, op, dias) {
            
 
             //$(".modal-backdrop").remove();      
@@ -747,6 +746,7 @@
             $("*[id$='lnombre']").text(cliente);
             $("*[id$='larticulo']").text(articulo);
             $("*[id$='lpago']").text(prestamo);
+            $("*[id$='ldias']").text(dias + " dias");
             $("*[id$='hpago']").text(prestamo);
 
             $("*[id$='labonado']").text(abonototal);            

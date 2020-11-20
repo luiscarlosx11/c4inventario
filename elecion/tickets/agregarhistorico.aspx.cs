@@ -8,7 +8,6 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using MySql.Data.MySqlClient;
 using System.Net.Mail;
-using System.Net.Mail;
 using System.Net;
 using System.Threading;
 

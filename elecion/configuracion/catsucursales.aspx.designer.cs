@@ -49,6 +49,15 @@ namespace elecion.catalogos.configuracion {
         protected global::System.Web.UI.WebControls.Label labelConteo;
         
         /// <summary>
+        /// Control nuevo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton nuevo;
+        
+        /// <summary>
         /// Control lgastos.
         /// </summary>
         /// <remarks>
@@ -67,22 +76,58 @@ namespace elecion.catalogos.configuracion {
         protected global::System.Web.UI.WebControls.SqlDataSource DsListadoGastos;
         
         /// <summary>
-        /// Control tipogasto.
+        /// Control guardar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tipogasto;
+        protected global::System.Web.UI.WebControls.Button guardar;
         
         /// <summary>
-        /// Control abreviado.
+        /// Control borrar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox abreviado;
+        protected global::System.Web.UI.WebControls.Button borrar;
+        
+        /// <summary>
+        /// Control idr.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField idr;
+        
+        /// <summary>
+        /// Control nombre.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox nombre;
+        
+        /// <summary>
+        /// Control clavecct.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox clavecct;
+        
+        /// <summary>
+        /// Control encargado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox encargado;
         
         /// <summary>
         /// Control calle.
@@ -121,48 +166,57 @@ namespace elecion.catalogos.configuracion {
         protected global::System.Web.UI.WebControls.TextBox cp;
         
         /// <summary>
-        /// Control HiddenField6.
+        /// Control localidad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField HiddenField6;
+        protected global::System.Web.UI.WebControls.TextBox localidad;
         
         /// <summary>
-        /// Control email.
+        /// Control telefono.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox email;
+        protected global::System.Web.UI.WebControls.TextBox telefono;
         
         /// <summary>
-        /// Control TextBox7.
+        /// Control adicional.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox7;
+        protected global::System.Web.UI.WebControls.TextBox adicional;
         
         /// <summary>
-        /// Control guardar.
+        /// Control tiposucursal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button guardar;
+        protected global::System.Web.UI.WebControls.DropDownList tiposucursal;
         
         /// <summary>
-        /// Control borrar.
+        /// Control Dstiposucursal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button borrar;
+        protected global::System.Web.UI.WebControls.SqlDataSource Dstiposucursal;
+        
+        /// <summary>
+        /// Control activo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox activo;
     }
 }

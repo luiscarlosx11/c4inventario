@@ -25,7 +25,11 @@ namespace elecion.cs
                 MySqlCommand command = new MySqlCommand("select foto from articulo where idarticulo=" + imageid, con);
                 MySqlDataReader dr = command.ExecuteReader();
                 dr.Read();
-                context.Response.BinaryWrite((Byte[])dr[0]);
+
+                if (dr["foto"].GetType() != typeof(DBNull))
+                {
+                    context.Response.BinaryWrite((Byte[])dr[0]);
+                }
                 con.Close();
                 context.Response.End();
 

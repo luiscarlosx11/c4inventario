@@ -8,7 +8,6 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using MySql.Data.MySqlClient;
 using System.Net.Mail;
-using System.Net.Mail;
 using System.Net;
 using System.Threading;
 using System.IO;
@@ -35,11 +34,7 @@ namespace elecion.tickets
             idsucursal = Convert.ToInt32(datos2[4]);
             sucursalnombre = datos2[5].ToString();
             idS.Value = idsucursal.ToString();
-
-           
-            
-            
-            
+            getConfiguracion(sender, e);
 
             if (!IsPostBack)
             {
@@ -53,7 +48,7 @@ namespace elecion.tickets
                     if(idprestamo>0)                 
                         getEmpeno(idprestamo);
                                                          
-                    getConfiguracion(sender, e);
+                    
 
                     if (!bnombre.Text.Equals(""))
                     {
@@ -64,6 +59,7 @@ namespace elecion.tickets
                     {
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "cerrarModal();", true);
                     }
+
                     //Session.Remove("idP");
                     //ScriptManager.RegisterStartupScript(this, GetType(), "abrirModal", "window.onload = function(){ $(document).prop('title', 'PLACEL - Editar Usuario'); };", true);
                 }
@@ -352,7 +348,7 @@ namespace elecion.tickets
                         //  activo.Checked = true;
 
 
-                        if (rdr["foto"] != null)
+                        if (rdr["foto"].GetType() != typeof(DBNull))
                         {
                             Byte[] ImageByte = (Byte[])(rdr["foto"]);
 
@@ -524,7 +520,7 @@ namespace elecion.tickets
                         cmd.Parameters.AddWithValue("@email", email.Text);
                         cmd.Parameters.AddWithValue("@telefono", telefono.Text);
                         cmd.Parameters.AddWithValue("@celular", celular.Text);
-                        cmd.Parameters.AddWithValue("@observaciones", observaciones.Text);
+                        cmd.Parameters.AddWithValue("@observaciones", observaciones.Text.Trim());
 
 
                         cmd.Parameters.Add("@foto", MySqlDbType.Blob);
@@ -566,12 +562,14 @@ namespace elecion.tickets
                         cmd.Parameters.AddWithValue("@email", email.Text);
                         cmd.Parameters.AddWithValue("@telefono", telefono.Text);
                         cmd.Parameters.AddWithValue("@celular", celular.Text);
-                        cmd.Parameters.AddWithValue("@observaciones", observaciones.Text);
+                        cmd.Parameters.AddWithValue("@observaciones", observaciones.Text.Trim());
 
 
                         cmd.Parameters.Add("@foto", MySqlDbType.Blob);
+
                         
-                        BinaryReader br = new BinaryReader(fs);
+
+                            BinaryReader br = new BinaryReader(fs);
                         byte[] bytes = br.ReadBytes((Int32)fs.Length);
                         cmd.Parameters["@foto"].Value = bytes;
                         cmd.ExecuteNonQuery();
@@ -597,12 +595,13 @@ namespace elecion.tickets
                         query = "insert into articulo(idarticulo, idsucursal, idcategoria, idsubcategoria, descripcion, foto) " +
                                              "values(@idarticulo, @idsucursal, @idcategoria, @idsubcategoria, @descripcion, @foto); ";
 
+                        
                         cmd.CommandText = query;
                         cmd.Parameters.AddWithValue("@idarticulo", idarticulo);
                         cmd.Parameters.AddWithValue("@idsucursal", idS.Value);
                         cmd.Parameters.AddWithValue("@idcategoria", categorias.SelectedValue);
                         cmd.Parameters.AddWithValue("@idsubcategoria", subcategorias.SelectedValue);
-                        cmd.Parameters.AddWithValue("@descripcion", descripcion.Text.ToUpper());
+                        cmd.Parameters.AddWithValue("@descripcion", descripcion.Text.ToUpper().Trim());
 
                         cmd.Parameters.Add("@foto", MySqlDbType.Blob);
                         Stream fs = Bfotoarticulo.PostedFile.InputStream;
@@ -612,6 +611,15 @@ namespace elecion.tickets
                         cmd.ExecuteNonQuery();
 
                         idA.Value = idarticulo.ToString();
+
+                        /*
+                        string aux = query;
+                        foreach (MySqlParameter p in cmd.Parameters)
+                        {
+                            aux = aux.Replace(p.ParameterName, p.Value.ToString());
+
+                        }*/
+
 
                         //Y DESPUES EL EMPENO
                         cmd.Parameters.Clear();
@@ -637,8 +645,8 @@ namespace elecion.tickets
                         }
                         reader.Close();
 
-                        //SI SON VEHICULOS O JOYERIA SE SACA EL FOLIO CONSECUTIVO
-                        if (Convert.ToInt32(categorias.SelectedValue) == 4 || Convert.ToInt32(categorias.SelectedValue) == 6)
+                        //SI SON VEHICULOS O JOYERIA  O MOTOS SE SACA EL FOLIO CONSECUTIVO
+                        if (Convert.ToInt32(categorias.SelectedValue) == 4 || Convert.ToInt32(categorias.SelectedValue) == 6 || Convert.ToInt32(categorias.SelectedValue) == 7)
                         {
                             tipo = "E";
                             cmd.Parameters.Clear();
@@ -693,14 +701,15 @@ namespace elecion.tickets
                         cmd.Parameters.Clear();
                       
 
-                        query = "insert into empeno(idempeno, idsucursal, idcliente, idarticulo, idsucursalorigen, idempenoorigen, consecutivo, folio, fechaempeno, horaempeno, prestamo, avaluo, precio, etapa, tipo, folioaux, cotitular, idplazo, idconfiguracion, diasventa, diastolerancia, diasapartado, interesdiario, porcentajeavaluo, porcentajeventa, fechainicia, fechavence, codigo) " +
-                                            "values(@idempeno, @idsucursal, @idcliente, @idarticulo, @idsucursalorigen, @idempenoorigen, @consecutivo, @folio,  current_date, current_time, @prestamo, @avaluo, @precio, 'PRESTAMO', @tipo, @folioaux, @cotitular, @idplazo, @idconfiguracion, @diasventa, @diastolerancia, @diasapartado, @interesdiario, @porcentajeavaluo, @porcentajeventa, current_date, ADDDATE(current_date, INTERVAL @diasventa DAY), @codigo); ";
+                        query = "insert into empeno(idempeno, idsucursal, idcliente, idarticulo, idsucursalorigen, idempenoorigen, consecutivo, folio, fechaempeno, horaempeno, prestamo, avaluo, precio, etapa, tipo, folioaux, cotitular, idplazo, idconfiguracion, diasventa, diastolerancia, diasapartado, interesdiario, porcentajeavaluo, porcentajeventa, fechainicia, fechavence, codigo, idusuario, porcentajefiscal) " +
+                                            "values(@idempeno, @idsucursal, @idcliente, @idarticulo, @idsucursalorigen, @idempenoorigen, @consecutivo, @folio,  current_date, current_time, @prestamo, @avaluo, @precio, 'PRESTAMO', @tipo, @folioaux, @cotitular, @idplazo, @idconfiguracion, @diasventa, @diastolerancia, @diasapartado, @interesdiario, @porcentajeavaluo, @porcentajeventa, current_date, ADDDATE(current_date, INTERVAL @diasventa DAY), @codigo, @idusuario, (select porcentajefiscal from configuracion where activa=1)); ";
 
                         cmd.CommandText = query;
                         cmd.Parameters.AddWithValue("@idempeno", idempeno);
                         cmd.Parameters.AddWithValue("@idcliente", idC.Value);
                         cmd.Parameters.AddWithValue("@idarticulo", idarticulo);
                         cmd.Parameters.AddWithValue("@idsucursal", idS.Value);
+                        cmd.Parameters.AddWithValue("@idusuario", idusuario);
 
                         cmd.Parameters.AddWithValue("@idsucursalorigen", idS.Value);
                         cmd.Parameters.AddWithValue("@idempenoorigen", idempeno);
@@ -829,6 +838,9 @@ namespace elecion.tickets
 
         }
 
-
+        protected void lusuarios_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

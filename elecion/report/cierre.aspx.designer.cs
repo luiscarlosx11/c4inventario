@@ -58,6 +58,15 @@ namespace elecion.report {
         protected global::System.Web.UI.HtmlControls.HtmlButton nuevo;
         
         /// <summary>
+        /// Control bfecha.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox bfecha;
+        
+        /// <summary>
         /// Control lsaldoinicial.
         /// </summary>
         /// <remarks>
@@ -110,15 +119,6 @@ namespace elecion.report {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lprestamos;
-        
-        /// <summary>
-        /// Control bfecha.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox bfecha;
         
         /// <summary>
         /// Control lingresos.

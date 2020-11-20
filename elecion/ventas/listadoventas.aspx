@@ -193,9 +193,9 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-12"><br />
-                                                <asp:GridView runat="server" ID="dlCustomers" PageSize="10" AllowPaging="true" AllowSorting="true" CssClass="table table-striped table-bordered zero-configuration"
+                                                <asp:GridView runat="server" ID="dlCustomers" PageSize="25" AllowPaging="true" AllowSorting="true" CssClass="table table-striped table-bordered zero-configuration"
                                                     AutoGenerateColumns="False" DataSourceID="DSTickets"
-                                                    AlternatingRowStyle-BackColor="#F5F7FA" OnDataBinding="conteoRegistros">
+                                                    AlternatingRowStyle-BackColor="#F5F7FA" OnDataBinding="conteoRegistros" OnPageIndexChanged="listadoTickets">
                                                     <SortedAscendingHeaderStyle CssClass="ascending rendila-color" ForeColor="White" />
                                                     <SortedDescendingHeaderStyle CssClass="descending rendila-color" ForeColor="White" />
                                                     <Columns>

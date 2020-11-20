@@ -2,13 +2,21 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ReportLibrary.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="rendilana" Type="(Connection string)" Scope="Application">
+    <Setting Name="Valor" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;user id=root;pwd=selva031#;data source=localhost;persist security info=False;initial catalog=rendilana;&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;user id=root;password=selva031#;server=localhost;persistsecurityinfo=False;database=icaten&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;MySql.Data.MySqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">user id=root;pwd=selva031#;data source=localhost;persist security info=False;initial catalog=rendilana;</Value>
+      <Value Profile="(Default)">user id=root;password=selva031#;server=localhost;persistsecurityinfo=False;database=icaten</Value>
+    </Setting>
+    <Setting Name="icaten" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;user id=root;password=selva031#;server=localhost;persistsecurityinfo=False;database=icaten&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;MySql.Data.MySqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">user id=root;password=selva031#;server=localhost;persistsecurityinfo=False;database=icaten</Value>
     </Setting>
   </Settings>
 </SettingsFile>

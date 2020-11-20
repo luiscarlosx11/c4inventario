@@ -8,7 +8,7 @@
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" />
-    <title>Iniciar Sesión</title>
+    <title>Icaten - Plataforma de Gestión Escolar</title>
     <link rel="apple-touch-icon" href="/app-assets/images/ico/favicon2.png" />
     <link rel="shortcut icon" type="image/x-icon" href="/app-assets/images/ico/favicon2.ico" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i%7COpen+Sans:300,300i,400,400i,600,600i,700,700i" rel="stylesheet" />
@@ -49,23 +49,23 @@
             </div>
             <div class="content-body">
                 <section class="flexbox-container">
-                    <div class="col-md-3 offset-md-4 col-xs-10 offset-xs-1  box-shadow-2 p-0">
+                    <div class="col-md-3 col-lg-3 offset-md-4 col-xs-10 offset-xs-1 col-sm-10 box-shadow-2 p-0">
                         <div class="card border-grey border-lighten-3 m-0">
                             <div class="card-header no-border primary">
                                 <div class="card-title text-xs-center">
                                     <div class="p-1">
-                                        <img src="/images/rendilana.png" alt="Rendilana" />
+                                        <img src="/images/rendilana.png" alt="icaten" class="img-fluid"/>
                                     </div>
                                 </div>
-                                <br /><br />
-                                <h4 class="text-muted text-xs-center text-bold-600"><span>Plataforma de Gestión</span></h4>
+                                
+                                <h4 class="text-muted text-xs-center text-bold-600"><span>Plataforma de Gestión Escolar</span></h4>
                             </div>
                             <div class="card-body collapse in">
                                 <div class="card-block">
                                     <form id="form1" class="form-horizontal form-simple" runat="server" novalidate autocomplete="off">
                                         <asp:HiddenField ID="hep" runat="server" />
                                         <fieldset class="form-group position-relative has-icon-left mb-0">
-                                            <asp:TextBox runat="server" CssClass="form-control form-control" ID="username" placeholder="Nombre de Usuario"></asp:TextBox>
+                                            <asp:TextBox runat="server" CssClass="form-control form-control" ID="username" placeholder="Usuario"></asp:TextBox>
                                             <div class="form-control-position">
                                                 <i class="ft-user"></i>
                                             </div>
@@ -78,9 +78,9 @@
                                             </div>
                                         </fieldset>
                                         <br />
-                                        <asp:Button ID="ilogin" runat="server" OnClick="ilogin_Click" OnClientClick="dp();" style="display:none" Text="Login"/>
-                                        <button type="button" class="btn btn-primary btn-lg btn-block"onclick="validaForm()">
-                                            <i class="ft-unlock"></i> Ingresar
+                                        <asp:Button ID="ilogin" runat="server" OnClick="ilogin_Click" OnClientClick="dp();" style="display:none" Text="Login"  UseSubmitBehavior="false"/>
+                                        <button type="button" class="btn btn-primary btn-block" onclick="validaForm()" id="ingresar">
+                                             <span class="text-bold-700">I N G R E S A R</span>
                                         </button>
                                         <br />
                                         <asp:Label runat="server" ID="error" style="color:red;font-weight:bold"></asp:Label>
@@ -124,7 +124,7 @@
 
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <asp:Button ID="acodigo" runat="server" OnClick="acodigo_Click" style="display:none" />
+                                                        <asp:Button ID="acodigo" runat="server" OnClick="acodigo_Click" style="display:none" UseSubmitBehavior="false" />
                                                         <button class="btn btn-primary"  onclick="validaCodigo()"  type="button" data-backdrop="false" >
                                                             <i class="fa fa-check-square-o"></i>Aceptar
                                                         </button>
@@ -170,12 +170,23 @@
     <script src="/app-assets/js/core/app-menu.js" type="text/javascript"></script>
     <script src="/app-assets/js/core/app.js" type="text/javascript"></script>
     <script>
+
+        var walert = 0;
+
         $(document).ready(function () {
            
 
             $('html').bind('keypress', function (e) {
-                if (e.keyCode == 13||e.keyCode==27) {
-                    //return false;
+               
+                if (e.keyCode === 13) {
+
+                    if (walert == 0) {
+                        $("#ingresar").click();
+                        return false;
+                    }
+                    else {
+                        swal.close();
+                    }
                 }
             });
 
@@ -184,19 +195,37 @@
         });
 
         function validaForm() {
-
+            walert = 1;
             if($("#username").val()==''){
-                swal("Atención", "Ingrese su nombre de usuario", "warning");
+                alerta('Atención', 'Ingrese su usuario', 'warning', $("*[id$='username']"));
                 return false;
             }
             if ($("#userpasswd").val() == '') {
-                swal("Atención", "Ingrese su contraseña", "warning");
+                alerta('Atención', 'Ingrese su usuario', 'warning', $("*[id$='userpasswd']"));
                 return false;
             }
 
+            walert = 0;
             mostrarLoading(); 
+            walert = 3;
             $('#<%=ilogin.ClientID %>').click();
+            
             return true;
+
+        }
+
+        function alerta(titulo, msj, tipo, input) {
+
+            swal({
+                title: titulo,
+                html: msj,
+                type: tipo,
+                confirmButtonColor: '#00B5B8',
+                onAfterClose: () => {
+                    input.focus();
+                    walert = 0;
+                }
+            })
 
         }
 
@@ -262,7 +291,8 @@
                 text: "Espere por favor",
                 showConfirmButton: false,
                 imageUrl: "/images/processing.gif",
-                imageSize: "150x20"
+                imageSize: "150x20",
+                allowOutsideClick: false
             });
         }
 
@@ -276,5 +306,7 @@
     <script src="/app-assets/js/scripts/forms/form-login-register.js" type="text/javascript"></script>
     <script src="/app-assets/js/scripts/extensions/sweet-alerts.js" type="text/javascript"></script>
     <!-- END PAGE LEVEL JS-->
+
+
 </body>
 </html>

@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="pictureBox1.Value" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+</value>
+  </data>
+  <metadata name="documentacion.ParameterValues" xml:space="preserve">
+    <value>{"@idsolicitud":"1"}</value>
+  </metadata>
+  <data name="documentacion.SelectCommand" xml:space="preserve">
+    <value>select d.iddocumentacion, d.documentacion,
+(
+select count(cd.iddocumentacion)
+from cursodocumentacion cd
+where cd.idsolicitud = @idsolicitud
+and cd.iddocumentacion = d.iddocumentacion
+)as entregado
+from documentacion d
+order by d.iddocumentacion</value>
+  </data>
+  <metadata name="general.ParameterValues" xml:space="preserve">
+    <value>{"@idsolicitud":"70"}</value>
+  </metadata>
+  <data name="general.SelectCommand" xml:space="preserve">
+    <value>SET lc_time_names = 'es_MX';
+
+select s.nombre as nombresucursal, s.clavecct as clavesucursal, t.tipocurso, cast(si.fecha as char)as fechasolicitud,
+
+ 
+ 
+
+al.nocontrol, al.apaterno, al.amaterno, al.nombre, si.becado, al.sexo, al.curp, timestampdiff(YEAR,al.fechanacimiento,now())as edad,
+al.telefono, al.domicilio, al.colonia, al.cp, m.municipio, ent.entidad, 
+
+
+ e.especialidad, c.nombre as nombrecurso, c.clave as clavecurso,   
+cast(c.fechaini as char)as fechaini, cast(c.fechafin as char)as fechafin, cast(TIME_FORMAT(c.horaini, '%h:%i %p') as char)as horaini, 
+cast(TIME_FORMAT(c.horafin, '%h:%i %p') as char)as horafin, es.escolaridad,
+
+(
+select GROUP_CONCAT(distinct(d.discapacidad) SEPARATOR ', ')
+from discapacidad d
+left join alumnodiscapacidad ad  on ad.iddiscapacidad = d.iddiscapacidad
+where ad.idalumno = si.idalumno
+)as discapacidades,
+
+al.empresa, al.puesto, al.antiguedad, al.direccion as domicilioempresa, al.telefonoempresa, si.idtipoinscripcion, si.jefafamilia, si.indigena, si.condicioncalle
+
+from curso c 
+left join area a on a.idarea = c.idarea 
+left join especialidad e on e.idespecialidad = c.idespecialidad 
+left join tipocurso t on t.idtipocurso = c.idtipocurso 
+left join sucursal s on c.idsucursal = s.idsucursal
+left join solicitudinscripcion si on si.idcurso = c.idcurso
+left join alumno al on al.idalumno = si.idalumno
+left join escolaridad es on es.idescolaridad = si.idescolaridad
+left join municipio m on al.idmunicipio = m.idmunicipio
+left join entidad ent on al.identidad = ent.identidad
+where si.idsolicitud = @idsolicitud</value>
+  </data>
+  <metadata name="discapacidad.ParameterValues" xml:space="preserve">
+    <value>{"@idalumno":"1"}</value>
+  </metadata>
+  <data name="discapacidad.SelectCommand" xml:space="preserve">
+    <value>select d.discapacidad,
+(
+select count(cd.iddiscapacidad)
+from alumnodiscapacidad cd
+where cd.idalumno = @idalumno
+and cd.iddiscapacidad = d.iddiscapacidad
+)as entregado
+from discapacidad d
+order by d.iddiscapacidad</value>
+  </data>
+  <metadata name="motivo.ParameterValues" xml:space="preserve">
+    <value>{"@idsolicitud":"1"}</value>
+  </metadata>
+  <data name="motivo.SelectCommand" xml:space="preserve">
+    <value>select d.idmotivo,d.motivo,
+(
+select count(cd.idmotivo)
+from cursomotivo cd
+where cd.idsolicitud = @idsolicitud
+and cd.idmotivo = d.idmotivo
+)as entregado
+from motivoeleccion d
+order by d.idmotivo</value>
+  </data>
+  <metadata name="$this.Zoom" type="System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>1.5</value>
+  </metadata>
+</root>

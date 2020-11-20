@@ -167,7 +167,7 @@
 
                                                                         <asp:HiddenField runat="server" ID="idg" />
                                                                         <asp:TextBox ID="idtipog" CssClass="ocultar" name="idtipogasto" runat="server" ReadOnly="true"></asp:TextBox>
-                                                                        <asp:TextBox ID="tipogasto" CssClass="form-control text-uppercase" required="required" data-validation-required-message="Campo requerido" MaxLength="60" placeholder="Tipo de venta" name="tipogasto" runat="server"></asp:TextBox>
+                                                                        <asp:TextBox ID="descripcion" CssClass="form-control text-uppercase" required="required" data-validation-required-message="Campo requerido" MaxLength="60" placeholder="Tipo de venta" name="tipogasto" runat="server"></asp:TextBox>
                                                                         <div class="help-block"></div>
                                                                     </div>
 
@@ -187,8 +187,8 @@
                            
                    
 			        <div class="modal-footer">
-                        <asp:Button runat="server" ID="guardar" OnClick="guardaEdita" style="display:none" CausesValidation="true"/>     
-                        <asp:Button runat="server" ID="borrar" OnClick="borrarRegistro" style="display:none" />
+                        <asp:Button runat="server" ID="guardar" OnClick="guardaEdita" style="display:none" CausesValidation="true" UseSubmitBehavior="false"/>     
+                        <asp:Button runat="server" ID="borrar" OnClick="borrarRegistro" style="display:none" UseSubmitBehavior="false"/>
                         
 				        <button class="btn btn-primary" onclick="valida()" type="button" data-backdrop="false"> 
 	                        <i class="fa fa-check-square-o"></i> Aceptar
@@ -241,7 +241,7 @@
 
            
 
-            $("*[id$='tipogasto']").val(tipogasto);
+            $("*[id$='descripcion']").val(tipogasto);
         
             $("#bootstrap").modal('show');
         }
@@ -249,7 +249,7 @@
         function eliminarRegistro(idtipogasto, tipogasto) {
 
             $("*[id$='idg']").val(idtipogasto);
-            $("*[id$='tipogasto']").val(tipogasto);
+            $("*[id$='descripcion']").val(tipogasto);
 
 
              swal({
@@ -277,22 +277,18 @@
 
         function valida() {
        
-            var tipogasto = $("*[id$='tipogasto']").val();
+            var tipogasto = $("*[id$='descripcion']").val();
 
             if (tipogasto == '' ) {
-
-                if (tipogasto == '')
-                    swal("Atención", "Ingrese el tipo de gasto", "warning");
-              
-               
+                swal("Atención", "Ingrese el tipo de venta", "warning");                             
                 return false;
-            } else {
+            }
                 
                 mostrarLoading();
                 $('#<%= guardar.ClientID %>').click();
                 $('#bootstrap').modal('hide');
-;                return true;
-            }                    
+                return true;
+                                
             
         }
        

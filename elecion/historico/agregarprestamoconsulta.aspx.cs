@@ -224,7 +224,7 @@ namespace elecion.tickets
                         //Datos del articulo
                         descripcion.Text = rdr["descripcion"].ToString();
                         categorias.SelectedValue = rdr["idcategoria"].ToString();
-                        subcategorias.SelectedValue = rdr["idsubcategoria"].ToString();
+                        //subcategorias.SelectedValue = rdr["idsubcategoria"].ToString();
                         prestamo.Text = rdr["prestamo"].ToString();
                         reem.Text = rdr["avaluo"].ToString();
                         precio.Text = rdr["precio"].ToString();

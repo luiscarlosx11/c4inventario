@@ -22,7 +22,7 @@ namespace elecion
             string[] datos2 = datos[1].Split(';');
             
             idusuario = Convert.ToInt32(datos[0]);
-            idtipousuario = Convert.ToInt32(datos2[3]);
+            idtipousuario = 0;//Convert.ToInt32(datos2[3]); ;
 
             using (MySqlConnection con = new MySqlConnection(System.Web.Configuration.WebConfigurationManager.ConnectionStrings["DBconexion"].ConnectionString))
             {

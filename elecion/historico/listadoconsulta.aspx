@@ -199,7 +199,7 @@
                                                             <ItemTemplate>
                                                                 <div class="ocultar">
                                                                     
-                                                                    <button type="button" id="refrendar_<%# Eval("idempeno")+"_"+Eval("idsucursal") %>" onclick="ModalRefrendo(<%# Eval("idempeno")%>,<%# Eval("idsucursal")%>,<%# Eval("idarticulo")%>,'<%# Eval("folio")%>','<%# Eval("cliente")%>','<%# Eval("descripcion")%>',<%# Eval("prestamo")%>,'<%# Eval("pagar")%>',<%# Eval("tasa")%>,<%# Eval("dias")%>,<%# Eval("recargos")%>,1);" class="btn btn-icon btn-success btn-sm"
+                                                                    <button type="button" id="refrendar_<%# Eval("idempeno")+"_"+Eval("idsucursal")%>" onclick="ModalRefrendo(<%# Eval("idempeno")%>,<%# Eval("idsucursal")%>,<%# Eval("idarticulo")%>,'<%# Eval("folio")%>','<%# Eval("cliente")%>','<%# Eval("descripcion")%>',<%# Eval("prestamo")%>,'<%# Eval("pagar")%>',<%# Eval("tasa")%>,0,0,1);" class="btn btn-icon btn-success btn-sm"
                                                                         data-toggle="tooltip" data-original-title="Refrendar">
                                                                         <i class="ft-edit"></i>
                                                                     </button>
@@ -584,6 +584,7 @@
             $("#refrendar_" + actual.id).click();
 
             var aux = actual.id;
+            
             var res = aux.split("_");
             
             $("*[id$='idP']").val(res[0]);
