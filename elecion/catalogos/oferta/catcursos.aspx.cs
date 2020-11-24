@@ -408,7 +408,7 @@ namespace elecion.catalogos.oferta
                 {
                     con.Open();
                     MySqlDataReader rdr = null;
-                    rdr = (new MySqlCommand(string.Concat("select * from  (  (  select idfecha, cast(fecha as char) as fecha, cast(TIME_FORMAT(horaini, '%H:%i') as char) as horaini, cast(TIME_FORMAT(horafin, '%H:%i') as char) as horafin, concat(cast(TIME_FORMAT(horaini, '%H:%i') as char), ' - ', cast(TIME_FORMAT(horafin, '%H:%i') as char)) as horario  from fechascurso  where idcurso =", this.idP.Value, "  )  union  (  SELECT 0 as idfecha, cast(fecha as char) as fecha, '' as horaini, '' as horafin, '' as horario  from fechaslibres  )  )as v  order by v.fecha "), con)).ExecuteReader();
+                    rdr = (new MySqlCommand(string.Concat("select * from  (  (  select idfecha, cast(fecha as char) as fecha, cast(TIME_FORMAT(horaini, '%H:%i') as char) as horaini, cast(TIME_FORMAT(horafin, '%H:%i') as char) as horafin, concat(cast(TIME_FORMAT(horaini, '%H:%i') as char), ' - ', cast(TIME_FORMAT(horafin, '%H:%i') as char)) as horario, 'SI' as dia  from fechascurso  where idcurso =", this.idP.Value, "  )  union  (  SELECT -1 as idfecha, cast(fecha as char) as fecha, '' as horaini, '' as horafin, '' as horario, (select case  when dayofweek(fecha) in(select distinct(dayofweek(f.fecha)) from fechascurso f where f.idcurso = ", this.idP.Value, ") then' SI'  ELSE 'NO'  end )AS dia   from fechaslibres  where fecha not in(select fecha from fechascurso where idcurso=", this.idP.Value, ") ) )as v  order by v.fecha "), con)).ExecuteReader();
                     json = string.Concat(json, "[");
                     if (rdr.HasRows)
                     {
@@ -416,18 +416,19 @@ namespace elecion.catalogos.oferta
                         {
                             json = string.Concat(json, "{");
                             json = string.Concat(json, "id:'", rdr["idfecha"].ToString(), "',");
-                            if (!rdr["idfecha"].ToString().Equals("0"))
-                            {
-                                json = string.Concat(json, "title:'", rdr["horario"].ToString(), "',");
-                                json = string.Concat(new string[] { json, "description:'", rdr["horaini"].ToString(), " - ", rdr["horafin"].ToString(), "'," });
-                            }
-                            else
+                            if (rdr["idfecha"].ToString().Equals("-1"))
                             {
                                 json = string.Concat(json, "color:'#967ADC',");
                                 json = string.Concat(json, "title:'INHÁBIL',");
                                 json = string.Concat(json, "description:'NO SE LABORA',");
                             }
+                            else
+                            {                                
+                                json = string.Concat(json, "title:'", rdr["horario"].ToString(), "',");
+                                json = string.Concat(new string[] { json, "description:'", rdr["horaini"].ToString(), " - ", rdr["horafin"].ToString(), "'," });
+                            }
                             json = string.Concat(json, "fecha:'", rdr["fecha"].ToString(), "',");
+                            json = string.Concat(json, "dia:'", rdr["dia"].ToString(), "',");
                             json = string.Concat(json, "horaini:'", rdr["horaini"].ToString(), "',");
                             json = string.Concat(json, "horafin:'", rdr["horafin"].ToString(), "',");
                             json = string.Concat(json, "start:'", rdr["fecha"].ToString(), "',");
@@ -813,16 +814,24 @@ namespace elecion.catalogos.oferta
                 this.pagohora.Text = "";
                 this.observaciones.Text = "";
                 this.hdias.Value = "";
+                alumnosmaximo.Text = "";
+                alumnosminimo.Text = "";
+                documentos.Visible = false;
+                llinks.Text = "";
+
                 json = "[]";
                 this.alumnosminimo.Text = "";
                 this.divreg.Visible = false;
                 bloqueo = "$('#tbgenerales').removeAttr('disabled');";
-                bloqueo = string.Concat(bloqueo, "$('#tbcostoss').removeAttr('disabled');");
-                bloqueo = string.Concat(bloqueo, "$('#tbhorario').removeAttr('disabled');");
-                bloqueo = string.Concat(bloqueo, "$('#bproponer').show();");
-                bloqueo = string.Concat(bloqueo, "$('#bguardar').show();");
+                bloqueo = string.Concat(bloqueo, "$('#tbcostoss *').removeAttr('disabled');");
+                bloqueo = string.Concat(bloqueo, "$('#tbhorario *').removeAttr('disabled');");
+                bloqueo = string.Concat(bloqueo, "$('#bproponer *').show();");
+                bloqueo = string.Concat(bloqueo, "$('#bguardar *').show();");
+                bloqueo = string.Concat(bloqueo, "$('#accesoenlinea *').hide();");
+                
                 this.listadoAlumnos(sender, e);
                 this.listadoHistorial(sender, e);
+                this.listadoObjetivos(sender, e);
             }
             catch (Exception exception)
             {
@@ -1011,23 +1020,27 @@ namespace elecion.catalogos.oferta
                         }
                         if (rdr["estatus"].ToString().Equals("EN CAPTURA") || rdr["estatus"].ToString().Equals("OBSERVADO"))
                         {
-                            bloqueo = string.Concat(bloqueo, "$('#tbgenerales').removeAttr('disabled');");
-                            bloqueo = string.Concat(bloqueo, "$('#tbcostos').removeAttr('disabled');");
-                            bloqueo = string.Concat(bloqueo, "$('#tbhorario').removeAttr('disabled');");
-                            bloqueo = string.Concat(bloqueo, "$('#bproponer').show();");
-                            bloqueo = string.Concat(bloqueo, "$('#bguardar').show();");
+                            bloqueo = string.Concat(bloqueo, "$('#tbgenerales *').removeAttr('disabled');");
+                            bloqueo = string.Concat(bloqueo, "$('#tbcostos *').removeAttr('disabled');");
+                            bloqueo = string.Concat(bloqueo, "$('#horario *').removeAttr('disabled');");
+                            bloqueo = string.Concat(bloqueo, "$('#tbhorario *').removeAttr('disabled');");
+                            bloqueo = string.Concat(bloqueo, "$('#bproponer *').show();");
+                            bloqueo = string.Concat(bloqueo, "$('#bguardar *').show();");
+
+
                         }
                         else
                         {
-                            bloqueo = string.Concat(bloqueo, "$('#tbgenerales').attr('disabled', true);");
-                            bloqueo = string.Concat(bloqueo, "$('#tbcostos').attr('disabled', true);");
-                            bloqueo = string.Concat(bloqueo, "$('#tbhorario').attr('disabled', true);");
-                            bloqueo = string.Concat(bloqueo, "$('#bproponer').hide();");
-                            bloqueo = string.Concat(bloqueo, "$('#bguardar').hide();");
+                            bloqueo = string.Concat(bloqueo, "$('#tbgenerales *').attr('disabled', true);");
+                            bloqueo = string.Concat(bloqueo, "$('#tbcostos *').attr('disabled', true);");
+                            bloqueo = string.Concat(bloqueo, "$('#horario *').attr('disabled', true);");
+                            bloqueo = string.Concat(bloqueo, "$('#tbhorario *').attr('disabled', true);");
+                            bloqueo = string.Concat(bloqueo, "$('#bproponer *').hide();");
+                            bloqueo = string.Concat(bloqueo, "$('#bguardar *').hide();");
                         }
                     }
                     rdr.Close();
-                    rdr = (new MySqlCommand(string.Concat("select * from  (  (  select idfecha, cast(fecha as char) as fecha, cast(TIME_FORMAT(horaini, '%H:%i') as char) as horaini, cast(TIME_FORMAT(horafin, '%H:%i') as char) as horafin, concat(cast(TIME_FORMAT(horaini, '%H:%i') as char), ' - ', cast(TIME_FORMAT(horafin, '%H:%i') as char)) as horario  from fechascurso  where idcurso =", this.idP.Value, "  )  union  (  SELECT -1 as idfecha, cast(fecha as char) as fecha, '' as horaini, '' as horafin, '' as horario  from fechaslibres  )  )as v  order by v.fecha "), con)).ExecuteReader();
+                    rdr = (new MySqlCommand(string.Concat("select * from  (  (  select idfecha, cast(fecha as char) as fecha, cast(TIME_FORMAT(horaini, '%H:%i') as char) as horaini, cast(TIME_FORMAT(horafin, '%H:%i') as char) as horafin, concat(cast(TIME_FORMAT(horaini, '%H:%i') as char), ' - ', cast(TIME_FORMAT(horafin, '%H:%i') as char)) as horario, 'SI' as dia  from fechascurso  where idcurso =", this.idP.Value, "  )  union  (  SELECT -1 as idfecha, cast(fecha as char) as fecha, '' as horaini, '' as horafin, '' as horario, (select case  when dayofweek(fecha) in(select distinct(dayofweek(f.fecha)) from fechascurso f where f.idcurso = ", this.idP.Value, ") then' SI'  ELSE 'NO'  end )AS dia   from fechaslibres where fecha not in(select fecha from fechascurso where idcurso=", this.idP.Value, " ) ) )as v  order by v.fecha "), con)).ExecuteReader();
                     json = string.Concat(json, "[");
                     if (rdr.HasRows)
                     {
@@ -1035,18 +1048,19 @@ namespace elecion.catalogos.oferta
                         {
                             json = string.Concat(json, "{");
                             json = string.Concat(json, "id:'", rdr["idfecha"].ToString(), "',");
-                            if (!rdr["idfecha"].ToString().Equals("-1"))
-                            {
-                                json = string.Concat(json, "title:'", rdr["horario"].ToString(), "',");
-                                json = string.Concat(new string[] { json, "description:'", rdr["horaini"].ToString(), " - ", rdr["horafin"].ToString(), "'," });
-                            }
-                            else
+                            if (rdr["idfecha"].ToString().Equals("-1"))
                             {
                                 json = string.Concat(json, "color:'#967ADC',");
                                 json = string.Concat(json, "title:'INHÁBIL',");
                                 json = string.Concat(json, "description:'NO SE LABORA',");
                             }
+                            else
+                            {
+                                json = string.Concat(json, "title:'", rdr["horario"].ToString(), "',");
+                                json = string.Concat(new string[] { json, "description:'", rdr["horaini"].ToString(), " - ", rdr["horafin"].ToString(), "'," });
+                            }
                             json = string.Concat(json, "fecha:'", rdr["fecha"].ToString(), "',");
+                            json = string.Concat(json, "dia:'", rdr["dia"].ToString(), "',");
                             json = string.Concat(json, "horaini:'", rdr["horaini"].ToString(), "',");
                             json = string.Concat(json, "horafin:'", rdr["horafin"].ToString(), "',");
                             json = string.Concat(json, "start:'", rdr["fecha"].ToString(), "',");
@@ -1059,8 +1073,11 @@ namespace elecion.catalogos.oferta
                     this.listadoAlumnos(sender, e);
                     this.listadoHistorial(sender, e);
                     this.listadoObjetivos(sender, e);
-                    ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", string.Concat("cerrarLoading();  $('#bootstrap').modal('show'); $('#tabgenerales').click(); $('#fc-basic-views').fullCalendar('render'); dar(); ", bloqueo) ?? "", true);
-                    ScriptManager.RegisterStartupScript(this, base.GetType(), "inicilizarMun", string.Concat("dataEvent =", json), true);
+                    //ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading();  $('#bootstrap').modal('show'); $('#tabgenerales').click(); $('#fc-basic-views').fullCalendar('render'); dar(); "+bloqueo, true);
+                    //ScriptManager.RegisterStartupScript(this, base.GetType(), "inicilizarMun", string.Concat("dataEvent =", json), true);
+
+                    ScriptManager.RegisterStartupScript(this, GetType(), "myScriptName", "cerrarLoading();  $('#bootstrap').modal('show'); $('#tabgenerales').click(); $('#fc-basic-views').fullCalendar('render'); dar(); " + bloqueo + "", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "inicilizarMun", "dataEvent =" + json, true);
                 }
             }
             catch (Exception exception)
@@ -1381,5 +1398,135 @@ namespace elecion.catalogos.oferta
                 }
             }
         }
+
+
+
+
+        protected void habilitaFecha(object sender, EventArgs e)
+        {
+            using (MySqlConnection con = new MySqlConnection(WebConfigurationManager.ConnectionStrings["DBconexion"].ConnectionString))
+            {
+                MySqlTransaction transaction = null;
+                MySqlDataReader reader = null;
+                int nohoras = 0;
+
+                try
+                {
+                    try
+                    {
+                        con.Open();
+                        MySqlCommand cmd = con.CreateCommand();
+                        transaction = con.BeginTransaction();
+                        cmd.Connection = con;
+                        cmd.Transaction = transaction;
+
+                        cmd.CommandText = string.Concat("SELECT COALESCE(MAX(idfecha),0)as idfecha FROM fechascurso where idcurso=", this.idP.Value, ";");
+                        int idfecha = Convert.ToInt32(cmd.ExecuteScalar());
+
+                        cmd.Parameters.Clear();
+                        cmd.CommandText = "insert into fechascurso (idcurso, idfecha, fecha, horaini, horafin) values (@idcurso, @idfecha, @fecha, @horaini, @horafin); ";
+                        cmd.Parameters.AddWithValue("@idcurso", this.idP.Value);
+                        cmd.Parameters.AddWithValue("@idfecha", idfecha+1);
+                        cmd.Parameters.AddWithValue("@fecha", finhabil.Value);
+                        cmd.Parameters.AddWithValue("@horaini", this.horaini.Text);
+                        cmd.Parameters.AddWithValue("@horafin", this.horafin.Text);                            
+                        cmd.ExecuteNonQuery();
+
+
+                        cmd.Parameters.Clear();
+                        cmd.CommandText = string.Concat("select sum(TIMESTAMPDIFF(HOUR, horaini, horafin))as horas from fechascurso where idcurso =", this.idP.Value, ";");
+                        reader = cmd.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            nohoras = reader.GetInt32(0);
+                        }
+                        reader.Close();
+                        cmd.Parameters.Clear();
+                        cmd.CommandText = "update curso set horas=@horas where idcurso=@idcurso; ";
+                        cmd.Parameters.AddWithValue("@idcurso", this.idP.Value);
+                        cmd.Parameters.AddWithValue("@horas", nohoras);
+                        cmd.ExecuteNonQuery();
+                        this.horas.Text = nohoras.ToString();
+
+                        transaction.Commit();
+
+                        this.getCalendario(sender, e);
+                        ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading(); $('#winhabiles').modal('hide');", true);
+                    }
+                    catch (Exception exception)
+                    {
+                        Exception ex = exception;
+                        transaction.Rollback();
+                        Console.WriteLine(string.Concat("error:", ex.ToString()));
+                    }
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+        }
+
+
+        protected void eliminaFecha(object sender, EventArgs e)
+        {
+            using (MySqlConnection con = new MySqlConnection(WebConfigurationManager.ConnectionStrings["DBconexion"].ConnectionString))
+            {
+                MySqlTransaction transaction = null;
+                MySqlDataReader reader = null;
+                int nohoras = 0;
+
+                try
+                {
+                    try
+                    {
+                        con.Open();
+                        MySqlCommand cmd = con.CreateCommand();
+                        transaction = con.BeginTransaction();
+                        cmd.Connection = con;
+                        cmd.Transaction = transaction;
+
+
+                        cmd.Parameters.Clear();
+                        cmd.CommandText = "delete from fechascurso where idcurso=@idcurso and idfecha=@idfecha; ";
+                        cmd.Parameters.AddWithValue("@idcurso", this.idP.Value);
+                        cmd.Parameters.AddWithValue("@idfecha", idF.Value);                        
+                        cmd.ExecuteNonQuery();
+
+                        cmd.ExecuteNonQuery();
+                        cmd.Parameters.Clear();
+                        cmd.CommandText = string.Concat("select sum(TIMESTAMPDIFF(HOUR, horaini, horafin))as horas from fechascurso where idcurso =", this.idP.Value, ";");
+                        reader = cmd.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            nohoras = reader.GetInt32(0);
+                        }
+                        reader.Close();
+                        cmd.Parameters.Clear();
+                        cmd.CommandText = "update curso set horas=@horas where idcurso=@idcurso; ";
+                        cmd.Parameters.AddWithValue("@idcurso", this.idP.Value);
+                        cmd.Parameters.AddWithValue("@horas", nohoras);
+                        cmd.ExecuteNonQuery();
+                        this.horas.Text = nohoras.ToString();
+
+                        transaction.Commit();
+
+                        this.getCalendario(sender, e);
+                        ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading(); $('#wfechas').modal('hide');", true);
+                    }
+                    catch (Exception exception)
+                    {
+                        Exception ex = exception;
+                        transaction.Rollback();
+                        Console.WriteLine(string.Concat("error:", ex.ToString()));
+                    }
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+        }
+
     }
 }

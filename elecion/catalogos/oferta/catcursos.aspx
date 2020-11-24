@@ -87,6 +87,7 @@ body { padding-right: 0 !important }
                                                     <asp:HiddenField runat="server" ID="idS" /> 
                                                     <asp:HiddenField runat="server" ID="idSU" />
                                                     <asp:HiddenField runat="server" ID="idF" />
+                                                    <asp:HiddenField runat="server" ID="finhabil" />
                                                     <asp:HiddenField runat="server" ID="cve" />
                                                     <asp:HiddenField runat="server" ID="idOE" />
 
@@ -678,7 +679,21 @@ body { padding-right: 0 !important }
                                                                     <asp:Button runat="server" ID="eliminarFechas" OnClick="borraFechas" Style="display: none" CausesValidation="false" UseSubmitBehavior="false" />
                                                                     <asp:Button runat="server" ID="guardarFechas" OnClick="guardaEditaFechas" Style="display: none" CausesValidation="false" UseSubmitBehavior="false" />
                                                                     <asp:Button runat="server" ID="Bfechas" OnClick="listadoFechas" Style="display: none" UseSubmitBehavior="false" />
+                                                                    <asp:Button runat="server" ID="Bhabilitafecha" OnClick="habilitaFecha" Style="display: none" UseSubmitBehavior="false" />
+                                                                    <asp:Button runat="server" ID="Beliminafecha" OnClick="eliminaFecha" Style="display: none" UseSubmitBehavior="false" />
 
+                                                                     <div class="col-md-4">
+                                                                        <div class="form-group">
+                                                                            <label class="text-bold-600">Cálculo de fechas</label><br />
+
+                                                                            <asp:DropDownList ID="calculofechas" runat="server" CssClass="form-control select2" style="width:100%">
+                                                                                <asp:ListItem Value="A" Selected="True">AUTOMÁTICO</asp:ListItem>
+                                                                                <asp:ListItem Value="M">MANUAL</asp:ListItem>
+
+                                                                            </asp:DropDownList>
+                                                                        </div>
+
+                                                                    </div>
                                                                     <div id='fc-basic-views'></div>
                                                                 </ContentTemplate>
                                                             </asp:UpdatePanel>
@@ -1046,8 +1061,13 @@ body { padding-right: 0 !important }
 				        <button class="btn btn-primary" onclick="validaFechas()" type="button" data-backdrop="false" id="bguardaFecha"> 
 	                        <i class="fa fa-check-square-o"></i> Aceptar
 	                     </button>
+                        
+                        <button class="btn btn-danger" onclick="eliminaFechas()" type="button" data-backdrop="false" id="beliminaFecha"> 
+	                        <i class="fa fa-check-square-o"></i> Eliminar Fecha
+	                     </button>
+
                                                                  
-	                     <button type="button" class="btn btn-danger mr-1" data-dismiss="modal">
+	                     <button type="button" class="btn btn-warning mr-1" data-dismiss="modal">
 	                        <i class="ft-x"></i> Cerrar
 	                     </button>
 			        </div>
@@ -1152,6 +1172,40 @@ body { padding-right: 0 !important }
 
     </div>
          
+
+    <div class="modal fade" id="winhabiles"  role="dialog" aria-labelledby="myModalLabel35" aria-hidden="true">
+
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bg-primary white">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h3 class="modal-title">Fecha inhábil</h3>
+
+                            
+
+                        </div>
+                       
+                        <div class="modal-footer">
+                        
+                        
+				        <button class="btn btn-primary" onclick="habilitaFechas()" type="button" data-backdrop="false" id="bguardaFecha"> 
+	                        <i class="fa fa-check-square-o"></i> Habilitar fecha
+	                     </button>
+                                                                 
+	                     <button type="button" class="btn btn-danger mr-1" data-dismiss="modal">
+	                        <i class="ft-x"></i> Cerrar
+	                     </button>
+			        </div>
+
+
+                    </div>
+
+
+                </div>
+
+            </div>
    
     
 </asp:Content>
@@ -1523,6 +1577,43 @@ body { padding-right: 0 !important }
                                            
         }
 
+        function habilitaFechas() {
+            swal({
+                title: "La fecha será marcada como HÁBIL, ¿Desea continuar?",
+                text: "",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: '#DD6B55',
+                confirmButtonText: 'Si',
+                cancelButtonText: "No"
+            }).then((result) => {
+                if (result.value) {
+                    mostrarLoading();
+                    $('#<%= Bhabilitafecha.ClientID %>').click();
+                }
+            })
+
+        }
+
+        function eliminaFechas() {
+            swal({
+                title: "La fecha será eliminada, ¿Desea continuar?",
+                text: "",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: '#DD6B55',
+                confirmButtonText: 'Si',
+                cancelButtonText: "No"
+            }).then((result) => {
+                if (result.value) {
+                    mostrarLoading();
+                    $('#<%= Beliminafecha.ClientID %>').click();
+                }
+            })
+
+        }
+
+
          function abrirModalCancelacion(idcurso) {
 
              $("*[id$='idP']").val(idcurso);
@@ -1891,26 +1982,29 @@ body { padding-right: 0 !important }
                     locale: 'es',
                     events: dataEvent,                   
                     eventClick: function(event) {
+                        
+                        if (event.id >= 0) {
 
+                            if ($("*[id$='fechaini']").is(':enabled')) {
+                                $("*[id$='idF']").val(event.id);
+                                $("*[id$='fagenda']").val(event.fecha);
+                                $("*[id$='horanini']").val(event.horaini);
+                                $("*[id$='horanfin']").val(event.horafin);
 
-                        if (event.id > 0) {
-
-                            $("*[id$='idF']").val(event.id);
-                            $("*[id$='fagenda']").val(event.fecha);
-                            $("*[id$='horanini']").val(event.horaini);
-                            $("*[id$='horanfin']").val(event.horafin);
-                            //$("#bguardaFecha").show();
-                            //$("#bborraFecha").hide();
-
-                            //$("*[id$='fagenda']").attr('disabled', 'disabled');
-                           // $("*[id$='horanini']").attr('disabled', 'disabled');
-                            //$("*[id$='horanfin']").attr('disabled','disabled');
-
-                            $("#wfechas").modal('show');
-
+                                $("#wfechas").modal('show');
+                            }
+                            
+                        } else {
+                            
+                            if ($("*[id$='calculofechas']").val() == 'M' && event.dia.trim() == 'SI' && $("*[id$='fechaini']").is(':enabled')) {
+                                
+                                $("*[id$='idF']").val(0);
+                                $("*[id$='finhabil']").val(event.fecha);
+                                $("#winhabiles").modal('show');
+                            }
+                                
                         }
                        
-
                     },
                     navLinks: false, // can click day/week names to navigate views
                     editable: true,

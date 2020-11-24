@@ -87,6 +87,15 @@ namespace elecion.catalogos.oferta
         protected global::System.Web.UI.WebControls.HiddenField idF;
 
         /// <summary>
+        /// Control finhabil.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField finhabil;
+
+        /// <summary>
         /// Control cve.
         /// </summary>
         /// <remarks>
@@ -661,6 +670,33 @@ namespace elecion.catalogos.oferta
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Bfechas;
+
+        /// <summary>
+        /// Control Bhabilitafecha.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Bhabilitafecha;
+
+        /// <summary>
+        /// Control Beliminafecha.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Beliminafecha;
+
+        /// <summary>
+        /// Control calculofechas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList calculofechas;
 
         /// <summary>
         /// Control UpdatePanel4.
