@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <metadata name="generales.ParameterValues" xml:space="preserve">
-    <value>{"@fechaini":"'2020-06-01'","@fechafin":"'2020-06-15'","@idsucursal":"9","@idtipocurso":"1"}</value>
+    <value>{"@fechaini":"'2020-06-01'","@fechafin":"'2020-06-15'","@idusuario":"1","@idsucursal":"9","@idtipocurso":"1"}</value>
   </metadata>
   <data name="generales.SelectCommand" xml:space="preserve">
     <value>SET lc_time_names = 'es_MX';
@@ -165,13 +165,14 @@ select sum(TIMESTAMPDIFF(HOUR, f.horaini, f.horafin))
 from fechascurso f
 where f.idcurso = c.idcurso
 and f.fecha between @fechaini and @fechafin
-),0)as horastrabajo, ca.cargo
+),0)as horastrabajo, s.encargado, ca.cargo, concat(u.nombre,' ',u.apaterno,' ',u.amaterno) as usuario
 
 from sucursal s
 left join curso c on c.idsucursal = s.idsucursal
 left join instructor i on i.idinstructor = c.idinstructor
 left join tipocurso t on t.idtipocurso = c.idtipocurso
 left join cargo ca on ca.idcargo = s.idcargo
+left join usuario u on u.idusuario=@idusuario
 where s.idsucursal=@idsucursal
 and c.idtipocurso=@idtipocurso
 and c.estatus not in('CANCELADO','RECHAZADO','EN CAPTURA')

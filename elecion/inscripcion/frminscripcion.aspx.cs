@@ -999,7 +999,7 @@ namespace elecion.inscripcion
             try
             {
                 this.GValumnos.DataSourceID = this.DSalumnos.ID;
-                string str = string.Concat("select al.idalumno, al.nocontrol, si.idsolicitud, si.estatus, concat(al.apaterno,' ', al.amaterno,' ', al.nombre)as nombrealumno, case si.becado when 1 then round(c.costo -c.costo * (si.porcentaje / 100),2) else c.costo end as costoalumno, si.folio,  cast(si.fecha as char)as fecha, si.observaciones as observacionesalumno, c.estatus as cursoestatus  from alumno al  left join solicitudinscripcion si on si.idalumno = al.idalumno  left join curso c on si.idcurso = c.idcurso  where si.idcurso = ", this.idP.Value, " ");
+                string str = string.Concat("select al.idalumno, al.nocontrol, si.idsolicitud, si.estatus, concat(al.apaterno,' ', al.amaterno,' ', al.nombre)as nombrealumno, case si.becado when 1 then round(c.costo -c.costo * (si.porcentaje / 100),2) else c.costo end as costoalumno, si.folio,  cast(si.fecha as char)as fecha, si.observaciones as observacionesalumno, c.estatus as cursoestatus  from alumno al  left join solicitudinscripcion si on si.idalumno = al.idalumno  left join curso c on si.idcurso = c.idcurso  where si.idcurso = ", this.idP.Value, " and si.estatus not in('CANCELADO') ");
                 if (this.busnom.Text.Trim() != "")
                 {
                     str = string.Concat(str, " and concat(al.apaterno,' ',al.amaterno,' ',al.nombre) LIKE '%", this.busnom.Text.Trim().ToUpper(), "%' ");

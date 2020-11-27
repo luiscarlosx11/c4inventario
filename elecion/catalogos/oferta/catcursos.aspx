@@ -682,18 +682,7 @@ body { padding-right: 0 !important }
                                                                     <asp:Button runat="server" ID="Bhabilitafecha" OnClick="habilitaFecha" Style="display: none" UseSubmitBehavior="false" />
                                                                     <asp:Button runat="server" ID="Beliminafecha" OnClick="eliminaFecha" Style="display: none" UseSubmitBehavior="false" />
 
-                                                                     <div class="col-md-4">
-                                                                        <div class="form-group">
-                                                                            <label class="text-bold-600">Cálculo de fechas</label><br />
-
-                                                                            <asp:DropDownList ID="calculofechas" runat="server" CssClass="form-control select2" style="width:100%">
-                                                                                <asp:ListItem Value="A" Selected="True">AUTOMÁTICO</asp:ListItem>
-                                                                                <asp:ListItem Value="M">MANUAL</asp:ListItem>
-
-                                                                            </asp:DropDownList>
-                                                                        </div>
-
-                                                                    </div>
+                                                                    
                                                                     <div id='fc-basic-views'></div>
                                                                 </ContentTemplate>
                                                             </asp:UpdatePanel>
@@ -982,6 +971,9 @@ body { padding-right: 0 !important }
 
                             <button id="brechazar" class="btn btn-danger" onclick="rechazar()" type="button" data-backdrop="false" style="display:none">
                                 <i class="fa fa-check-square-o"></i>Rechazar
+                            </button>
+                            <button id="baperturar" class="btn btn-purple" onclick="aperturar()" type="button" data-backdrop="false" >
+                                <i class="fa fa-check-square-o"></i>Aperturar Captura
                             </button>
 
                             <button id="bproponer" class="btn btn-warning" onclick="solicita()" type="button" data-backdrop="false" >
@@ -1535,6 +1527,135 @@ body { padding-right: 0 !important }
                                            
         }
 
+        function aperturar() {
+            var clave = $("*[id$='clave']").val();
+            var nombre = $("*[id$='nombre']").val();
+            var fechaini = $("*[id$='fechaini']").val();
+            var fechafin = $("*[id$='fechafin']").val();
+            var dias = $("*[id$='dias']").val();
+            var horaini = $("*[id$='horaini']").val();
+            var horafin = $("*[id$='horafin']").val();
+            var horas = $("*[id$='horas']").val();
+            var diascurso = $("*[id$='hdias']").val();
+
+            var costomodulo = $("*[id$='costomodulo']").val();
+            var costoalumno = $("*[id$='costoalumno']").val();
+            var pagohora = $("*[id$='pagohora']").val();
+
+            var instalacion = $("*[id$='instalacion']").val();
+            var instalacionext = $("*[id$='instalacionext']").val();
+            var instalaciondomext = $("*[id$='instalaciondomext']").val();
+            var alumnosminimo = $("*[id$='alumnosminimo']").val();
+            var fechalimite = $("*[id$='fechalimite']").val();
+
+            walert = 1;
+
+            if (clave == '') {
+                alerta('Atención', 'Ingrese la clave del curso', 'warning', $("*[id$='clave']"));
+                return false;
+            }
+
+            if (nombre == '') {
+                alerta('Atención', 'Ingrese el nombre del curso', 'warning', $("*[id$='nombre']"));
+                return false;
+            }
+
+
+            if (alumnosminimo == '' || alumnosminimo == '0') {
+                alerta('Atención', 'Ingrese la cantidad mínima necesaria de alumnos inscritos', 'warning', $("*[id$='alumnosminimo']"));
+                return false;
+            }
+
+            if (instalacion == '9999' && instalacionext == '') {
+                alerta('Atención', 'Ingrese el nombre de la instalación extramuros', 'warning', $("*[id$='instalacionext']"));
+                return false;
+            }
+
+            if (instalacion == '9999' && instalaciondomext == '') {
+                alerta('Atención', 'Ingrese la dirección de la instalación extramuros', 'warning', $("*[id$='instalaciondomext']"));
+                return false;
+            }
+
+            /*
+             if (costomodulo == '' || costomodulo == '0') {                
+                alerta('Atención', 'Ingrese el costo por módulo del curso', 'warning', $("*[id$='costomodulo']"));
+                return false;                
+            }
+
+            if (costoalumno == '' || costoalumno == '0') {                
+                alerta('Atención', 'Ingrese el costo por alumno del curso', 'warning', $("*[id$='costoalumno']"));
+                return false;                
+            }*/
+
+            if (pagohora == '' || pagohora == '0') {
+                alerta('Atención', 'Ingrese el pago por hora del curso', 'warning', $("*[id$='pagohora']"));
+                return false;
+            }
+
+            /* if (fechalimite == '') {
+                 alerta('Atención', 'Ingrese la fecha límite de inscripción al curso', 'warning', $("*[id$='fechalimite']"));
+                 return false;
+             }
+             */
+            if (fechaini == '') {
+                alerta('Atención', 'Ingrese la fecha de inicio del curso', 'warning', $("*[id$='fechaini']"));
+                return false;
+            }
+
+            if (fechafin == '') {
+                alerta('Atención', 'Ingrese la fecha de término del curso', 'warning', $("*[id$='fechafin']"));
+                return false;
+            }
+
+            if (dias == '' || dias == '0') {
+                alerta('Atención', 'Ingrese la duración en días del curso', 'warning', $("*[id$='dias']"));
+                return false;
+            }
+
+            if (horaini == '') {
+                alerta('Atención', 'Ingrese el horario (hora de inicio) del curso', 'warning', $("*[id$='horaini']"));
+                return false;
+            }
+
+
+            if (horafin == '') {
+                alerta('Atención', 'Ingrese el horario (hora de término) del curso', 'warning', $("*[id$='horafin']"));
+                return false;
+            }
+
+            if (diascurso == '') {
+                alerta('Atención', 'Indique los días de la semana en los cuales se impartirá el curso', 'warning', $("*[id$='hdias']"));
+                return false;
+            }
+
+
+            if (horas == '' || horas == '0') {
+                alerta('Atención', 'Ingrese la duración en horas del curso', 'warning', $("*[id$='horas']"));
+                return false;
+            }
+
+            walert = 0;
+
+            mostrarLoading();
+
+            swal({
+                title: "Se solicitará la autorización para este curso, ¿Desea continuar?",
+                text: "",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: '#DD6B55',
+                confirmButtonText: 'Si',
+                cancelButtonText: "No"
+            }).then((result) => {
+                if (result.value) {
+                    mostrarLoading();
+                    $('#<%= bautorizacion.ClientID %>').click();
+                }
+            })
+
+
+        }
+
 
          function validaFechas() {
        
@@ -1976,7 +2097,7 @@ body { padding-right: 0 !important }
                             container: 'body'
                         });
                     },
-                    defaultDate: fecha!=''?fecha:'2019-01-01',
+                    defaultDate: fecha!=''?fecha:'2020-01-01',
                     defaultView: 'month',
                     duration: { days: 15 },
                     locale: 'es',
@@ -1996,7 +2117,7 @@ body { padding-right: 0 !important }
                             
                         } else {
                             
-                            if ($("*[id$='calculofechas']").val() == 'M' && event.dia.trim() == 'SI' && $("*[id$='fechaini']").is(':enabled')) {
+                            if (event.dia.trim() == 'SI' && $("*[id$='fechaini']").is(':enabled')) {
                                 
                                 $("*[id$='idF']").val(0);
                                 $("*[id$='finhabil']").val(event.fecha);

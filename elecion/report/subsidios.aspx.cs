@@ -131,6 +131,7 @@ namespace elecion.report
         {
             FormatoSubsidios formatoSubsidio = new FormatoSubsidios();
             formatoSubsidio.ReportParameters["idsucursal"].Value = this.bplantel.SelectedValue;
+            formatoSubsidio.ReportParameters["idusuario"].Value = idusuario;
             formatoSubsidio.ReportParameters["idtipocurso"].Value = this.btipocurso.SelectedValue;
             formatoSubsidio.ReportParameters["fechaini"].Value = this.fechaini.Text.Trim();
             formatoSubsidio.ReportParameters["fechafin"].Value = this.fechafin.Text.Trim();

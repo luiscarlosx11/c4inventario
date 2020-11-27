@@ -294,66 +294,35 @@ namespace elecion.tecnicoaca
 
 
 
-                    String query = "select * from " +
-                                   " ( " +
-                                   " ( " +
-                                   " select idfecha, cast(fecha as char) as fecha, cast(TIME_FORMAT(horaini, '%H:%i') as char) as horaini, cast(TIME_FORMAT(horafin, '%H:%i') as char) as horafin, concat(cast(TIME_FORMAT(horaini, '%H:%i') as char), ' - ', cast(TIME_FORMAT(horafin, '%H:%i') as char)) as horario " +
-                                   " from fechascurso " +
-                                   " where idcurso =" + idP.Value + " " +
-                                   " ) " +
-                                   " union " +
-                                   " ( " +
-                                   " SELECT 0 as idfecha, cast(fecha as char) as fecha, '' as horaini, '' as horafin, '' as horario " +
-                                   " from fechaslibres " +
-                                   " ) " +
-                                   " )as v " +
-                                   " order by v.fecha ";
-
-                    cmd = new MySqlCommand(query, con);
-                    rdr = cmd.ExecuteReader();
-
-
-                    json += "[";
-
-                    //new queryString/command setup
-
+                    rdr = (new MySqlCommand(string.Concat("select * from  (  (  select idfecha, cast(fecha as char) as fecha, cast(TIME_FORMAT(horaini, '%H:%i') as char) as horaini, cast(TIME_FORMAT(horafin, '%H:%i') as char) as horafin, concat(cast(TIME_FORMAT(horaini, '%H:%i') as char), ' - ', cast(TIME_FORMAT(horafin, '%H:%i') as char)) as horario, 'SI' as dia  from fechascurso  where idcurso =", this.idP.Value, "  )  union  (  SELECT -1 as idfecha, cast(fecha as char) as fecha, '' as horaini, '' as horafin, '' as horario, (select case  when dayofweek(fecha) in(select distinct(dayofweek(f.fecha)) from fechascurso f where f.idcurso = ", this.idP.Value, ") then' SI'  ELSE 'NO'  end )AS dia   from fechaslibres  where fecha not in(select fecha from fechascurso where idcurso=", this.idP.Value, ") ) )as v  order by v.fecha "), con)).ExecuteReader();
+                    json = string.Concat(json, "[");
                     if (rdr.HasRows)
                     {
-
                         while (rdr.Read())
                         {
-
-                            json += "{";
-                            json += "id:'" + rdr["idfecha"].ToString() + "',";
-
-                            if (rdr["idfecha"].ToString().Equals("0"))
+                            json = string.Concat(json, "{");
+                            json = string.Concat(json, "id:'", rdr["idfecha"].ToString(), "',");
+                            if (rdr["idfecha"].ToString().Equals("-1"))
                             {
-                                json += "color:'#967ADC',";
-                                json += "title:'INHÁBIL',";
-                                json += "description:'NO SE LABORA',";
-
+                                json = string.Concat(json, "color:'#967ADC',");
+                                json = string.Concat(json, "title:'INHÁBIL',");
+                                json = string.Concat(json, "description:'NO SE LABORA',");
                             }
-
                             else
                             {
-                                json += "title:'" + rdr["horario"].ToString() + "',";
-                                json += "description:'" + rdr["horaini"].ToString() + " - " + rdr["horafin"].ToString() + "',";
+                                json = string.Concat(json, "title:'", rdr["horario"].ToString(), "',");
+                                json = string.Concat(new string[] { json, "description:'", rdr["horaini"].ToString(), " - ", rdr["horafin"].ToString(), "'," });
                             }
-
-                            json += "fecha:'" + rdr["fecha"].ToString() + "',";
-                            json += "horaini:'" + rdr["horaini"].ToString() + "',";
-                            json += "horafin:'" + rdr["horafin"].ToString() + "',";
-                            json += "start:'" + rdr["fecha"].ToString() + "',";
-                            json += "end:'" + rdr["fecha"].ToString() + "'";
-                            json += "},";
-
+                            json = string.Concat(json, "fecha:'", rdr["fecha"].ToString(), "',");
+                            json = string.Concat(json, "dia:'", rdr["dia"].ToString(), "',");
+                            json = string.Concat(json, "horaini:'", rdr["horaini"].ToString(), "',");
+                            json = string.Concat(json, "horafin:'", rdr["horafin"].ToString(), "',");
+                            json = string.Concat(json, "start:'", rdr["fecha"].ToString(), "',");
+                            json = string.Concat(json, "end:'", rdr["fecha"].ToString(), "'");
+                            json = string.Concat(json, "},");
                         }
-
                     }
-
-                    json += "]";
-
-
+                    json = string.Concat(json, "]");
                     rdr.Close();
 
                     listadoAlumnos(sender,e);

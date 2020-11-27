@@ -386,6 +386,20 @@
 
         function imprimirFormato(op) {
 
+            var fechaini = $("*[id$='fechaini']").val();
+            var fechafin = $("*[id$='fechafin']").val();
+
+            if (fechaini == '') {
+                swal("Atención", "Indique un rango de fechas (fecha de inicio) para realizar el reporte", "warning");
+                return false;
+            }
+
+            if (fechafin == '' ) {
+                swal("Atención", "Indique un rango de fechas (fecha de término) para realizar el reporte", "warning");
+                return false;
+            }
+
+
             mostrarLoading();
             
            

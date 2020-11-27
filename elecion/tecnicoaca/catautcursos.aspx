@@ -1615,7 +1615,7 @@ body { padding-right: 0 !important }
                             container: 'body'
                         });
                     },
-                    defaultDate: '2017-09-11',
+                    defaultDate: fecha != '' ? fecha : '2020-01-01',
                     defaultView: 'month',
                     duration: { days: 15 },
                     locale: 'es',
@@ -1642,11 +1642,15 @@ body { padding-right: 0 !important }
                     height: 500
                 });
 
+            if (fecha == '') {
+                $('#fc-basic-views').fullCalendar('today');
+            }
+
 
             //$('#fc-basic-views').fullCalendar('today');
             $("*[id$='dias']").attr('disabled', true);
             $("*[id$='horas']").attr('disabled', true);
 
         }
-    </script>
+     </script>
 </asp:Content>

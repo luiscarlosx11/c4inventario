@@ -690,15 +690,6 @@ namespace elecion.catalogos.oferta
         protected global::System.Web.UI.WebControls.Button Beliminafecha;
 
         /// <summary>
-        /// Control calculofechas.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList calculofechas;
-
-        /// <summary>
         /// Control UpdatePanel4.
         /// </summary>
         /// <remarks>
