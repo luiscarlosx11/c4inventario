@@ -255,7 +255,7 @@ body { padding-right: 0 !important }
                                                                 <i class="fa fa-check-circle"></i>
                                                             </button>
                                                            
-                                                            <button type="button" onclick="imprimirKardex(<%# Eval("idsolicitud")%>,<%# Eval("idcurso").ToString() %>,'<%# Eval("nocontrol").ToString() %>')"  class="btn btn-icon btn-cyan mr-1 btn-sm tooltips  <%#  Eval("estatuscurso").Equals("FINALIZADO")||Eval("estatus").Equals("DESERCIÓN")||Eval("estatus").Equals("CANCELADO")?"disabled":"" %> "
+                                                            <button type="button" onclick="imprimirKardex(<%# Eval("idsolicitud")%>,<%# Eval("idcurso").ToString() %>,'<%# Eval("nocontrol").ToString() %>')"  class="btn btn-icon btn-cyan mr-1 btn-sm tooltips  <%#  Eval("estatus").Equals("DESERCIÓN")||Eval("estatus").Equals("CANCELADO")?"disabled":"" %> "
                                                                 data-toggle="tooltip" data-original-title="Imprimir Kardex" <%# Eval("condicion").Equals("INSCRITO")||Eval("condicion").Equals("POR ACREDITAR")?"disabled":"" %>>
                                                                 <i class="ft-printer"></i>
                                                             </button>

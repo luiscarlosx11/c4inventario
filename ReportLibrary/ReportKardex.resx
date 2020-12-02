@@ -142,14 +142,15 @@ cast(TIME_FORMAT(c.horafin, '%h:%i %p') as char)as horafin, c.horas, c.dias, c.o
 s.nombre as instalacion,
 concat(s.calle,' # ', s.numext,' COL. ',s.colonia,' ',coalesce(s.localidad,''))as direccion,
  c.instalacionext, c.instalaciondomext, c.pagohora, c.costomodulo,
-c.solicita, c.autoriza, 
+ c.autoriza, 
 s.nombre as nombresucursal, s.clavecct as clavesucursal, ce.cicloescolar, 
 concat(al.apaterno,' ',al.amaterno,' ', al.nombre)as nombrealumno, al.nocontrol, si.calificacion,
 (
 select count(o.idobjetivo)
 from cursoobjetivo o
 where o.idcurso = c.idcurso
-)as subobjetivos
+)as subobjetivos,
+s.encargado as solicita, ca.cargo
 from curso c 
 left join area a on a.idarea = c.idarea 
 left join especialidad e on e.idespecialidad = c.idespecialidad 
@@ -161,6 +162,7 @@ left join empresa em on em.idempresa = c.idempresa
 left join cicloescolar ce on c.idcicloescolar = ce.idcicloescolar
 left join solicitudinscripcion si on si.idcurso = c.idcurso
 left join alumno al on al.idalumno = si.idalumno
+left join cargo ca on ca.idcargo = s.idcargo
 
 where c.idcurso = @idcurso
 and si.idsolicitud= @idsolicitud</value>
