@@ -127,7 +127,7 @@ select c.idcurso, c.idsucursal, c.nombre,  a.area,  e.especialidad,  i.nombre as
 c.estatus, c.costo, cast(c.fechaini as char)as fechaini, cast(c.fechafin as char)as fechafin, cast(TIME_FORMAT(c.horaini, '%h:%i %p') as char)as horaini, 
 cast(TIME_FORMAT(c.horafin, '%h:%i %p') as char)as horafin, c.horas, c.dias, c.observaciones, s.nombre as instalacion,
 concat(s.calle,' # ', s.numext,' COL. ',s.colonia,' ',coalesce(s.localidad,''))as direccion, c.instalacionext, c.instalaciondomext, c.pagohora, c.costomodulo,
-c.solicita, c.autoriza, s.nombre as nombresucursal,
+s.encargado as solicita, c.autoriza, s.nombre as nombresucursal,
 
 (
 select GROUP_CONCAT(distinct(UPPER(DAYNAME(f.fecha))) SEPARATOR ', ')

@@ -239,7 +239,7 @@ body { padding-right: 0 !important }
                                                     <asp:TemplateField HeaderText="Acciones" ItemStyle-Width="250px" ItemStyle-CssClass="centrarCelda" HeaderStyle-CssClass="centrarCelda primary">
                                                         <ItemTemplate>
 
-                                                            <button type="button" onclick="abrirModalObjetivo(<%# Eval("idsolicitud")%>,<%# Eval("idcurso").ToString() %>,'<%# Eval("nombrealumno").ToString() %>','<%# Eval("folio").ToString() %>')" class="btn btn-icon btn-success mr-1 btn-sm tooltips <%# Eval("estatus").Equals("DESERCIÓN")?"ocultar":""%>" <%# Eval("estatuscurso").Equals("FINALIZADO")?"disabled":"" %>
+                                                            <button type="button" onclick="abrirModalObjetivo(<%# Eval("idsolicitud")%>,<%# Eval("idcurso").ToString() %>,'<%# Eval("nombrealumno").ToString() %>','<%# Eval("folio").ToString() %>')" class="btn btn-icon btn-success mr-1 btn-sm tooltips <%# Eval("estatus").Equals("DESERCIÓN")?"ocultar":""%>" 
                                                                 data-toggle="tooltip" data-original-title="Asignar Folio">
                                                                 <i class="fa fa-check-circle"></i>
                                                             </button>
@@ -2563,7 +2563,7 @@ body { padding-right: 0 !important }
 
            
              swal({
-                title: "Se asignará el nuevo folio de diploma, el folio anterior será cancelado ¿Desea continuar?",
+                title: "Se asignará el nuevo folio de diploma, en caso de contar con un folio anterior este será cancelado ¿Desea continuar?",
                 text: "",
                 type: "warning",
                 showCancelButton: true,
@@ -2585,7 +2585,7 @@ body { padding-right: 0 !important }
             $("*[id$='idI']").val(idsolicitud);
             $("*[id$='idP']").val(idcurso);
             $("*[id$='nombrealumno']").html(nombre);
-            $("*[id$='folio']").val(folio);
+            $("*[id$='folio']").val('');
 
             mostrarLoading();
 

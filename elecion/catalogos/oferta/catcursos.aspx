@@ -972,7 +972,7 @@ body { padding-right: 0 !important }
                             <button id="brechazar" class="btn btn-danger" onclick="rechazar()" type="button" data-backdrop="false" style="display:none">
                                 <i class="fa fa-check-square-o"></i>Rechazar
                             </button>
-                            <button id="baperturar" class="btn btn-purple" onclick="aperturar()" type="button" data-backdrop="false" >
+                            <button id="baperturar" class="btn btn-purple" onclick="aperturar()" type="button" data-backdrop="false" style="display:none">
                                 <i class="fa fa-check-square-o"></i>Aperturar Captura
                             </button>
 
@@ -1300,6 +1300,7 @@ body { padding-right: 0 !important }
             var instalacionext = $("*[id$='instalacionext']").val();
             var instalaciondomext = $("*[id$='instalaciondomext']").val();
             var alumnosminimo = $("*[id$='alumnosminimo']").val();
+            var alumnosmaximo = $("*[id$='alumnosmaximo']").val();
             var fechalimite = $("*[id$='fechalimite']").val();
             
             walert = 1;
@@ -1318,6 +1319,11 @@ body { padding-right: 0 !important }
             if (alumnosminimo == '' || alumnosminimo == '0') {                
                 alerta('Atención', 'Ingrese la cantidad mínima necesaria de alumnos inscritos', 'warning', $("*[id$='alumnosminimo']"));
                 return false;                
+            }
+
+            if (alumnosmaximo == '' || alumnosmaximo == '0') {
+                alerta('Atención', 'Ingrese la cantidad máxima de alumnos inscritos', 'warning', $("*[id$='alumnosmaximo']"));
+                return false;
             }
 
             if (instalacion == '9999' && instalacionext == '') {                
@@ -1417,6 +1423,9 @@ body { padding-right: 0 !important }
             var instalacionext = $("*[id$='instalacionext']").val();
             var instalaciondomext = $("*[id$='instalaciondomext']").val();
             var alumnosminimo = $("*[id$='alumnosminimo']").val();
+
+            var alumnosmaximo = $("*[id$='alumnosmaximo']").val();
+
             var fechalimite = $("*[id$='fechalimite']").val();
             
             walert = 1;
@@ -1435,6 +1444,11 @@ body { padding-right: 0 !important }
             if (alumnosminimo == '' || alumnosminimo == '0') {                
                 alerta('Atención', 'Ingrese la cantidad mínima necesaria de alumnos inscritos', 'warning', $("*[id$='alumnosminimo']"));
                 return false;                
+            }
+
+            if (alumnosmaximo == '' || alumnosmaximo == '0') {
+                alerta('Atención', 'Ingrese la cantidad máxima de alumnos inscritos', 'warning', $("*[id$='alumnosmaximo']"));
+                return false;
             }
 
             if (instalacion == '9999' && instalacionext == '') {                

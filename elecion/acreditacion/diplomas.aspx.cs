@@ -502,27 +502,42 @@ namespace elecion.acreditacion
                     try
                     {
                         con.Open();
-                        MySqlCommand mySqlCommand = con.CreateCommand();
-                        transaction = con.BeginTransaction();
-                        mySqlCommand.Connection = con;
-                        mySqlCommand.Transaction = transaction;
-                        mySqlCommand.Parameters.Clear();
-                        mySqlCommand.CommandText = "update cursofolios set estatus='CANCELADO' where idsolicitud=@idsolicitud and estatus='VIGENTE';";
-                        mySqlCommand.Parameters.AddWithValue("@idsolicitud", idsolicitud);
-                        mySqlCommand.ExecuteNonQuery();
-                        mySqlCommand.Parameters.Clear();
-                        mySqlCommand.CommandText = "insert into cursofolios (idsolicitud, fecha, folio, estatus) values (@idsolicitud, current_date, @folio, 'VIGENTE');";
-                        mySqlCommand.Parameters.AddWithValue("@idsolicitud", idsolicitud);
-                        mySqlCommand.Parameters.AddWithValue("@folio", this.folio.Text.Trim().ToUpper());
-                        mySqlCommand.ExecuteNonQuery();
-                        mySqlCommand.Parameters.Clear();
-                        mySqlCommand.CommandText = "update solicitudinscripcion set foliodiploma=@folio, fechadiploma=current_date where idsolicitud=@idsolicitud;";
-                        mySqlCommand.Parameters.AddWithValue("@idsolicitud", idsolicitud);
-                        mySqlCommand.Parameters.AddWithValue("@folio", this.folio.Text.Trim().ToUpper());
-                        mySqlCommand.ExecuteNonQuery();
-                        transaction.Commit();
-                        ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading(); toastExito(); $('#wcalificacion').modal('hide');", true);
-                        this.listadoAlumnos(sender, e);
+
+                        String sql = "select count(idsolicitud) from solicitudinscripcion where foliodiploma=@foliodiploma;";
+                        MySqlCommand cmd = new MySqlCommand(sql, con);
+                        cmd.Parameters.AddWithValue("@foliodiploma", folio.Text.Trim().ToUpper());
+                        int conteo = Convert.ToInt32(cmd.ExecuteScalar());
+
+                        if (conteo == 0)
+                        {
+                            MySqlCommand mySqlCommand = con.CreateCommand();
+                            transaction = con.BeginTransaction();
+                            mySqlCommand.Connection = con;
+                            mySqlCommand.Transaction = transaction;
+                            mySqlCommand.Parameters.Clear();
+                            mySqlCommand.CommandText = "update cursofolios set estatus='CANCELADO' where idsolicitud=@idsolicitud and estatus='VIGENTE';";
+                            mySqlCommand.Parameters.AddWithValue("@idsolicitud", idsolicitud);
+                            mySqlCommand.ExecuteNonQuery();
+                            mySqlCommand.Parameters.Clear();
+                            mySqlCommand.CommandText = "insert into cursofolios (idsolicitud, fecha, folio, estatus) values (@idsolicitud, current_date, @folio, 'VIGENTE');";
+                            mySqlCommand.Parameters.AddWithValue("@idsolicitud", idsolicitud);
+                            mySqlCommand.Parameters.AddWithValue("@folio", this.folio.Text.Trim().ToUpper());
+                            mySqlCommand.ExecuteNonQuery();
+                            mySqlCommand.Parameters.Clear();
+                            mySqlCommand.CommandText = "update solicitudinscripcion set foliodiploma=@folio, fechadiploma=current_date where idsolicitud=@idsolicitud;";
+                            mySqlCommand.Parameters.AddWithValue("@idsolicitud", idsolicitud);
+                            mySqlCommand.Parameters.AddWithValue("@folio", this.folio.Text.Trim().ToUpper());
+                            mySqlCommand.ExecuteNonQuery();
+                            transaction.Commit();
+                            ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading(); toastExito(); $('#wcalificacion').modal('hide');", true);
+                            this.listadoAlumnos(sender, e);
+                        }
+                        else
+                        {
+                            ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", " cerrarLoading(); alerta('Atención', 'El folio " + folio.Text+" ya ha sido utilizado en otro diploma, ingrese un nuevo folio', 'error',null);", true);
+                        }
+
+                        
                     }
                     catch (Exception exception)
                     {

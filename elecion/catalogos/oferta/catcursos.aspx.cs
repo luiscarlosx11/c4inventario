@@ -331,8 +331,19 @@ namespace elecion.catalogos.oferta
                             cmd.Parameters.AddWithValue("@observacion", "DADO DE ALTA");
                             cmd.ExecuteNonQuery();
                         }
+                       
                         cmd.Parameters.Clear();
-                        cmd.CommandText = string.Concat(new string[] { "select * from (select adddate('1970-01-01', t4.i * 10000 + t3.i * 1000 + t2.i * 100 + t1.i * 10 + t0.i) fecha from  (select 0 i union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t0,  (select 0 i union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t1,  (select 0 i union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t2,  (select 0 i union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t3,  (select 0 i union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t4) v where fecha between '", this.fechaini.Text, "' and '", this.fechafin.Text, "'and DAYOFWEEK(fecha) in (", this.hdias.Value, ") and fecha not in (select fecha from fechaslibres); " });
+                        cmd.CommandText = string.Concat("SELECT COALESCE(MAX(idfecha),0)as idfecha FROM fechascurso where idcurso=", this.idP.Value, ";");
+                        idfecha = Convert.ToInt32(cmd.ExecuteScalar());
+                        cmd.Parameters.Clear();
+                        query = "delete from fechascurso where idcurso=@idcurso; ";
+                        cmd.Parameters.AddWithValue("@idcurso", this.idP.Value);
+                        cmd.CommandText = query;
+                        cmd.ExecuteNonQuery();
+                        
+
+                        cmd.Parameters.Clear();
+                        cmd.CommandText = string.Concat(new string[] { "select * from (select adddate('1970-01-01', t4.i * 10000 + t3.i * 1000 + t2.i * 100 + t1.i * 10 + t0.i) fecha from  (select 0 i union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t0,  (select 0 i union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t1,  (select 0 i union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t2,  (select 0 i union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t3,  (select 0 i union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t4) v where fecha between '", this.fechaini.Text, "' and '", this.fechafin.Text, "'and DAYOFWEEK(fecha) in (", this.hdias.Value, ") and fecha not in (select fecha from fechaslibres)  union (select fecha from fechascurso where idcurso=" + idP.Value + "); " });
                         listafechas = new List<fechascurso>();
                         reader = cmd.ExecuteReader();
                         while (reader.Read())
@@ -345,14 +356,7 @@ namespace elecion.catalogos.oferta
                         }
                         reader.Close();
                         reader.Dispose();
-                        cmd.Parameters.Clear();
-                        cmd.CommandText = string.Concat("SELECT COALESCE(MAX(idfecha),0)as idfecha FROM fechascurso where idcurso=", this.idP.Value, ";");
-                        idfecha = Convert.ToInt32(cmd.ExecuteScalar());
-                        cmd.Parameters.Clear();
-                        query = "delete from fechascurso where idcurso=@idcurso; ";
-                        cmd.Parameters.AddWithValue("@idcurso", this.idP.Value);
-                        cmd.CommandText = query;
-                        cmd.ExecuteNonQuery();
+
                         foreach (fechascurso item in listafechas)
                         {
                             cmd.Parameters.Clear();
@@ -365,6 +369,8 @@ namespace elecion.catalogos.oferta
                             idfecha++;
                             cmd.ExecuteNonQuery();
                         }
+
+
                         cmd.Parameters.Clear();
                         cmd.CommandText = string.Concat("select COALESCE(ROUND(sum(TIME_TO_SEC(TIMEDIFF(horafin, horaini))/3600),0),0) as horas from fechascurso where idcurso =", this.idP.Value, ";");
                         nohoras = Convert.ToInt32(cmd.ExecuteScalar());
@@ -873,7 +879,7 @@ namespace elecion.catalogos.oferta
             try
             {
                 this.lusuarios.DataSourceID = this.DsUsuarios.ID;
-                string query = "select c.idcurso, c.clave, c.idsucursal, coalesce(c.nombre,'NO DEFINIDO')as nombre,  coalesce(a.area,'AREA NO ASIGNADA') as area,  coalesce(e.especialidad,'ESPECIALIDAD NO ASIGNADA')as especialidad,  coalesce(i.nombre,'INSTRUCTOR NO DEFINIDO') as instructor, t.tipocurso, c.estatus, c.costo, cast(c.fechaini as char)as fechaini, cast(c.fechafin as char)as fechafin, cast(TIME_FORMAT(c.horaini, '%h:%i %p') as char)as horaini, cast(TIME_FORMAT(c.horafin, '%h:%i %p') as char)as horafin,  c.alumnosminimo, (select count(s.idalumno) from solicitudinscripcion s where s.idcurso = c.idcurso) as inscritos, s.nombre as plantel from curso c left join area a on a.idarea = c.idarea left join especialidad e on e.idespecialidad = c.idespecialidad left join tipocurso t on t.idtipocurso = c.idtipocurso left join instructor i on i.idinstructor = c.idinstructor left join sucursal s on s.idsucursal = c.idsucursal where c.tipo='C' and c.estatus not in('CANCELADO') ";
+                string query = "select c.idcurso, c.clave, c.idsucursal, coalesce(c.nombre,'NO DEFINIDO')as nombre,  coalesce(a.area,'AREA NO ASIGNADA') as area,  coalesce(e.especialidad,'ESPECIALIDAD NO ASIGNADA')as especialidad,  coalesce(i.nombre,'INSTRUCTOR NO DEFINIDO') as instructor, t.tipocurso, c.estatus, c.costo, cast(c.fechaini as char)as fechaini, cast(c.fechafin as char)as fechafin, cast(TIME_FORMAT(c.horaini, '%h:%i %p') as char)as horaini, cast(TIME_FORMAT(c.horafin, '%h:%i %p') as char)as horafin,  c.alumnosminimo, (select count(s.idalumno) from solicitudinscripcion s where s.idcurso = c.idcurso and s.estatus not in('CANCELADO')) as inscritos, s.nombre as plantel from curso c left join area a on a.idarea = c.idarea left join especialidad e on e.idespecialidad = c.idespecialidad left join tipocurso t on t.idtipocurso = c.idtipocurso left join instructor i on i.idinstructor = c.idinstructor left join sucursal s on s.idsucursal = c.idsucursal where c.tipo='C' and c.estatus not in('CANCELADO') ";
                 if (this.bname.Text.Trim() != "")
                 {
                     query = string.Concat(new string[] { query, " and (c.nombre LIKE '%", this.bname.Text.Trim().ToUpper(), "%' or c.clave LIKE '%", this.bname.Text.Trim().ToUpper(), "%') " });
@@ -1409,6 +1415,7 @@ namespace elecion.catalogos.oferta
                 MySqlTransaction transaction = null;
                 MySqlDataReader reader = null;
                 int nohoras = 0;
+                int dias = 0;
 
                 try
                 {
@@ -1434,19 +1441,23 @@ namespace elecion.catalogos.oferta
 
 
                         cmd.Parameters.Clear();
-                        cmd.CommandText = string.Concat("select sum(TIMESTAMPDIFF(HOUR, horaini, horafin))as horas from fechascurso where idcurso =", this.idP.Value, ";");
+                        cmd.CommandText = string.Concat("select sum(TIMESTAMPDIFF(HOUR, horaini, horafin))as horas, count(fecha)as dias from fechascurso where idcurso =", this.idP.Value, ";");
                         reader = cmd.ExecuteReader();
                         while (reader.Read())
                         {
                             nohoras = reader.GetInt32(0);
+                            dias = reader.GetInt32(1);
                         }
                         reader.Close();
+
                         cmd.Parameters.Clear();
-                        cmd.CommandText = "update curso set horas=@horas where idcurso=@idcurso; ";
+                        cmd.CommandText = "update curso set horas=@horas, dias=@dias where idcurso=@idcurso; ";
                         cmd.Parameters.AddWithValue("@idcurso", this.idP.Value);
                         cmd.Parameters.AddWithValue("@horas", nohoras);
+                        cmd.Parameters.AddWithValue("@dias", dias);
                         cmd.ExecuteNonQuery();
                         this.horas.Text = nohoras.ToString();
+                        this.dias.Text = dias.ToString();
 
                         transaction.Commit();
 
@@ -1475,6 +1486,7 @@ namespace elecion.catalogos.oferta
                 MySqlTransaction transaction = null;
                 MySqlDataReader reader = null;
                 int nohoras = 0;
+                int dias = 0;
 
                 try
                 {
@@ -1495,24 +1507,29 @@ namespace elecion.catalogos.oferta
 
                         cmd.ExecuteNonQuery();
                         cmd.Parameters.Clear();
-                        cmd.CommandText = string.Concat("select sum(TIMESTAMPDIFF(HOUR, horaini, horafin))as horas from fechascurso where idcurso =", this.idP.Value, ";");
+                        cmd.CommandText = string.Concat("select sum(TIMESTAMPDIFF(HOUR, horaini, horafin))as horas, count(fecha)as dias from fechascurso where idcurso =", this.idP.Value, ";");
                         reader = cmd.ExecuteReader();
                         while (reader.Read())
                         {
                             nohoras = reader.GetInt32(0);
+                            dias = reader.GetInt32(1);
                         }
                         reader.Close();
+
                         cmd.Parameters.Clear();
-                        cmd.CommandText = "update curso set horas=@horas where idcurso=@idcurso; ";
+                        cmd.CommandText = "update curso set horas=@horas, dias=@dias where idcurso=@idcurso; ";
                         cmd.Parameters.AddWithValue("@idcurso", this.idP.Value);
                         cmd.Parameters.AddWithValue("@horas", nohoras);
+                        cmd.Parameters.AddWithValue("@dias", dias);
                         cmd.ExecuteNonQuery();
                         this.horas.Text = nohoras.ToString();
+                        this.dias.Text = dias.ToString();
 
                         transaction.Commit();
 
                         this.getCalendario(sender, e);
                         ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading(); $('#wfechas').modal('hide');", true);
+
                     }
                     catch (Exception exception)
                     {
