@@ -673,6 +673,7 @@ body { padding-right: 0 !important }
                                                                     
                                                                     <asp:Button runat="server" ID="guardar" OnClick="guardaEdita" style="display:none" UseSubmitBehavior="false"/>
                                                                     <asp:Button runat="server" ID="bautorizacion" OnClick="solicitaAutorizacion" style="display:none" UseSubmitBehavior="false"/>
+                                                                    <asp:Button runat="server" ID="botonaperturar" OnClick="aperturaCurso" style="display:none" UseSubmitBehavior="false"/>
                                                                     <asp:Button runat="server" ID="Beditar" OnClick="editaRegistro" style="display:none" UseSubmitBehavior="false"/> 
 
                                                                     <asp:Button runat="server" ID="bfechascurso" OnClick="generaFechasCurso" UseSubmitBehavior="false" Style="display: none" />
@@ -1542,118 +1543,10 @@ body { padding-right: 0 !important }
         }
 
         function aperturar() {
-            var clave = $("*[id$='clave']").val();
-            var nombre = $("*[id$='nombre']").val();
-            var fechaini = $("*[id$='fechaini']").val();
-            var fechafin = $("*[id$='fechafin']").val();
-            var dias = $("*[id$='dias']").val();
-            var horaini = $("*[id$='horaini']").val();
-            var horafin = $("*[id$='horafin']").val();
-            var horas = $("*[id$='horas']").val();
-            var diascurso = $("*[id$='hdias']").val();
-
-            var costomodulo = $("*[id$='costomodulo']").val();
-            var costoalumno = $("*[id$='costoalumno']").val();
-            var pagohora = $("*[id$='pagohora']").val();
-
-            var instalacion = $("*[id$='instalacion']").val();
-            var instalacionext = $("*[id$='instalacionext']").val();
-            var instalaciondomext = $("*[id$='instalaciondomext']").val();
-            var alumnosminimo = $("*[id$='alumnosminimo']").val();
-            var fechalimite = $("*[id$='fechalimite']").val();
-
-            walert = 1;
-
-            if (clave == '') {
-                alerta('Atención', 'Ingrese la clave del curso', 'warning', $("*[id$='clave']"));
-                return false;
-            }
-
-            if (nombre == '') {
-                alerta('Atención', 'Ingrese el nombre del curso', 'warning', $("*[id$='nombre']"));
-                return false;
-            }
-
-
-            if (alumnosminimo == '' || alumnosminimo == '0') {
-                alerta('Atención', 'Ingrese la cantidad mínima necesaria de alumnos inscritos', 'warning', $("*[id$='alumnosminimo']"));
-                return false;
-            }
-
-            if (instalacion == '9999' && instalacionext == '') {
-                alerta('Atención', 'Ingrese el nombre de la instalación extramuros', 'warning', $("*[id$='instalacionext']"));
-                return false;
-            }
-
-            if (instalacion == '9999' && instalaciondomext == '') {
-                alerta('Atención', 'Ingrese la dirección de la instalación extramuros', 'warning', $("*[id$='instalaciondomext']"));
-                return false;
-            }
-
-            /*
-             if (costomodulo == '' || costomodulo == '0') {                
-                alerta('Atención', 'Ingrese el costo por módulo del curso', 'warning', $("*[id$='costomodulo']"));
-                return false;                
-            }
-
-            if (costoalumno == '' || costoalumno == '0') {                
-                alerta('Atención', 'Ingrese el costo por alumno del curso', 'warning', $("*[id$='costoalumno']"));
-                return false;                
-            }*/
-
-            if (pagohora == '' || pagohora == '0') {
-                alerta('Atención', 'Ingrese el pago por hora del curso', 'warning', $("*[id$='pagohora']"));
-                return false;
-            }
-
-            /* if (fechalimite == '') {
-                 alerta('Atención', 'Ingrese la fecha límite de inscripción al curso', 'warning', $("*[id$='fechalimite']"));
-                 return false;
-             }
-             */
-            if (fechaini == '') {
-                alerta('Atención', 'Ingrese la fecha de inicio del curso', 'warning', $("*[id$='fechaini']"));
-                return false;
-            }
-
-            if (fechafin == '') {
-                alerta('Atención', 'Ingrese la fecha de término del curso', 'warning', $("*[id$='fechafin']"));
-                return false;
-            }
-
-            if (dias == '' || dias == '0') {
-                alerta('Atención', 'Ingrese la duración en días del curso', 'warning', $("*[id$='dias']"));
-                return false;
-            }
-
-            if (horaini == '') {
-                alerta('Atención', 'Ingrese el horario (hora de inicio) del curso', 'warning', $("*[id$='horaini']"));
-                return false;
-            }
-
-
-            if (horafin == '') {
-                alerta('Atención', 'Ingrese el horario (hora de término) del curso', 'warning', $("*[id$='horafin']"));
-                return false;
-            }
-
-            if (diascurso == '') {
-                alerta('Atención', 'Indique los días de la semana en los cuales se impartirá el curso', 'warning', $("*[id$='hdias']"));
-                return false;
-            }
-
-
-            if (horas == '' || horas == '0') {
-                alerta('Atención', 'Ingrese la duración en horas del curso', 'warning', $("*[id$='horas']"));
-                return false;
-            }
-
-            walert = 0;
-
-            mostrarLoading();
+           
 
             swal({
-                title: "Se solicitará la autorización para este curso, ¿Desea continuar?",
+                title: "El curso será puesto EN CAPTURA y podrá ser modificado, ¿Desea continuar?",
                 text: "",
                 type: "warning",
                 showCancelButton: true,
@@ -1663,7 +1556,7 @@ body { padding-right: 0 !important }
             }).then((result) => {
                 if (result.value) {
                     mostrarLoading();
-                    $('#<%= bautorizacion.ClientID %>').click();
+                    $('#<%= botonaperturar.ClientID %>').click();
                 }
             })
 

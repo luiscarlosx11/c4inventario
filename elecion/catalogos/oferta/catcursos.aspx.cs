@@ -1019,10 +1019,23 @@ namespace elecion.catalogos.oferta
                         if (rdr["estatus"].ToString().Equals("AUTORIZADO") || rdr["estatus"].ToString().Equals("FINALIZADO"))
                         {
                             this.documentos.Visible = true;
+
+                            if (this.roles.IndexOf('1', 0) < 0)
+                            {
+                                bloqueo = string.Concat(bloqueo, "$('#baperturar *').hide();");
+                            }
+                            else
+                            {
+                                bloqueo = string.Concat(bloqueo, "$('#baperturar').show();");
+                            }
+                                                       
+
                         }
                         else
                         {
                             this.documentos.Visible = false;
+                            bloqueo = string.Concat(bloqueo, "$('#baperturar').hide();");
+
                         }
                         if (rdr["estatus"].ToString().Equals("EN CAPTURA") || rdr["estatus"].ToString().Equals("OBSERVADO"))
                         {
@@ -1406,7 +1419,45 @@ namespace elecion.catalogos.oferta
         }
 
 
-
+        protected void aperturaCurso(object sender, EventArgs e)
+        {
+            using (MySqlConnection con = new MySqlConnection(WebConfigurationManager.ConnectionStrings["DBconexion"].ConnectionString))
+            {
+                MySqlTransaction transaction = null;
+                int idcurso = 0;
+                try
+                {
+                    try
+                    {
+                        con.Open();
+                        MySqlCommand cmd = con.CreateCommand();
+                        transaction = con.BeginTransaction();
+                        cmd.Connection = con;
+                        cmd.Transaction = transaction;
+                        
+                        cmd.Parameters.Clear();
+                        cmd.CommandText = "update curso set estatus='EN CAPTURA' where idcurso=@idcurso;";
+                        cmd.Parameters.AddWithValue("@idcurso", this.idP.Value);
+                        cmd.ExecuteNonQuery();
+                        cmd.Parameters.Clear();
+                        
+                        transaction.Commit();
+                        this.listadoClientes(sender, e);
+                        ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading(); toastExito(); $('#bootstrap').modal('hide');", true);
+                    }
+                    catch (Exception exception)
+                    {
+                        Exception ex = exception;
+                        transaction.Rollback();
+                        Console.WriteLine(string.Concat("error:", ex.ToString()));
+                    }
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+        }
 
         protected void habilitaFecha(object sender, EventArgs e)
         {
