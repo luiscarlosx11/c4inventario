@@ -656,13 +656,11 @@ body { padding-right: 0 !important }
                             <asp:Button runat="server" ID="bimprimir" OnClick="bimprimir_Click" UseSubmitBehavior="false" Style="display: none" />
                             <asp:Button runat="server" ID="bimprimirlista" OnClick="imprimirListaAsistencia" UseSubmitBehavior="false" Style="display: none" />
                             <asp:Button runat="server" ID="bimprimirriadc" OnClick="imprimirRIADC" UseSubmitBehavior="false" Style="display: none" />
+                            <asp:Button runat="server" ID="bimprimirriadcacred" OnClick="imprimirRIADCAcred" UseSubmitBehavior="false" Style="display: none" />
                              
                             <div class="row" id="tbhorario">
                                 <div class="col-md-12">
                                     
-
-
-
                                                 <div class="row">
 
                                                     <div class="col-md-12">
@@ -689,8 +687,6 @@ body { padding-right: 0 !important }
                                                             </asp:UpdatePanel>
 
                                                         </div>
-
-
 
                                                     </div>
                                                 </div>
@@ -847,6 +843,7 @@ body { padding-right: 0 !important }
                                    </div>
                                 </div>
                                -->
+                               <div class="row">
                                <div class="col-md-4"><br />
                                 <div class="card overflow-hidden">
                                     <div class="card-body">
@@ -929,8 +926,10 @@ body { padding-right: 0 !important }
                                         
                                     </div>
                                 </div>
+                               </div>
 
-                                 <div class="col-md-4">
+                               <div class="row">
+                                    <div class="col-md-4">
                                 <div class="card overflow-hidden">
                                     <div class="card-body">
                                         <div class="card-block cleartfix">
@@ -940,7 +939,7 @@ body { padding-right: 0 !important }
                                                 </div>
                                                 <div class="media-body">
                                                     <h4>Formato</h4>
-                                                    <span>RIADC-02</span>
+                                                    <span>RIADC-02 Inscripción</span>
                                                 </div>
                                                 
                                                 </div><br />
@@ -956,7 +955,35 @@ body { padding-right: 0 !important }
                                     </div>
                                 </div>
                                
+
+                               <div class="col-md-4" id="acreditacion" runat="server">
+                                <div class="card overflow-hidden">
+                                    <div class="card-body">
+                                        <div class="card-block cleartfix">
+                                            <div class="media">
+                                                <div class="media-left media-middle">
+                                                    <i class="fa fa-file-pdf-o primary font-large-2 mr-2"></i>
+                                                </div>
+                                                <div class="media-body">
+                                                    <h4>Formato</h4>
+                                                    <span>RIADC-02 Acreditación</span>
+                                                </div>
+                                                
+                                                </div><br />
+
+                                                <button type="button" id="bsolicitudacred" onclick="imprimirRiadcAcred();" class="btn btn-icon btn-primary mr-1" data-toggle="modal">
+                                                    <i class="ft-file"></i>Imprimir 
+                                                </button>
+                                            </div>
+                                        
+                                                   
+                                        </div>
+                                        
+                                    </div>
+                                </div>
                            </div>
+                               </div>
+                                
                                     </ContentTemplate>
                             </asp:UpdatePanel>
                         </div>
@@ -1795,6 +1822,13 @@ body { padding-right: 0 !important }
         function imprimirRiadc() {
             mostrarLoading();
             $('#<%= bimprimirriadc.ClientID %>').click();
+            cerrarLoading();
+        }
+
+
+        function imprimirRiadcAcred() {
+            mostrarLoading();
+            $('#<%= bimprimirriadcacred.ClientID %>').click();
             cerrarLoading();
         }
 

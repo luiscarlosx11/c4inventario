@@ -71,11 +71,12 @@
                                                     <asp:HiddenField runat="server" ID="idP" /> 
                                                     <asp:HiddenField runat="server" ID="limite" Value="48" /> 
                                                     <asp:HiddenField runat="server" ID="idS" /> 
+                                                     <asp:HiddenField runat="server" ID="idRol" /> 
                                                     
                                                     <asp:Button runat="server" ID="Bconsultar" OnClick="listadoClientes" Style="display: none" UseSubmitBehavior="false"/>
                                                                                                                                                                   
                                                     <asp:Button runat="server" ID="Bnuevo" OnClick="nuevoRegistro" style="display:none" UseSubmitBehavior="false"/>                                            
-                                                    <button type="button" id="nuevo" onclick="abrirModal(0,0,1,'',1,'','','','','','','','','',0,'');" class="btn btn-icon btn-primary mr-1" data-toggle="modal" >
+                                                    <button type="button" id="nuevo" onclick="abrirModal(0,0,1,'',1,'','','','','','','','','',0,'');" class="btn btn-icon btn-primary mr-1" data-toggle="modal" runat="server" >
                                                          <i class="ft-file"></i> Nuevo Registro 
                                                     </button>
                                                     </div>
@@ -96,17 +97,7 @@
 											<asp:TextBox ID="bname" CssClass="form-control text-uppercase"  placeholder="Nombre" name="bname" runat="server" OnTextChanged="listadoClientes" AutoPostBack="true"></asp:TextBox>
 										</div>
 									</div>
-                                     <div class="col-md-4" id="busplantel" runat="server">
-										<div class="form-group">
-											<label for="cliente" class="text-bold-600">Plantel</label>
-											<asp:DropDownList runat="server" ID="bplantel" CssClass="select2 form-control" DataSourceID="DSplantel" DataTextField="nombre" DataValueField="idsucursal" AppendDataBoundItems="true" onChange="consultaPrincipal()">
-                                                <asp:ListItem Value="0" Text="SELECCIONE UN PLANTEL"></asp:ListItem>
-											</asp:DropDownList>
-                                         <asp:SqlDataSource ID="DSplantel" runat="server" ProviderName="MySql.Data.MySqlClient" ConnectionString="<%$ ConnectionStrings:DBconexion %>" SelectCommand="SELECT idsucursal, nombre FROM sucursal ORDER BY nombre">
-                                             
-                                         </asp:SqlDataSource>                                          
-										</div>
-									</div>
+                                    
                               </div>
                             </div>
                             
@@ -248,7 +239,7 @@
 			        </div>
 			   
                        <asp:HiddenField runat="server" ID="idr" />
-                    <div class="modal-body">
+                    <div class="modal-body" id="datos">
 
                         <div class="row">
                             <div class="col-md-12">
@@ -315,7 +306,8 @@
 
 
                                             </div>
-
+                                            
+                                           
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="form-group">
@@ -473,7 +465,7 @@
                    
                     <div class="modal-footer">
                              
-                        <button class="btn btn-primary" onclick="valida()" type="button" data-backdrop="false">
+                        <button class="btn btn-primary" onclick="valida()" type="button" data-backdrop="false" id="aceptar" runat="server">
                             <i class="fa fa-check-square-o"></i>Aceptar
                         </button>
 
@@ -583,8 +575,12 @@
             
             $("*[id$='idP']").val(idinstructor);
 
-            if(idsucursal>0)
+            if (idsucursal > 0) {
                 $("*[id$='idS']").val(idsucursal);
+                $("*[id$='plantelsuc']").val(idsucursal);
+                $("*[id$='plantelsuc']").change();
+            }
+                
 
             $("*[id$='nombre']").val(nombre);
             $("*[id$='especialidad']").val(idespecialidad);
@@ -608,6 +604,32 @@
                 $("*[id$='activo']").iCheck('check');
             else
                 $("*[id$='activo']").iCheck('uncheck');
+
+
+            //admin   
+            if ($("*[id$='idRol']").val().indexOf('1') < 0) {
+
+                
+
+                $("#datos").find('input').each(function () {
+                    $(this).attr("readonly", "readonly");
+                });
+
+                $("#datos").find('select').each(function () {
+                    $(this).attr('disabled', 'disabled');
+                });
+
+            }
+            //user normal
+            else {
+                $("#datos").find('input').each(function () {
+                    $(this).removeAttr("readonly");
+                });
+
+                $("#datos").find('select').each(function () {
+                    $(this).removeAttr("readonly");
+                });
+            }
 
             $("#bootstrap").modal('show');
         }

@@ -210,9 +210,9 @@ namespace elecion.catalogos.oferta
                         if (Convert.ToInt32(this.idP.Value) != 0)
                         {
                             cmd.Parameters.Clear();
-                            cmd.CommandText = string.Concat("update curso set nombre=@nombre, clave=@clave, idcicloescolar=@idcicloescolar, idtipocurso=@idtipocurso, idarea=@idarea, idespecialidad=@idespecialidad, idinstructor=@idinstructor, idinstalacion=@idinstalacion, fechaini=@fechaini, fechafin=@fechafin, dias=@dias, horaini=@horaini, horafin=@horafin, horas=@horas,  costomodulo=@costomodulo, costo=@costo, pagohora=@pagohora, observaciones=@observaciones, diascurso=@diascurso, idtipooferta=@idtipooferta, instalacionext=@instalacionext, instalaciondomext=@instalaciondomext, idcursoregular= @idcursoregular ", "where idcurso=@idcurso;");
+                            cmd.CommandText = string.Concat("update curso set nombre=@nombre, clave=@clave, idcicloescolar=(select idcicloescolar from cicloescolar where @fechaini between fechaini and fechafin), idtipocurso=@idtipocurso, idarea=@idarea, idespecialidad=@idespecialidad, idinstructor=@idinstructor, idinstalacion=@idinstalacion, fechaini=@fechaini, fechafin=@fechafin, dias=@dias, horaini=@horaini, horafin=@horafin, horas=@horas,  costomodulo=@costomodulo, costo=@costo, pagohora=@pagohora, observaciones=@observaciones, diascurso=@diascurso, idtipooferta=@idtipooferta, instalacionext=@instalacionext, instalaciondomext=@instalaciondomext, idcursoregular= @idcursoregular ", "where idcurso=@idcurso;");
                             cmd.Parameters.AddWithValue("@idcurso", this.idP.Value);
-                            cmd.Parameters.AddWithValue("@idcicloescolar", 1);
+                            //cmd.Parameters.AddWithValue("@idcicloescolar", 1);
                             cmd.Parameters.AddWithValue("@clave", this.clave.Text.ToUpper().Trim());
                             cmd.Parameters.AddWithValue("@nombre", this.nombre.Text.ToUpper().Trim());
                             cmd.Parameters.AddWithValue("@idtipocurso", this.tipocurso.SelectedValue);
@@ -268,8 +268,8 @@ namespace elecion.catalogos.oferta
                         else
                         {
                             cmd.Parameters.Clear();
-                            cmd.CommandText = "insert into curso(idsucursal, idcicloescolar, clave, nombre, idtipocurso, idarea, idespecialidad, idinstructor, idinstalacion, fechaini, fechafin, dias, horaini, horafin, horas, costomodulo, costo, pagohora, observaciones, estatus, pagado, diascurso, idtipooferta, instalacionext,  instalaciondomext, solicita, autoriza, idcursoregular, tipo) values(@idsucursal, @idcicloescolar, @clave, @nombre, @idtipocurso, @idarea, @idespecialidad, @idinstructor, @idinstalacion, @fechaini, @fechafin, @dias, @horaini, @horafin, @horas, @costomodulo, @costo, @pagohora, @observaciones, 'EN CAPTURA', 0, @diascurso, @idtipooferta, @instalacionext, @instalaciondomext, (select encargado from sucursal where idsucursal=@idsucursal), 'PROF. GERSOM PÉREZ RAMÍREZ', @idcursoregular, 'C'); ";
-                            cmd.Parameters.AddWithValue("@idcicloescolar", 1);
+                            cmd.CommandText = "insert into curso(idsucursal, idcicloescolar, clave, nombre, idtipocurso, idarea, idespecialidad, idinstructor, idinstalacion, fechaini, fechafin, dias, horaini, horafin, horas, costomodulo, costo, pagohora, observaciones, estatus, pagado, diascurso, idtipooferta, instalacionext,  instalaciondomext, solicita, autoriza, idcursoregular, tipo) values(@idsucursal, (select idcicloescolar from cicloescolar where @fechaini between fechaini and fechafin), @clave, @nombre, @idtipocurso, @idarea, @idespecialidad, @idinstructor, @idinstalacion, @fechaini, @fechafin, @dias, @horaini, @horafin, @horas, @costomodulo, @costo, @pagohora, @observaciones, 'EN CAPTURA', 0, @diascurso, @idtipooferta, @instalacionext, @instalaciondomext, (select encargado from sucursal where idsucursal=@idsucursal), 'PROF. GERSOM PÉREZ RAMÍREZ', @idcursoregular, 'C'); ";
+                           // cmd.Parameters.AddWithValue("@idcicloescolar", 1);
                             cmd.Parameters.AddWithValue("@idsucursal", this.idsucursal);
                             cmd.Parameters.AddWithValue("@clave", this.clave.Text.ToUpper().Trim());
                             cmd.Parameters.AddWithValue("@nombre", this.nombre.Text.ToUpper().Trim());
@@ -473,9 +473,9 @@ namespace elecion.catalogos.oferta
                         if (Convert.ToInt32(this.idP.Value) != 0)
                         {
                             cmd.Parameters.Clear();
-                            cmd.CommandText = string.Concat("update curso set clave=@clave, nombre=@nombre, idcicloescolar=@idcicloescolar, idtipocurso=@idtipocurso, idarea=@idarea, idespecialidad=@idespecialidad, idinstructor=@idinstructor, idinstalacion=@idinstalacion, fechaini=@fechaini, fechafin=@fechafin, dias=@dias, horaini=@horaini, horafin=@horafin, horas=@horas,  costomodulo=@costomodulo, costo=@costo, pagohora=@pagohora, observaciones=@observaciones, diascurso=@diascurso, idtipooferta=@idtipooferta, instalacionext=@instalacionext, alumnosminimo=@alumnosminimo, alumnosmaximo=@alumnosmaximo, fechalimite=@fechalimite, instalaciondomext=@instalaciondomext, idcursoregular= @idcursoregular, movilidad=@movilidad, enlinea=@enlinea ", "where idcurso=@idcurso;");
+                            cmd.CommandText = string.Concat("update curso set clave=@clave, nombre=@nombre, idcicloescolar=(select idcicloescolar from cicloescolar where @fechaini between fechaini and fechafin), idtipocurso=@idtipocurso, idarea=@idarea, idespecialidad=@idespecialidad, idinstructor=@idinstructor, idinstalacion=@idinstalacion, fechaini=@fechaini, fechafin=@fechafin, dias=@dias, horaini=@horaini, horafin=@horafin, horas=@horas,  costomodulo=@costomodulo, costo=@costo, pagohora=@pagohora, observaciones=@observaciones, diascurso=@diascurso, idtipooferta=@idtipooferta, instalacionext=@instalacionext, alumnosminimo=@alumnosminimo, alumnosmaximo=@alumnosmaximo, fechalimite=@fechalimite, instalaciondomext=@instalaciondomext, idcursoregular= @idcursoregular, movilidad=@movilidad, enlinea=@enlinea ", "where idcurso=@idcurso;");
                             cmd.Parameters.AddWithValue("@idcurso", this.idP.Value);
-                            cmd.Parameters.AddWithValue("@idcicloescolar", 1);
+                            //cmd.Parameters.AddWithValue("@idcicloescolar", 1);
                             cmd.Parameters.AddWithValue("@clave", this.clave.Text.ToUpper().Trim());
                             cmd.Parameters.AddWithValue("@nombre", this.nombre.Text.ToUpper().Trim());
                             cmd.Parameters.AddWithValue("@idtipocurso", this.tipocurso.SelectedValue);
@@ -538,8 +538,8 @@ namespace elecion.catalogos.oferta
                         else
                         {
                             cmd.Parameters.Clear();
-                            cmd.CommandText = "insert into curso(idsucursal, idcicloescolar, clave, nombre, idtipocurso, idarea, idespecialidad, idinstructor, idinstalacion, fechaini, fechafin, dias, horaini, horafin, horas, costomodulo, costo, pagohora, observaciones, estatus, pagado, diascurso, idtipooferta, instalacionext, alumnosminimo, alumnosmaximo, fechalimite, instalaciondomext, solicita, autoriza, idcursoregular, tipo, movilidad, enlinea, idoferta) values(@idsucursal, @idcicloescolar, @clave, @nombre, @idtipocurso, @idarea, @idespecialidad, @idinstructor, @idinstalacion, @fechaini, @fechafin, @dias, @horaini, @horafin, @horas, @costomodulo, @costo, @pagohora, @observaciones, 'EN CAPTURA', 0, @diascurso, @idtipooferta, @instalacionext, @alumnosminimo, @alumnosmaximo, @fechalimite, @instalaciondomext, (select encargado from sucursal where idsucursal=@idsucursal), 'PROF. GERSOM PÉREZ RAMÍREZ', @idcursoregular, 'C', @movilidad, @enlinea, (select idofertaeducativa from ofertaeducativa where vigente=1)); ";
-                            cmd.Parameters.AddWithValue("@idcicloescolar", 1);
+                            cmd.CommandText = "insert into curso(idsucursal, idcicloescolar, clave, nombre, idtipocurso, idarea, idespecialidad, idinstructor, idinstalacion, fechaini, fechafin, dias, horaini, horafin, horas, costomodulo, costo, pagohora, observaciones, estatus, pagado, diascurso, idtipooferta, instalacionext, alumnosminimo, alumnosmaximo, fechalimite, instalaciondomext, solicita, autoriza, idcursoregular, tipo, movilidad, enlinea, idoferta) values(@idsucursal, (select idcicloescolar from cicloescolar where @fechaini between fechaini and fechafin), @clave, @nombre, @idtipocurso, @idarea, @idespecialidad, @idinstructor, @idinstalacion, @fechaini, @fechafin, @dias, @horaini, @horafin, @horas, @costomodulo, @costo, @pagohora, @observaciones, 'EN CAPTURA', 0, @diascurso, @idtipooferta, @instalacionext, @alumnosminimo, @alumnosmaximo, @fechalimite, @instalaciondomext, (select encargado from sucursal where idsucursal=@idsucursal), 'PROF. GERSOM PÉREZ RAMÍREZ', @idcursoregular, 'C', @movilidad, @enlinea, (select idofertaeducativa from ofertaeducativa where vigente=1)); ";
+                            //cmd.Parameters.AddWithValue("@idcicloescolar", 1);
                             cmd.Parameters.AddWithValue("@idsucursal", this.idsucursal);
                             cmd.Parameters.AddWithValue("@nombre", this.nombre.Text.ToUpper().Trim());
                             cmd.Parameters.AddWithValue("@clave", this.clave.Text.ToUpper().Trim());
@@ -758,7 +758,15 @@ namespace elecion.catalogos.oferta
             RIACD reporte = new RIACD();
             reporte.ReportParameters["idsucursal"].Value = this.idS.Value;
             reporte.ReportParameters["idcurso"].Value = this.idP.Value;
-            this.ExportToPDF(reporte, string.Concat("RIADC-02 ", this.cve.Value));
+            this.ExportToPDF(reporte, string.Concat("RIADC-02 Inscripción ", this.cve.Value));
+        }
+
+        protected void imprimirRIADCAcred(object sender, EventArgs e)
+        {
+            RIACDAcreditacion reporte = new RIACDAcreditacion();
+            reporte.ReportParameters["idsucursal"].Value = this.idS.Value;
+            reporte.ReportParameters["idcurso"].Value = this.idP.Value;
+            this.ExportToPDF(reporte, string.Concat("RIADC-02 Acreditación ", this.cve.Value));
         }
 
         protected void insertaFechas(object sender, EventArgs e)
@@ -823,6 +831,7 @@ namespace elecion.catalogos.oferta
                 alumnosmaximo.Text = "";
                 alumnosminimo.Text = "";
                 documentos.Visible = false;
+                acreditacion.Visible = false;
                 llinks.Text = "";
 
                 json = "[]";
@@ -1020,6 +1029,11 @@ namespace elecion.catalogos.oferta
                         {
                             this.documentos.Visible = true;
 
+                            if (rdr["estatus"].ToString().Equals("FINALIZADO"))
+                                acreditacion.Visible = true;
+                            else
+                                acreditacion.Visible = false;
+
                             if (this.roles.IndexOf('1', 0) < 0)
                             {
                                 bloqueo = string.Concat(bloqueo, "$('#baperturar *').hide();");
@@ -1034,6 +1048,7 @@ namespace elecion.catalogos.oferta
                         else
                         {
                             this.documentos.Visible = false;
+                            acreditacion.Visible = false;
                             bloqueo = string.Concat(bloqueo, "$('#baperturar').hide();");
 
                         }
@@ -1279,9 +1294,9 @@ namespace elecion.catalogos.oferta
                         if (Convert.ToInt32(this.idP.Value) != 0)
                         {
                             cmd.Parameters.Clear();
-                            cmd.CommandText = string.Concat("update curso set clave=@clave, nombre=@nombre, idcicloescolar=@idcicloescolar, idtipocurso=@idtipocurso, idarea=@idarea, idespecialidad=@idespecialidad, idinstructor=@idinstructor, idinstalacion=@idinstalacion, fechaini=@fechaini, fechafin=@fechafin, dias=@dias, horaini=@horaini, horafin=@horafin, horas=@horas,  costomodulo=@costomodulo, costo=@costo, pagohora=@pagohora, observaciones=@observaciones, diascurso=@diascurso, idtipooferta=@idtipooferta, instalacionext=@instalacionext, alumnosminimo=@alumnosminimo, alumnosmaximo=@alumnosmaximo, fechalimite=@fechalimite, instalaciondomext=@instalaciondomext ", "where idcurso=@idcurso;");
+                            cmd.CommandText = string.Concat("update curso set clave=@clave, nombre=@nombre, idcicloescolar=(select idcicloescolar from cicloescolar where @fechaini between fechaini and fechafin), idtipocurso=@idtipocurso, idarea=@idarea, idespecialidad=@idespecialidad, idinstructor=@idinstructor, idinstalacion=@idinstalacion, fechaini=@fechaini, fechafin=@fechafin, dias=@dias, horaini=@horaini, horafin=@horafin, horas=@horas,  costomodulo=@costomodulo, costo=@costo, pagohora=@pagohora, observaciones=@observaciones, diascurso=@diascurso, idtipooferta=@idtipooferta, instalacionext=@instalacionext, alumnosminimo=@alumnosminimo, alumnosmaximo=@alumnosmaximo, fechalimite=@fechalimite, instalaciondomext=@instalaciondomext ", "where idcurso=@idcurso;");
                             cmd.Parameters.AddWithValue("@idcurso", this.idP.Value);
-                            cmd.Parameters.AddWithValue("@idcicloescolar", 1);
+                            
                             cmd.Parameters.AddWithValue("@clave", this.clave.Text.ToUpper().Trim());
                             cmd.Parameters.AddWithValue("@nombre", this.nombre.Text.ToUpper().Trim());
                             cmd.Parameters.AddWithValue("@idtipocurso", this.tipocurso.SelectedValue);
@@ -1332,8 +1347,8 @@ namespace elecion.catalogos.oferta
                         else
                         {
                             cmd.Parameters.Clear();
-                            cmd.CommandText = "insert into curso(idsucursal, idcicloescolar, clave, nombre, idtipocurso, idarea, idespecialidad, idinstructor, idinstalacion, fechaini, fechafin, dias, horaini, horafin, horas, costomodulo, costo, pagohora, observaciones, estatus, pagado, diascurso, idtipooferta, instalacionext, alumnosminimo, alumnosmaximo, fechalimite, instalaciondomext, solicita, autoriza) values(@idsucursal, @idcicloescolar, @clave, @nombre, @idtipocurso, @idarea, @idespecialidad, @idinstructor, @idinstalacion, @fechaini, @fechafin, @dias, @horaini, @horafin, @horas, @costomodulo, @costo, @pagohora, @observaciones, 'EN CAPTURA', 0, @diascurso, @idtipooferta, @instalacionext, @alumnosminimo, @alumnosmaximo, @fechalimite, @instalaciondomext, (select encargado from sucursal where idsucursal=@idsucursal), 'PROF. GERSOM PÉREZ RAMÍREZ'); ";
-                            cmd.Parameters.AddWithValue("@idcicloescolar", 1);
+                            cmd.CommandText = "insert into curso(idsucursal, idcicloescolar, clave, nombre, idtipocurso, idarea, idespecialidad, idinstructor, idinstalacion, fechaini, fechafin, dias, horaini, horafin, horas, costomodulo, costo, pagohora, observaciones, estatus, pagado, diascurso, idtipooferta, instalacionext, alumnosminimo, alumnosmaximo, fechalimite, instalaciondomext, solicita, autoriza) values(@idsucursal, (select idcicloescolar from cicloescolar where @fechaini between fechaini and fechafin), @clave, @nombre, @idtipocurso, @idarea, @idespecialidad, @idinstructor, @idinstalacion, @fechaini, @fechafin, @dias, @horaini, @horafin, @horas, @costomodulo, @costo, @pagohora, @observaciones, 'EN CAPTURA', 0, @diascurso, @idtipooferta, @instalacionext, @alumnosminimo, @alumnosmaximo, @fechalimite, @instalaciondomext, (select encargado from sucursal where idsucursal=@idsucursal), 'PROF. GERSOM PÉREZ RAMÍREZ'); ";
+                            //cmd.Parameters.AddWithValue("@idcicloescolar", 1);
                             cmd.Parameters.AddWithValue("@idsucursal", this.idsucursal);
                             cmd.Parameters.AddWithValue("@nombre", this.nombre.Text.ToUpper().Trim());
                             cmd.Parameters.AddWithValue("@clave", this.clave.Text.ToUpper().Trim());

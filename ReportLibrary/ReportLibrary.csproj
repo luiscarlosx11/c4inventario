@@ -105,6 +105,12 @@
     <Compile Include="ReportRecibo.Designer.cs">
       <DependentUpon>ReportRecibo.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportRIACDAcreditacion.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportRIACDAcreditacion.Designer.cs">
+      <DependentUpon>ReportRIACDAcreditacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportSubsidios.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -286,6 +292,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportRecibo.resx">
       <DependentUpon>ReportRecibo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportRIACDAcreditacion.resx">
+      <DependentUpon>ReportRIACDAcreditacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSubsidios.resx">
       <DependentUpon>ReportSubsidios.cs</DependentUpon>

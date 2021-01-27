@@ -784,7 +784,7 @@ namespace ReportLibrary
             // 
             // pageFooterSection1
             // 
-            this.pageFooterSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(0.132D);
+            this.pageFooterSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(0.143D);
             this.pageFooterSection1.Name = "pageFooterSection1";
             this.pageFooterSection1.PrintOnFirstPage = false;
             this.pageFooterSection1.PrintOnLastPage = true;

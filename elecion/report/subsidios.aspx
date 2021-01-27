@@ -152,21 +152,48 @@
                                                                 </div>
 
                                                                 <div class="row">
-
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
-                                                                            <label class="text-bold-600">Desde</label>
-                                                                            <asp:TextBox ID="fechaini" CssClass="form-control pickadate text-uppercase" placeholder="fecha" runat="server"></asp:TextBox>
+                                                                            <label class="text-bold-600">Año</label>
+                                                                            <asp:DropDownList runat="server" ID="anio" CssClass="select2 form-control">  
+                                                                                <asp:ListItem Value="2021" Selected="True">2021</asp:ListItem>
+                                                                                <asp:ListItem Value="2020">2020</asp:ListItem>                                                                                                                                                                
+                                                                            </asp:DropDownList>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
-                                                                            <label class="text-bold-600">
-                                                                                Hasta
-                                                                            </label>
-                                                                            <asp:TextBox ID="fechafin" CssClass="form-control pickadate text-uppercase" placeholder="fecha" runat="server"></asp:TextBox>
+                                                                            <label class="text-bold-600">Quincena</label>
+                                                                            <asp:DropDownList runat="server" ID="quincena" CssClass="select2 form-control">  
+                                                                                <asp:ListItem Value="1" Selected="True">1°</asp:ListItem>
+                                                                                <asp:ListItem Value="2">2°</asp:ListItem>
+                                                                                <asp:ListItem Value="3">3°</asp:ListItem>
+                                                                                <asp:ListItem Value="4">4°</asp:ListItem>
+                                                                                <asp:ListItem Value="5">5°</asp:ListItem>
+                                                                                <asp:ListItem Value="6">6°</asp:ListItem>
+                                                                                <asp:ListItem Value="7">7°</asp:ListItem>
+                                                                                <asp:ListItem Value="8">8°</asp:ListItem>
+                                                                                <asp:ListItem Value="9">9°</asp:ListItem>
+                                                                                <asp:ListItem Value="10">10°</asp:ListItem>
+                                                                                <asp:ListItem Value="11">11°</asp:ListItem>
+                                                                                <asp:ListItem Value="12">12°</asp:ListItem>
+                                                                                <asp:ListItem Value="13">13°</asp:ListItem>
+                                                                                <asp:ListItem Value="14">14°</asp:ListItem>
+                                                                                <asp:ListItem Value="15">15°</asp:ListItem>
+                                                                                <asp:ListItem Value="16">16°</asp:ListItem>
+                                                                                <asp:ListItem Value="17">17°</asp:ListItem>
+                                                                                <asp:ListItem Value="18">18°</asp:ListItem>
+                                                                                <asp:ListItem Value="19">19°</asp:ListItem>
+                                                                                <asp:ListItem Value="20">20°</asp:ListItem>
+                                                                                <asp:ListItem Value="21">21°</asp:ListItem>
+                                                                                <asp:ListItem Value="22">22°</asp:ListItem>
+                                                                                <asp:ListItem Value="23">23°</asp:ListItem>
+                                                                                <asp:ListItem Value="24">24°</asp:ListItem>
+                                                                                
+                                                                            </asp:DropDownList>
                                                                         </div>
                                                                     </div>
+                                                                   
                                                                 </div>
 
                                                                

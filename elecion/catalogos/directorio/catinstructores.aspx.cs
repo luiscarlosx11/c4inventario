@@ -14,17 +14,30 @@ namespace elecion.catalogos.directorio
     public partial class catinstructores : System.Web.UI.Page
     {
         private int idsucursal;
+        private int idusuario;
+        private string roles;
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            var idu = (FormsIdentity)Page.User.Identity;
-            var ticket = idu.Ticket;
-            string[] datos = ticket.UserData.Split(',');
-            string[] datos2 = datos[1].Split(';');
-            
-            idsucursal = Convert.ToInt32(datos2[4]);
-
+            string[] datos = ((FormsIdentity)this.Page.User.Identity).Ticket.UserData.Split(new char[] { ',' });
+            string[] datos2 = datos[1].Split(new char[] { ';' });
+            this.idusuario = Convert.ToInt32(datos[0]);
+            this.idsucursal = Convert.ToInt32(datos2[4]);
+            this.roles = datos2[3].ToString();
+            string bloqueo = "";
+            idRol.Value = roles;
+            if (this.roles.IndexOf('1', 0) < 0)
+            {
+                nuevo.Visible = false;
+                aceptar.Visible = false;
+            }
+            else
+            {
+                nuevo.Visible = true;
+                aceptar.Visible = true;
+            }
            
 
             if (!IsPostBack)
@@ -32,6 +45,7 @@ namespace elecion.catalogos.directorio
                 listadoClientes(sender, e);
             }
 
+            
             //if (bnombre.Text.Trim().)
 
         }
@@ -58,14 +72,11 @@ namespace elecion.catalogos.directorio
                                " else 'INACTIVO' " +
                                " end " +
                                " as activoText, observaciones " +
-                               " from instructor " +
-                               " where idsucursal = " + idsucursal + " ";
-                               
-    
-           
+                               " from instructor where idinstructor > 0";
+
+              
                 if (bname.Text.Trim() != "")
                     query = query + " and nombre LIKE '%" + bname.Text.Trim().ToUpper() + "%' ";
-
 
                 
                 query= query + " order by nombre";
@@ -150,10 +161,9 @@ namespace elecion.catalogos.directorio
                         cmd.Parameters.Clear();
                         query = "insert into instructor(idsucursal, nombre, idespecialidad, idescolaridad, profesion, activo, rfc, curp, fechanacimiento, domicilio, localidad, email, telefono, telefono2, observaciones) " +
                                              "values(@idsucursal, @nombre, @idespecialidad, @idescolaridad, @profesion, @activo, @rfc, @curp, @fechanacimiento, @domicilio, @localidad, @email, @telefono, @telefono2, @observaciones); ";
-
                         cmd.CommandText = query;
                         
-                        cmd.Parameters.AddWithValue("@idsucursal", idsucursal);
+                        cmd.Parameters.AddWithValue("@idsucursal", 1);
                         cmd.Parameters.AddWithValue("@nombre", nombre.Text.ToUpper().Trim());
                         cmd.Parameters.AddWithValue("@idespecialidad", especialidad.SelectedValue);
                         cmd.Parameters.AddWithValue("@idescolaridad", escolaridad.SelectedValue);
@@ -164,12 +174,9 @@ namespace elecion.catalogos.directorio
                         cmd.Parameters.AddWithValue("@fechanacimiento", fechanacimiento.Text);
                         cmd.Parameters.AddWithValue("@domicilio", domicilio.Text.ToUpper().Trim());
                         cmd.Parameters.AddWithValue("@localidad", localidad.Text.ToUpper().Trim());
-
                         cmd.Parameters.AddWithValue("@email", email.Text.Replace("-", "").Replace("(", "").Replace(") ", "").Trim());
                         cmd.Parameters.AddWithValue("@telefono", telefono.Text.Replace("-", "").Replace("(", "").Replace(") ", "").Trim());
-                        cmd.Parameters.AddWithValue("@telefono2", adicional.Text.Replace("-", "").Replace("(", "").Replace(") ", "").Trim());
-                        
-
+                        cmd.Parameters.AddWithValue("@telefono2", adicional.Text.Replace("-", "").Replace("(", "").Replace(") ", "").Trim());                        
                         cmd.Parameters.AddWithValue("@observaciones", observaciones.Text.Trim());
                         
                         cmd.ExecuteNonQuery();
@@ -183,14 +190,13 @@ namespace elecion.catalogos.directorio
 
                         cmd.Parameters.Clear();
                         query = "update instructor set nombre=@nombre, idespecialidad=@idespecialidad, idescolaridad=@idescolaridad, profesion=@profesion, activo=@activo, rfc=@rfc, curp=@curp, fechanacimiento=@fechanacimiento, domicilio=@domicilio,localidad=@localidad,  " +
-                                "email=@email, telefono=@telefono, telefono2=@telefono2, observaciones=@observaciones ";
-                        
+                                "email=@email, telefono=@telefono, telefono2=@telefono2, observaciones=@observaciones ";                        
                         query = query + "where idinstructor=@idinstructor and idsucursal=@idsucursal;";
 
 
                         cmd.CommandText = query;
                         cmd.Parameters.AddWithValue("@idinstructor", idP.Value);
-                        cmd.Parameters.AddWithValue("@idsucursal", idS.Value);
+                        cmd.Parameters.AddWithValue("@idsucursal", 1);
                         cmd.Parameters.AddWithValue("@nombre", nombre.Text.ToUpper().Trim());
                         cmd.Parameters.AddWithValue("@idespecialidad", especialidad.SelectedValue);
                         cmd.Parameters.AddWithValue("@idescolaridad", escolaridad.SelectedValue);
@@ -201,26 +207,17 @@ namespace elecion.catalogos.directorio
                         cmd.Parameters.AddWithValue("@fechanacimiento", fechanacimiento.Text);
                         cmd.Parameters.AddWithValue("@domicilio", domicilio.Text.ToUpper().Trim());
                         cmd.Parameters.AddWithValue("@localidad", localidad.Text.ToUpper().Trim());
-
                         cmd.Parameters.AddWithValue("@email", email.Text.Replace("-", "").Replace("(", "").Replace(") ", "").Trim());
                         cmd.Parameters.AddWithValue("@telefono", telefono.Text.Replace("-", "").Replace("(", "").Replace(") ", "").Trim());
                         cmd.Parameters.AddWithValue("@telefono2", adicional.Text.Replace("-", "").Replace("(", "").Replace(") ", "").Trim());
-
-
                         cmd.Parameters.AddWithValue("@observaciones", observaciones.Text.Trim());
 
                         cmd.ExecuteNonQuery();
 
                     }
                     
-
-
                     transaction.Commit();
-
                     ScriptManager.RegisterClientScriptBlock(Page, typeof(string), "myScriptName", "cerrarLoading();", true);
-
-
-
 
                 }
                 catch (Exception ex)

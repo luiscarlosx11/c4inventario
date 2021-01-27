@@ -129,12 +129,77 @@ namespace elecion.report
 
         protected void imprimeCursos(object sender, EventArgs e)
         {
+            string fini = "";
+            string ffin = "";
+            int vanio = Convert.ToInt32(anio.SelectedValue);
+            int vquincena = Convert.ToInt32(quincena.SelectedValue);
+            int diaini = 1;
+            int diafin = 15;
+            int vmes = (int) Math.Ceiling((double)vquincena / 2);
+
+            using (MySqlConnection mySqlConnection = new MySqlConnection(WebConfigurationManager.ConnectionStrings["DBconexion"].ConnectionString))
+            {
+                MySqlTransaction mySqlTransaction = null;
+                MySqlDataReader mySqlDataReader = null;
+                
+                try
+                {
+                    try
+                    {
+                        mySqlConnection.Open();
+                        MySqlCommand mySqlCommand = mySqlConnection.CreateCommand();
+                        mySqlTransaction = mySqlConnection.BeginTransaction();
+                        mySqlCommand.Connection = mySqlConnection;
+                        mySqlCommand.Transaction = mySqlTransaction;
+
+                        //quincenas del 15 en adelante
+                        if (vquincena % 2 == 0)
+                            diaini = 16;
+
+
+                            if(diaini==16)
+                                mySqlCommand.CommandText = string.Concat("select cast(date(concat('" + vanio+"','-"+vmes+"-"+diaini+"')) as char)as ini, cast(date(last_day(concat('"+vanio+"','-"+vmes+"-"+diaini+"')))as char)as fin");
+                            else
+                                mySqlCommand.CommandText = string.Concat("select cast(date(concat('" + vanio + "','-" + vmes + "-" + diaini + "')) as char)as ini, cast(date(concat('" + vanio + "','-" + vmes + "-" + diafin + "')) as char)as fin");
+                            
+                            mySqlDataReader = mySqlCommand.ExecuteReader();
+                            while (mySqlDataReader.Read())
+                            {
+                                fini = mySqlDataReader["ini"].ToString();
+                                ffin = mySqlDataReader["fin"].ToString();
+                            }
+                            mySqlDataReader.Close();
+                            mySqlCommand.Parameters.Clear();
+                        
+                       
+                        
+                        mySqlCommand.ExecuteNonQuery();
+                        mySqlTransaction.Commit();
+                    }
+                    catch (Exception exception1)
+                    {
+                        Exception exception = exception1;
+                        mySqlTransaction.Rollback();
+                        Console.WriteLine(string.Concat("error:", exception.ToString()));
+                    }
+                }
+                finally
+                {
+                    mySqlConnection.Close();
+                }
+            }
+
+
             FormatoSubsidios formatoSubsidio = new FormatoSubsidios();
             formatoSubsidio.ReportParameters["idsucursal"].Value = this.bplantel.SelectedValue;
             formatoSubsidio.ReportParameters["idusuario"].Value = idusuario;
             formatoSubsidio.ReportParameters["idtipocurso"].Value = this.btipocurso.SelectedValue;
-            formatoSubsidio.ReportParameters["fechaini"].Value = this.fechaini.Text.Trim();
-            formatoSubsidio.ReportParameters["fechafin"].Value = this.fechafin.Text.Trim();
+
+            formatoSubsidio.ReportParameters["quincena"].Value = vquincena;
+            formatoSubsidio.ReportParameters["fechaini"].Value = fini;
+            formatoSubsidio.ReportParameters["fechafin"].Value = ffin;
+
+
             this.ExportToPDF(formatoSubsidio, "XLS");
         }
 

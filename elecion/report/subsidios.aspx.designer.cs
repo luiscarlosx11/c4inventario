@@ -123,22 +123,22 @@ namespace elecion.report
         protected global::System.Web.UI.WebControls.SqlDataSource DStipocurso;
 
         /// <summary>
-        /// Control fechaini.
+        /// Control anio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox fechaini;
+        protected global::System.Web.UI.WebControls.DropDownList anio;
 
         /// <summary>
-        /// Control fechafin.
+        /// Control quincena.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox fechafin;
+        protected global::System.Web.UI.WebControls.DropDownList quincena;
 
         /// <summary>
         /// Control Button3.

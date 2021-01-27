@@ -609,6 +609,15 @@ namespace elecion.catalogos.oferta
         protected global::System.Web.UI.WebControls.Button bimprimirriadc;
 
         /// <summary>
+        /// Control bimprimirriadcacred.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button bimprimirriadcacred;
+
+        /// <summary>
         /// Control guardar.
         /// </summary>
         /// <remarks>
@@ -823,6 +832,15 @@ namespace elecion.catalogos.oferta
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource DSmes;
+
+        /// <summary>
+        /// Control acreditacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl acreditacion;
 
         /// <summary>
         /// Control fagenda.

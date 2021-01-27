@@ -133,7 +133,8 @@ concat(s.calle,' # ', s.numext,' COL. ',s.colonia,' ',coalesce(s.localidad,''))a
 c.solicita, c.autoriza, 
 s.nombre as nombresucursal, s.clavecct as clavesucursal, ce.cicloescolar,
 (
-select p.numero from periodo p
+select p.numero 
+from periodo p
  where c.fechaini between p.fechaini and p.fechafin
 )as periodo, s.encargado
 from curso c 
