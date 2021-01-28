@@ -118,161 +118,133 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <metadata name="tabla.ParameterValues" xml:space="preserve">
-    <value>{"@idperiodo":"1","@idsucursal":"9"}</value>
+    <value>{"@idsucursal":"9"}</value>
   </metadata>
   <data name="tabla.SelectCommand" xml:space="preserve">
     <value>select s.nombre as instalacion,
-s.nombre as nombresucursal, s.clavecct as clavesucursal,
+s.nombre as nombresucursal, s.clavecct as clavesucursal, c.estatus,
 c.nombre, cast(c.fechaini as char)as fechaini, cast(c.fechafin as char) as fechafin, c.horas, 
+coalesce(i.nombre,'INSTRUCTOR NO DEFINIDO') as instructor,
 (
 SELECT count(si.idsolicitud)
 from solicitudinscripcion si
-left join (select p.fechaini, p.fechafin from periodo p where p.idperiodo=@idperiodo) v on true
 where si.idcurso = c.idcurso
-and c.fechaini between v.fechaini and v.fechafin
 )as capacitandos
 ,
 (
 SELECT count(si.idsolicitud)
 from solicitudinscripcion si
-left join (select p.fechaini, p.fechafin from periodo p where p.idperiodo=@idperiodo) v on true
 where si.idcurso = c.idcurso
 and si.becado=1
-and c.fechaini between v.fechaini and v.fechafin
 )as becados
 ,
 (
 SELECT count(si.idsolicitud)
 from solicitudinscripcion si
-left join (select p.fechaini, p.fechafin from periodo p where p.idperiodo=@idperiodo) v on true
 where si.idcurso = c.idcurso
 and si.becado=0
-and c.fechaini between v.fechaini and v.fechafin
 )as pagado,
 (
 SELECT count(si.idsolicitud)
 from solicitudinscripcion si
-left join (select p.fechaini, p.fechafin from periodo p where p.idperiodo=@idperiodo) v on true
 left join alumno a on si.idalumno = a.idalumno
 where si.idcurso = c.idcurso
 and a.sexo = 'H'
-and c.fechaini between v.fechaini and v.fechafin
 )as hombres,
 (
 SELECT count(si.idsolicitud)
 from solicitudinscripcion si
-left join (select p.fechaini, p.fechafin from periodo p where p.idperiodo=@idperiodo) v on true
 left join alumno a on si.idalumno = a.idalumno
 where si.idcurso = c.idcurso
 and a.sexo = 'M'
-and c.fechaini between v.fechaini and v.fechafin
 )as mujeres,
 (
 SELECT count(si.idsolicitud)
 from solicitudinscripcion si
-left join (select p.fechaini, p.fechafin from periodo p where p.idperiodo=@idperiodo) v on true
 left join alumno al on al.idalumno = si.idalumno
 where timestampdiff(YEAR,al.fechanacimiento,now()) between 15 and 18
 and si.idcurso = c.idcurso
-and c.fechaini between v.fechaini and v.fechafin
 )as e1518,
 (
 SELECT count(si.idsolicitud)
 from solicitudinscripcion si
-left join (select p.fechaini, p.fechafin from periodo p where p.idperiodo=@idperiodo) v on true
 left join alumno al on al.idalumno = si.idalumno
 where timestampdiff(YEAR,al.fechanacimiento,now()) between 19 and 24
 and si.idcurso = c.idcurso
-and c.fechaini between v.fechaini and v.fechafin
 )as e1924,
 (
 SELECT count(si.idsolicitud)
 from solicitudinscripcion si
-left join (select p.fechaini, p.fechafin from periodo p where p.idperiodo=@idperiodo) v on true
 left join alumno al on al.idalumno = si.idalumno
 where timestampdiff(YEAR,al.fechanacimiento,now()) between 25 and 34
 and si.idcurso = c.idcurso
-and c.fechaini between v.fechaini and v.fechafin
 )as e2534,
 (
 SELECT count(si.idsolicitud)
 from solicitudinscripcion si
-left join (select p.fechaini, p.fechafin from periodo p where p.idperiodo=@idperiodo) v on true
 left join alumno al on al.idalumno = si.idalumno
 where timestampdiff(YEAR,al.fechanacimiento,now()) between 35 and 44
 and si.idcurso = c.idcurso
-and c.fechaini between v.fechaini and v.fechafin
 )as e3544,
 (
 SELECT count(si.idsolicitud)
 from solicitudinscripcion si
-left join (select p.fechaini, p.fechafin from periodo p where p.idperiodo=@idperiodo) v on true
 left join alumno al on al.idalumno = si.idalumno
 where timestampdiff(YEAR,al.fechanacimiento,now()) between 45 and 54
 and si.idcurso = c.idcurso
-and c.fechaini between v.fechaini and v.fechafin
 )as e4554,
 (
 SELECT count(si.idsolicitud)
 from solicitudinscripcion si
-left join (select p.fechaini, p.fechafin from periodo p where p.idperiodo=@idperiodo) v on true
 left join alumno al on al.idalumno = si.idalumno
 where timestampdiff(YEAR,al.fechanacimiento,now()) between 55 and 64
 and si.idcurso = c.idcurso
-and c.fechaini between v.fechaini and v.fechafin
 )as e5564,
 (
 SELECT count(si.idsolicitud)
 from solicitudinscripcion si
-left join (select p.fechaini, p.fechafin from periodo p where p.idperiodo=@idperiodo) v on true
 left join alumno al on al.idalumno = si.idalumno
 where timestampdiff(YEAR,al.fechanacimiento,now()) &gt;= 65
 and si.idcurso = c.idcurso
-and c.fechaini between v.fechaini and v.fechafin
 )as e65,
 (
 SELECT count(si.idsolicitud)
 from solicitudinscripcion si
-left join (select p.fechaini, p.fechafin from periodo p where p.idperiodo=@idperiodo) v on true
 left join alumno a on si.idalumno = a.idalumno
 where si.idcurso = c.idcurso
 and a.sexo = 'H'
 and si.idcondicion =2
-and c.fechaini between v.fechaini and v.fechafin
 )as acreditahombres,
 (
 SELECT count(si.idsolicitud)
 from solicitudinscripcion si
-left join (select p.fechaini, p.fechafin from periodo p where p.idperiodo=@idperiodo) v on true
 left join alumno a on si.idalumno = a.idalumno
 where si.idcurso = c.idcurso
 and a.sexo = 'M'
 and si.idcondicion =2
-and c.fechaini between v.fechaini and v.fechafin
 )as acreditamujeres,
 (
 SELECT count(si.idsolicitud)
 from solicitudinscripcion si
-left join (select p.fechaini, p.fechafin from periodo p where p.idperiodo=@idperiodo) v on true
 left join alumno a on si.idalumno = a.idalumno
 where si.idcurso = c.idcurso
 and a.sexo = 'H'
 and si.idcondicion =3
-and c.fechaini between v.fechaini and v.fechafin
 )as desertahombres,
 (
 SELECT count(si.idsolicitud)
 from solicitudinscripcion si
-left join (select p.fechaini, p.fechafin from periodo p where p.idperiodo=@idperiodo) v on true
 left join alumno a on si.idalumno = a.idalumno
 where si.idcurso = c.idcurso
 and a.sexo = 'M'
 and si.idcondicion =3
-and c.fechaini between v.fechaini and v.fechafin
 )as desertamujeres
 from sucursal s
 left join curso c on c.idsucursal = s.idsucursal
+left join (select p.fechaini, p.fechafin from periodo p where p.idperiodo=@idperiodo) v2 on true
+left join instructor i on i.idinstructor = c.idinstructor
 where s.idsucursal=@idsucursal
+and c.fechaini between v2.fechaini and v2.fechafin
 order by c.nombre</value>
   </data>
   <metadata name="generales.ParameterValues" xml:space="preserve">
