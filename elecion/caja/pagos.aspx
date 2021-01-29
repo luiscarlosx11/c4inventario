@@ -174,10 +174,10 @@ body { padding-right: 0 !important }
                                                     <h6 class="text-bold-700"><%# Eval("clave")+ " / "+Eval("nombre")%></h6>
                                                     <h7 class="text-bold-400 font-small-3 font-italic text-bold-600"><i class="fa fa-home"></i> <%# " "+Eval("plantel")%></h7><br />
                                                     <h7 class="text-bold-400 font-small-3 font-italic text-bold-600"><i class="fa fa-usd"></i> <%# " "+Eval("costo")%></h7><br />
-                                                    <h7 class="text-bold-400 font-small-3"><i class="fa fa-user "></i> <%# " "+Eval("instructor")%></h7><br />
+                                                    <h7 class="text-bold-400 font-small-3 font-italic text-bold-600"> <%# " "+Eval("instructor")%></h7><br />
                                                     <h7 class="text-bold-400 font-small-3"><i class="fa fa-calendar "></i><%# " "+Eval("fechaini") +" al "+ Eval("fechafin")%></h7><br />
                                                     <h7 class="text-bold-400 font-small-3"><i class="fa fa-clock-o "></i><%# " "+Eval("horaini") +" - "+ Eval("horafin")%></h7><br /> <br /> 
-                                                    <h7 class="text-bold-400 font-small-3"><i class="fa fa-user "></i> <%# " "+Eval("alumno")%></h7><br />
+                                                    <h7 class="text-bold-400 font-medium-1"><i class="fa fa-user "></i> <%# " "+Eval("alumno")%></h7><br />
                                                        
                                                 </ItemTemplate>
                                             </asp:TemplateField>

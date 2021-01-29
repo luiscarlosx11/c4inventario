@@ -1154,7 +1154,7 @@ namespace ReportLibrary
             // 
             this.tabla.ConnectionString = "ReportLibrary.Properties.Settings.icaten";
             this.tabla.Name = "tabla";
-            this.tabla.Parameters.Add(new Telerik.Reporting.SqlDataSourceParameter("@idperiodo", System.Data.DbType.String, null));
+            this.tabla.Parameters.Add(new Telerik.Reporting.SqlDataSourceParameter("@idperiodo", System.Data.DbType.Int32, "= Parameters.idperiodo.Value"));
             this.tabla.Parameters.Add(new Telerik.Reporting.SqlDataSourceParameter("@idsucursal", System.Data.DbType.Int32, "= Parameters.idsucursal.Value"));
             this.tabla.SelectCommand = resources.GetString("tabla.SelectCommand");
             // 

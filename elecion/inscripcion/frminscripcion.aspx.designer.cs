@@ -7,11 +7,13 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace elecion.inscripcion {
-    
-    
-    public partial class frminscripcion {
-        
+namespace elecion.inscripcion
+{
+
+
+    public partial class frminscripcion
+    {
+
         /// <summary>
         /// Control ScriptManager1.
         /// </summary>
@@ -20,7 +22,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.ScriptManager ScriptManager1;
-        
+
         /// <summary>
         /// Control BimprimirSolicitud.
         /// </summary>
@@ -29,7 +31,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button BimprimirSolicitud;
-        
+
         /// <summary>
         /// Control BimprimirCredencial.
         /// </summary>
@@ -38,7 +40,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button BimprimirCredencial;
-        
+
         /// <summary>
         /// Control UpdatePanel10.
         /// </summary>
@@ -47,7 +49,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel10;
-        
+
         /// <summary>
         /// Control idP.
         /// </summary>
@@ -56,7 +58,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField idP;
-        
+
         /// <summary>
         /// Control idA.
         /// </summary>
@@ -65,7 +67,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField idA;
-        
+
         /// <summary>
         /// Control idI.
         /// </summary>
@@ -74,7 +76,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField idI;
-        
+
         /// <summary>
         /// Control limite.
         /// </summary>
@@ -83,7 +85,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField limite;
-        
+
         /// <summary>
         /// Control idS.
         /// </summary>
@@ -92,7 +94,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField idS;
-        
+
         /// <summary>
         /// Control idF.
         /// </summary>
@@ -101,7 +103,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField idF;
-        
+
         /// <summary>
         /// Control idctr.
         /// </summary>
@@ -110,7 +112,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField idctr;
-        
+
         /// <summary>
         /// Control labelCurso.
         /// </summary>
@@ -119,7 +121,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField labelCurso;
-        
+
         /// <summary>
         /// Control idDoc.
         /// </summary>
@@ -128,7 +130,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField idDoc;
-        
+
         /// <summary>
         /// Control Bconsultar.
         /// </summary>
@@ -137,7 +139,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Bconsultar;
-        
+
         /// <summary>
         /// Control Bnuevo.
         /// </summary>
@@ -146,7 +148,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Bnuevo;
-        
+
         /// <summary>
         /// Control BnuevoInscripcion.
         /// </summary>
@@ -155,7 +157,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button BnuevoInscripcion;
-        
+
         /// <summary>
         /// Control Bcancelarcurso.
         /// </summary>
@@ -164,7 +166,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Bcancelarcurso;
-        
+
         /// <summary>
         /// Control Button2.
         /// </summary>
@@ -173,7 +175,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Button2;
-        
+
         /// <summary>
         /// Control label1.
         /// </summary>
@@ -182,7 +184,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label label1;
-        
+
         /// <summary>
         /// Control bname.
         /// </summary>
@@ -191,7 +193,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox bname;
-        
+
         /// <summary>
         /// Control busplantel.
         /// </summary>
@@ -200,7 +202,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl busplantel;
-        
+
         /// <summary>
         /// Control bplantel.
         /// </summary>
@@ -209,7 +211,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList bplantel;
-        
+
         /// <summary>
         /// Control DSplantel.
         /// </summary>
@@ -218,7 +220,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource DSplantel;
-        
+
         /// <summary>
         /// Control lgrupos.
         /// </summary>
@@ -227,7 +229,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DataList lgrupos;
-        
+
         /// <summary>
         /// Control DSgrupos.
         /// </summary>
@@ -236,7 +238,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource DSgrupos;
-        
+
         /// <summary>
         /// Control pU.
         /// </summary>
@@ -245,7 +247,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel pU;
-        
+
         /// <summary>
         /// Control barrabus.
         /// </summary>
@@ -254,7 +256,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl barrabus;
-        
+
         /// <summary>
         /// Control busnom.
         /// </summary>
@@ -263,7 +265,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox busnom;
-        
+
         /// <summary>
         /// Control lbcurso.
         /// </summary>
@@ -272,7 +274,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbcurso;
-        
+
         /// <summary>
         /// Control nuevo.
         /// </summary>
@@ -281,7 +283,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlButton nuevo;
-        
+
         /// <summary>
         /// Control bbuscacursos.
         /// </summary>
@@ -290,7 +292,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button bbuscacursos;
-        
+
         /// <summary>
         /// Control GValumnos.
         /// </summary>
@@ -299,7 +301,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GValumnos;
-        
+
         /// <summary>
         /// Control DSalumnos.
         /// </summary>
@@ -308,7 +310,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource DSalumnos;
-        
+
         /// <summary>
         /// Control idr.
         /// </summary>
@@ -317,7 +319,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField idr;
-        
+
         /// <summary>
         /// Control UpdatePanel2.
         /// </summary>
@@ -326,7 +328,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel2;
-        
+
         /// <summary>
         /// Control nombre.
         /// </summary>
@@ -335,7 +337,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox nombre;
-        
+
         /// <summary>
         /// Control tipocurso.
         /// </summary>
@@ -344,7 +346,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList tipocurso;
-        
+
         /// <summary>
         /// Control Dstipocurso.
         /// </summary>
@@ -353,7 +355,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource Dstipocurso;
-        
+
         /// <summary>
         /// Control tipooferta.
         /// </summary>
@@ -362,7 +364,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList tipooferta;
-        
+
         /// <summary>
         /// Control DStipooferta.
         /// </summary>
@@ -371,7 +373,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource DStipooferta;
-        
+
         /// <summary>
         /// Control alumnosminimo.
         /// </summary>
@@ -380,7 +382,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox alumnosminimo;
-        
+
         /// <summary>
         /// Control UpdatePanel1.
         /// </summary>
@@ -389,7 +391,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
-        
+
         /// <summary>
         /// Control area.
         /// </summary>
@@ -398,7 +400,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList area;
-        
+
         /// <summary>
         /// Control Dsareas.
         /// </summary>
@@ -407,7 +409,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource Dsareas;
-        
+
         /// <summary>
         /// Control especialidad.
         /// </summary>
@@ -416,7 +418,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList especialidad;
-        
+
         /// <summary>
         /// Control Dsespecialidades.
         /// </summary>
@@ -425,7 +427,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource Dsespecialidades;
-        
+
         /// <summary>
         /// Control instructor.
         /// </summary>
@@ -434,7 +436,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList instructor;
-        
+
         /// <summary>
         /// Control Dsinstructores.
         /// </summary>
@@ -443,7 +445,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource Dsinstructores;
-        
+
         /// <summary>
         /// Control instalacion.
         /// </summary>
@@ -452,7 +454,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList instalacion;
-        
+
         /// <summary>
         /// Control Dsinstalaciones.
         /// </summary>
@@ -461,7 +463,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource Dsinstalaciones;
-        
+
         /// <summary>
         /// Control extramuros.
         /// </summary>
@@ -470,7 +472,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl extramuros;
-        
+
         /// <summary>
         /// Control instalacionext.
         /// </summary>
@@ -479,7 +481,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox instalacionext;
-        
+
         /// <summary>
         /// Control instalaciondomext.
         /// </summary>
@@ -488,7 +490,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox instalaciondomext;
-        
+
         /// <summary>
         /// Control costomodulo.
         /// </summary>
@@ -497,7 +499,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox costomodulo;
-        
+
         /// <summary>
         /// Control costoalumno.
         /// </summary>
@@ -506,7 +508,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox costoalumno;
-        
+
         /// <summary>
         /// Control pagohora.
         /// </summary>
@@ -515,7 +517,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox pagohora;
-        
+
         /// <summary>
         /// Control observaciones.
         /// </summary>
@@ -524,7 +526,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox observaciones;
-        
+
         /// <summary>
         /// Control UpdatePanel3.
         /// </summary>
@@ -533,7 +535,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel3;
-        
+
         /// <summary>
         /// Control fechalimite.
         /// </summary>
@@ -542,7 +544,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox fechalimite;
-        
+
         /// <summary>
         /// Control fechaini.
         /// </summary>
@@ -551,7 +553,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox fechaini;
-        
+
         /// <summary>
         /// Control fechafin.
         /// </summary>
@@ -560,7 +562,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox fechafin;
-        
+
         /// <summary>
         /// Control hdias.
         /// </summary>
@@ -569,7 +571,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdias;
-        
+
         /// <summary>
         /// Control dias.
         /// </summary>
@@ -578,7 +580,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox dias;
-        
+
         /// <summary>
         /// Control horaini.
         /// </summary>
@@ -587,7 +589,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox horaini;
-        
+
         /// <summary>
         /// Control horafin.
         /// </summary>
@@ -596,7 +598,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox horafin;
-        
+
         /// <summary>
         /// Control horas.
         /// </summary>
@@ -605,7 +607,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox horas;
-        
+
         /// <summary>
         /// Control bimprimir.
         /// </summary>
@@ -614,7 +616,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button bimprimir;
-        
+
         /// <summary>
         /// Control guardar.
         /// </summary>
@@ -623,7 +625,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button guardar;
-        
+
         /// <summary>
         /// Control bautorizacion.
         /// </summary>
@@ -632,7 +634,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button bautorizacion;
-        
+
         /// <summary>
         /// Control Beditar.
         /// </summary>
@@ -641,7 +643,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Beditar;
-        
+
         /// <summary>
         /// Control bfechascurso.
         /// </summary>
@@ -650,7 +652,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button bfechascurso;
-        
+
         /// <summary>
         /// Control eliminarFechas.
         /// </summary>
@@ -659,7 +661,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button eliminarFechas;
-        
+
         /// <summary>
         /// Control guardarFechas.
         /// </summary>
@@ -668,7 +670,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button guardarFechas;
-        
+
         /// <summary>
         /// Control Bfechas.
         /// </summary>
@@ -677,7 +679,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Bfechas;
-        
+
         /// <summary>
         /// Control UpdatePanel4.
         /// </summary>
@@ -686,7 +688,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel4;
-        
+
         /// <summary>
         /// Control fagenda.
         /// </summary>
@@ -695,7 +697,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox fagenda;
-        
+
         /// <summary>
         /// Control horanini.
         /// </summary>
@@ -704,7 +706,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox horanini;
-        
+
         /// <summary>
         /// Control horanfin.
         /// </summary>
@@ -713,7 +715,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox horanfin;
-        
+
         /// <summary>
         /// Control HiddenField1.
         /// </summary>
@@ -722,7 +724,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField HiddenField1;
-        
+
         /// <summary>
         /// Control botonDescarga.
         /// </summary>
@@ -731,7 +733,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button botonDescarga;
-        
+
         /// <summary>
         /// Control UpdatePanel5.
         /// </summary>
@@ -740,7 +742,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel5;
-        
+
         /// <summary>
         /// Control bcursoinscripcion.
         /// </summary>
@@ -749,7 +751,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button bcursoinscripcion;
-        
+
         /// <summary>
         /// Control bsolicitud.
         /// </summary>
@@ -758,7 +760,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button bsolicitud;
-        
+
         /// <summary>
         /// Control bguardarIns.
         /// </summary>
@@ -767,7 +769,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button bguardarIns;
-        
+
         /// <summary>
         /// Control eti.
         /// </summary>
@@ -776,7 +778,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label eti;
-        
+
         /// <summary>
         /// Control fotopa.
         /// </summary>
@@ -785,7 +787,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image fotopa;
-        
+
         /// <summary>
         /// Control hpicture.
         /// </summary>
@@ -794,7 +796,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hpicture;
-        
+
         /// <summary>
         /// Control Bfoto.
         /// </summary>
@@ -803,7 +805,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload Bfoto;
-        
+
         /// <summary>
         /// Control nocontrol.
         /// </summary>
@@ -812,7 +814,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox nocontrol;
-        
+
         /// <summary>
         /// Control BBbuscarcliente.
         /// </summary>
@@ -821,7 +823,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlButton BBbuscarcliente;
-        
+
         /// <summary>
         /// Control apaterno.
         /// </summary>
@@ -830,7 +832,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox apaterno;
-        
+
         /// <summary>
         /// Control amaterno.
         /// </summary>
@@ -839,7 +841,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox amaterno;
-        
+
         /// <summary>
         /// Control nombrealumno.
         /// </summary>
@@ -848,7 +850,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox nombrealumno;
-        
+
         /// <summary>
         /// Control sexo.
         /// </summary>
@@ -857,7 +859,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList sexo;
-        
+
         /// <summary>
         /// Control curp.
         /// </summary>
@@ -866,7 +868,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox curp;
-        
+
         /// <summary>
         /// Control fechanacimiento.
         /// </summary>
@@ -875,7 +877,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox fechanacimiento;
-        
+
         /// <summary>
         /// Control telefono.
         /// </summary>
@@ -884,7 +886,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox telefono;
-        
+
         /// <summary>
         /// Control email.
         /// </summary>
@@ -893,7 +895,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox email;
-        
+
         /// <summary>
         /// Control domicilio.
         /// </summary>
@@ -902,7 +904,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox domicilio;
-        
+
         /// <summary>
         /// Control colonia.
         /// </summary>
@@ -911,7 +913,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox colonia;
-        
+
         /// <summary>
         /// Control cp.
         /// </summary>
@@ -920,7 +922,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox cp;
-        
+
         /// <summary>
         /// Control UpdatePanel6.
         /// </summary>
@@ -929,7 +931,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel6;
-        
+
         /// <summary>
         /// Control entidad.
         /// </summary>
@@ -938,7 +940,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList entidad;
-        
+
         /// <summary>
         /// Control DSentidades.
         /// </summary>
@@ -947,7 +949,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource DSentidades;
-        
+
         /// <summary>
         /// Control municipio.
         /// </summary>
@@ -956,7 +958,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList municipio;
-        
+
         /// <summary>
         /// Control DSmunicipios.
         /// </summary>
@@ -965,7 +967,16 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource DSmunicipios;
-        
+
+        /// <summary>
+        /// Control UpdatePanel12.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel12;
+
         /// <summary>
         /// Control edocivil.
         /// </summary>
@@ -974,7 +985,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList edocivil;
-        
+
         /// <summary>
         /// Control DSsedocivil.
         /// </summary>
@@ -983,7 +994,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource DSsedocivil;
-        
+
         /// <summary>
         /// Control tagsdiscap.
         /// </summary>
@@ -992,7 +1003,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField tagsdiscap;
-        
+
         /// <summary>
         /// Control xxdiscapacidad.
         /// </summary>
@@ -1001,7 +1012,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList xxdiscapacidad;
-        
+
         /// <summary>
         /// Control DSdiscapacidad.
         /// </summary>
@@ -1010,7 +1021,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource DSdiscapacidad;
-        
+
         /// <summary>
         /// Control jefafamilia.
         /// </summary>
@@ -1019,7 +1030,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList jefafamilia;
-        
+
         /// <summary>
         /// Control indigena.
         /// </summary>
@@ -1028,7 +1039,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList indigena;
-        
+
         /// <summary>
         /// Control condicioncalle.
         /// </summary>
@@ -1037,7 +1048,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList condicioncalle;
-        
+
         /// <summary>
         /// Control UpdatePanel11.
         /// </summary>
@@ -1046,7 +1057,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel11;
-        
+
         /// <summary>
         /// Control apoyo.
         /// </summary>
@@ -1055,7 +1066,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList apoyo;
-        
+
         /// <summary>
         /// Control divConv.
         /// </summary>
@@ -1064,7 +1075,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divConv;
-        
+
         /// <summary>
         /// Control convenio.
         /// </summary>
@@ -1073,7 +1084,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList convenio;
-        
+
         /// <summary>
         /// Control DSconvenios.
         /// </summary>
@@ -1082,7 +1093,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource DSconvenios;
-        
+
         /// <summary>
         /// Control porcentaje.
         /// </summary>
@@ -1091,7 +1102,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox porcentaje;
-        
+
         /// <summary>
         /// Control UpdatePanel7.
         /// </summary>
@@ -1100,7 +1111,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel7;
-        
+
         /// <summary>
         /// Control UpdatePanel8.
         /// </summary>
@@ -1109,7 +1120,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel8;
-        
+
         /// <summary>
         /// Control especialidadins.
         /// </summary>
@@ -1118,7 +1129,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList especialidadins;
-        
+
         /// <summary>
         /// Control Dsespecialidadesins.
         /// </summary>
@@ -1127,7 +1138,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource Dsespecialidadesins;
-        
+
         /// <summary>
         /// Control curso.
         /// </summary>
@@ -1136,7 +1147,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList curso;
-        
+
         /// <summary>
         /// Control DScursos.
         /// </summary>
@@ -1145,7 +1156,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource DScursos;
-        
+
         /// <summary>
         /// Control escolaridad.
         /// </summary>
@@ -1154,7 +1165,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList escolaridad;
-        
+
         /// <summary>
         /// Control DSescolaridad.
         /// </summary>
@@ -1163,7 +1174,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource DSescolaridad;
-        
+
         /// <summary>
         /// Control tagsdoc.
         /// </summary>
@@ -1172,7 +1183,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField tagsdoc;
-        
+
         /// <summary>
         /// Control GVdocumentacion.
         /// </summary>
@@ -1181,7 +1192,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GVdocumentacion;
-        
+
         /// <summary>
         /// Control DSdocumentacion.
         /// </summary>
@@ -1190,7 +1201,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource DSdocumentacion;
-        
+
         /// <summary>
         /// Control empresa.
         /// </summary>
@@ -1199,7 +1210,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox empresa;
-        
+
         /// <summary>
         /// Control puesto.
         /// </summary>
@@ -1208,7 +1219,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox puesto;
-        
+
         /// <summary>
         /// Control antiguedad.
         /// </summary>
@@ -1217,7 +1228,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox antiguedad;
-        
+
         /// <summary>
         /// Control domicilioempresa.
         /// </summary>
@@ -1226,7 +1237,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox domicilioempresa;
-        
+
         /// <summary>
         /// Control telefonoempresa.
         /// </summary>
@@ -1235,7 +1246,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox telefonoempresa;
-        
+
         /// <summary>
         /// Control calidadmig.
         /// </summary>
@@ -1244,7 +1255,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox calidadmig;
-        
+
         /// <summary>
         /// Control UpdatePanel9.
         /// </summary>
@@ -1253,7 +1264,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel9;
-        
+
         /// <summary>
         /// Control tagsmed.
         /// </summary>
@@ -1262,7 +1273,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField tagsmed;
-        
+
         /// <summary>
         /// Control medio.
         /// </summary>
@@ -1271,7 +1282,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList medio;
-        
+
         /// <summary>
         /// Control DSmedios.
         /// </summary>
@@ -1280,7 +1291,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource DSmedios;
-        
+
         /// <summary>
         /// Control otromed.
         /// </summary>
@@ -1289,7 +1300,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox otromed;
-        
+
         /// <summary>
         /// Control tagsmot.
         /// </summary>
@@ -1298,7 +1309,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField tagsmot;
-        
+
         /// <summary>
         /// Control motivo.
         /// </summary>
@@ -1307,7 +1318,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList motivo;
-        
+
         /// <summary>
         /// Control DSmotivos.
         /// </summary>
@@ -1316,7 +1327,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource DSmotivos;
-        
+
         /// <summary>
         /// Control otromot.
         /// </summary>
@@ -1325,7 +1336,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox otromot;
-        
+
         /// <summary>
         /// Control Bseleccionar.
         /// </summary>
@@ -1334,7 +1345,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Bseleccionar;
-        
+
         /// <summary>
         /// Control bnombre.
         /// </summary>
@@ -1343,7 +1354,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox bnombre;
-        
+
         /// <summary>
         /// Control GVlistaalumnos.
         /// </summary>
@@ -1352,7 +1363,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GVlistaalumnos;
-        
+
         /// <summary>
         /// Control DSlistaalumnos.
         /// </summary>
@@ -1361,7 +1372,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource DSlistaalumnos;
-        
+
         /// <summary>
         /// Control divResultados.
         /// </summary>
@@ -1370,7 +1381,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divResultados;
-        
+
         /// <summary>
         /// Control Button1.
         /// </summary>
@@ -1379,7 +1390,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Button1;
-        
+
         /// <summary>
         /// Control borrar.
         /// </summary>
@@ -1388,7 +1399,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button borrar;
-        
+
         /// <summary>
         /// Control desercion.
         /// </summary>
@@ -1397,7 +1408,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList desercion;
-        
+
         /// <summary>
         /// Control Dsdesercion.
         /// </summary>
@@ -1406,7 +1417,7 @@ namespace elecion.inscripcion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource Dsdesercion;
-        
+
         /// <summary>
         /// Control motcancelacion.
         /// </summary>

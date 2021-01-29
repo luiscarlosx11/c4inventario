@@ -677,6 +677,8 @@ namespace elecion.inscripcion
 
         protected void guardaEditaIns(object sender, EventArgs e)
         {
+            int existe = 0;
+
             using (MySqlConnection mySqlConnection = new MySqlConnection(WebConfigurationManager.ConnectionStrings["DBconexion"].ConnectionString))
             {
                 MySqlTransaction mySqlTransaction = null;
@@ -696,154 +698,172 @@ namespace elecion.inscripcion
                         mySqlTransaction = mySqlConnection.BeginTransaction();
                         mySqlCommand.Connection = mySqlConnection;
                         mySqlCommand.Transaction = mySqlTransaction;
-                        if (Convert.ToInt32(this.idA.Value) != 0)
-                        {
-                            mySqlCommand.Parameters.Clear();
-                            str = "update alumno set idedocivil=@idedocivil, idescolaridad=@idescolaridad, nombre=@nombre, apaterno=@apaterno, amaterno=@amaterno, sexo=@sexo, nocontrol=@nocontrol, curp=@curp, telefono=@telefono,domicilio = @domicilio, colonia = @colonia, cp = @cp, identidad = @identidad, idmunicipio = @idmunicipio, fechanacimiento=@fechanacimiento, discapacidades=@discapacidades, empresa=@empresa, puesto=@puesto, antiguedad=@antiguedad, direccion=@direccion, telefonoempresa=@telefonoempresa, email=@email ";
-                            string[] strArrays = this.hpicture.Value.Split(new char[] { ',' });
-                            if ((int)strArrays.Length > 1)
+
+                        mySqlCommand.Parameters.Clear();
+                        mySqlCommand.CommandText = string.Concat("SELECT count(idalumno)as existe FROM alumno where nocontrol=@nocontrol and idalumno not in(", this.idA.Value, ");");
+                        mySqlCommand.Parameters.AddWithValue("@nocontrol", this.nocontrol.Text.ToUpper().Trim());
+                        existe = Convert.ToInt32(mySqlCommand.ExecuteScalar());
+
+                        if (existe == 0) { 
+
+                            if (Convert.ToInt32(this.idA.Value) != 0)
                             {
-                                str = string.Concat(str, ", foto=@imagen ");
-                            }
-                            str = string.Concat(str, "where idalumno = @idalumno; ");
-                            mySqlCommand.CommandText = str;
-                            mySqlCommand.Parameters.AddWithValue("@idalumno", this.idA.Value);
-                            mySqlCommand.Parameters.AddWithValue("@idedocivil", this.edocivil.SelectedValue);
-                            mySqlCommand.Parameters.AddWithValue("@idescolaridad", this.escolaridad.SelectedValue);
-                            mySqlCommand.Parameters.AddWithValue("@nocontrol", this.nocontrol.Text.ToUpper().Trim());
-                            mySqlCommand.Parameters.AddWithValue("@nombre", this.nombrealumno.Text.ToUpper().Trim());
-                            mySqlCommand.Parameters.AddWithValue("@apaterno", this.apaterno.Text.ToUpper().Trim());
-                            mySqlCommand.Parameters.AddWithValue("@amaterno", this.amaterno.Text.ToUpper().Trim());
-                            mySqlCommand.Parameters.AddWithValue("@sexo", this.sexo.SelectedValue);
-                            mySqlCommand.Parameters.AddWithValue("@curp", this.curp.Text.ToUpper().Trim());
-                            mySqlCommand.Parameters.AddWithValue("@telefono", this.telefono.Text.Replace("-", "").Replace("(", "").Replace(") ", "").Trim());
-                            mySqlCommand.Parameters.AddWithValue("@domicilio", this.domicilio.Text.ToUpper().Trim());
-                            mySqlCommand.Parameters.AddWithValue("@colonia", this.colonia.Text.ToUpper().Trim());
-                            mySqlCommand.Parameters.AddWithValue("@cp", this.cp.Text.ToUpper().Trim());
-                            mySqlCommand.Parameters.AddWithValue("@identidad", this.entidad.SelectedValue);
-                            mySqlCommand.Parameters.AddWithValue("@idmunicipio", this.municipio.SelectedValue);
-                            mySqlCommand.Parameters.AddWithValue("@fechanacimiento", this.fechanacimiento.Text.ToUpper().Trim());
-                            mySqlCommand.Parameters.AddWithValue("@discapacidades", this.tagsdiscap.Value);
-                            mySqlCommand.Parameters.AddWithValue("@empresa", this.empresa.Text.ToUpper().Trim());
-                            mySqlCommand.Parameters.AddWithValue("@antiguedad", this.antiguedad.Text.ToUpper().Trim());
-                            mySqlCommand.Parameters.AddWithValue("@puesto", this.puesto.Text.ToUpper().Trim());
-                            mySqlCommand.Parameters.AddWithValue("@direccion", this.domicilioempresa.Text.ToUpper().Trim());
-                            mySqlCommand.Parameters.AddWithValue("@telefonoempresa", this.telefonoempresa.Text.ToUpper().Trim());
-                            mySqlCommand.Parameters.AddWithValue("@email", this.email.Text.Trim());
-                            if ((int)strArrays.Length > 1)
-                            {
-                                mySqlCommand.Parameters.Add("@imagen", MySqlDbType.MediumBlob);
-                                byte[] numArray = Convert.FromBase64String(strArrays[1]);
-                                mySqlCommand.Parameters["@imagen"].Value = numArray;
-                            }
-                            mySqlCommand.ExecuteNonQuery();
-                        }
-                        else
-                        {
-                            mySqlCommand.Parameters.Clear();
-                            str = "insert into alumno(nocontrol, idedocivil, idescolaridad, nombre, apaterno, amaterno, sexo, curp, telefono, domicilio, colonia, cp, identidad, idmunicipio, fechanacimiento, activo, discapacidades, empresa, puesto, antiguedad, direccion, telefonoempresa, foto, email) values(@nocontrol, @idedocivil, @idescolaridad, @nombre, @apaterno, @amaterno, @sexo, @curp, @telefono, @domicilio, @colonia, @cp, @identidad, @idmunicipio, @fechanacimiento, 1, @discapacidades, @empresa, @puesto, @antiguedad, @direccion, @telefonoempresa, @imagen, @email);";
-                            mySqlCommand.CommandText = str;
-                            mySqlCommand.Parameters.AddWithValue("@idedocivil", this.edocivil.SelectedValue);
-                            mySqlCommand.Parameters.AddWithValue("@idescolaridad", this.escolaridad.SelectedValue);
-                            mySqlCommand.Parameters.AddWithValue("@nocontrol", this.nocontrol.Text.ToUpper().Trim());
-                            mySqlCommand.Parameters.AddWithValue("@nombre", this.nombrealumno.Text.ToUpper().Trim());
-                            mySqlCommand.Parameters.AddWithValue("@apaterno", this.apaterno.Text.ToUpper().Trim());
-                            mySqlCommand.Parameters.AddWithValue("@amaterno", this.amaterno.Text.ToUpper().Trim());
-                            mySqlCommand.Parameters.AddWithValue("@sexo", this.sexo.SelectedValue);
-                            mySqlCommand.Parameters.AddWithValue("@curp", this.curp.Text.ToUpper().Trim());
-                            mySqlCommand.Parameters.AddWithValue("@telefono", this.telefono.Text.Replace("-", "").Replace("(", "").Replace(") ", "").Trim());
-                            mySqlCommand.Parameters.AddWithValue("@domicilio", this.domicilio.Text.ToUpper().Trim());
-                            mySqlCommand.Parameters.AddWithValue("@colonia", this.colonia.Text.ToUpper().Trim());
-                            mySqlCommand.Parameters.AddWithValue("@cp", this.cp.Text.ToUpper().Trim());
-                            mySqlCommand.Parameters.AddWithValue("@identidad", this.entidad.SelectedValue);
-                            mySqlCommand.Parameters.AddWithValue("@idmunicipio", this.municipio.SelectedValue);
-                            mySqlCommand.Parameters.AddWithValue("@fechanacimiento", this.fechanacimiento.Text.ToUpper().Trim());
-                            mySqlCommand.Parameters.AddWithValue("@discapacidades", this.tagsdiscap.Value);
-                            mySqlCommand.Parameters.AddWithValue("@empresa", this.empresa.Text.ToUpper().Trim());
-                            mySqlCommand.Parameters.AddWithValue("@antiguedad", this.antiguedad.Text.ToUpper().Trim());
-                            mySqlCommand.Parameters.AddWithValue("@puesto", this.puesto.Text.ToUpper().Trim());
-                            mySqlCommand.Parameters.AddWithValue("@direccion", this.domicilioempresa.Text.ToUpper().Trim());
-                            mySqlCommand.Parameters.AddWithValue("@telefonoempresa", this.telefonoempresa.Text.ToUpper().Trim());
-                            mySqlCommand.Parameters.AddWithValue("@email", this.email.Text.Trim());
-                            string[] strArrays1 = this.hpicture.Value.Split(new char[] { ',' });
-                            if ((int)strArrays1.Length <= 1)
-                            {
-                                mySqlCommand.Parameters.Add("@imagen", MySqlDbType.MediumBlob);
-                                mySqlCommand.Parameters["@imagen"].Value = null;
+                                mySqlCommand.Parameters.Clear();
+                                str = "update alumno set idedocivil=@idedocivil, idescolaridad=@idescolaridad, nombre=@nombre, apaterno=@apaterno, amaterno=@amaterno, sexo=@sexo, nocontrol=@nocontrol, curp=@curp, telefono=@telefono,domicilio = @domicilio, colonia = @colonia, cp = @cp, identidad = @identidad, idmunicipio = @idmunicipio, fechanacimiento=@fechanacimiento, discapacidades=@discapacidades, empresa=@empresa, puesto=@puesto, antiguedad=@antiguedad, direccion=@direccion, telefonoempresa=@telefonoempresa, email=@email ";
+                                string[] strArrays = this.hpicture.Value.Split(new char[] { ',' });
+                                if ((int)strArrays.Length > 1)
+                                {
+                                    str = string.Concat(str, ", foto=@imagen ");
+                                }
+                                str = string.Concat(str, "where idalumno = @idalumno; ");
+                                mySqlCommand.CommandText = str;
+                                mySqlCommand.Parameters.AddWithValue("@idalumno", this.idA.Value);
+                                mySqlCommand.Parameters.AddWithValue("@idedocivil", this.edocivil.SelectedValue);
+                                mySqlCommand.Parameters.AddWithValue("@idescolaridad", this.escolaridad.SelectedValue);
+                                mySqlCommand.Parameters.AddWithValue("@nocontrol", this.nocontrol.Text.ToUpper().Trim());
+                                mySqlCommand.Parameters.AddWithValue("@nombre", this.nombrealumno.Text.ToUpper().Trim());
+                                mySqlCommand.Parameters.AddWithValue("@apaterno", this.apaterno.Text.ToUpper().Trim());
+                                mySqlCommand.Parameters.AddWithValue("@amaterno", this.amaterno.Text.ToUpper().Trim());
+                                mySqlCommand.Parameters.AddWithValue("@sexo", this.sexo.SelectedValue);
+                                mySqlCommand.Parameters.AddWithValue("@curp", this.curp.Text.ToUpper().Trim());
+                                mySqlCommand.Parameters.AddWithValue("@telefono", this.telefono.Text.Replace("-", "").Replace("(", "").Replace(") ", "").Trim());
+                                mySqlCommand.Parameters.AddWithValue("@domicilio", this.domicilio.Text.ToUpper().Trim());
+                                mySqlCommand.Parameters.AddWithValue("@colonia", this.colonia.Text.ToUpper().Trim());
+                                mySqlCommand.Parameters.AddWithValue("@cp", this.cp.Text.ToUpper().Trim());
+                                mySqlCommand.Parameters.AddWithValue("@identidad", this.entidad.SelectedValue);
+                                mySqlCommand.Parameters.AddWithValue("@idmunicipio", this.municipio.SelectedValue);
+                                mySqlCommand.Parameters.AddWithValue("@fechanacimiento", this.fechanacimiento.Text.ToUpper().Trim());
+                                mySqlCommand.Parameters.AddWithValue("@discapacidades", this.tagsdiscap.Value);
+                                mySqlCommand.Parameters.AddWithValue("@empresa", this.empresa.Text.ToUpper().Trim());
+                                mySqlCommand.Parameters.AddWithValue("@antiguedad", this.antiguedad.Text.ToUpper().Trim());
+                                mySqlCommand.Parameters.AddWithValue("@puesto", this.puesto.Text.ToUpper().Trim());
+                                mySqlCommand.Parameters.AddWithValue("@direccion", this.domicilioempresa.Text.ToUpper().Trim());
+                                mySqlCommand.Parameters.AddWithValue("@telefonoempresa", this.telefonoempresa.Text.ToUpper().Trim());
+                                mySqlCommand.Parameters.AddWithValue("@email", this.email.Text.Trim());
+                                if ((int)strArrays.Length > 1)
+                                {
+                                    mySqlCommand.Parameters.Add("@imagen", MySqlDbType.MediumBlob);
+                                    byte[] numArray = Convert.FromBase64String(strArrays[1]);
+                                    mySqlCommand.Parameters["@imagen"].Value = numArray;
+                                }
+                                mySqlCommand.ExecuteNonQuery();
                             }
                             else
                             {
-                                byte[] numArray1 = Convert.FromBase64String(strArrays1[1]);
-                                mySqlCommand.Parameters.Add("@imagen", MySqlDbType.MediumBlob);
-                                mySqlCommand.Parameters["@imagen"].Value = numArray1;
+                                mySqlCommand.Parameters.Clear();
+                                str = "insert into alumno(nocontrol, idedocivil, idescolaridad, nombre, apaterno, amaterno, sexo, curp, telefono, domicilio, colonia, cp, identidad, idmunicipio, fechanacimiento, activo, discapacidades, empresa, puesto, antiguedad, direccion, telefonoempresa, foto, email) values(@nocontrol, @idedocivil, @idescolaridad, @nombre, @apaterno, @amaterno, @sexo, @curp, @telefono, @domicilio, @colonia, @cp, @identidad, @idmunicipio, @fechanacimiento, 1, @discapacidades, @empresa, @puesto, @antiguedad, @direccion, @telefonoempresa, @imagen, @email);";
+                                mySqlCommand.CommandText = str;
+                                mySqlCommand.Parameters.AddWithValue("@idedocivil", this.edocivil.SelectedValue);
+                                mySqlCommand.Parameters.AddWithValue("@idescolaridad", this.escolaridad.SelectedValue);
+                                mySqlCommand.Parameters.AddWithValue("@nocontrol", this.nocontrol.Text.ToUpper().Trim());
+                                mySqlCommand.Parameters.AddWithValue("@nombre", this.nombrealumno.Text.ToUpper().Trim());
+                                mySqlCommand.Parameters.AddWithValue("@apaterno", this.apaterno.Text.ToUpper().Trim());
+                                mySqlCommand.Parameters.AddWithValue("@amaterno", this.amaterno.Text.ToUpper().Trim());
+                                mySqlCommand.Parameters.AddWithValue("@sexo", this.sexo.SelectedValue);
+                                mySqlCommand.Parameters.AddWithValue("@curp", this.curp.Text.ToUpper().Trim());
+                                mySqlCommand.Parameters.AddWithValue("@telefono", this.telefono.Text.Replace("-", "").Replace("(", "").Replace(") ", "").Trim());
+                                mySqlCommand.Parameters.AddWithValue("@domicilio", this.domicilio.Text.ToUpper().Trim());
+                                mySqlCommand.Parameters.AddWithValue("@colonia", this.colonia.Text.ToUpper().Trim());
+                                mySqlCommand.Parameters.AddWithValue("@cp", this.cp.Text.ToUpper().Trim());
+                                mySqlCommand.Parameters.AddWithValue("@identidad", this.entidad.SelectedValue);
+                                mySqlCommand.Parameters.AddWithValue("@idmunicipio", this.municipio.SelectedValue);
+                                mySqlCommand.Parameters.AddWithValue("@fechanacimiento", this.fechanacimiento.Text.ToUpper().Trim());
+                                mySqlCommand.Parameters.AddWithValue("@discapacidades", this.tagsdiscap.Value);
+                                mySqlCommand.Parameters.AddWithValue("@empresa", this.empresa.Text.ToUpper().Trim());
+                                mySqlCommand.Parameters.AddWithValue("@antiguedad", this.antiguedad.Text.ToUpper().Trim());
+                                mySqlCommand.Parameters.AddWithValue("@puesto", this.puesto.Text.ToUpper().Trim());
+                                mySqlCommand.Parameters.AddWithValue("@direccion", this.domicilioempresa.Text.ToUpper().Trim());
+                                mySqlCommand.Parameters.AddWithValue("@telefonoempresa", this.telefonoempresa.Text.ToUpper().Trim());
+                                mySqlCommand.Parameters.AddWithValue("@email", this.email.Text.Trim());
+                                string[] strArrays1 = this.hpicture.Value.Split(new char[] { ',' });
+                                if ((int)strArrays1.Length <= 1)
+                                {
+                                    mySqlCommand.Parameters.Add("@imagen", MySqlDbType.MediumBlob);
+                                    mySqlCommand.Parameters["@imagen"].Value = null;
+                                }
+                                else
+                                {
+                                    byte[] numArray1 = Convert.FromBase64String(strArrays1[1]);
+                                    mySqlCommand.Parameters.Add("@imagen", MySqlDbType.MediumBlob);
+                                    mySqlCommand.Parameters["@imagen"].Value = numArray1;
+                                }
+                                mySqlCommand.ExecuteNonQuery();
+                                lastInsertedId = (int)mySqlCommand.LastInsertedId;
+                                this.idA.Value = lastInsertedId.ToString();
                             }
-                            mySqlCommand.ExecuteNonQuery();
-                            lastInsertedId = (int)mySqlCommand.LastInsertedId;
-                            this.idA.Value = lastInsertedId.ToString();
-                        }
-                        if (Convert.ToInt32(this.idI.Value) != 0)
-                        {
+                            if (Convert.ToInt32(this.idI.Value) != 0)
+                            {
+                                mySqlCommand.Parameters.Clear();
+                                str = "update solicitudinscripcion set    becado = @becado, idescolaridad = @idescolaridad, idconvenio=@idconvenio, medios=@medios, motivos=@motivos, jefafamilia=@jefafamilia, indigena=@indigena, porcentaje=@porcentaje, condicioncalle=@condicioncalle where idsolicitud=@idsolicitud; ";
+                                mySqlCommand.CommandText = str;
+                                mySqlCommand.Parameters.AddWithValue("@idsolicitud", this.idI.Value);
+                                mySqlCommand.Parameters.AddWithValue("@becado", this.apoyo.SelectedValue);
+                                mySqlCommand.Parameters.AddWithValue("@idescolaridad", this.escolaridad.SelectedValue);
+                                mySqlCommand.Parameters.AddWithValue("@idconvenio", this.convenio.SelectedValue);
+                                mySqlCommand.Parameters.AddWithValue("@medios", this.tagsmed.Value);
+                                mySqlCommand.Parameters.AddWithValue("@motivos", this.tagsmot.Value);
+                                mySqlCommand.Parameters.AddWithValue("@jefafamilia", this.jefafamilia.SelectedValue);
+                                mySqlCommand.Parameters.AddWithValue("@indigena", this.indigena.SelectedValue);
+                                mySqlCommand.Parameters.AddWithValue("@condicioncalle", this.condicioncalle.SelectedValue);
+                                mySqlCommand.Parameters.AddWithValue("@porcentaje", this.porcentaje.Text);
+                                mySqlCommand.ExecuteNonQuery();
+                            }
+                            else
+                            {
+                                mySqlCommand.Parameters.Clear();
+                                str = "insert into solicitudinscripcion(idsucursal,idalumno,idusuario, fecha, hora, pagado, costo,  becado, idcondicion, idescolaridad, idconvenio, idcurso, medios, motivos, jefafamilia, indigena, porcentaje, condicioncalle) values(@idsucursal, @idalumno, @idusuario, curdate(), curtime(), 0, 0, @becado, 1, @idescolaridad, @idconvenio, @idccurso, @medios, @motivos, @jefafamilia, @indigena, @porcentaje, @condicioncalle); ";
+                                mySqlCommand.CommandText = str;
+                                mySqlCommand.Parameters.AddWithValue("@idsucursal", this.idsucursal);
+                                mySqlCommand.Parameters.AddWithValue("@idalumno", this.idA.Value);
+                                mySqlCommand.Parameters.AddWithValue("@idusuario", this.idusuario);
+                                mySqlCommand.Parameters.AddWithValue("@idccurso", this.idP.Value);
+                                mySqlCommand.Parameters.AddWithValue("@becado", this.apoyo.SelectedValue);
+                                mySqlCommand.Parameters.AddWithValue("@idescolaridad", this.escolaridad.SelectedValue);
+                                mySqlCommand.Parameters.AddWithValue("@idconvenio", this.convenio.SelectedValue);
+                                mySqlCommand.Parameters.AddWithValue("@medios", this.tagsmed.Value);
+                                mySqlCommand.Parameters.AddWithValue("@motivos", this.tagsmot.Value);
+                                mySqlCommand.Parameters.AddWithValue("@jefafamilia", this.jefafamilia.SelectedValue);
+                                mySqlCommand.Parameters.AddWithValue("@indigena", this.indigena.SelectedValue);
+                                mySqlCommand.Parameters.AddWithValue("@condicioncalle", this.condicioncalle.SelectedValue);
+                                mySqlCommand.Parameters.AddWithValue("@porcentaje", this.porcentaje.Text);
+                                mySqlCommand.ExecuteNonQuery();
+                                num = (int)mySqlCommand.LastInsertedId;
+                                this.idI.Value = num.ToString();
+                            }
                             mySqlCommand.Parameters.Clear();
-                            str = "update solicitudinscripcion set    becado = @becado, idescolaridad = @idescolaridad, idconvenio=@idconvenio, medios=@medios, motivos=@motivos, jefafamilia=@jefafamilia, indigena=@indigena, porcentaje=@porcentaje, condicioncalle=@condicioncalle where idsolicitud=@idsolicitud; ";
+                            str = "delete from cursodocumentacion where idsolicitud=@idsolicitud; ";
                             mySqlCommand.CommandText = str;
                             mySqlCommand.Parameters.AddWithValue("@idsolicitud", this.idI.Value);
-                            mySqlCommand.Parameters.AddWithValue("@becado", this.apoyo.SelectedValue);
-                            mySqlCommand.Parameters.AddWithValue("@idescolaridad", this.escolaridad.SelectedValue);
-                            mySqlCommand.Parameters.AddWithValue("@idconvenio", this.convenio.SelectedValue);
-                            mySqlCommand.Parameters.AddWithValue("@medios", this.tagsmed.Value);
-                            mySqlCommand.Parameters.AddWithValue("@motivos", this.tagsmot.Value);
-                            mySqlCommand.Parameters.AddWithValue("@jefafamilia", this.jefafamilia.SelectedValue);
-                            mySqlCommand.Parameters.AddWithValue("@indigena", this.indigena.SelectedValue);
-                            mySqlCommand.Parameters.AddWithValue("@condicioncalle", this.condicioncalle.SelectedValue);
-                            mySqlCommand.Parameters.AddWithValue("@porcentaje", this.porcentaje.Text);
                             mySqlCommand.ExecuteNonQuery();
+                            string[] strArrays2 = this.tagsdoc.Value.Split(new char[] { ',' });
+                            for (int i = 0; i < (int)strArrays2.Length; i++)
+                            {
+                                string str1 = strArrays2[i];
+                                if (!str1.Equals(""))
+                                {
+                                    mySqlCommand.Parameters.Clear();
+                                    str = "insert into cursodocumentacion(iddocumentacion, idsolicitud) values(@iddocumentacion, @idsolicitud); ";
+                                    mySqlCommand.CommandText = str;
+                                    mySqlCommand.Parameters.AddWithValue("@iddocumentacion", Convert.ToInt32(str1));
+                                    mySqlCommand.Parameters.AddWithValue("@idsolicitud", this.idI.Value);
+                                    mySqlCommand.ExecuteNonQuery();
+                                }
+                            }
+                            mySqlTransaction.Commit();
+                            this.listadoAlumnos(sender, e);
+                            this.listadoAlumnosBus(sender, e);
+                            this.listadoDocumentacion(sender, e);
+                            ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading(); toastExito(); $('#winscripcion').modal('hide');", true);
+
                         }
                         else
                         {
-                            mySqlCommand.Parameters.Clear();
-                            str = "insert into solicitudinscripcion(idsucursal,idalumno,idusuario, fecha, hora, pagado, costo,  becado, idcondicion, idescolaridad, idconvenio, idcurso, medios, motivos, jefafamilia, indigena, porcentaje, condicioncalle) values(@idsucursal, @idalumno, @idusuario, curdate(), curtime(), 0, 0, @becado, 1, @idescolaridad, @idconvenio, @idccurso, @medios, @motivos, @jefafamilia, @indigena, @porcentaje, @condicioncalle); ";
-                            mySqlCommand.CommandText = str;
-                            mySqlCommand.Parameters.AddWithValue("@idsucursal", this.idsucursal);
-                            mySqlCommand.Parameters.AddWithValue("@idalumno", this.idA.Value);
-                            mySqlCommand.Parameters.AddWithValue("@idusuario", this.idusuario);
-                            mySqlCommand.Parameters.AddWithValue("@idccurso", this.idP.Value);
-                            mySqlCommand.Parameters.AddWithValue("@becado", this.apoyo.SelectedValue);
-                            mySqlCommand.Parameters.AddWithValue("@idescolaridad", this.escolaridad.SelectedValue);
-                            mySqlCommand.Parameters.AddWithValue("@idconvenio", this.convenio.SelectedValue);
-                            mySqlCommand.Parameters.AddWithValue("@medios", this.tagsmed.Value);
-                            mySqlCommand.Parameters.AddWithValue("@motivos", this.tagsmot.Value);
-                            mySqlCommand.Parameters.AddWithValue("@jefafamilia", this.jefafamilia.SelectedValue);
-                            mySqlCommand.Parameters.AddWithValue("@indigena", this.indigena.SelectedValue);
-                            mySqlCommand.Parameters.AddWithValue("@condicioncalle", this.condicioncalle.SelectedValue);
-                            mySqlCommand.Parameters.AddWithValue("@porcentaje", this.porcentaje.Text);
-                            mySqlCommand.ExecuteNonQuery();
-                            num = (int)mySqlCommand.LastInsertedId;
-                            this.idI.Value = num.ToString();
+                            ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading(); alerta('Atención','El no de control ingresado ya ha sido asignado previamente a otro alumno, intente con otro','error',null);", true);
                         }
-                        mySqlCommand.Parameters.Clear();
-                        str = "delete from cursodocumentacion where idsolicitud=@idsolicitud; ";
-                        mySqlCommand.CommandText = str;
-                        mySqlCommand.Parameters.AddWithValue("@idsolicitud", this.idI.Value);
-                        mySqlCommand.ExecuteNonQuery();
-                        string[] strArrays2 = this.tagsdoc.Value.Split(new char[] { ',' });
-                        for (int i = 0; i < (int)strArrays2.Length; i++)
-                        {
-                            string str1 = strArrays2[i];
-                            if (!str1.Equals(""))
-                            {
-                                mySqlCommand.Parameters.Clear();
-                                str = "insert into cursodocumentacion(iddocumentacion, idsolicitud) values(@iddocumentacion, @idsolicitud); ";
-                                mySqlCommand.CommandText = str;
-                                mySqlCommand.Parameters.AddWithValue("@iddocumentacion", Convert.ToInt32(str1));
-                                mySqlCommand.Parameters.AddWithValue("@idsolicitud", this.idI.Value);
-                                mySqlCommand.ExecuteNonQuery();
-                            }
-                        }
-                        mySqlTransaction.Commit();
-                        this.listadoAlumnos(sender, e);
-                        this.listadoAlumnosBus(sender, e);
-                        this.listadoDocumentacion(sender, e);
-                        ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading(); toastExito(); $('#winscripcion').modal('hide');", true);
+
+
+
+
                     }
                     catch (Exception exception1)
                     {
