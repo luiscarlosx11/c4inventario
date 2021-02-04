@@ -93,6 +93,12 @@
     <Compile Include="ReportCursos.Designer.cs">
       <DependentUpon>ReportCursos.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportPolizaCaratula.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportPolizaCaratula.Designer.cs">
+      <DependentUpon>ReportPolizaCaratula.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportGruposVulnerables.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -286,6 +292,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportCursos.resx">
       <DependentUpon>ReportCursos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportPolizaCaratula.resx">
+      <DependentUpon>ReportPolizaCaratula.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportGruposVulnerables.resx">
       <DependentUpon>ReportGruposVulnerables.cs</DependentUpon>

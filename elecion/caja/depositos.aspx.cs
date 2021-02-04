@@ -273,6 +273,7 @@ namespace elecion.caja
             this.nombre.Text = "";
             this.fecha.Text = "";
             this.monto.Text = "0";
+            listadoFechas(sender, e);
             ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading();  $('#bootstrap').modal('show'); ", true);
         }
 

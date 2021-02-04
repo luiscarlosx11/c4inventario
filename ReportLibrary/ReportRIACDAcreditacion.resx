@@ -131,12 +131,17 @@ s.nombre as instalacion,
 concat(s.calle,' # ', s.numext,' COL. ',s.colonia,' ',coalesce(s.localidad,''))as direccion,
  c.instalacionext, c.instalaciondomext, c.pagohora, c.costomodulo,
 c.solicita, c.autoriza, 
-s.nombre as nombresucursal, s.clavecct as clavesucursal, ce.cicloescolar,
+s.nombre as nombresucursal, s.clavecct as clavesucursal, 
 (
 select p.numero 
 from periodo p
  where c.fechaini between p.fechaini and p.fechafin
-)as periodo, s.encargado
+)as periodo, s.encargado,
+(
+select ce.cicloescolar 
+from cicloescolar ce
+ where c.fechafin between ce.fechaini and ce.fechafin
+)as cicloescolar
 from curso c 
 left join area a on a.idarea = c.idarea 
 left join especialidad e on e.idespecialidad = c.idespecialidad 
@@ -145,7 +150,7 @@ left join instructor i on i.idinstructor = c.idinstructor
 left join instalacion lu on lu.idinstalacion = c.idinstalacion 
 left join sucursal s on c.idsucursal = s.idsucursal
 left join empresa em on em.idempresa = c.idempresa
-left join cicloescolar ce on c.idcicloescolar = ce.idcicloescolar
+
 
 where c.idcurso = @idcurso
 and c.idsucursal = @idsucursal</value>

@@ -117,115 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="generales.ParameterValues" xml:space="preserve">
-    <value>{"@fechaini":"'2020-06-01'","@fechafin":"'2020-06-15'","@idusuario":"1","@idsucursal":"9","@idtipocurso":"1"}</value>
+  <metadata name="sqlDataSource1.ParameterValues" xml:space="preserve">
+    <value>{"@iddeposito":"1"}</value>
   </metadata>
-  <data name="generales.SelectCommand" xml:space="preserve">
-    <value>SET lc_time_names = 'es_MX';
-select v.*, sum(v.horastrabajo) as shorastrabajo, count(distinct(v.idinstructor))as sintructor, count(v.idcurso)as scurso, 
-case 
-when day(@fechaini) &gt; 15 then 2 * month(@fechaini) 
-else 2 * month(@fechaini) - 1
-end as quincena, 
-
-year(@fechafin) as anio
-from
-(select s.nombre as instalacion, s.idtiposucursal,
-s.nombre as nombresucursal, s.clavecct as clavesucursal, t.tipocurso,
-c.idcurso, c.nombre as nombrecurso, cast(c.fechaini as char)as fechaini, cast(c.fechafin as char) as fechafin, cast(c.horaini as char) as horaini, cast(c.horafin as char) as horafin, c.horas,
-i.idinstructor, i.nombre as instructor, c.pagohora,
-CONCAT(day(@fechaini),' AL ',day(@fechafin),' DE ',
-case month(@fechafin)
-when 1 then 'ENERO'
-when 2 then 'FEBRERO'
-when 3 then 'MARZO'
-when 4 then 'ABRIL'
-when 5 then 'MAYO'
-when 6 then 'JUNIO'
-when 7 then 'JULIO'
-when 8 then 'AGOSTO'
-when 9 then 'SEPTIEMBRE'
-when 10 then 'OCTUBRE'
-when 11 then 'NOVIEMBRE'
-when 12 then 'DICIEMBRE'
-end , ' DE ' , year(@fechafin)) as periodo,
-(
-select GROUP_CONCAT(distinct(UPPER(DAYNAME(f.fecha))) SEPARATOR ', ')
-from fechascurso f
-where f.idcurso = c.idcurso
-)as diassemana,
-(
-select count(f.fecha)
-from fechascurso f
-where f.idcurso = c.idcurso
-and f.fecha between @fechaini and @fechafin
-)as diastrabajo,
-coalesce((
-select sum(TIMESTAMPDIFF(HOUR, f.horaini, f.horafin))
-from fechascurso f
-where f.idcurso = c.idcurso
-and f.fecha between @fechaini and @fechafin
-),0)as horastrabajo, s.encargado, ca.cargo, concat(u.nombre,' ',u.apaterno,' ',u.amaterno) as usuario
-
-from sucursal s
-left join curso c on c.idsucursal = s.idsucursal
-left join instructor i on i.idinstructor = c.idinstructor
-left join tipocurso t on t.idtipocurso = c.idtipocurso
-left join cargo ca on ca.idcargo = s.idcargo
-left join usuario u on u.idusuario=@idusuario
-where s.idsucursal=@idsucursal
-and c.idtipocurso=@idtipocurso
-and c.estatus not in('CANCELADO','RECHAZADO','EN CAPTURA')
-and
-(
-	select count(f.fecha) from fechascurso f where f.idcurso=c.idcurso and f.fecha between @fechaini  and @fechafin )&gt;0
-
-)as v
-
-order by v.instructor, v.nombrecurso</value>
-  </data>
-  <metadata name="tabla.ParameterValues" xml:space="preserve">
-    <value>{"@fechaini":"'2020-06-01'","@fechafin":"'2020-06-15'","@idsucursal":"9","@idtipocurso":"1"}</value>
-  </metadata>
-  <data name="tabla.SelectCommand" xml:space="preserve">
-    <value>SET lc_time_names = 'es_MX';
-select v.*
-from
-(select s.nombre as instalacion,
-s.nombre as nombresucursal, s.clavecct as clavesucursal,
-c.idcurso, c.nombre as nombrecurso, cast(c.fechaini as char)as fechaini, cast(c.fechafin as char) as fechafin, cast(c.horaini as char) as horaini, cast(c.horafin as char) as horafin, c.horas,
-i.idinstructor, i.nombre as instructor, c.pagohora,TIMESTAMPDIFF(HOUR, c.horaini, c.horafin) AS horaspordia,
-(
-select GROUP_CONCAT(distinct(UPPER(DAYNAME(f.fecha))) SEPARATOR ', ')
-from fechascurso f
-where f.idcurso = c.idcurso
-)as diassemana,
-(
-select count(f.fecha)
-from fechascurso f
-where f.idcurso = c.idcurso
-and f.fecha between @fechaini and @fechafin
-)as diastrabajo,
-coalesce((
-select sum(TIMESTAMPDIFF(HOUR, f.horaini, f.horafin))
-from fechascurso f
-where f.idcurso = c.idcurso
-and f.fecha between @fechaini and @fechafin
-),0)as horastrabajo
-
-from sucursal s
-left join curso c on c.idsucursal = s.idsucursal
-left join instructor i on i.idinstructor = c.idinstructor
-where s.idsucursal=@idsucursal
-and c.idtipocurso=@idtipocurso
-and c.estatus not in('CANCELADO','RECHAZADO','EN CAPTURA')
-
-and
-(
-	select count(f.fecha) from fechascurso f where f.idcurso=c.idcurso and f.fecha between @fechaini  and @fechafin )&gt;0
-
-)as v
-
-order by v.instructor, v.nombrecurso</value>
+  <data name="sqlDataSource1.SelectCommand" xml:space="preserve">
+    <value>select d.iddeposito, 
+cast(d.fecha as char)as fecha, 
+d.nombre, s.nombre as sucursal, d.folio, 
+SUBSTRING(s.subcuenta, 1, 4) as cuenta,  SUBSTRING(s.subcuenta,6, 5) as subcuenta,  SUBSTRING(s.subcuenta,11, 100) as nombrecuenta,   
+(select sum(cp.importe) from cursopago cp 
+where cp.iddeposito=d.iddeposito and cp.tipo='O')as monto 
+from deposito d  
+left join sucursal s on s.idsucursal = d.idsucursal 
+where d.iddeposito=@iddeposito</value>
   </data>
 </root>
