@@ -123,12 +123,15 @@
   <data name="sqlDataSource1.SelectCommand" xml:space="preserve">
     <value>select d.iddeposito, 
 cast(d.fecha as char)as fecha, 
-d.nombre, s.nombre as sucursal, d.folio, 
+d.nombre, s.nombre as sucursal, d.folio, d.observaciones,
 SUBSTRING(s.subcuenta, 1, 4) as cuenta,  SUBSTRING(s.subcuenta,6, 5) as subcuenta,  SUBSTRING(s.subcuenta,11, 100) as nombrecuenta,   
 (select sum(cp.importe) from cursopago cp 
-where cp.iddeposito=d.iddeposito and cp.tipo='O')as monto 
+where cp.iddeposito=d.iddeposito)as monto 
 from deposito d  
 left join sucursal s on s.idsucursal = d.idsucursal 
 where d.iddeposito=@iddeposito</value>
   </data>
+  <metadata name="$this.Zoom" type="System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>0.6666667</value>
+  </metadata>
 </root>

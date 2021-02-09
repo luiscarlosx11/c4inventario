@@ -145,8 +145,8 @@ left join solicitudinscripcion s on s.idcurso = c.idcurso
 left join cursopago cp on cp.idsolicitud = s.idsolicitud
  
 left join alumno a on a.idalumno = s.idalumno
- where cp.tipo='O' 
-and cp.iddeposito=@iddeposito</value>
+ 
+where cp.iddeposito=@iddeposito</value>
   </data>
   <metadata name="generales.ParameterValues" xml:space="preserve">
     <value>{"@iddeposito":"1"}</value>

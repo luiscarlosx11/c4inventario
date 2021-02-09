@@ -91,10 +91,18 @@ body { padding-right: 0 !important }
                                                     <asp:HiddenField runat="server" ID="idOE" />
 
 
+                                                    <asp:HiddenField runat="server" ID="idI" />
+                                                    <asp:HiddenField runat="server" ID="iPago" />
+
+
                                                     <asp:Button runat="server" ID="Bconsultar" OnClick="listadoClientes" Style="display: none" UseSubmitBehavior="false"/>
                                                     <asp:Button runat="server" ID="Bcancelarcurso" OnClick="cancelaCurso" Style="display: none" UseSubmitBehavior="false"/>
                                                     <asp:Button runat="server" ID="Bguardaobjetivo" OnClick="guardaObjetivo" Style="display: none" UseSubmitBehavior="false"/>
                                                     <asp:Button runat="server" ID="Beliminaobjetivo" OnClick="eliminaObjetivo" Style="display: none" UseSubmitBehavior="false"/>
+
+                                                    
+
+                                                    <asp:Button runat="server" ID="Bguardadeposito" OnClick="guardaDeposito" Style="display: none" UseSubmitBehavior="false"/>
                                                                                                                                                                   
                                                     <asp:Button runat="server" ID="Bnuevo" OnClick="limpiarCampos" style="display:none" UseSubmitBehavior="false"/>                                            
                                                     <button type="button" id="nuevo" onclick="nuevoRegistro();" class="btn btn-icon btn-primary mr-1" data-toggle="modal" >
@@ -163,8 +171,7 @@ body { padding-right: 0 !important }
                                                 <ItemTemplate>
 
                                                     <button type="button" class="btn btn-icon btn-warning mr-1 btn-sm tooltips"  onclick="abrirModal(<%# Eval("iddeposito") %>,<%# Eval("idsucursal") %>)" value="" data-toggle="tooltip" data-original-title="Detalles"><i class="ft-edit"> </i> </button>                                            
-                                                    <button type="button" class="btn btn-icon btn-danger mr-1 btn-sm tooltips"  onclick="abrirModalCancelacion(<%# Eval("iddeposito") %>)" value="" data-toggle="tooltip" data-original-title="Cancelar"><i class="ft-delete"> </i> </button>                                            
-                                        
+                                                    
                                                                                                                                                              
                                                 </ItemTemplate>
                                             </asp:TemplateField>
@@ -216,6 +223,7 @@ body { padding-right: 0 !important }
 
                 <div class="modal-body">
                     <asp:Button runat="server" ID="bimprimir" OnClick="bimprimir_Click" UseSubmitBehavior="false" Style="display: none" />
+                    <asp:Button runat="server" ID="bimprimircaratula" OnClick="bimprimirCaratula" UseSubmitBehavior="false" Style="display: none" />
                     <ul class="nav nav-tabs nav-top-border no-hover-bg">
                         <li class="nav-item">
                             <a class="nav-link active" id="tabgenerales" data-toggle="tab" href="#generales" aria-controls="tabgenerales" aria-expanded="true"><i class="fa fa-folder"></i>Generales</a>
@@ -234,13 +242,7 @@ body { padding-right: 0 !important }
                                     <div class="row" id="tbgenerales">
                                         <div class="col-md-12">
                                            
-                                                        
-
-                                                        
-
-
-                                                       
-                                                        
+                                                                                                                                                                                                                            
                                                         <div class="row">
 
                                                             <div class="col-md-3">
@@ -261,14 +263,8 @@ body { padding-right: 0 !important }
 
                                                         </div>
 
-                                                      
-                                                       
-
-                                                      
-
-
+                                                                                                                                                                   
                                                         <div class="row">
-
                                                             <div class="col-md-4">
                                                                 <div class="form-group">
 
@@ -288,18 +284,20 @@ body { padding-right: 0 !important }
 
                                                                 </div>
                                                             </div>
-
-
-
                                                         </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label class="text-bold-600">Observaciones</label>
+                                                                    <asp:TextBox ID="observaciones" CssClass="form-control text-uppercase" MaxLength="0" placeholder="Observaciones" runat="server" TextMode="MultiLine" Rows="5"></asp:TextBox>
+
+                                                                </div>
 
 
+                                                            </div>
+                                                    </div> 
 
-
-
-                                                       
-
-                                                   
+                                                                                                          
                                         </div>
                                     </div>
                                      
@@ -315,9 +313,13 @@ body { padding-right: 0 !important }
                                 <ContentTemplate>
 
                                     <asp:Button runat="server" ID="Bfechas" OnClick="listadoFechas" Style="display: none" UseSubmitBehavior="false" />
+                                    <asp:Button runat="server" ID="Beliminarecibo" OnClick="eliminarRecibo" Style="display: none" UseSubmitBehavior="false"/>
 
                                     <div class="row">
                                         <div class="col-md-12">
+                                            <button type="button" onclick="abrirModalRecibos();" class="btn btn-icon btn-primary mr-1" data-toggle="modal" >
+                                                         <i class="ft-file"></i> Añadir recibos
+                                            </button><br /><br />   
 
                                             
                                             <asp:GridView runat="server" ID="GValumnos" PageSize="10" AllowPaging="true" AllowSorting="true" CssClass="table table-striped table-bordered zero-configuration" 
@@ -330,11 +332,30 @@ body { padding-right: 0 !important }
                                                             <%# Container.DataItemIndex + 1 %>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    <asp:BoundField DataField="fecha" HeaderText="Fecha" SortExpression="fecha" ItemStyle-Width="150px" ItemStyle-Font-Size="Small"  ItemStyle-CssClass="centrarCelda " HeaderStyle-CssClass="centrarCelda"/>
-                                                    <asp:BoundField DataField="alumno" HeaderText="Nombre" SortExpression="alumno" ItemStyle-Font-Size="Small" />
-                                                    <asp:BoundField DataField="folio" HeaderText="Folio" SortExpression="folio"  ItemStyle-Width="150px" ItemStyle-Font-Size="Small" ItemStyle-CssClass="centrarCelda " HeaderStyle-CssClass="centrarCelda"/>
-                                                    <asp:BoundField DataField="importe" HeaderText="Cantidad" SortExpression="importe" ItemStyle-Width="50px" ItemStyle-Font-Size="Small" ItemStyle-CssClass="centrarCelda " HeaderStyle-CssClass="centrarCelda" DataFormatString="{0:c}" HtmlEncode="False"/>
-                                                    
+                                                     <asp:TemplateField HeaderText="Alumno" >
+                                                <ItemTemplate>                                                   
+                                                    <h7 class="text-bold-700"><%# Eval("alumno")%></h7><br />
+                                                    <h7 class="text-bold-400 font-small-3"><%# Eval("nombre")%></h7><br />
+                                                                                                                                                          
+                                                </ItemTemplate>
+                                                </asp:TemplateField>
+                                               
+                                                <asp:TemplateField HeaderText="Recibo" >
+                                                <ItemTemplate>                                                   
+                                                    <h7 class="text-bold-700"><%# "Folio "+ Eval("Folio")+ " / "+Eval("Fecha")%></h7><br />
+                                                    <h7 class="text-bold-400 font-small-3"> <%# " "+Eval("Concepto")%></h7><br />
+                                                    <h7 class="text-bold-400 font-small-3"><i class="fa fa-usd "></i> <%# " "+Eval("Importe")%></h7><br />                                                    
+                                                       
+                                                </ItemTemplate>
+                                                </asp:TemplateField>
+                                                                                      
+                                                    <asp:TemplateField HeaderText="Seleccionar" ItemStyle-Width="100px" HeaderStyle-CssClass="centrarCelda" ItemStyle-CssClass="centrarCelda">
+                                                    <ItemTemplate>
+
+                                                        <button type="button" class="btn btn-icon btn-danger mr-1 btn-sm tooltips"  onclick="eliminarRecibo(<%# Eval("idsolicitud") %>,<%# Eval("idpago") %>)" value="" data-toggle="tooltip" data-original-title="Eliminar Recibo"><i class="ft-delete"> </i> </button>                                                        
+                                                                                                                                                             
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>    
                                                 </Columns>
 
                                             </asp:GridView>
@@ -364,10 +385,15 @@ body { padding-right: 0 !important }
                                 <i class="fa fa-check-square-o"></i>Imprimir Póliza
                             </button>
 
-                            <button id="bcerrar" type="button" class="btn btn-danger mr-1" data-dismiss="modal" id="cerrarModal">
-                                <i class="ft-x"></i>Cancelar
+                            <button id="impri" class="btn btn-info" onclick="imprimirCaratula()" type="button" data-backdrop="false" >
+                                <i class="fa fa-check-square-o"></i>Imprimir Carátula
                             </button>
 
+                            <button id="bcerrar" type="button" class="btn btn-danger mr-1" data-dismiss="modal" id="cerrarModal">
+                                <i class="ft-x"></i>Cerrar
+                            </button>
+
+                    
                         
                 </div>
             </div>
@@ -476,9 +502,6 @@ body { padding-right: 0 !important }
 
                 <div class="modal-footer">
 
-                    <button class="btn btn-primary" onclick="cancelarCurso()" type="button" data-backdrop="false">
-                        <i class="fa fa-check-square-o"></i>Aceptar
-                    </button>
 
                     <button type="button" class="btn btn-danger mr-1" data-dismiss="modal">
                         <i class="ft-x"></i>Cerrar
@@ -528,6 +551,112 @@ body { padding-right: 0 !important }
 
                     <button type="button" class="btn btn-danger mr-1" data-dismiss="modal">
                         <i class="ft-x"></i>Cerrar
+                    </button>
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+     <div class="modal fade" id="wrecibos"  role="dialog" aria-labelledby="myModalLabel40" aria-hidden="true">
+
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-primary white">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h3 class="modal-title">Recibos</h3>
+                </div>
+
+
+                <div class="modal-body">
+
+                     <asp:UpdatePanel runat="server" ID="UpdatePanel8">
+                                <ContentTemplate>
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+										<div class="form-group">
+											<label for="cliente" class="text-bold-600">Curso</label>
+											<asp:TextBox ID="bnamecurso" CssClass="form-control text-uppercase"  placeholder="Búsqueda por Nombre, Clave" name="bname" runat="server" OnTextChanged="listadoRecibos" AutoPostBack="true"></asp:TextBox>
+										</div>
+									</div>
+
+                                        <div class="col-md-6">
+										<div class="form-group">
+											<label for="cliente" class="text-bold-600">Alumno</label>
+											<asp:TextBox ID="balumno" CssClass="form-control text-uppercase"  placeholder="Búsqueda por Nombre" name="bname" runat="server" OnTextChanged="listadoRecibos" AutoPostBack="true"></asp:TextBox>
+										</div>
+									</div>
+
+
+                                     
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+
+                                            <asp:Button runat="server" ID="Brecibos" OnClick="listadoRecibos" style="display:none" UseSubmitBehavior="false"/>
+                                            <asp:Button runat="server" ID="BseleccionarRecibo" OnClick="seleccionarRecibo" style="display:none" UseSubmitBehavior="false"/>
+                                            
+                                            <asp:GridView runat="server" ID="GVrecibos" PageSize="5" AllowPaging="true" AllowSorting="true" CssClass="table table-striped table-bordered zero-configuration" 
+                                                AutoGenerateColumns="False" DataSourceID="Dsrecibos" EnableSortingAndPagingCallbacks="true"
+                                                AlternatingRowStyle-BackColor="#F5F7FA" OnPageIndexChanged="listadoRecibos">                                                 
+                                                <Columns>                      
+                                                    
+                                                <asp:TemplateField HeaderText="Alumno" >
+                                                <ItemTemplate>                                                   
+                                                    <h7 class="text-bold-700"><%# Eval("alumno")%></h7><br />
+                                                    <h7 class="text-bold-400 font-small-3"><%# Eval("nombre")%></h7><br />
+                                                    <h7 class="text-bold-400 font-small-3 font-italic text-bold-600"><i class="fa fa-home"></i> <%# " "+Eval("plantel")%></h7><br />
+                                                                                                                                                           
+                                                </ItemTemplate>
+                                                </asp:TemplateField>
+                                               
+                                                <asp:TemplateField HeaderText="Recibo" >
+                                                <ItemTemplate>                                                   
+                                                    <h7 class="text-bold-700"><%# "Folio "+ Eval("Folio")+ " / "+Eval("Fecha")%></h7><br />
+                                                    <h7 class="text-bold-400 font-small-3"> <%# " "+Eval("Concepto")%></h7><br />
+                                                    <h7 class="text-bold-400 font-small-3"><i class="fa fa-usd "></i> <%# " "+Eval("Importe")%></h7><br />                                                    
+                                                       
+                                                </ItemTemplate>
+                                                </asp:TemplateField>
+                                                                                      
+                                                    <asp:TemplateField HeaderText="Seleccionar" ItemStyle-Width="100px" HeaderStyle-CssClass="centrarCelda" ItemStyle-CssClass="centrarCelda">
+                                                    <ItemTemplate>
+
+                                                        <button type="button" class="btn btn-icon btn-success mr-1 btn-sm tooltips"  onclick="seleccionarRecibo(<%# Eval("idsolicitud") %>,<%# Eval("idpago") %>)" value="" data-toggle="tooltip" data-original-title="Imprimir Recibo"><i class="fa fa-save"> </i> </button>                                                        
+                                                                                                                                                             
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>                                                                                                                                        
+                                                    
+                                                </Columns>
+
+                                            </asp:GridView>
+                                               
+                                            <asp:SqlDataSource ID="Dsrecibos" ProviderName="MySql.Data.MySqlClient" runat="server" ConnectionString="<%$ ConnectionStrings:DBconexion %>"></asp:SqlDataSource>
+
+                                        </div>
+
+                                    </div>
+
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+
+
+                </div>
+
+                <div class="modal-footer">
+
+                  
+
+                    <button type="button" class="btn btn-danger mr-1" data-dismiss="modal">
+                        <i class="ft-x"></i>Volver
                     </button>
                 </div>
 
@@ -622,119 +751,26 @@ body { padding-right: 0 !important }
         }
 
         function valida() {
-
-            var clave = $("*[id$='clave']").val();
+            
             var nombre = $("*[id$='nombre']").val();
-            var fechaini = $("*[id$='fechaini']").val();
-            var fechafin = $("*[id$='fechafin']").val(); 
-            var dias = $("*[id$='dias']").val(); 
-            var horaini = $("*[id$='horaini']").val();                        
-            var horafin = $("*[id$='horafin']").val(); 
-            var horas = $("*[id$='horas']").val(); 
-            var diascurso = $("*[id$='hdias']").val();
-
-            var costomodulo = $("*[id$='costomodulo']").val(); 
-            var costoalumno = $("*[id$='costoalumno']").val(); 
-            var pagohora = $("*[id$='pagohora']").val();
-
-            var instalacion = $("*[id$='instalacion']").val();
-            var instalacionext = $("*[id$='instalacionext']").val();
-            var instalaciondomext = $("*[id$='instalaciondomext']").val();
-            var alumnosminimo = $("*[id$='alumnosminimo']").val();
-            var fechalimite = $("*[id$='fechalimite']").val();
-            
+            var fecha = $("*[id$='fecha']").val();           
             walert = 1;
-
-            if (clave == '') {                
-                alerta('Atención', 'Ingrese la clave del curso', 'warning', $("*[id$='clave']"));
-                return false;                
-            }
-
+           
             if (nombre == '') {                
-                alerta('Atención', 'Ingrese el nombre del curso', 'warning', $("*[id$='nombre']"));
+                alerta('Atención', 'Ingrese un nombre o descripción para el depósito', 'warning', $("*[id$='nombre']"));
                 return false;                
             }
-
             
-            if (alumnosminimo == '' || alumnosminimo == '0') {                
-                alerta('Atención', 'Ingrese la cantidad mínima necesaria de alumnos inscritos', 'warning', $("*[id$='alumnosminimo']"));
+            if (fecha == '' ) {                
+                alerta('Atención', 'Ingrese la fecha en la que se realiza el depósito', 'warning', $("*[id$='fecha']"));
                 return false;                
             }
-
-            if (instalacion == '9999' && instalacionext == '') {                
-                alerta('Atención', 'Ingrese el nombre de la instalación extramuros', 'warning', $("*[id$='instalacionext']"));
-                return false;                
-            }
-
-            if (instalacion == '9999' && instalaciondomext == '') {                
-                alerta('Atención', 'Ingrese la dirección de la instalación extramuros', 'warning', $("*[id$='instalaciondomext']"));
-                return false;                
-            }
-
-            if (costomodulo == '' || costomodulo == '0') {                
-                alerta('Atención', 'Ingrese el costo por módulo del curso', 'warning', $("*[id$='costomodulo']"));
-                return false;                
-            }
-
-            if (costoalumno == '' || costoalumno == '0') {                
-                alerta('Atención', 'Ingrese el costo por alumno del curso', 'warning', $("*[id$='costoalumno']"));
-                return false;                
-            }
-
-            if (pagohora == '' || pagohora == '0') {                
-                alerta('Atención', 'Ingrese el pago por hora del curso', 'warning', $("*[id$='pagohora']"));
-                return false;                
-            }
-
-            if (fechalimite == '') {
-                alerta('Atención', 'Ingrese la fecha límite de inscripción al curso', 'warning', $("*[id$='fechalimite']"));
-                return false;
-            }
-
-            if (fechaini == '') {
-                alerta('Atención', 'Ingrese la fecha de inicio del curso', 'warning', $("*[id$='fechaini']"));
-                return false;
-            }
-
-            if (fechafin == '') {
-                alerta('Atención', 'Ingrese la fecha de término del curso', 'warning', $("*[id$='fechafin']"));
-                return false;
-            }
-                       
-            if (dias == '' || dias=='0') {
-                alerta('Atención', 'Ingrese la duración en días del curso', 'warning', $("*[id$='dias']"));
-                return false;
-            }
-
-            if (horaini == '') {
-                alerta('Atención', 'Ingrese el horario (hora de inicio) del curso', 'warning', $("*[id$='horaini']"));
-                return false;
-            }
-
-
-            if (horafin == '') {
-                alerta('Atención', 'Ingrese el horario (hora de término) del curso', 'warning', $("*[id$='horafin']"));
-                return false;
-            }
-
-            if (diascurso == '') {
-                alerta('Atención', 'Indique los días de la semana en los cuales se impartirá el curso', 'warning', $("*[id$='hdias']"));
-                return false;
-            }
-
-
-            if (horas == '' || horas =='0') {
-                alerta('Atención', 'No se han generado fechas válidas de impartición del curso, revise las fechas y horarios establecidos', 'warning', $("*[id$='horas']"));
-                return false;
-            }
-
-                              
+                                         
             walert = 0;
             //$('#bootstrap').modal('hide');
             mostrarLoading();
-            
-           
-                       
+            $('#<%= Bguardadeposito.ClientID %>').click();
+                                              
                                            
         }
 
@@ -966,6 +1002,41 @@ body { padding-right: 0 !important }
                                                                         
         }
 
+        function seleccionarRecibo(idsolicitud, idpago) {
+            mostrarLoading();
+            $("*[id$='idI']").val(idsolicitud);
+            $("*[id$='iPago']").val(idpago);
+            
+            $('#<%= BseleccionarRecibo.ClientID %>').click();
+
+        }
+
+        function eliminarRecibo(idsolicitud, idpago) {
+
+
+            swal({
+                title: "El recibo será eliminado del depósito, ¿Desea continuar?",
+                text: "",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: '#DD6B55',
+                confirmButtonText: 'Si',
+                cancelButtonText: "No"
+            }).then((result) => {
+                if (result.value) {
+                    mostrarLoading();
+                    $("*[id$='idI']").val(idsolicitud);
+                    $("*[id$='iPago']").val(idpago);
+
+                    $('#<%= Beliminarecibo.ClientID %>').click();
+
+                }
+            }) 
+
+            
+
+        }
+
         function abrirModalFechas() {
 
             //$("*[id$='fagenda']").focus();
@@ -1056,6 +1127,12 @@ body { padding-right: 0 !important }
             cerrarLoading();
         }
 
+        function imprimirCaratula() {
+            mostrarLoading();
+            $('#<%= bimprimircaratula.ClientID %>').click();
+            cerrarLoading();
+        }
+
         function imprimirLista() {
             mostrarLoading();
             
@@ -1070,8 +1147,8 @@ body { padding-right: 0 !important }
 
         function consultaPrincipal() {
             mostrarLoading();
+            $('#<%= Bconsultar.ClientID %>').click();
            
-            cerrarLoading();
         }
 
         function abrirModalObjetivo(idobjetivo, objetivo) {
@@ -1102,6 +1179,14 @@ body { padding-right: 0 !important }
                   }
                 }) 
          
+        }
+
+        function abrirModalRecibos(idsolicitud, idsucursal) {
+            mostrarLoading();
+
+             $("#wrecibos").modal('show');     
+            $('#<%= Brecibos.ClientID %>').click();
+
         }
              
     </script>

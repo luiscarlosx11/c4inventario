@@ -31,6 +31,21 @@ namespace elecion.caja
             Poliza reporte = new Poliza();
             reporte.ReportParameters["iddeposito"].Value = this.idP.Value;
             this.ExportToPDF(reporte, "PÓLIZA ");
+
+
+            PolizaCaratula reporte2 = new PolizaCaratula();
+            reporte2.ReportParameters["iddeposito"].Value = this.idP.Value;
+            this.ExportToPDF(reporte2, "PÓLIZA ");
+
+        }
+
+        protected void bimprimirCaratula(object sender, EventArgs e)
+        {
+            
+            PolizaCaratula reporte2 = new PolizaCaratula();
+            reporte2.ReportParameters["iddeposito"].Value = this.idP.Value;
+            this.ExportToPDF(reporte2, "PÓLIZA CARÁTULA");
+
         }
 
         protected void borraFechas(object sender, EventArgs e)
@@ -139,6 +154,268 @@ namespace elecion.caja
                         transaction.Commit();
                         this.listadoObjetivos(sender, e);
                         ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading(); toastExito();", true);
+                    }
+                    catch (Exception exception)
+                    {
+                        Exception ex = exception;
+                        transaction.Rollback();
+                        Console.WriteLine(string.Concat("error:", ex.ToString()));
+                    }
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+        }
+
+
+        protected void seleccionarRecibo(object sender, EventArgs e)
+        {
+            
+
+            using (MySqlConnection con = new MySqlConnection(WebConfigurationManager.ConnectionStrings["DBconexion"].ConnectionString))
+            {
+                MySqlTransaction transaction = null;
+                int idcurso = 0;
+                string query = "";
+                try
+                {
+                    try
+                    {
+                        con.Open();
+                        MySqlCommand cmd = con.CreateCommand();
+                        transaction = con.BeginTransaction();
+                        cmd.Connection = con;
+                        cmd.Transaction = transaction;
+                        if (Convert.ToInt32(this.idP.Value) != 0)
+                        {
+                            cmd.Parameters.Clear();
+                            cmd.CommandText = string.Concat("update cursopago set iddeposito=@idP where idsolicitud=@idI and idpago=@iPago;");
+                            cmd.Parameters.AddWithValue("@idP", idP.Value);
+                            cmd.Parameters.AddWithValue("@idI", idI.Value);
+                            cmd.Parameters.AddWithValue("@iPago", iPago.Value);
+                            cmd.ExecuteNonQuery();
+
+
+                            cmd.Parameters.Clear();
+                            cmd.CommandText = string.Concat("update deposito set fecha=@fecha, nombre=@nombre, observaciones=@observaciones where iddeposito=@idP ");
+                            cmd.Parameters.AddWithValue("@idP", idP.Value);
+                            
+                            if(!fecha.Text.Trim().Equals(""))
+                                cmd.Parameters.AddWithValue("@fecha", fecha.Text.Trim());
+                            else
+                                cmd.Parameters.AddWithValue("@fecha", null);
+
+
+                            cmd.Parameters.AddWithValue("@nombre", nombre.Text.ToUpper().Trim());
+                            cmd.Parameters.AddWithValue("@observaciones", observaciones.Text.ToUpper().Trim());
+                            cmd.ExecuteNonQuery();
+                        }
+                        else
+                        {
+
+                            cmd.Parameters.Clear();
+                            query = "select coalesce(max(folio),0)as folio " +
+                                "from deposito  " +
+                                "where idsucursal =" + idsucursal;
+                            cmd.CommandText = query;
+                            int folioultimo = Convert.ToInt32(cmd.ExecuteScalar()) + 1;
+
+                            cmd.Parameters.Clear();
+                            cmd.CommandText = "insert into deposito(idusuario, idsucursal, folio, nombre, fecha, observaciones) values(@idusuario, @idsucursal, @folio, @nombre, @fecha, @observaciones); ";
+                            //cmd.Parameters.AddWithValue("@idcicloescolar", 1);
+                            cmd.Parameters.AddWithValue("@idsucursal", this.idsucursal);
+                            cmd.Parameters.AddWithValue("@idusuario", idusuario);
+                            cmd.Parameters.AddWithValue("@folio", folioultimo);
+                            if (!fecha.Text.Trim().Equals(""))
+                                cmd.Parameters.AddWithValue("@fecha", fecha.Text.Trim());
+                            else
+                                cmd.Parameters.AddWithValue("@fecha", null);
+
+                            cmd.Parameters.AddWithValue("@nombre", nombre.Text.ToUpper().Trim());
+                            cmd.Parameters.AddWithValue("@observaciones", observaciones.Text.ToUpper().Trim());
+                            cmd.ExecuteNonQuery();
+
+                            idcurso = (int)cmd.LastInsertedId;
+                            this.idP.Value = idcurso.ToString();
+                            folio.Text = folioultimo.ToString();
+
+                            
+
+                            cmd.Parameters.Clear();
+                            cmd.CommandText = string.Concat("update cursopago set iddeposito=@idP where idsolicitud=@idI and idpago=@iPago;");
+                            cmd.Parameters.AddWithValue("@idP", idP.Value);
+                            cmd.Parameters.AddWithValue("@idI", idI.Value);
+                            cmd.Parameters.AddWithValue("@iPago", iPago.Value);
+                            cmd.ExecuteNonQuery();
+                            
+                        }
+
+                        
+                        transaction.Commit();
+
+                        cmd.Parameters.Clear();
+                        query = "select cast( coalesce(sum(cp.importe),0) as char)as monto from cursopago cp where cp.iddeposito=" + idP.Value;
+                        cmd.CommandText = query;
+                        string montototal = Convert.ToString(cmd.ExecuteScalar());
+
+                        monto.Text = montototal;
+
+                        listadoRecibos(sender, e);
+                        listadoAlumnos(sender, e);                                                    
+                        listadoClientes(sender, e);
+                        
+                            
+
+                        ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading(); toastExito();", true);
+                    }
+                    catch (Exception exception)
+                    {
+                        Exception ex = exception;
+                        transaction.Rollback();
+                        Console.WriteLine(string.Concat("error:", ex.ToString()));
+                    }
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+        }
+
+
+
+        protected void eliminarRecibo(object sender, EventArgs e)
+        {
+
+
+            using (MySqlConnection con = new MySqlConnection(WebConfigurationManager.ConnectionStrings["DBconexion"].ConnectionString))
+            {
+                MySqlTransaction transaction = null;
+                int idcurso = 0;
+                try
+                {
+                    try
+                    {
+                        con.Open();
+                        MySqlCommand cmd = con.CreateCommand();
+                        transaction = con.BeginTransaction();
+                        cmd.Connection = con;
+                        cmd.Transaction = transaction;
+                        
+                            cmd.Parameters.Clear();
+                            cmd.CommandText = string.Concat("update cursopago set iddeposito=-1 where idsolicitud=@idI and idpago=@iPago;");
+                            
+                            cmd.Parameters.AddWithValue("@idI", idI.Value);
+                            cmd.Parameters.AddWithValue("@iPago", iPago.Value);
+                            
+                            cmd.ExecuteNonQuery();
+                                                    
+
+                            
+
+                           
+                        transaction.Commit();
+
+                        cmd.Parameters.Clear();
+                        string query = "select cast( coalesce(sum(cp.importe),0) as char)as monto from cursopago cp where cp.iddeposito=" + idP.Value;
+                        cmd.CommandText = query;
+                        string montototal = Convert.ToString(cmd.ExecuteScalar());
+                        monto.Text = montototal;
+
+
+                        listadoRecibos(sender, e);
+                        listadoAlumnos(sender, e);
+                        
+                        listadoClientes(sender, e);
+                        
+
+
+                        ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading(); toastExito();", true);
+                    }
+                    catch (Exception exception)
+                    {
+                        Exception ex = exception;
+                        transaction.Rollback();
+                        Console.WriteLine(string.Concat("error:", ex.ToString()));
+                    }
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+        }
+
+
+        protected void guardaDeposito(object sender, EventArgs e)
+        {
+
+
+            using (MySqlConnection con = new MySqlConnection(WebConfigurationManager.ConnectionStrings["DBconexion"].ConnectionString))
+            {
+                MySqlTransaction transaction = null;
+                int idcurso = 0;
+                try
+                {
+                    try
+                    {
+                        con.Open();
+                        MySqlCommand cmd = con.CreateCommand();
+                        transaction = con.BeginTransaction();
+                        cmd.Connection = con;
+                        cmd.Transaction = transaction;
+                        if (Convert.ToInt32(this.idP.Value) != 0)
+                        {
+                            cmd.Parameters.Clear();
+                            cmd.CommandText = string.Concat("update deposito set fecha=@fecha, nombre=@nombre, observaciones=@observaciones where iddeposito=@idP;");
+                            cmd.Parameters.AddWithValue("@idP", idP.Value);
+                            if (!fecha.Text.Trim().Equals(""))
+                                cmd.Parameters.AddWithValue("@fecha", fecha.Text.Trim());
+                            else
+                                cmd.Parameters.AddWithValue("@fecha", null);
+
+                            cmd.Parameters.AddWithValue("@nombre", nombre.Text.ToUpper().Trim());
+                            cmd.Parameters.AddWithValue("@observaciones", observaciones.Text.ToUpper().Trim());
+                            cmd.ExecuteNonQuery();
+                        }
+                        else
+                        {
+
+                            cmd.Parameters.Clear();
+                            string query = "select coalesce(max(folio),0)as folio " +
+                                "from deposito  " +
+                                "where idsucursal =" + idsucursal;
+                            cmd.CommandText = query;
+                            int folioultimo = Convert.ToInt32(cmd.ExecuteScalar()) + 1;
+
+                            cmd.Parameters.Clear();
+                            cmd.CommandText = "insert into deposito(idusuario, idsucursal, folio, nombre, fecha, observaciones) values(@idusuario, @idsucursal, @folio, @nombre, @fecha, @observaciones); ";
+                            //cmd.Parameters.AddWithValue("@idcicloescolar", 1);
+                            if (!fecha.Text.Trim().Equals(""))
+                                cmd.Parameters.AddWithValue("@fecha", fecha.Text.Trim());
+                            else
+                                cmd.Parameters.AddWithValue("@fecha", null);
+
+                            cmd.Parameters.AddWithValue("@idsucursal", this.idsucursal);
+                            cmd.Parameters.AddWithValue("@idusuario", idusuario);
+                            cmd.Parameters.AddWithValue("@folio", folioultimo);
+                            cmd.Parameters.AddWithValue("@nombre", nombre.Text.ToUpper().Trim());
+                            cmd.Parameters.AddWithValue("@observaciones", observaciones.Text.ToUpper().Trim());
+                            cmd.ExecuteNonQuery();
+
+                           
+
+                        }
+                        transaction.Commit();
+                        
+                        listadoAlumnos(sender, e);
+                        listadoClientes(sender, e);
+                        
+
+
+                        ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading(); toastExito(); ", true);
                     }
                     catch (Exception exception)
                     {
@@ -273,8 +550,53 @@ namespace elecion.caja
             this.nombre.Text = "";
             this.fecha.Text = "";
             this.monto.Text = "0";
+            observaciones.Text = "";
             listadoFechas(sender, e);
             ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading();  $('#bootstrap').modal('show'); ", true);
+        }
+
+        protected void listadoRecibos(object sender, EventArgs e)
+        {
+            try
+            {
+                GVrecibos.DataSourceID = Dsrecibos.ID;
+                string query = "select p.idsolicitud, p.idpago, p.folio, p.concepto, cast(p.fecha as char) as fecha,  "+
+                               " cast(p.hora as char) as hora, p.tipo, p.importe,  " +
+                               " c.clave, coalesce(c.nombre, 'NO DEFINIDO') as nombre, s.nombre as plantel,  " +
+                               " coalesce(i.nombre, 'INSTRUCTOR NO DEFINIDO') as instructor, t.tipocurso,  " +
+                               " concat(a.apaterno, ' ', a.amaterno, ' ', a.nombre) as alumno  " +
+                               " from cursopago p  " +
+                               " left join solicitudinscripcion si on si.idsolicitud = p.idsolicitud  " +
+                               " left join alumno a on a.idalumno = si.idalumno  " +
+                               " left join curso c on c.idcurso = si.idcurso  " +
+                               " left join usuario u on u.idusuario = p.idusuario  " +
+                               " left join tipocurso t on t.idtipocurso = c.idtipocurso  " +
+                               " left join instructor i on i.idinstructor = c.idinstructor  " +
+                               " left join sucursal s on s.idsucursal = c.idsucursal  " +
+                               " where c.tipo = 'C'  " +
+                               " and c.idsucursal = "+idsucursal+"  " +
+                               " and c.estatus not in('CANCELADO')  " +
+                               " and p.estatus in ('PAGADO')  " +
+                               " and p.iddeposito = -1 " ;
+
+                if(bnamecurso.Text.Trim() != "")
+                {
+                    query += "and c.nombre like '%" + bnamecurso.Text.ToUpper().Trim() + "%' ";
+                }
+
+                if (balumno.Text.Trim() != "")
+                {
+                    query += "and concat(a.nombre,' ',a.apaterno,' ',a.amaterno) like '%" + balumno.Text.ToUpper().Trim() + "%' ";
+                }
+
+                Dsrecibos.SelectCommand = query;
+
+                ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading();  ", true);
+            }
+            catch (Exception exception)
+            {
+            }
+
         }
 
         protected void listadoAlumnos(object sender, EventArgs e)
@@ -282,7 +604,7 @@ namespace elecion.caja
             try
             {
                 this.GValumnos.DataSourceID = this.DSalumnos.ID;
-                string query = string.Concat("select  cast(cp.fecha as char) as fecha, cp.folio, cp.importe, cp.iddeposito,  concat(a.nombre, ' ', a.apaterno, ' ', a.amaterno) as alumno  from curso c   left join especialidad e on c.idespecialidad = e.idespecialidad  left join instructor i on i.idinstructor = c.idinstructor  left join solicitudinscripcion s on s.idcurso = c.idcurso  left join cursopago cp on cp.idsolicitud = s.idsolicitud  left join alumno a on a.idalumno = s.idalumno  where cp.tipo='O' and cp.iddeposito =  ", this.idP.Value, " order by cp.fecha desc ");
+                string query = string.Concat("select cp.idsolicitud, cp.idpago, cast(cp.fecha as char) as fecha, cp.folio, cp.concepto, cp.importe, cp.iddeposito,  concat( a.apaterno, ' ', a.amaterno,' ',a.nombre) as alumno , c.nombre  from curso c   left join especialidad e on c.idespecialidad = e.idespecialidad  left join instructor i on i.idinstructor = c.idinstructor  left join solicitudinscripcion s on s.idcurso = c.idcurso  left join cursopago cp on cp.idsolicitud = s.idsolicitud  left join alumno a on a.idalumno = s.idalumno  where cp.iddeposito =  ", this.idP.Value, " order by cp.fecha desc ");
                 this.DSalumnos.SelectCommand = query;
             }
             catch (Exception exception)
@@ -301,13 +623,14 @@ namespace elecion.caja
             try
             {
                 this.lusuarios.DataSourceID = this.DsUsuarios.ID;
-                string query = string.Concat(" select d.idsucursal, d.iddeposito, cast(d.fecha as char)as fecha, d.nombre, s.nombre as sucursal, d.folio,   (select sum(cp.importe) from cursopago cp where cp.iddeposito=d.iddeposito and cp.tipo='O')as monto   from deposito d   left join sucursal s on s.idsucursal = d.idsucursal   where s.idsucursal=", this.idsucursal);
+                string query = string.Concat(" select d.idsucursal, d.iddeposito, cast(d.fecha as char)as fecha, d.nombre, s.nombre as sucursal, d.folio,   (select sum(cp.importe) from cursopago cp where cp.iddeposito=d.iddeposito )as monto   from deposito d   left join sucursal s on s.idsucursal = d.idsucursal   where s.idsucursal=", this.idsucursal);
                 if (this.bname.Text.Trim() != "")
                 {
                     query = string.Concat(new string[] { query, " and (d.nombre LIKE '%", this.bname.Text.Trim().ToUpper(), "%' or d.folio LIKE '%", this.bname.Text.Trim().ToUpper(), "%') " });
                 }
-                query = string.Concat(query, " order by d.fecha desc");
+                query = string.Concat(query, " order by d.folio desc");
                 this.DsUsuarios.SelectCommand = query;
+                ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading();  ", true);
             }
             catch (Exception exception)
             {
@@ -326,7 +649,7 @@ namespace elecion.caja
                 using (MySqlConnection con = new MySqlConnection(WebConfigurationManager.ConnectionStrings["DBconexion"].ConnectionString))
                 {
                     con.Open();
-                    MySqlDataReader rdr = (new MySqlCommand(string.Concat("select d.iddeposito, cast(d.fecha as char)as fecha, d.nombre, s.nombre as sucursal, d.folio,    (select sum(cp.importe) from cursopago cp where cp.iddeposito=d.iddeposito and cp.tipo='O')as monto from deposito d  left join sucursal s on s.idsucursal = d.idsucursal where d.iddeposito=", this.idP.Value), con)).ExecuteReader();
+                    MySqlDataReader rdr = (new MySqlCommand(string.Concat("select d.iddeposito, cast(d.fecha as char)as fecha, d.nombre, d.observaciones, s.nombre as sucursal, d.folio,    (select sum(cp.importe) from cursopago cp where cp.iddeposito=d.iddeposito)as monto from deposito d  left join sucursal s on s.idsucursal = d.idsucursal where d.iddeposito=", this.idP.Value), con)).ExecuteReader();
                     if (rdr.HasRows)
                     {
                         rdr.Read();
@@ -334,6 +657,7 @@ namespace elecion.caja
                         this.fecha.Text = rdr["fecha"].ToString();
                         this.nombre.Text = rdr["nombre"].ToString();
                         this.monto.Text = rdr["monto"].ToString();
+                        this.observaciones.Text = rdr["observaciones"].ToString();
                     }
                     rdr.Close();
                     this.listadoAlumnos(sender, e);
