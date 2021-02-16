@@ -175,7 +175,7 @@ left join cargo ca on ca.idcargo = s.idcargo
 left join usuario u on u.idusuario=@idusuario
 where s.idsucursal=@idsucursal
 and c.idtipocurso=@idtipocurso
-and c.estatus not in('CANCELADO','RECHAZADO','EN CAPTURA')
+and c.estatus in('AUTORIZADO')
 and
 (
 	select count(f.fecha) from fechascurso f where f.idcurso=c.idcurso and f.fecha between @fechaini  and @fechafin )&gt;0
@@ -218,7 +218,7 @@ left join curso c on c.idsucursal = s.idsucursal
 left join instructor i on i.idinstructor = c.idinstructor
 where s.idsucursal=@idsucursal
 and c.idtipocurso=@idtipocurso
-and c.estatus not in('CANCELADO','RECHAZADO','EN CAPTURA')
+and c.estatus in('AUTORIZADO')
 
 and
 (
