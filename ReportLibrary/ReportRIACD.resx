@@ -122,7 +122,7 @@
   </metadata>
   <data name="generales.SelectCommand" xml:space="preserve">
     <value>
-select c.idcurso, c.idsucursal, c.nombre, c.clave as clavecurso, a.area,  e.especialidad, 
+select c.idcurso, c.idsucursal, concat(SUBSTRING(c.nombre,1, 80),'...') as nombre, c.clave as clavecurso, a.area,  e.especialidad, 
  i.nombre as instructor, i.curp, t.tipocurso, 
 c.estatus, c.costo, cast(c.fechaini as char)as fechaini, 
 cast(c.fechafin as char)as fechafin, cast(TIME_FORMAT(c.horaini, '%h:%i %p') as char)as horaini, 

@@ -597,7 +597,7 @@ namespace ReportLibrary
             tableGroup10.Groupings.Add(new Telerik.Reporting.Grouping(null));
             tableGroup10.Name = "detailTableGroup1";
             this.table2.RowGroups.Add(tableGroup10);
-            this.table2.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(34.4D), Telerik.Reporting.Drawing.Unit.Cm(2.507D));
+            this.table2.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(34.401D), Telerik.Reporting.Drawing.Unit.Cm(2.507D));
             this.table2.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
             // 
             // textBox84

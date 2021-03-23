@@ -72,6 +72,7 @@ body { padding-right: 0 !important }
                         <asp:Button runat="server" ID="Bnuevo" OnClick="limpiarCampos" Style="display: none" UseSubmitBehavior="false" />
                         <asp:Button runat="server" ID="BnuevoInscripcion" OnClick="limpiarCamposInscripcion" Style="display: none" UseSubmitBehavior="false" />
                         <asp:Button runat="server" ID="Bcancelarcurso" OnClick="cancelaAlumno" Style="display: none" UseSubmitBehavior="false"/>
+                        <asp:Button runat="server" ID="Bmodificaalumno" OnClick="modificaAlumno" Style="display: none" UseSubmitBehavior="false"/>
 
                         <asp:Button runat="server" ID="Button2" OnClick="nuevoRegistro" Style="display: none" UseSubmitBehavior="false" />
                         <div class="sidebar">
@@ -250,6 +251,11 @@ body { padding-right: 0 !important }
                                                              <button type="button" onclick="abrirModalCancelacion(<%# Eval("idsolicitud")%>,<%# Eval("idalumno").ToString() %>)" <%# Eval("estatus").Equals("CANCELADO")?"disabled":"" %> class="btn btn-icon btn-danger mr-1 btn-sm tooltips <%# Eval("estatus").Equals("DESERCIÓN")?"ocultar":""%>"
                                                                 data-toggle="tooltip" data-original-title="Eliminar">
                                                                 <i class="ft-delete"></i>
+                                                            </button>
+
+                                                            <button type="button" onclick="abrirModalModificacion(<%# Eval("idsolicitud")%>,<%# Eval("idalumno").ToString() %>)"  <%# Eval("estatus").Equals("CANCELADO")?"disabled":"" %> class="btn btn-icon btn-success mr-1 btn-sm tooltips <%# Eval("estatus").Equals("DESERCIÓN")||Eval("estatus").Equals("CANCELADO")?"":"ocultar"%>"
+                                                                data-toggle="tooltip" data-original-title="Modificar">
+                                                                <i class="ft-unlock"></i>
                                                             </button>
 
                                                             <button type="button" onclick="imprimirSolicitud(<%# Eval("idsolicitud")%>,<%# Eval("idalumno").ToString() %>,'<%# Eval("nocontrol").ToString() %>')"  class="btn btn-icon btn-cyan mr-1 btn-sm tooltips"
@@ -1664,6 +1670,66 @@ body { padding-right: 0 !important }
     </div>
 
 
+     <div class="modal fade" id="wmodificar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel40" aria-hidden="true">
+
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-primary white">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h3 class="modal-title">Modificar Alumno</h3>
+                </div>
+
+
+                <div class="modal-body">
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="text-bold-600">Estatus</label>
+                                <asp:DropDownList runat="server" ID="tipocambio" CssClass="select2 form-control" DataSourceID="DStipocambio" DataTextField="tipodesercion" DataValueField="idtipodesercion" Style="width: 100%">
+                                </asp:DropDownList>
+                                <asp:SqlDataSource ID="DStipocambio" ProviderName="MySql.Data.MySqlClient" runat="server" ConnectionString="<%$ ConnectionStrings:DBconexion %>"
+                                    SelectCommand="select v.* from (SELECT idtipodesercion, tipodesercion from tipodesercion union select  0 as idtipodesercion, 'INSCRITO'as tipodesercion)as v order by v.idtipodesercion"></asp:SqlDataSource>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="text-bold-600">Observaciones</label>
+                                <asp:TextBox ID="modobserv" CssClass="form-control text-uppercase" MaxLength="0" TextMode="MultiLine" Rows="3" placeholder="Observaciones" name="telefono" runat="server"></asp:TextBox>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button class="btn btn-primary" onclick="modificaAlumno()" type="button" data-backdrop="false">
+                        <i class="fa fa-check-square-o"></i>Aceptar
+                    </button>
+
+                    <button type="button" class="btn btn-danger mr-1" data-dismiss="modal">
+                        <i class="ft-x"></i>Cerrar
+                    </button>
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
 
     <div class="modal fade" id="wfoto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel40" aria-hidden="true">
 
@@ -2429,7 +2495,17 @@ body { padding-right: 0 !important }
              $("#wcancelar").modal('show');
 
          
-         }
+        }
+
+        function abrirModalModificacion(idsolicitud, idalumno) {
+
+            $("*[id$='idI']").val(idsolicitud);
+            $("*[id$='idA']").val(idalumno);
+            $("*[id$='modobserv']").val('');
+            $("#wmodificar").modal('show');
+
+
+        }
 
 
         function cancelarCurso() {
@@ -2449,6 +2525,25 @@ body { padding-right: 0 !important }
                   }
                 }) 
          
+        }
+
+        function modificaAlumno() {
+            swal({
+                title: "Se modificará el estatus de este alumno en el curso, ¿Desea continuar?",
+                text: "",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: '#DD6B55',
+                confirmButtonText: 'Si',
+                cancelButtonText: "No"
+            }).then((result) => {
+                if (result.value) {
+                    mostrarLoading();
+                    $('#<%= Bmodificaalumno.ClientID %>').click();
+
+                }
+            })
+
         }
 
         function consultaPrincipal() {

@@ -168,6 +168,15 @@ namespace elecion.inscripcion
         protected global::System.Web.UI.WebControls.Button Bcancelarcurso;
 
         /// <summary>
+        /// Control Bmodificaalumno.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Bmodificaalumno;
+
+        /// <summary>
         /// Control Button2.
         /// </summary>
         /// <remarks>
@@ -1426,5 +1435,32 @@ namespace elecion.inscripcion
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox motcancelacion;
+
+        /// <summary>
+        /// Control tipocambio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList tipocambio;
+
+        /// <summary>
+        /// Control DStipocambio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource DStipocambio;
+
+        /// <summary>
+        /// Control modobserv.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox modobserv;
     }
 }

@@ -2058,7 +2058,7 @@ body { padding-right: 0 !important }
                             
                         } else {
                             
-                            if (event.dia.trim() == 'SI' && $("*[id$='fechaini']").is(':enabled')) {
+                            if ($("*[id$='fechaini']").is(':enabled')) {
                                 
                                 $("*[id$='idF']").val(0);
                                 $("*[id$='finhabil']").val(event.fecha);

@@ -92,6 +92,75 @@ namespace elecion.inscripcion
             }
         }
 
+
+        protected void modificaAlumno(object sender, EventArgs e)
+        {
+            using (MySqlConnection mySqlConnection = new MySqlConnection(WebConfigurationManager.ConnectionStrings["DBconexion"].ConnectionString))
+            {
+                MySqlTransaction mySqlTransaction = null;
+                string str = "";
+                try
+                {
+                    try
+                    {
+                        mySqlConnection.Open();
+                        MySqlCommand mySqlCommand = mySqlConnection.CreateCommand();
+                        mySqlTransaction = mySqlConnection.BeginTransaction();
+                        mySqlCommand.Connection = mySqlConnection;
+                        mySqlCommand.Transaction = mySqlTransaction;
+                        mySqlCommand.Parameters.Clear();
+                        mySqlCommand.CommandText = "update solicitudinscripcion set idtipodesercion=@idtipodesercion, motivocancelacion=@motivocancelacion, estatus=@estatus, idcondicion=@idcondicion where idsolicitud=@idI;";
+                        mySqlCommand.Parameters.AddWithValue("@idI", this.idI.Value);
+
+                        if (!tipocambio.SelectedValue.Equals("0"))
+                        {
+                            mySqlCommand.Parameters.AddWithValue("@idtipodesercion", tipocambio.SelectedValue);
+                            mySqlCommand.Parameters.AddWithValue("@motivocancelacion", this.motcancelacion.Text.ToUpper());
+                        }
+
+                        else
+                        {
+                            mySqlCommand.Parameters.AddWithValue("@idtipodesercion", DBNull.Value);
+                            mySqlCommand.Parameters.AddWithValue("@motivocancelacion", "");
+                        }
+                           
+
+                       
+                        if (this.tipocambio.SelectedValue.Equals("1"))
+                        {
+                            str = "CANCELADO";
+                            mySqlCommand.Parameters.AddWithValue("@idcondicion", 5);
+                        }
+                        else if (this.tipocambio.SelectedValue.Equals("2"))
+                        {
+                            str = "DESERCIÓN";
+                            mySqlCommand.Parameters.AddWithValue("@idcondicion", 3);
+                        }
+                        else
+                        {
+                            str = "INSCRITO";
+                            mySqlCommand.Parameters.AddWithValue("@idcondicion", 1);
+                        }
+                        mySqlCommand.Parameters.AddWithValue("@estatus", str);
+                        mySqlCommand.ExecuteNonQuery();
+                        mySqlTransaction.Commit();
+                        this.listadoAlumnos(sender, e);
+                        ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading(); toastExito(); $('#wmodificar').modal('hide');", true);
+                    }
+                    catch (Exception exception1)
+                    {
+                        Exception exception = exception1;
+                        mySqlTransaction.Rollback();
+                        Console.WriteLine(string.Concat("error:", exception.ToString()));
+                    }
+                }
+                finally
+                {
+                    mySqlConnection.Close();
+                }
+            }
+        }
+
         protected void conteoRegistros(object sender, EventArgs e)
         {
             using (MySqlConnection mySqlConnection = new MySqlConnection(WebConfigurationManager.ConnectionStrings["DBconexion"].ConnectionString))
