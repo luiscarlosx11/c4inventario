@@ -26,22 +26,21 @@ body { padding-right: 0 !important }
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="titulobreads" runat="server">
     <div class="content-header row">
-        <div class="content-header-left col-md-6 col-xs-12 mb-1">
-            <h3 class="content-header-title">OFERTA EDUCATIVA</h3>
-          </div>
-          <div class="content-header-right breadcrumbs-right breadcrumbs-top col-md-6 col-xs-12">
-            <div class="breadcrumb-wrapper col-xs-12">
-              <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">Inicio</a>
-                </li>
-                <li class="breadcrumb-item"><a href="#">Catálogos</a>
-                </li>
-                <li class="breadcrumb-item active"><a href="#">Oferta Educativa</a>
-                </li>
-              </ol>
+
+        <div class="col-md-3">
+            <div class="media-left media-middle">
+                <i class="icon-speech primary font-large-2 mr-1"></i>
             </div>
-          </div>
-    </div>
+            <div class="media-body">
+                <h4 class="font-weight-bold">Cursos</h4>
+                <span class="font-small-3">
+                    <asp:Label runat="server" ID="labelConteo"></asp:Label>
+                    registro(s) encontrado(s)</span>
+            </div>
+
+        </div>
+    </div>    <br />
+   
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cuerpo" runat="server">
  <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true"></asp:ScriptManager>
@@ -49,171 +48,164 @@ body { padding-right: 0 !important }
         
 
        <asp:UpdatePanel runat="server" ID="pU">
-        <ContentTemplate>
+           <ContentTemplate>
+               <div class="row" id="header-styling">
+                   <div class="col-md-12">
+
+                       <div class="media">
+                           
+                           <div class="col-md-2">
+                               <div class="form-group">      
+                                   <label class="text-bold-600 font-small-3">Plantel</label>
+                                   <asp:TextBox ID="bname" CssClass="form-control text-uppercase" placeholder="Búsqueda por Nombre, Clave..." name="bname" runat="server" AutoPostBack="false" onChange="consultaPrincipal()"></asp:TextBox>
+                               </div>
+                           </div>
+
+                           <div class="col-md-2" id="busplantel" runat="server">
+                               <div class="form-group">
+                                   <label class="text-bold-600 font-small-3">Plantel</label>
+                                   <asp:DropDownList runat="server" ID="bplantel" CssClass="select2 form-control" DataSourceID="DSplantel" DataTextField="nombre" DataValueField="idsucursal" AppendDataBoundItems="true" onChange="consultaPrincipal()">
+                                       <asp:ListItem Value="0" Text="SELECCIONE UN PLANTEL"></asp:ListItem>
+                                   </asp:DropDownList>
+                                   <asp:SqlDataSource ID="DSplantel" runat="server" ProviderName="MySql.Data.MySqlClient" ConnectionString="<%$ ConnectionStrings:DBconexion %>" SelectCommand="SELECT idsucursal, nombre FROM sucursal ORDER BY nombre"></asp:SqlDataSource>
+                               </div>
+                           </div>
+                           <div class="col-md-2" runat="server">
+                               <div class="form-group">
+                                   <label class="text-bold-600 font-small-3">Plantel</label>
+
+                                   <asp:DropDownList runat="server" ID="bciclo" CssClass="select2 form-control" DataSourceID="DSciclo" DataTextField="cicloescolar" DataValueField="idcicloescolar" onChange="consultaPrincipal()">                                       
+                                   </asp:DropDownList>
+                                   <asp:SqlDataSource ID="DSciclo" runat="server" ProviderName="MySql.Data.MySqlClient" ConnectionString="<%$ ConnectionStrings:DBconexion %>" SelectCommand="SELECT idcicloescolar, concat('CICLO ',cicloescolar)as cicloescolar FROM cicloescolar ORDER BY cicloescolar"></asp:SqlDataSource>
+                               </div>
+                           </div>
+                           <div class="col-md-2" runat="server">
+                               <div class="form-group">
+                                   <label class="text-bold-600 font-small-3">Plantel</label>
+                                   <asp:DropDownList runat="server" ID="bperiodo" CssClass="select2 form-control" DataSourceID="DSperiodo" DataTextField="periodo" DataValueField="idperiodo" onChange="consultaPrincipal()">                                       
+                                   </asp:DropDownList>
+                                   <asp:SqlDataSource ID="DSperiodo" runat="server" ProviderName="MySql.Data.MySqlClient" ConnectionString="<%$ ConnectionStrings:DBconexion %>" SelectCommand="SELECT idperiodo, periodo FROM periodo ORDER BY periodo"></asp:SqlDataSource>
+                               </div>
+                           </div>
+                           <div class="col-md-2">
+                               <label class="text-bold-600 font-small-3">Plantel</label>
+                               <asp:DropDownList ID="estatus" runat="server" CssClass="form-control select2">
+                                   <asp:ListItem Selected="True" Value="EN CAPTURA">EN CAPTURA</asp:ListItem>
+                                   <asp:ListItem  Value="PEDIDO ARMADO">PEDIDO ARMADO</asp:ListItem>
+                                   <asp:ListItem Value="EN RUTA" >EN RUTA</asp:ListItem>
+                                   <asp:ListItem Value="ENTREGADO" >ENTREGADO</asp:ListItem>
+                               </asp:DropDownList>
+
+                           </div>
+                           <div class="col-md-2 float-md-right">
+                               <asp:HiddenField runat="server" ID="idP" />
+                               <asp:HiddenField runat="server" ID="limite" Value="48" />
+                               <asp:HiddenField runat="server" ID="idS" />
+                               <asp:HiddenField runat="server" ID="idSU" />
+                               <asp:HiddenField runat="server" ID="idF" />
+                               <asp:HiddenField runat="server" ID="finhabil" />
+                               <asp:HiddenField runat="server" ID="cve" />
+                               <asp:HiddenField runat="server" ID="idOE" />
+
+
+                               <asp:Button runat="server" ID="Bconsultar" OnClick="listadoClientes" Style="display: none" UseSubmitBehavior="false" />
+                               <asp:Button runat="server" ID="Bcancelarcurso" OnClick="cancelaCurso" Style="display: none" UseSubmitBehavior="false" />
+                               <asp:Button runat="server" ID="Bguardaobjetivo" OnClick="guardaObjetivo" Style="display: none" UseSubmitBehavior="false" />
+                               <asp:Button runat="server" ID="Beliminaobjetivo" OnClick="eliminaObjetivo" Style="display: none" UseSubmitBehavior="false" />
+
+                               <asp:Button runat="server" ID="Bnuevo" OnClick="limpiarCampos" Style="display: none" UseSubmitBehavior="false" />
+                               <span class="pull-right">
+                                   <button type="button" id="nuevo" onclick="nuevoRegistro();" class="btn btn-icon btn-primary mr-1 text-bold-700" data-toggle="modal">
+                                       Nuevo Registro 
+                                   </button>
+                               </span>
+                           </div>
+                       </div>
+
+                   </div>
+               </div>
+        
+
         <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">CURSOS</h4>
-                            <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
-                            <div class="heading-elements">
-                                <ul class="list-inline mb-0">
-                                   
-                                </ul>
-                            </div>
-                        </div>
+                       
                         <div class="card-body collapse in">
-                             
 
-                             <div class="col-md-12">
-                                <div class="card overflow-hidden">
-                                    <div class="card-body">
-                                        <div class="card-block cleartfix">
-                                            <div class="media">
-                                                <div class="media-left media-middle">
-                                                    <i class="icon-speech primary font-large-2 mr-2"></i>
-                                                </div>
-                                                <div class="media-body">
-                                                    <h4>Elementos registrados</h4>
-                                                    <span>
-                                                        <asp:Label runat="server" ID="labelConteo"></asp:Label>
-                                                        actualmente</span>
-                                                </div>
-                                                <div class="media-right media-middle">
-                                                    
-                                                   
-                                                    <asp:HiddenField runat="server" ID="idP" /> 
-                                                    <asp:HiddenField runat="server" ID="limite" Value="48" /> 
-                                                    <asp:HiddenField runat="server" ID="idS" /> 
-                                                    <asp:HiddenField runat="server" ID="idSU" />
-                                                    <asp:HiddenField runat="server" ID="idF" />
-                                                    <asp:HiddenField runat="server" ID="finhabil" />
-                                                    <asp:HiddenField runat="server" ID="cve" />
-                                                    <asp:HiddenField runat="server" ID="idOE" />
+                            <div class="row">
+
+                                <div class="card-block card-dashboard">
+                                    <div style="overflow-x: auto; width: 100%">
+                                        <asp:GridView runat="server" ID="lGeneral" PageSize="50" AllowPaging="true" AllowSorting="true" CssClass="table table-striped lGeneral"
+                                            AutoGenerateColumns="False" DataSourceID="DsUsuarios" EnableSortingAndPagingCallbacks="true"
+                                             OnDataBinding="conteoRegistros" OnPageIndexChanged="listadoClientes" GridLines="Horizontal" BorderWidth="0" RowStyle-CssClass="rowHover" ClientIDMode="Static">
+                                            <SortedAscendingHeaderStyle CssClass="ascending rendila-color" ForeColor="White" />
+                                            <SortedDescendingHeaderStyle CssClass="descending rendila-color" ForeColor="White" />
+                                            <Columns>
+                                               
+
+                                                <asp:TemplateField HeaderText="Generales">
+                                                    <ItemTemplate>
+
+                                                        <h7 class="font-weight-bold"><%# Eval("clave")+ " / "+Eval("nombre")%></h7><br />
+                                                        <h7 class="font-small-3 font-italic text-bold-600"><i class="fa fa-home"></i> <%# " "+Eval("plantel")%></h7>
+                                                        <br />
+                                                        <h7 class="text-bold-400 font-small-2"><i class="fa fa-user "></i> <%# " "+Eval("instructor")%></h7>
+                                                        <br />
+                                                        <h7 class="text-bold-400 font-small-2"><i class="fa fa-calendar "></i><%# " "+Eval("fechaini") +" al "+ Eval("fechafin")+" / "%></h7>
+                                                        
+                                                        <h7 class="text-bold-400 font-small-2"><i class="fa fa-clock-o "></i><%# " "+Eval("horaini") +" - "+ Eval("horafin")%></h7>
+                                                        <br />
+
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
 
 
-                                                    <asp:Button runat="server" ID="Bconsultar" OnClick="listadoClientes" Style="display: none" UseSubmitBehavior="false"/>
-                                                    <asp:Button runat="server" ID="Bcancelarcurso" OnClick="cancelaCurso" Style="display: none" UseSubmitBehavior="false"/>
-                                                    <asp:Button runat="server" ID="Bguardaobjetivo" OnClick="guardaObjetivo" Style="display: none" UseSubmitBehavior="false"/>
-                                                    <asp:Button runat="server" ID="Beliminaobjetivo" OnClick="eliminaObjetivo" Style="display: none" UseSubmitBehavior="false"/>
-                                                                                                                                                                  
-                                                    <asp:Button runat="server" ID="Bnuevo" OnClick="limpiarCampos" style="display:none" UseSubmitBehavior="false"/>                                            
-                                                    <button type="button" id="nuevo" onclick="nuevoRegistro();" class="btn btn-icon btn-primary mr-1" data-toggle="modal" >
-                                                         <i class="ft-file"></i> Nuevo Registro 
-                                                    </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
+                                                <asp:TemplateField HeaderText="Alumno" HeaderStyle-CssClass="centrarCelda" ItemStyle-CssClass="centrarCelda">
+                                                    <ItemTemplate>
+
+                                                        <ul class="list-inline">
+                                                            <li class="border-right-blue-grey border-right-lighten-2 pr-2">
+                                                                <h4 class="danger font-weight-bold"><%# Eval("alumnosminimo")%></h4>
+                                                                <span class="blue-grey darken-1 font-small-3"><i class="icon-user"></i > Requerido</span>
+                                                            </li>
+                                                            <li class="pl-2">
+                                                                <h4 class="danger font-weight-bold"><%# Eval("inscritos")%></h4>
+                                                                <span class="blue-grey darken-1 font-small-3"><i class="icon-user-follow"></i> Inscritos</span>
+                                                            </li>
+                                                        </ul>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="Estatus" ItemStyle-Width="20px" HeaderStyle-CssClass="centrarCelda" ItemStyle-CssClass="centrarCelda">
+                                                    <ItemTemplate>
+
+                                                            <span class="tag bg-<%# Eval("estatus").Equals("EN CAPTURA")?"info":Eval("estatus").Equals("OBSERVADO")?"danger":Eval("estatus").Equals("EN REVISION")?"warning":Eval("estatus").Equals("AUTORIZADO")?"success":Eval("estatus").Equals("RECHAZADO")?"danger":Eval("estatus").Equals("CANCELADO")?"red":"black"%>"><span class="text-bold-700"><%# Eval("estatus")%></span></span>                                                        
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+
+
+                                                <asp:TemplateField HeaderText="Acciones" ItemStyle-Width="180px" HeaderStyle-CssClass="centrarCelda" ItemStyle-CssClass="centrarCelda">
+                                                    <ItemTemplate>
+
+                                                        <button type="button" class="btn btn-icon btn-warning mr-1 btn-sm tooltips" onclick="abrirModal(<%# Eval("idcurso") %>,<%# Eval("idsucursal") %>)" value="" data-toggle="tooltip" data-original-title="Detalles"><i class="ft-edit"></i></button>
+                                                        <button type="button" class="btn btn-icon btn-danger mr-1 btn-sm tooltips" onclick="abrirModalCancelacion(<%# Eval("idcurso") %>)" value="" data-toggle="tooltip" data-original-title="Cancelar" <%# Eval("estatus").Equals("CANCELADO")?"disabled":"" %>><i class="ft-delete"></i></button>
+
+
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                            </Columns>
+
+                                        </asp:GridView>
+
+                                        <asp:SqlDataSource ID="DsUsuarios" ProviderName="MySql.Data.MySqlClient" runat="server" ConnectionString="<%$ ConnectionStrings:DBconexion %>"></asp:SqlDataSource>
+
                                     </div>
                                 </div>
 
-                                <div class="card-block card-dashboard">
-                                 <div class="row">
-                                                                        
 
-                                   <div class="col-md-4">
-										<div class="form-group">
-											<label for="cliente" class="text-bold-600">Nombre</label>
-											<asp:TextBox ID="bname" CssClass="form-control text-uppercase"  placeholder="Búsqueda por Nombre, Clave" name="bname" runat="server"  AutoPostBack="false" onChange="consultaPrincipal()"></asp:TextBox>
-										</div>
-									</div>
 
-                                     <div class="col-md-4" id="busplantel" runat="server">
-										<div class="form-group">
-											<label for="cliente" class="text-bold-600">Plantel</label>
-											<asp:DropDownList runat="server" ID="bplantel" CssClass="select2 form-control" DataSourceID="DSplantel" DataTextField="nombre" DataValueField="idsucursal" AppendDataBoundItems="true" onChange="consultaPrincipal()">
-                                                <asp:ListItem Value="0" Text="SELECCIONE UN PLANTEL"></asp:ListItem>
-											</asp:DropDownList>
-                                         <asp:SqlDataSource ID="DSplantel" runat="server" ProviderName="MySql.Data.MySqlClient" ConnectionString="<%$ ConnectionStrings:DBconexion %>" SelectCommand="SELECT idsucursal, nombre FROM sucursal ORDER BY nombre">
-                                             
-                                         </asp:SqlDataSource>                                          
-										</div>
-									</div>
-                              </div>
                             </div>
-                            
-                           
-                            <div class="row">
-                
-               
-
-                <div class="card-block card-dashboard">
-                 <div style="overflow-x:auto;width:100%"> 
-                            <asp:GridView runat="server" ID="lusuarios" PageSize="50" AllowPaging="true" AllowSorting="true" CssClass="table table-striped table-bordered zero-configuration" 
-                                AutoGenerateColumns="False" DataSourceID="DsUsuarios" EnableSortingAndPagingCallbacks="true"
-                                AlternatingRowStyle-BackColor="#F5F7FA" OnDataBinding="conteoRegistros" OnPageIndexChanged="listadoClientes">
-                                <SortedAscendingHeaderStyle CssClass="ascending rendila-color" ForeColor="White" />
-                                <SortedDescendingHeaderStyle CssClass="descending rendila-color" ForeColor="White"/>
-                                        <Columns>
-                                            <asp:TemplateField HeaderText="No." HeaderStyle-CssClass="centrarCelda" ItemStyle-Width="20px" ItemStyle-CssClass="centrarCelda">
-                                                <ItemTemplate>
-                                                    <%# Container.DataItemIndex + 1 %>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                            
-                                            
-                                            <asp:TemplateField HeaderText="Generales" >
-                                                <ItemTemplate>
-                                                   
-                                                    <h6 class="text-bold-700"><%# Eval("clave")+ " / "+Eval("nombre")%></h6>
-                                                    <h7 class="text-bold-400 font-small-3 font-italic text-bold-600"><i class="fa fa-home"></i> <%# " "+Eval("plantel")%></h7><br />
-                                                    <h7 class="text-bold-400 font-small-3"><i class="fa fa-user "></i> <%# " "+Eval("instructor")%></h7><br />
-                                                    <h7 class="text-bold-400 font-small-3"><i class="fa fa-calendar "></i><%# " "+Eval("fechaini") +" al "+ Eval("fechafin")%></h7><br />
-                                                    <h7 class="text-bold-400 font-small-3"><i class="fa fa-clock-o "></i><%# " "+Eval("horaini") +" - "+ Eval("horafin")%></h7><br />     
-                                                       
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-
-
-                                            <asp:TemplateField HeaderText="Alumno" HeaderStyle-CssClass="centrarCelda" ItemStyle-CssClass="centrarCelda">
-                                                <ItemTemplate>
-                                                   
-                                                     <ul class="list-inline clearfix">
-                                                        <li class="border-right-blue-grey border-right-lighten-2 pr-2">
-                                                            <h1 class="danger text-bold-400"><%# Eval("alumnosminimo")%></h1>
-                                                            <span class="blue-grey darken-1"><i class="icon-user"></i> Requerido</span>
-                                                        </li>
-                                                        <li class="pl-2">
-                                                            <h1 class="danger text-bold-400"><%# Eval("inscritos")%></h1>
-                                                            <span class="blue-grey darken-1"><i class="icon-user-follow"></i> Inscritos</span>
-                                                        </li>
-                                                    </ul>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-
-                                            <asp:TemplateField HeaderText="Estatus" ItemStyle-Width="20px" HeaderStyle-CssClass="centrarCelda" ItemStyle-CssClass="centrarCelda">
-                                                <ItemTemplate>
- 
-                                                    <span class="float-xs-right">
-                                                        <span class="tag bg-<%# Eval("estatus").Equals("EN CAPTURA")?"info":Eval("estatus").Equals("OBSERVADO")?"danger":Eval("estatus").Equals("EN REVISION")?"warning":Eval("estatus").Equals("AUTORIZADO")?"success":Eval("estatus").Equals("RECHAZADO")?"danger":Eval("estatus").Equals("CANCELADO")?"red":"black"%> font-weight-bold"><%# Eval("estatus")%></span>
-                                                    </span>                                                                                                
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-
-                                           
-                                            <asp:TemplateField HeaderText="Acciones" ItemStyle-Width="180px" HeaderStyle-CssClass="centrarCelda" ItemStyle-CssClass="centrarCelda">
-                                                <ItemTemplate>
-
-                                                    <button type="button" class="btn btn-icon btn-warning mr-1 btn-sm tooltips"  onclick="abrirModal(<%# Eval("idcurso") %>,<%# Eval("idsucursal") %>)" value="" data-toggle="tooltip" data-original-title="Detalles"><i class="ft-edit"> </i> </button>                                            
-                                                    <button type="button" class="btn btn-icon btn-danger mr-1 btn-sm tooltips"  onclick="abrirModalCancelacion(<%# Eval("idcurso") %>)" value="" data-toggle="tooltip" data-original-title="Cancelar" <%# Eval("estatus").Equals("CANCELADO")?"disabled":"" %> ><i class="ft-delete"> </i> </button>                                            
-                                        
-                                                                                                                                                             
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                        </Columns>
-                                
-                                    </asp:GridView>
-                            
-                                   <asp:SqlDataSource ID="DsUsuarios" ProviderName="MySql.Data.MySqlClient" runat="server" ConnectionString="<%$ ConnectionStrings:DBconexion %>"></asp:SqlDataSource>
-                
-                               </div>
-                    </div>
-
-                
-
-            </div>
                                     
 
                         </div>

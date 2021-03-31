@@ -51,109 +51,56 @@
                 <section class="flexbox-container">
                     <div class="col-md-3 col-lg-3 offset-md-4 col-xs-10 offset-xs-1 col-sm-10 box-shadow-2 p-0">
                         <div class="card border-grey border-lighten-3 m-0">
-                            <div class="card-header no-border primary">
-                                <div class="card-title text-xs-center">
+                            <div class="card-header no-border">
+                                <div class="text-xs-center">
                                     <div class="p-1">
-                                        <img src="/images/rendilana.png" alt="icaten" class="img-fluid"/>
-                                    </div>
-                                </div>
-                                
-                                <h4 class="text-muted text-xs-center text-bold-600"><span>Plataforma de Gestión Escolar</span></h4>
+                                        <img src="/images/icatenautlog.jpg" alt="icaten" class="img-fluid"/>
+                                    </div>                                    
+                                </div>                                                                
                             </div>
                             <div class="card-body collapse in">
-                                <div class="card-block">
+                                <div class="card-block">                                    
                                     <form id="form1" class="form-horizontal form-simple" runat="server" novalidate autocomplete="off">
                                         <asp:HiddenField ID="hep" runat="server" />
+                                        <label class="text-bold-600">Usuario</label>
                                         <fieldset class="form-group position-relative has-icon-left mb-0">
                                             <asp:TextBox runat="server" CssClass="form-control form-control" ID="username" placeholder="Usuario"></asp:TextBox>
                                             <div class="form-control-position">
                                                 <i class="ft-user"></i>
-                                            </div>
+                                            </div> 
                                         </fieldset>
-                                        <br /><br />
+                                        <br />
+                                         <label class="text-bold-600">Contraseña</label>
                                         <fieldset class="form-group position-relative has-icon-left">
+                                           
                                             <asp:TextBox runat="server" CssClass="form-control form-control" ID="userpasswd" TextMode="Password" placeholder="Contraseña"></asp:TextBox>
                                             <div class="form-control-position">
                                                 <i class="fa fa-key"></i>
                                             </div>
                                         </fieldset>
-                                        <br />
+                                        
                                         <asp:Button ID="ilogin" runat="server" OnClick="ilogin_Click" OnClientClick="dp();" style="display:none" Text="Login"  UseSubmitBehavior="false"/>
                                         <button type="button" class="btn btn-primary btn-block" onclick="validaForm()" id="ingresar">
                                              <span class="text-bold-700">I N G R E S A R</span>
                                         </button>
                                         <br />
                                         <asp:Label runat="server" ID="error" style="color:red;font-weight:bold"></asp:Label>
-                                       <!-- MODAL -->
-                                        <div class="modal fade text-xs-left" id="bootstrap" role="dialog" aria-labelledby="myModalLabel35" aria-hidden="true" data-keyboard="false" data-backdrop="static">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header bg-primary white">
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                        <h3 class="modal-title" id="myModalLabel35">Código de Autorización</h3>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <div class="card">
-                                                                    <div class="card-header">
-                                                                    </div>
-                                                                    <div class="card-body collapse in">
-                                                                        <div class="card-block">
-
-                                                                            <div class="form-body">
-                                                                               
-                                                                                    <div class="form-group row">
-                                                                                        <label class="col-md-3 label-control" for="cvomun">Ingresar código</label>
-                                                                                        <div class="col-md-9">
-                                                                                            <asp:TextBox ID="codigo" CssClass="form-control" MaxLength="8" placeholder="Código" name="codigo" runat="server"></asp:TextBox>
-                                                                                        </div>
-                                                                                    </div>
-
-                                                                                <asp:Label runat="server" ID="error2" style="color:red;font-weight:bold"></asp:Label>
-                                                                                
-                                                                            </div>
-
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <asp:Button ID="acodigo" runat="server" OnClick="acodigo_Click" style="display:none" UseSubmitBehavior="false" />
-                                                        <button class="btn btn-primary"  onclick="validaCodigo()"  type="button" data-backdrop="false" >
-                                                            <i class="fa fa-check-square-o"></i>Aceptar
-                                                        </button>
-
-                                                        <button type="button" class="btn btn-danger mr-2" data-dismiss="modal" id="cerrarModal">
-                                                            <i class="ft-x"></i>Cancelar
-                                                        </button>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-
-                                        </div>
-
+                                       <!-- MODAL -->                                        
                                        <!-- FIN MODAL -->
-
                                     </form>
                                 </div>
                             </div>
-                            <div class="card-footer">
-                               
-                            </div>
+                           
                         </div>
                     </div>
                 </section>
 
             </div>
         </div>
+
     </div>
+
+   
 
     
     <!-- ////////////////////////////////////////////////////////////////////////////-->
@@ -229,17 +176,6 @@
 
         }
 
-        function validaCodigo() {
-
-            if($("#codigo").val()==''){
-                swal("Atención", "Ingrese el código via sms", "warning");
-                return false;
-            }
-
-            $('#<%=acodigo.ClientID %>').click()
-            return true;
-
-        }
 
         function modal() {
             $("#bootstrap").modal('toggle');

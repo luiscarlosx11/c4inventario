@@ -296,44 +296,6 @@ namespace elecion
             }
         }
 
-        protected void acodigo_Click(object sender, EventArgs e)
-        {
-
-            bool isValid = client.VerifyUserToken(authyUserId, codigo.Text);
-            if (isValid)
-            {
-                //String datos = usr.nombre + ";" + usr.usuario + ";" + usr.usuario;
-                String datos = usr.nombre + ";" + usr.usuario + ";" + usr.usuario + ";" + usr.entidad;
-                FormsAuthenticationTicket tkt;
-                string cookiestr;
-                HttpCookie ck;
-                tkt = new FormsAuthenticationTicket(1,
-                     usr.nombre,
-                    DateTime.Now,
-                DateTime.Now.AddMinutes(30),
-
-
-                true, usr.id + "," + datos + "," + usr.rol);
-                cookiestr = FormsAuthentication.Encrypt(tkt);
-                ck = new HttpCookie(FormsAuthentication.FormsCookieName, cookiestr);
-                if (true)
-                    ck.Expires = tkt.Expiration;
-                ck.Path = FormsAuthentication.FormsCookiePath;
-                Response.Cookies.Add(ck);
-
-                string url = Request["ReturnUrl"];
-
-               
-                    Response.Redirect("default.aspx");
-               
-            }
-            else
-            {
-                codigo.Text = "";
-                ScriptManager.RegisterStartupScript(this, GetType(), "abrirModal", "window.onload = function(){ modal(); };", true);
-                error2.Text = "Código Incorrecto";
-            }
-           
-        }
+       
     }
 }
