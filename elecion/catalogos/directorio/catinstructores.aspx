@@ -13,115 +13,59 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="titulobreads" runat="server">
-    <div class="content-header row">
-        <div class="content-header-left col-md-6 col-xs-12 mb-1">
-            <h3 class="content-header-title">Directorio</h3>
-          </div>
-          <div class="content-header-right breadcrumbs-right breadcrumbs-top col-md-6 col-xs-12">
-            <div class="breadcrumb-wrapper col-xs-12">
-              <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">Inicio</a>
-                </li>
-                <li class="breadcrumb-item"><a href="#">Catálogos</a>
-                </li>
-                <li class="breadcrumb-item active"><a href="#">Directorio</a>
-                </li>
-              </ol>
-            </div>
-          </div>
-    </div>
+    
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cuerpo" runat="server">
  <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true"></asp:ScriptManager>
     <asp:UpdatePanel runat="server" ID="pU">
         <ContentTemplate>
         <asp:Button runat="server" ID="guardar" OnClick="guardaEdita" style="display:none" CausesValidation="false"/>
-        <div class="row" id="header-styling">
-                <div class="col-xs-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">INSTRUCTORES</h4>
-                            <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
-                            <div class="heading-elements">
-                                <ul class="list-inline mb-0">
-                                   
-                                </ul>
+            <div class="row" id="header-styling">
+                <div class="col-md-12">
+
+                    <div class="media">
+                        <div class="col-md-4">
+                            <div class="media-left media-middle">
+                                <i class="icon-speech primary font-large-2 mr-2"></i>
                             </div>
-                        </div>
-                        <div class="card-body collapse in">
-                             
-
-                             <div class="col-md-12">
-                                <div class="card overflow-hidden">
-                                    <div class="card-body">
-                                        <div class="card-block cleartfix">
-                                            <div class="media">
-                                                <div class="media-left media-middle">
-                                                    <i class="icon-speech primary font-large-2 mr-2"></i>
-                                                </div>
-                                                <div class="media-body">
-                                                    <h4>Elementos registrados</h4>
-                                                    <span>
-                                                        <asp:Label runat="server" ID="labelConteo"></asp:Label>
-                                                        actualmente</span>
-                                                </div>
-                                                <div class="media-right media-middle">
-                                                   <asp:Button runat="server" ID="Beditar" OnClick="editaRegistro" style="display:none" UseSubmitBehavior="false"/> 
-                                                   
-                                                    <asp:HiddenField runat="server" ID="idP" /> 
-                                                    <asp:HiddenField runat="server" ID="limite" Value="48" /> 
-                                                    <asp:HiddenField runat="server" ID="idS" /> 
-                                                     <asp:HiddenField runat="server" ID="idRol" /> 
-                                                    
-                                                    <asp:Button runat="server" ID="Bconsultar" OnClick="listadoClientes" Style="display: none" UseSubmitBehavior="false"/>
-                                                                                                                                                                  
-                                                    <asp:Button runat="server" ID="Bnuevo" OnClick="nuevoRegistro" style="display:none" UseSubmitBehavior="false"/>                                            
-                                                    <button type="button" id="nuevo" onclick="abrirModal(0,0,1,'',1,'','','','','','','','','',0,'');" class="btn btn-icon btn-primary mr-1" data-toggle="modal" runat="server" >
-                                                         <i class="ft-file"></i> Nuevo Registro 
-                                                    </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-
-                                <div class="card-block card-dashboard">
-                                 <div class="row">
-                                                                        
-
-                                   <div class="col-md-4">
-										<div class="form-group">
-											<label for="cliente" class="text-bold-600">Nombre</label>
-											<asp:TextBox ID="bname" CssClass="form-control text-uppercase"  placeholder="Nombre" name="bname" runat="server" OnTextChanged="listadoClientes" AutoPostBack="true"></asp:TextBox>
-										</div>
-									</div>
-                                    
-                              </div>
+                            <div class="media-body">
+                                <h4 class="font-weight-bold">Instructores</h4>
+                                <span>
+                                    <asp:Label runat="server" ID="labelConteo"></asp:Label>
+                                    registro(s) encontrado(s)</span>
                             </div>
-                            
-                           
-
-                                    
 
                         </div>
-                        
+                        <div class="col-md-4">
+                            <asp:TextBox ID="bname" CssClass="form-control text-uppercase" placeholder="Buscar por nombre..." name="bname" runat="server" OnTextChanged="listadoClientes" AutoPostBack="true"></asp:TextBox>
+                        </div>
+                        <div class="col-md-4 float-md-right">
+                            <asp:Button runat="server" ID="Beditar" OnClick="editaRegistro" Style="display: none" UseSubmitBehavior="false" />
 
+                            <asp:HiddenField runat="server" ID="idP" />
+                            <asp:HiddenField runat="server" ID="limite" Value="48" />
+                            <asp:HiddenField runat="server" ID="idS" />
+                            <asp:HiddenField runat="server" ID="idRol" />
+
+                            <asp:Button runat="server" ID="Bconsultar" OnClick="listadoClientes" Style="display: none" UseSubmitBehavior="false" />
+
+                            <asp:Button runat="server" ID="Bnuevo" OnClick="nuevoRegistro" Style="display: none" UseSubmitBehavior="false" />
+                            <span class="pull-right">
+                            <button type="button" id="nuevo" onclick="abrirModal(0,0,1,'',1,'','','','','','','','','',0,'');" class="btn btn-icon btn-primary mr-1" data-toggle="modal" runat="server">
+                                <i class="ft-file"></i>Nuevo Registro 
+                            </button>
+                                </span>
+                        </div>
+                    </div>
 
                 </div>
             </div>
-        </div>
 
-
-
+        <br />
             <div class="row">
 
                 <asp:DataList ID="lusuarios" runat="server" DataSourceID="DsUsuarios" RepeatLayout="Flow" RepeatDirection="Horizontal" OnDataBinding="conteoRegistros">
                     <ItemTemplate>
-
-
-
 
 
                         <div class="col-xl-3 col-md-6 col-xs-12">
