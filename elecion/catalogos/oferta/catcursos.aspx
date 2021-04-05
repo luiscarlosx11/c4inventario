@@ -25,21 +25,7 @@ body { padding-right: 0 !important }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="titulobreads" runat="server">
-    <div class="content-header row">
-
-        <div class="col-md-3">
-            <div class="media-left media-middle">
-                <i class="icon-speech primary font-large-2 mr-1"></i>
-            </div>
-            <div class="media-body">
-                <h4 class="font-weight-bold">Cursos</h4>
-                <span class="font-small-3">
-                    <asp:Label runat="server" ID="labelConteo"></asp:Label>
-                    registro(s) encontrado(s)</span>
-            </div>
-
-        </div>
-    </div>    <br />
+    
    
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cuerpo" runat="server">
@@ -49,6 +35,23 @@ body { padding-right: 0 !important }
 
        <asp:UpdatePanel runat="server" ID="pU">
            <ContentTemplate>
+
+               <div class="content-header row">
+
+                   <div class="col-md-3">
+                       <div class="media-left media-middle">
+                           <i class="icon-speech primary font-large-2 mr-1"></i>
+                       </div>
+                       <div class="media-body">
+                           <h4 class="font-weight-bold">Cursos</h4>
+                           <span class="font-small-3">
+                               <asp:Label runat="server" ID="labelConteo"></asp:Label>
+                               registro(s) encontrado(s)</span>
+                       </div>
+
+                   </div>
+               </div>    <br />
+
                <div class="row" id="header-styling">
                    <div class="col-md-12">
 
@@ -56,7 +59,7 @@ body { padding-right: 0 !important }
                            
                            <div class="col-md-2">
                                <div class="form-group">      
-                                   <label class="text-bold-600 font-small-3">Plantel</label>
+                                   <label class="text-bold-600 font-small-3">Curso</label>
                                    <asp:TextBox ID="bname" CssClass="form-control text-uppercase" placeholder="Búsqueda por Nombre, Clave..." name="bname" runat="server" AutoPostBack="false" onChange="consultaPrincipal()"></asp:TextBox>
                                </div>
                            </div>
@@ -70,30 +73,37 @@ body { padding-right: 0 !important }
                                    <asp:SqlDataSource ID="DSplantel" runat="server" ProviderName="MySql.Data.MySqlClient" ConnectionString="<%$ ConnectionStrings:DBconexion %>" SelectCommand="SELECT idsucursal, nombre FROM sucursal ORDER BY nombre"></asp:SqlDataSource>
                                </div>
                            </div>
-                           <div class="col-md-2" runat="server">
-                               <div class="form-group">
-                                   <label class="text-bold-600 font-small-3">Plantel</label>
 
-                                   <asp:DropDownList runat="server" ID="bciclo" CssClass="select2 form-control" DataSourceID="DSciclo" DataTextField="cicloescolar" DataValueField="idcicloescolar" onChange="consultaPrincipal()">                                       
-                                   </asp:DropDownList>
-                                   <asp:SqlDataSource ID="DSciclo" runat="server" ProviderName="MySql.Data.MySqlClient" ConnectionString="<%$ ConnectionStrings:DBconexion %>" SelectCommand="SELECT idcicloescolar, concat('CICLO ',cicloescolar)as cicloescolar FROM cicloescolar ORDER BY cicloescolar"></asp:SqlDataSource>
-                               </div>
-                           </div>
-                           <div class="col-md-2" runat="server">
-                               <div class="form-group">
-                                   <label class="text-bold-600 font-small-3">Plantel</label>
-                                   <asp:DropDownList runat="server" ID="bperiodo" CssClass="select2 form-control" DataSourceID="DSperiodo" DataTextField="periodo" DataValueField="idperiodo" onChange="consultaPrincipal()">                                       
-                                   </asp:DropDownList>
-                                   <asp:SqlDataSource ID="DSperiodo" runat="server" ProviderName="MySql.Data.MySqlClient" ConnectionString="<%$ ConnectionStrings:DBconexion %>" SelectCommand="SELECT idperiodo, periodo FROM periodo ORDER BY periodo"></asp:SqlDataSource>
-                               </div>
-                           </div>
+                           
+                                   <div class="col-md-2" runat="server">
+                                       <div class="form-group">
+                                           <label class="text-bold-600 font-small-3">Ciclo escolar</label>
+                                           <asp:DropDownList runat="server" ID="bciclo" CssClass="select2 form-control" DataSourceID="DSciclo" DataTextField="cicloescolar" DataValueField="idcicloescolar" onChange="consultaPrincipal()" >
+                                           </asp:DropDownList>
+                                           <asp:SqlDataSource ID="DSciclo" runat="server" ProviderName="MySql.Data.MySqlClient" ConnectionString="<%$ ConnectionStrings:DBconexion %>" SelectCommand="SELECT idcicloescolar, concat('CICLO ',cicloescolar)as cicloescolar FROM cicloescolar UNION select 999999, 'SELECCIONE UN CICLO' ORDER BY idcicloescolar desc"></asp:SqlDataSource>
+                                       </div>
+                                   </div>
+                                   <div class="col-md-2" runat="server">
+                                       <div class="form-group">
+                                           <label class="text-bold-600 font-small-3">Periodo</label>
+                                           <asp:DropDownList runat="server" ID="bperiodo" CssClass="select2 form-control" DataSourceID="DSperiodo" DataTextField="periodo" DataValueField="idperiodo" onChange="consultaPrincipal()">
+                                           </asp:DropDownList>
+                                           <asp:SqlDataSource ID="DSperiodo" runat="server" ProviderName="MySql.Data.MySqlClient" ConnectionString="<%$ ConnectionStrings:DBconexion %>" SelectCommand="SELECT idperiodo, periodo FROM periodo UNION select 999999, 'SELECCIONE UN PERIODO' ORDER BY idperiodo desc ">
+                                               
+                                           </asp:SqlDataSource>
+                                       </div>
+                                   </div>
+
+                               
                            <div class="col-md-2">
-                               <label class="text-bold-600 font-small-3">Plantel</label>
-                               <asp:DropDownList ID="estatus" runat="server" CssClass="form-control select2">
+                               <label class="text-bold-600 font-small-3">Estatus</label>
+                               <asp:DropDownList ID="bestatus" runat="server" CssClass="form-control select2" onChange="consultaPrincipal()">
                                    <asp:ListItem Selected="True" Value="EN CAPTURA">EN CAPTURA</asp:ListItem>
-                                   <asp:ListItem  Value="PEDIDO ARMADO">PEDIDO ARMADO</asp:ListItem>
-                                   <asp:ListItem Value="EN RUTA" >EN RUTA</asp:ListItem>
-                                   <asp:ListItem Value="ENTREGADO" >ENTREGADO</asp:ListItem>
+                                   <asp:ListItem  Value="EN REVISION">EN REVISION</asp:ListItem>
+                                   <asp:ListItem Value="OBSERVADO" >OBSERVADO</asp:ListItem>
+                                   <asp:ListItem Value="RECHAZADO" >RECHAZADO</asp:ListItem>
+                                   <asp:ListItem Value="AUTORIZADO" >AUTORIZADO</asp:ListItem>
+                                   <asp:ListItem Value="FINALIZADO" >FINALIZADO</asp:ListItem>
                                </asp:DropDownList>
 
                            </div>
@@ -115,6 +125,7 @@ body { padding-right: 0 !important }
 
                                <asp:Button runat="server" ID="Bnuevo" OnClick="limpiarCampos" Style="display: none" UseSubmitBehavior="false" />
                                <span class="pull-right">
+                                   <label class="text-bold-600 font-small-3"></label>
                                    <button type="button" id="nuevo" onclick="nuevoRegistro();" class="btn btn-icon btn-primary mr-1 text-bold-700" data-toggle="modal">
                                        Nuevo Registro 
                                    </button>
@@ -126,25 +137,25 @@ body { padding-right: 0 !important }
                </div>
         
 
-        <div class="row">
+        <div class="row" >
                 <div class="col-md-12">
-                    <div class="card">
+                    <div class="">
                        
                         <div class="card-body collapse in">
 
                             <div class="row">
 
-                                <div class="card-block card-dashboard">
-                                    <div style="overflow-x: auto; width: 100%">
+                                <div class="card-block">
+                                    <div style="overflow-x: auto; width: 100%; background-color:white">
                                         <asp:GridView runat="server" ID="lGeneral" PageSize="50" AllowPaging="true" AllowSorting="true" CssClass="table table-striped lGeneral"
                                             AutoGenerateColumns="False" DataSourceID="DsUsuarios" EnableSortingAndPagingCallbacks="true"
-                                             OnDataBinding="conteoRegistros" OnPageIndexChanged="listadoClientes" GridLines="Horizontal" BorderWidth="0" RowStyle-CssClass="rowHover" ClientIDMode="Static">
+                                              OnPageIndexChanged="listadoClientes" GridLines="Horizontal" BorderWidth="0" RowStyle-CssClass="rowHover" ClientIDMode="Static">
                                             <SortedAscendingHeaderStyle CssClass="ascending rendila-color" ForeColor="White" />
                                             <SortedDescendingHeaderStyle CssClass="descending rendila-color" ForeColor="White" />
                                             <Columns>
                                                
 
-                                                <asp:TemplateField HeaderText="Generales">
+                                                <asp:TemplateField HeaderText="Generales" HeaderStyle-CssClass="primary">
                                                     <ItemTemplate>
 
                                                         <h7 class="font-weight-bold"><%# Eval("clave")+ " / "+Eval("nombre")%></h7><br />
@@ -161,7 +172,7 @@ body { padding-right: 0 !important }
                                                 </asp:TemplateField>
 
 
-                                                <asp:TemplateField HeaderText="Alumno" HeaderStyle-CssClass="centrarCelda" ItemStyle-CssClass="centrarCelda">
+                                                <asp:TemplateField HeaderText="Alumno" HeaderStyle-CssClass="centrarCelda primary" ItemStyle-CssClass="centrarCelda">
                                                     <ItemTemplate>
 
                                                         <ul class="list-inline">
@@ -177,7 +188,7 @@ body { padding-right: 0 !important }
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
 
-                                                <asp:TemplateField HeaderText="Estatus" ItemStyle-Width="20px" HeaderStyle-CssClass="centrarCelda" ItemStyle-CssClass="centrarCelda">
+                                                <asp:TemplateField HeaderText="Estatus" ItemStyle-Width="20px" HeaderStyle-CssClass="centrarCelda primary" ItemStyle-CssClass="centrarCelda">
                                                     <ItemTemplate>
 
                                                             <span class="tag bg-<%# Eval("estatus").Equals("EN CAPTURA")?"info":Eval("estatus").Equals("OBSERVADO")?"danger":Eval("estatus").Equals("EN REVISION")?"warning":Eval("estatus").Equals("AUTORIZADO")?"success":Eval("estatus").Equals("RECHAZADO")?"danger":Eval("estatus").Equals("CANCELADO")?"red":"black"%>"><span class="text-bold-700"><%# Eval("estatus")%></span></span>                                                        
@@ -185,7 +196,7 @@ body { padding-right: 0 !important }
                                                 </asp:TemplateField>
 
 
-                                                <asp:TemplateField HeaderText="Acciones" ItemStyle-Width="180px" HeaderStyle-CssClass="centrarCelda" ItemStyle-CssClass="centrarCelda">
+                                                <asp:TemplateField HeaderText="Acciones" ItemStyle-Width="180px" HeaderStyle-CssClass="centrarCelda primary" ItemStyle-CssClass="centrarCelda">
                                                     <ItemTemplate>
 
                                                         <button type="button" class="btn btn-icon btn-warning mr-1 btn-sm tooltips" onclick="abrirModal(<%# Eval("idcurso") %>,<%# Eval("idsucursal") %>)" value="" data-toggle="tooltip" data-original-title="Detalles"><i class="ft-edit"></i></button>
@@ -200,7 +211,17 @@ body { padding-right: 0 !important }
 
                                         <asp:SqlDataSource ID="DsUsuarios" ProviderName="MySql.Data.MySqlClient" runat="server" ConnectionString="<%$ ConnectionStrings:DBconexion %>"></asp:SqlDataSource>
 
+                                        
+
                                     </div>
+
+                                    <div id="divNoRegistros" runat="server" visible="false" class="centrarCelda">
+                                            <div class="col-md-12">
+                                                <div class="row align-items-center justify-content-center" style="padding-top: 100px">
+                                                    <span class="h2 text-center">NO HAY REGISTROS QUE MOSTRAR</span>
+                                                </div>
+                                            </div>
+                                        </div>
                                 </div>
 
 

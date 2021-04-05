@@ -887,6 +887,14 @@ namespace elecion.catalogos.oferta
             int pag = 1;
             try
             {
+                if (!bperiodo.SelectedValue.Equals("") )
+                    DSperiodo.SelectCommand = "SELECT idperiodo, periodo FROM periodo where idcicloescolar="+bciclo.SelectedValue+  " UNION select 999999, 'SELECCIONE UN PERIODO' ORDER BY idperiodo desc";
+                else
+                    DSperiodo.SelectCommand = "SELECT idperiodo, periodo FROM periodo where idcicloescolar=99999 UNION select 999999, 'SELECCIONE UN PERIODO' ORDER BY idperiodo desc";
+
+                DSperiodo.DataBind();
+
+
                 this.lGeneral.DataSourceID = this.DsUsuarios.ID;
                 string query = "select c.idcurso, c.clave, c.idsucursal, coalesce(c.nombre,'NO DEFINIDO')as nombre,  coalesce(a.area,'AREA NO ASIGNADA') as area,  coalesce(e.especialidad,'ESPECIALIDAD NO ASIGNADA')as especialidad,  coalesce(i.nombre,'INSTRUCTOR NO DEFINIDO') as instructor, t.tipocurso, c.estatus, c.costo, cast(c.fechaini as char)as fechaini, cast(c.fechafin as char)as fechafin, cast(TIME_FORMAT(c.horaini, '%h:%i %p') as char)as horaini, cast(TIME_FORMAT(c.horafin, '%h:%i %p') as char)as horafin,  c.alumnosminimo, (select count(s.idalumno) from solicitudinscripcion s where s.idcurso = c.idcurso and s.estatus not in('CANCELADO')) as inscritos, s.nombre as plantel from curso c left join area a on a.idarea = c.idarea left join especialidad e on e.idespecialidad = c.idespecialidad left join tipocurso t on t.idtipocurso = c.idtipocurso left join instructor i on i.idinstructor = c.idinstructor left join sucursal s on s.idsucursal = c.idsucursal where c.tipo='C' and c.estatus not in('CANCELADO') ";
                 if (this.bname.Text.Trim() != "")
@@ -901,8 +909,36 @@ namespace elecion.catalogos.oferta
                 {
                     query = string.Concat(query, " and c.idsucursal = ", this.bplantel.SelectedValue, " ");
                 }
-                query = string.Concat(query, " order by c.idsucursal, c.nombre");
+
+                if (!bciclo.SelectedValue.Equals("") && !bciclo.SelectedValue.Equals("999999"))
+                    query += "and c.idcicloescolar="+bciclo.SelectedValue+" ";
+
+                if (!bperiodo.SelectedValue.Equals("") && !bperiodo.SelectedValue.Equals("999999"))
+                    query += "and(select p.idperiodo from periodo p where c.fechaini between p.fechaini and p.fechafin)="+bperiodo.SelectedValue+" ";
+
+                if (!bestatus.SelectedValue.Equals(""))
+                    query += "and c.estatus='" + bestatus.SelectedValue + "' ";
+                else
+                    query += "and c.estatus ='EN CAPTURA' ";
+
+                query = string.Concat(query, " order by c.idsucursal, c.fechaini desc,  c.nombre");
                 this.DsUsuarios.SelectCommand = query;
+
+                DataView dvAccess = (DataView)DsUsuarios.Select(DataSourceSelectArguments.Empty);
+
+                if (dvAccess!=null && dvAccess.Count > 0)
+                {
+                    labelConteo.Text = dvAccess.Count.ToString();
+                    divNoRegistros.Visible = false;
+                }
+
+                else
+                {
+                    labelConteo.Text = "0";
+                    divNoRegistros.Visible = true;
+                }
+
+
             }
             catch (Exception exception)
             {
@@ -1223,6 +1259,12 @@ namespace elecion.catalogos.oferta
             this.idusuario = Convert.ToInt32(datos[0]);
             this.idsucursal = Convert.ToInt32(datos2[4]);
             this.roles = datos2[3].ToString();
+            int idperiodo = 0;
+            int idciclo = 0;
+
+
+           
+
             if (this.roles.IndexOf('1', 0) < 0)
             {
                 this.busplantel.Visible = false;
@@ -1232,8 +1274,9 @@ namespace elecion.catalogos.oferta
                 this.busplantel.Visible = true;
             }
             this.idSU.Value = this.idsucursal.ToString();
-            if (!base.IsPostBack)
+            if (!IsPostBack)
             {
+                
                 this.listadoClientes(sender, e);
             }
             ScriptManager.RegisterStartupScript(this, base.GetType(), "actu", "dar(); ", true);
