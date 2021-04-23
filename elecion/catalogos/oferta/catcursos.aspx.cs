@@ -916,10 +916,9 @@ namespace elecion.catalogos.oferta
                 if (!bperiodo.SelectedValue.Equals("") && !bperiodo.SelectedValue.Equals("999999"))
                     query += "and(select p.idperiodo from periodo p where c.fechaini between p.fechaini and p.fechafin)="+bperiodo.SelectedValue+" ";
 
-                if (!bestatus.SelectedValue.Equals(""))
+                if (!bestatus.SelectedValue.Equals("0"))
                     query += "and c.estatus='" + bestatus.SelectedValue + "' ";
-                else
-                    query += "and c.estatus ='EN CAPTURA' ";
+               
 
                 query = string.Concat(query, " order by c.idsucursal, c.fechaini desc,  c.nombre");
                 this.DsUsuarios.SelectCommand = query;

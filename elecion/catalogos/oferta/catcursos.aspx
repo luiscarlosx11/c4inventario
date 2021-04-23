@@ -50,6 +50,30 @@ body { padding-right: 0 !important }
                        </div>
 
                    </div>
+                    <div class="col-md-9 float-md-right">
+                               <asp:HiddenField runat="server" ID="idP" />
+                               <asp:HiddenField runat="server" ID="limite" Value="48" />
+                               <asp:HiddenField runat="server" ID="idS" />
+                               <asp:HiddenField runat="server" ID="idSU" />
+                               <asp:HiddenField runat="server" ID="idF" />
+                               <asp:HiddenField runat="server" ID="finhabil" />
+                               <asp:HiddenField runat="server" ID="cve" />
+                               <asp:HiddenField runat="server" ID="idOE" />
+
+
+                               <asp:Button runat="server" ID="Bconsultar" OnClick="listadoClientes" Style="display: none" UseSubmitBehavior="false" />
+                               <asp:Button runat="server" ID="Bcancelarcurso" OnClick="cancelaCurso" Style="display: none" UseSubmitBehavior="false" />
+                               <asp:Button runat="server" ID="Bguardaobjetivo" OnClick="guardaObjetivo" Style="display: none" UseSubmitBehavior="false" />
+                               <asp:Button runat="server" ID="Beliminaobjetivo" OnClick="eliminaObjetivo" Style="display: none" UseSubmitBehavior="false" />
+
+                               <asp:Button runat="server" ID="Bnuevo" OnClick="limpiarCampos" Style="display: none" UseSubmitBehavior="false" />
+                               <span class="pull-right">
+                                   <label class="text-bold-600 font-small-3"></label>
+                                   <button type="button" id="nuevo" onclick="nuevoRegistro();" class="btn btn-icon btn-primary mr-1 text-bold-700" data-toggle="modal">
+                                       Nuevo Registro 
+                                   </button>
+                               </span>
+                           </div>
                </div>    <br />
 
                <div class="row" id="header-styling">
@@ -57,7 +81,7 @@ body { padding-right: 0 !important }
 
                        <div class="media">
                            
-                           <div class="col-md-2">
+                           <div class="col-md-4">
                                <div class="form-group">      
                                    <label class="text-bold-600 font-small-3">Curso</label>
                                    <asp:TextBox ID="bname" CssClass="form-control text-uppercase" placeholder="Búsqueda por Nombre, Clave..." name="bname" runat="server" AutoPostBack="false" onChange="consultaPrincipal()"></asp:TextBox>
@@ -98,7 +122,8 @@ body { padding-right: 0 !important }
                            <div class="col-md-2">
                                <label class="text-bold-600 font-small-3">Estatus</label>
                                <asp:DropDownList ID="bestatus" runat="server" CssClass="form-control select2" onChange="consultaPrincipal()">
-                                   <asp:ListItem Selected="True" Value="EN CAPTURA">EN CAPTURA</asp:ListItem>
+                                   <asp:ListItem Selected="True" Value="0">SELECCIONE UN ESTATUS</asp:ListItem>
+                                   <asp:ListItem Value="EN CAPTURA">EN CAPTURA</asp:ListItem>
                                    <asp:ListItem  Value="EN REVISION">EN REVISION</asp:ListItem>
                                    <asp:ListItem Value="OBSERVADO" >OBSERVADO</asp:ListItem>
                                    <asp:ListItem Value="RECHAZADO" >RECHAZADO</asp:ListItem>
@@ -107,30 +132,7 @@ body { padding-right: 0 !important }
                                </asp:DropDownList>
 
                            </div>
-                           <div class="col-md-2 float-md-right">
-                               <asp:HiddenField runat="server" ID="idP" />
-                               <asp:HiddenField runat="server" ID="limite" Value="48" />
-                               <asp:HiddenField runat="server" ID="idS" />
-                               <asp:HiddenField runat="server" ID="idSU" />
-                               <asp:HiddenField runat="server" ID="idF" />
-                               <asp:HiddenField runat="server" ID="finhabil" />
-                               <asp:HiddenField runat="server" ID="cve" />
-                               <asp:HiddenField runat="server" ID="idOE" />
-
-
-                               <asp:Button runat="server" ID="Bconsultar" OnClick="listadoClientes" Style="display: none" UseSubmitBehavior="false" />
-                               <asp:Button runat="server" ID="Bcancelarcurso" OnClick="cancelaCurso" Style="display: none" UseSubmitBehavior="false" />
-                               <asp:Button runat="server" ID="Bguardaobjetivo" OnClick="guardaObjetivo" Style="display: none" UseSubmitBehavior="false" />
-                               <asp:Button runat="server" ID="Beliminaobjetivo" OnClick="eliminaObjetivo" Style="display: none" UseSubmitBehavior="false" />
-
-                               <asp:Button runat="server" ID="Bnuevo" OnClick="limpiarCampos" Style="display: none" UseSubmitBehavior="false" />
-                               <span class="pull-right">
-                                   <label class="text-bold-600 font-small-3"></label>
-                                   <button type="button" id="nuevo" onclick="nuevoRegistro();" class="btn btn-icon btn-primary mr-1 text-bold-700" data-toggle="modal">
-                                       Nuevo Registro 
-                                   </button>
-                               </span>
-                           </div>
+                          
                        </div>
 
                    </div>

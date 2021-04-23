@@ -1195,12 +1195,9 @@ body { padding-right: 0 !important }
 
                 <div class="modal-footer">
 
-                    <button class="btn btn-primary" onclick="validaPago()" type="button" data-backdrop="false">
-                        <i class="fa fa-check-square-o"></i>Aceptar
-                    </button>
 
                     <button type="button" class="btn btn-danger mr-1" data-dismiss="modal">
-                        <i class="ft-x"></i>Cancelar
+                        <i class="ft-x"></i>Salir
                     </button>
                 </div>
 

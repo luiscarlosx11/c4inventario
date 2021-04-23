@@ -15,6 +15,15 @@ namespace elecion.inscripcion
     {
 
         /// <summary>
+        /// Control labelConteo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label labelConteo;
+
+        /// <summary>
         /// Control ScriptManager1.
         /// </summary>
         /// <remarks>
@@ -114,15 +123,6 @@ namespace elecion.inscripcion
         protected global::System.Web.UI.WebControls.HiddenField idctr;
 
         /// <summary>
-        /// Control labelCurso.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField labelCurso;
-
-        /// <summary>
         /// Control idDoc.
         /// </summary>
         /// <remarks>
@@ -186,15 +186,6 @@ namespace elecion.inscripcion
         protected global::System.Web.UI.WebControls.Button Button2;
 
         /// <summary>
-        /// Control label1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label label1;
-
-        /// <summary>
         /// Control bname.
         /// </summary>
         /// <remarks>
@@ -231,22 +222,76 @@ namespace elecion.inscripcion
         protected global::System.Web.UI.WebControls.SqlDataSource DSplantel;
 
         /// <summary>
-        /// Control lgrupos.
+        /// Control bciclo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList lgrupos;
+        protected global::System.Web.UI.WebControls.DropDownList bciclo;
 
         /// <summary>
-        /// Control DSgrupos.
+        /// Control DSciclo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource DSgrupos;
+        protected global::System.Web.UI.WebControls.SqlDataSource DSciclo;
+
+        /// <summary>
+        /// Control bperiodo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList bperiodo;
+
+        /// <summary>
+        /// Control DSperiodo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource DSperiodo;
+
+        /// <summary>
+        /// Control bestatus.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList bestatus;
+
+        /// <summary>
+        /// Control lGeneral.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView lGeneral;
+
+        /// <summary>
+        /// Control DsUsuarios.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource DsUsuarios;
+
+        /// <summary>
+        /// Control divNoRegistros.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divNoRegistros;
 
         /// <summary>
         /// Control pU.
@@ -256,6 +301,15 @@ namespace elecion.inscripcion
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel pU;
+
+        /// <summary>
+        /// Control labelCurso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label labelCurso;
 
         /// <summary>
         /// Control barrabus.
@@ -274,15 +328,6 @@ namespace elecion.inscripcion
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox busnom;
-
-        /// <summary>
-        /// Control lbcurso.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbcurso;
 
         /// <summary>
         /// Control nuevo.
