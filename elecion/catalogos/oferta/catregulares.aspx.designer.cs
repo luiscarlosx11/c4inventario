@@ -7,11 +7,13 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace elecion.catalogos.oferta {
-    
-    
-    public partial class catregulares {
-        
+namespace elecion.catalogos.oferta
+{
+
+
+    public partial class catregulares
+    {
+
         /// <summary>
         /// Control ScriptManager1.
         /// </summary>
@@ -20,7 +22,7 @@ namespace elecion.catalogos.oferta {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.ScriptManager ScriptManager1;
-        
+
         /// <summary>
         /// Control pU.
         /// </summary>
@@ -29,7 +31,7 @@ namespace elecion.catalogos.oferta {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel pU;
-        
+
         /// <summary>
         /// Control idS.
         /// </summary>
@@ -38,7 +40,7 @@ namespace elecion.catalogos.oferta {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField idS;
-        
+
         /// <summary>
         /// Control labelConteo.
         /// </summary>
@@ -47,7 +49,7 @@ namespace elecion.catalogos.oferta {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label labelConteo;
-        
+
         /// <summary>
         /// Control nuevo.
         /// </summary>
@@ -56,7 +58,7 @@ namespace elecion.catalogos.oferta {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlButton nuevo;
-        
+
         /// <summary>
         /// Control Div2.
         /// </summary>
@@ -65,7 +67,7 @@ namespace elecion.catalogos.oferta {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div2;
-        
+
         /// <summary>
         /// Control boferta.
         /// </summary>
@@ -74,7 +76,7 @@ namespace elecion.catalogos.oferta {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList boferta;
-        
+
         /// <summary>
         /// Control DSofertas.
         /// </summary>
@@ -83,7 +85,7 @@ namespace elecion.catalogos.oferta {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource DSofertas;
-        
+
         /// <summary>
         /// Control datiende.
         /// </summary>
@@ -92,7 +94,7 @@ namespace elecion.catalogos.oferta {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl datiende;
-        
+
         /// <summary>
         /// Control bcategoria.
         /// </summary>
@@ -101,7 +103,7 @@ namespace elecion.catalogos.oferta {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList bcategoria;
-        
+
         /// <summary>
         /// Control Dsusuarios.
         /// </summary>
@@ -110,7 +112,7 @@ namespace elecion.catalogos.oferta {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource Dsusuarios;
-        
+
         /// <summary>
         /// Control Div1.
         /// </summary>
@@ -119,7 +121,7 @@ namespace elecion.catalogos.oferta {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div1;
-        
+
         /// <summary>
         /// Control bespecialidad.
         /// </summary>
@@ -128,7 +130,7 @@ namespace elecion.catalogos.oferta {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList bespecialidad;
-        
+
         /// <summary>
         /// Control Dsespecialidades.
         /// </summary>
@@ -137,7 +139,7 @@ namespace elecion.catalogos.oferta {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource Dsespecialidades;
-        
+
         /// <summary>
         /// Control lgastos.
         /// </summary>
@@ -146,7 +148,7 @@ namespace elecion.catalogos.oferta {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView lgastos;
-        
+
         /// <summary>
         /// Control DsListadoGastos.
         /// </summary>
@@ -155,7 +157,7 @@ namespace elecion.catalogos.oferta {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource DsListadoGastos;
-        
+
         /// <summary>
         /// Control identidad.
         /// </summary>
@@ -164,7 +166,7 @@ namespace elecion.catalogos.oferta {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList identidad;
-        
+
         /// <summary>
         /// Control DsAreas.
         /// </summary>
@@ -173,7 +175,25 @@ namespace elecion.catalogos.oferta {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource DsAreas;
-        
+
+        /// <summary>
+        /// Control idespecialidad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList idespecialidad;
+
+        /// <summary>
+        /// Control Dsespecialidad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource Dsespecialidad;
+
         /// <summary>
         /// Control clave.
         /// </summary>
@@ -182,7 +202,7 @@ namespace elecion.catalogos.oferta {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox clave;
-        
+
         /// <summary>
         /// Control nombre.
         /// </summary>
@@ -191,7 +211,7 @@ namespace elecion.catalogos.oferta {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox nombre;
-        
+
         /// <summary>
         /// Control guardar.
         /// </summary>
@@ -200,7 +220,7 @@ namespace elecion.catalogos.oferta {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button guardar;
-        
+
         /// <summary>
         /// Control borrar.
         /// </summary>

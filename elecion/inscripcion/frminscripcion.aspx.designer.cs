@@ -15,15 +15,6 @@ namespace elecion.inscripcion
     {
 
         /// <summary>
-        /// Control labelConteo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labelConteo;
-
-        /// <summary>
         /// Control ScriptManager1.
         /// </summary>
         /// <remarks>
@@ -132,6 +123,24 @@ namespace elecion.inscripcion
         protected global::System.Web.UI.WebControls.HiddenField idDoc;
 
         /// <summary>
+        /// Control bbuscacursos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button bbuscacursos;
+
+        /// <summary>
+        /// Control bvolver.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button bvolver;
+
+        /// <summary>
         /// Control Bconsultar.
         /// </summary>
         /// <remarks>
@@ -184,6 +193,24 @@ namespace elecion.inscripcion
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Button2;
+
+        /// <summary>
+        /// Control gridCursos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl gridCursos;
+
+        /// <summary>
+        /// Control labelConteo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label labelConteo;
 
         /// <summary>
         /// Control bname.
@@ -303,6 +330,15 @@ namespace elecion.inscripcion
         protected global::System.Web.UI.UpdatePanel pU;
 
         /// <summary>
+        /// Control gridAlumnos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl gridAlumnos;
+
+        /// <summary>
         /// Control labelCurso.
         /// </summary>
         /// <remarks>
@@ -310,6 +346,24 @@ namespace elecion.inscripcion
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label labelCurso;
+
+        /// <summary>
+        /// Control Button3.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton Button3;
+
+        /// <summary>
+        /// Control nuevo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton nuevo;
 
         /// <summary>
         /// Control barrabus.
@@ -330,22 +384,13 @@ namespace elecion.inscripcion
         protected global::System.Web.UI.WebControls.TextBox busnom;
 
         /// <summary>
-        /// Control nuevo.
+        /// Control bsolicitud.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton nuevo;
-
-        /// <summary>
-        /// Control bbuscacursos.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button bbuscacursos;
+        protected global::System.Web.UI.WebControls.Button bsolicitud;
 
         /// <summary>
         /// Control GValumnos.
@@ -364,6 +409,15 @@ namespace elecion.inscripcion
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource DSalumnos;
+
+        /// <summary>
+        /// Control divNoRegistrosAlumnos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divNoRegistrosAlumnos;
 
         /// <summary>
         /// Control idr.
@@ -805,15 +859,6 @@ namespace elecion.inscripcion
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button bcursoinscripcion;
-
-        /// <summary>
-        /// Control bsolicitud.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button bsolicitud;
 
         /// <summary>
         /// Control bguardarIns.

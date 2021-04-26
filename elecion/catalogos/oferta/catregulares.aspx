@@ -82,7 +82,7 @@
                                                         actualmente</span>
                                                 </div>
                                                 <div class="media-right media-middle">
-                                                    <button type="button" id="nuevo" runat="server" onclick="abrirModal(0,'',1)" class="btn btn-icon btn-primary mr-1" data-toggle="modal">
+                                                    <button type="button" id="nuevo" runat="server" onclick="abrirModalNuevo()" class="btn btn-icon btn-primary mr-1" data-toggle="modal">
                                                         <i class="ft-file"></i>Nuevo registro 
                                                     </button>
                                                 </div>
@@ -162,7 +162,7 @@
                                             <asp:TemplateField HeaderText="Acciones" ItemStyle-Width="180px">
                                                 <ItemTemplate>
 
-                                                    <button type="button" id="editar" onclick="abrirModal(<%# Eval("idespecialidad")%>,'<%# Eval("especialidad").ToString() %>',<%# Eval("idarea")%>, '<%# Eval("clave").ToString() %>')" class="btn btn-icon btn-warning mr-1 btn-sm"
+                                                    <button type="button" id="editar" onclick="abrirModal(<%# Eval("idcursoregular")%>,<%# Eval("idespecialidad")%>,'<%# Eval("especialidad").ToString() %>',<%# Eval("idarea")%>, '<%# Eval("clave").ToString() %>', '<%# Eval("nombre").ToString() %>')" class="btn btn-icon btn-warning mr-1 btn-sm"
                                                         data-toggle="tooltip" data-original-title="Editar" >
                                                          <i class="ft-edit"></i>
                                                     </button>
@@ -214,19 +214,34 @@
                                                         <div class="form-group">
                                                             <div class="col-md-12">
                                                                 <label class="text-bold-600">Área</label>
-                                                                <asp:DropDownList runat="server" ID="identidad" CssClass="select2 form-control" DataSourceID="DsAreas" DataTextField="area" DataValueField="idarea" AutoPostBack="false" Style="width: 100%"></asp:DropDownList>
+                                                                <asp:DropDownList runat="server" ID="identidad" CssClass="select2 form-control" DataSourceID="DsAreas" DataTextField="area" DataValueField="idarea" AutoPostBack="false" Style="width: 100%" disabled></asp:DropDownList>
                                                                 <asp:SqlDataSource ID="DsAreas" runat="server" ProviderName="MySql.Data.MySqlClient" ConnectionString="<%$ ConnectionStrings:DBconexion %>" SelectCommand="SELECT idarea, area FROM area ORDER BY area"></asp:SqlDataSource>
                                                             </div>
                                                         </div>
                                                     </div>
+
+                                                    
+
+                                                    <div class="row">
+
+                                                        <div class="form-group">
+                                                            <div class="col-md-12">
+                                                                <label class="text-bold-600">Especialidad</label>
+                                                                 <asp:DropDownList runat="server" ID="idespecialidad" CssClass="select2 form-control" DataSourceID="Dsespecialidad" DataTextField="especialidad" DataValueField="idespecialidad" AutoPostBack="false" Style="width: 100%" disabled></asp:DropDownList>
+                                                                <asp:SqlDataSource ID="Dsespecialidad" runat="server" ProviderName="MySql.Data.MySqlClient" ConnectionString="<%$ ConnectionStrings:DBconexion %>" SelectCommand="SELECT idespecialidad, especialidad FROM especialidad ORDER BY especialidad"></asp:SqlDataSource>
+                                                            
+                                                            </div>
+
+
+                                                        </div>
+                                                    </div>                                                                                                                       
+                                                        
 
                                                     <div class="row">
 
                                                         <div class="form-group">
                                                             <div class="col-md-6">
                                                                 <label class="text-bold-600">Clave</label>
-
-
                                                                 <asp:TextBox ID="clave" CssClass="form-control text-uppercase" required="required" data-validation-required-message="Campo requerido" MaxLength="45" placeholder="Clave" name="nombre" runat="server"></asp:TextBox>
                                                                 <div class="help-block"></div>
                                                             </div>
@@ -235,21 +250,19 @@
                                                         </div>
                                                     </div>  
 
-                                                    <div class="row">
+                                                     <div class="row">
 
                                                         <div class="form-group">
                                                             <div class="col-md-12">
-                                                                <label class="text-bold-600">Especialidad</label>
-
-
+                                                                <label class="text-bold-600">Nombre del curso</label>
                                                                 <asp:TextBox ID="nombre" CssClass="form-control text-uppercase" required="required" data-validation-required-message="Campo requerido" placeholder="Especialidad" name="nombre" runat="server"></asp:TextBox>
                                                                 <div class="help-block"></div>
                                                             </div>
 
 
                                                         </div>
-                                                    </div>                                                                                                                       
-                                                        
+                                                    </div>       
+
                                                     </div>
 
                                                 </div>
@@ -305,14 +318,34 @@
         $(".nav-item>ul>li.active").removeClass("active");
         $("#catcursosregulares").addClass("active");
 
-        function abrirModal(idtipogasto, tipogasto, idcategoria, clave) {
-            $("*[id$='idS']").val(idtipogasto);
+        function abrirModal(idcurso, idespecialidad, tipogasto, idarea, clave, nombre) {
+            $("*[id$='idS']").val(idcurso);
 
             $("*[id$='clave']").val(clave);
-            $("*[id$='nombre']").val(tipogasto);
-            $("*[id$='identidad']").val(idcategoria);
+            $("*[id$='nombre']").val(nombre);
+
+            $("*[id$='identidad']").val(idarea);
             $("*[id$='identidad']").change();
+
+            $("*[id$='idespecialidad']").val(idespecialidad);
+            $("*[id$='idespecialidad']").change();
                              
+            $("#bootstrap").modal('show');
+        }
+
+        function abrirModalNuevo() {
+            var categoria = $("*[id$='bcategoria']").val();
+            var especialidad = $("*[id$='bespecialidad']").val();
+
+            $("*[id$='identidad']").val(categoria);
+            $("*[id$='identidad']").change();
+
+            $("*[id$='idespecialidad']").val(especialidad);
+            $("*[id$='idespecialidad']").change();
+
+            $("*[id$='clave']").val('');
+            $("*[id$='nombre']").val('');
+           
             $("#bootstrap").modal('show');
         }
 
@@ -418,7 +451,7 @@
 
                 walert = 0;
                 $('#bootstrap').on('shown.bs.modal', function () {
-                    $("*[id$='nombre']").focus();
+                    $("*[id$='clave']").focus();
                 });
 
                 $('#bootstrap').on('keypress', function (e) {

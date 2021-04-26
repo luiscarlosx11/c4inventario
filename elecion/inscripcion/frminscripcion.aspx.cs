@@ -77,7 +77,7 @@ namespace elecion.inscripcion
                         mySqlCommand.ExecuteNonQuery();
                         mySqlTransaction.Commit();
                         this.listadoAlumnos(sender, e);
-                        ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading(); toastExito(); $('#wcancelar').modal('hide');", true);
+                        ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading(); toastExito(); $('#wcancelar').modal('hide'); ", true);
                     }
                     catch (Exception exception1)
                     {
@@ -146,7 +146,7 @@ namespace elecion.inscripcion
                         mySqlCommand.ExecuteNonQuery();
                         mySqlTransaction.Commit();
                         this.listadoAlumnos(sender, e);
-                        ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading(); toastExito(); $('#wmodificar').modal('hide');", true);
+                        ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading(); toastExito(); $('#wmodificar').modal('hide'); ", true);
                     }
                     catch (Exception exception1)
                     {
@@ -506,7 +506,7 @@ namespace elecion.inscripcion
                             this.email.Text = mySqlDataReader["email"].ToString();
                             mySqlDataReader.Close();
                         }
-                        ScriptManager.RegisterClientScriptBlock(this.Page, typeof(string), "myScriptName", "cerrarLoading(); $('#walumnos').modal('hide');", true);
+                        ScriptManager.RegisterClientScriptBlock(this.Page, typeof(string), "myScriptName", "cerrarLoading(); $('#walumnos').modal('hide'); ", true);
                     }
                     catch (Exception exception)
                     {
@@ -923,12 +923,12 @@ namespace elecion.inscripcion
                             this.listadoAlumnos(sender, e);
                             this.listadoAlumnosBus(sender, e);
                             this.listadoDocumentacion(sender, e);
-                            ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading(); toastExito(); $('#winscripcion').modal('hide');", true);
+                            ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading(); toastExito(); $('#winscripcion').modal('hide'); ", true);
 
                         }
                         else
                         {
-                            ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading(); alerta('Atención','El no de control ingresado ya ha sido asignado previamente a otro alumno, intente con otro','error',null);", true);
+                            ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading(); alerta('Atención','El no de control ingresado ya ha sido asignado previamente a otro alumno, intente con otro','error',null); ", true);
                         }
 
 
@@ -1084,6 +1084,17 @@ namespace elecion.inscripcion
             ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading(); $('#tabgenerales').click(); $('#winscripcion').modal('show'); cargatags(); ", true);
         }
 
+        protected void volverCursos(object sender, EventArgs e)
+        {           
+                gridAlumnos.Visible = false;
+                gridCursos.Visible = true;
+
+                ScriptManager.RegisterClientScriptBlock(this.Page, typeof(string), "myScriptName", "cerrarLoading();   ", true);
+           
+        }
+
+
+
         protected void listadoAlumnos(object sender, EventArgs e)
         {
             try
@@ -1104,8 +1115,8 @@ namespace elecion.inscripcion
                 }
                 else
                 {
-                    this.nuevo.Visible = false;
-                    this.barrabus.Visible = false;
+                    //this.nuevo.Visible = false;
+                    //this.barrabus.Visible = false;
                 }
 
                 DataView dvAccess = (DataView)DSalumnos.Select(DataSourceSelectArguments.Empty);
@@ -1114,9 +1125,30 @@ namespace elecion.inscripcion
                 {                    
                     labelCurso.Text = dvAccess[0][0].ToString();
                 }
+                else
+                {
 
+                    using (MySqlConnection mySqlConnection = new MySqlConnection(WebConfigurationManager.ConnectionStrings["DBconexion"].ConnectionString))
+                    {
+                        mySqlConnection.Open();
 
-                ScriptManager.RegisterClientScriptBlock(this.Page, typeof(string), "myScriptName", "cerrarLoading(); $('#gridCursos').addClass('ocultar');  $('#gridAlumnos').removeClass('ocultar')", true);
+                        MySqlDataReader mySqlDataReader = (new MySqlCommand(string.Concat("select nombre from curso where idcurso="+idP.Value), mySqlConnection)).ExecuteReader();
+                        if (mySqlDataReader.HasRows)
+                        {
+                            mySqlDataReader.Read();
+                            labelCurso.Text = mySqlDataReader["nombre"].ToString();
+                        }
+
+                        mySqlConnection.Close();
+
+                    }                    
+
+                }
+
+                gridAlumnos.Visible = true;
+                gridCursos.Visible = false;
+
+                ScriptManager.RegisterClientScriptBlock(this.Page, typeof(string), "myScriptName", "cerrarLoading();", true);
            }
             catch (Exception exception)
             {
@@ -1145,6 +1177,8 @@ namespace elecion.inscripcion
                 {
                     this.divResultados.Visible = false;
                 }
+
+               
             }
             catch (Exception exception)
             {
@@ -1195,7 +1229,7 @@ namespace elecion.inscripcion
 
 
                 this.lGeneral.DataSourceID = this.DsUsuarios.ID;
-                string query = "select c.idcurso, c.clave, c.idsucursal, coalesce(c.nombre,'NO DEFINIDO')as nombre,  coalesce(a.area,'AREA NO ASIGNADA') as area,  coalesce(e.especialidad,'ESPECIALIDAD NO ASIGNADA')as especialidad,  coalesce(i.nombre,'INSTRUCTOR NO DEFINIDO') as instructor, t.tipocurso, c.estatus, c.costo, cast(c.fechaini as char)as fechaini, cast(c.fechafin as char)as fechafin, cast(TIME_FORMAT(c.horaini, '%h:%i %p') as char)as horaini, cast(TIME_FORMAT(c.horafin, '%h:%i %p') as char)as horafin,  c.alumnosminimo, (select count(s.idalumno) from solicitudinscripcion s where s.idcurso = c.idcurso and s.estatus not in('CANCELADO')) as inscritos, s.nombre as plantel from curso c left join area a on a.idarea = c.idarea left join especialidad e on e.idespecialidad = c.idespecialidad left join tipocurso t on t.idtipocurso = c.idtipocurso left join instructor i on i.idinstructor = c.idinstructor left join sucursal s on s.idsucursal = c.idsucursal where c.tipo='C' and c.estatus not in('CANCELADO') ";
+                string query = "select c.idcurso, c.clave, c.idsucursal, coalesce(c.nombre,'NO DEFINIDO')as nombre,  coalesce(a.area,'AREA NO ASIGNADA') as area,  coalesce(e.especialidad,'ESPECIALIDAD NO ASIGNADA')as especialidad,  coalesce(i.nombre,'INSTRUCTOR NO DEFINIDO') as instructor, t.tipocurso, c.estatus, c.costo, cast(c.fechaini as char)as fechaini, cast(c.fechafin as char)as fechafin, cast(TIME_FORMAT(c.horaini, '%h:%i %p') as char)as horaini, cast(TIME_FORMAT(c.horafin, '%h:%i %p') as char)as horafin,  c.alumnosminimo, (select count(s.idalumno) from solicitudinscripcion s where s.idcurso = c.idcurso and s.estatus not in('CANCELADO')) as inscritos, s.nombre as plantel from curso c left join area a on a.idarea = c.idarea left join especialidad e on e.idespecialidad = c.idespecialidad left join tipocurso t on t.idtipocurso = c.idtipocurso left join instructor i on i.idinstructor = c.idinstructor left join sucursal s on s.idsucursal = c.idsucursal where c.tipo='C' and c.estatus in('AUTORIZADO','FINALIZADO') ";
                 if (this.bname.Text.Trim() != "")
                 {
                     query = string.Concat(new string[] { query, " and (c.nombre LIKE '%", this.bname.Text.Trim().ToUpper(), "%' or c.clave LIKE '%", this.bname.Text.Trim().ToUpper(), "%') " });
@@ -1215,10 +1249,7 @@ namespace elecion.inscripcion
                 if (!bperiodo.SelectedValue.Equals("") && !bperiodo.SelectedValue.Equals("999999"))
                     query += "and(select p.idperiodo from periodo p where c.fechaini between p.fechaini and p.fechafin)=" + bperiodo.SelectedValue + " ";
 
-                if (!bestatus.SelectedValue.Equals("0"))
-                    query += "and c.estatus='" + bestatus.SelectedValue + "' ";
-
-
+                
                 query = string.Concat(query, " order by c.idsucursal, c.fechaini desc,  c.nombre");
                 this.DsUsuarios.SelectCommand = query;
 
@@ -1232,6 +1263,7 @@ namespace elecion.inscripcion
 
                 else
                 {
+
                     labelConteo.Text = "0";
                     divNoRegistros.Visible = true;
                 }
@@ -1263,6 +1295,7 @@ namespace elecion.inscripcion
             this.idsucursal = Convert.ToInt32(strArrays1[4]);
             this.idS.Value = this.idsucursal.ToString();
             this.roles = strArrays1[3].ToString();
+          
 
             if (strArrays1[3].ToString().IndexOf('1', 0) < 0)
             {
@@ -1276,14 +1309,19 @@ namespace elecion.inscripcion
             {
                 this.listadoAlumnos(sender, e);
                 this.listadoGrupos(sender, e);
-                this.nuevo.Visible = false;
-                this.barrabus.Visible = false;
+                //this.nuevo.Visible = false;
+                //this.barrabus.Visible = false;
+                gridAlumnos.Visible = false;
+                gridCursos.Visible = true;
+                
             }
             /*if (this.lbcurso.Text.Equals(""))
             {
                 this.lbcurso.Text = "SELECCIONE UN CURSO";
             }*/
             ScriptManager.RegisterStartupScript(this, base.GetType(), "actu", "cargatags(); ", true);
+
+            //ScriptManager.RegisterClientScriptBlock(this.Page, typeof(string), "actu", "cargatags(); " , true);
         }
 
         protected void recuperaSolicitud(object sender, EventArgs e)
@@ -1392,7 +1430,11 @@ namespace elecion.inscripcion
                     }
                     mySqlDataReader.Close();
                     this.listadoDocumentacion(sender, e);
-                    ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading();  $('#tabgenerales').click(); $('#winscripcion').modal('show'); cargatags(); ", true);
+                    // ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading();  $('#tabgenerales').click(); $('#winscripcion').modal('show'); cargatags(); ", true);
+
+                    ScriptManager.RegisterClientScriptBlock(this.Page, typeof(string), "myScriptName", "cerrarLoading();  $('#tabgenerales').click(); $('#winscripcion').modal('show'); cargatags(); $('#gridAlumnos').removeClass('ocultar'); ", true);
+
+                   // ScriptManager.RegisterClientScriptBlock(this, base.GetType(), "myScriptName", "cerrarLoading();  $('#tabgenerales').click(); $('#winscripcion').modal('show'); cargatags(); ", true);
                 }
             }
             catch (Exception exception)

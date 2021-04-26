@@ -122,14 +122,15 @@ namespace elecion.catalogos.oferta
 
                     //Si el idmunicipio es mayor que cero se hace UPDATE
                     if (Int32.Parse(idS.Value) > 0)
-                        query = "UPDATE especialidad set especialidad=@nombre, idarea=@identidad, clave=@clave where idespecialidad=@idsucursal;";
+                        query = "UPDATE cursoregular set nomre=@nombre, idarea=@identidad, idespecialidad=@idespecialidad, clave=@clave where idcursoregular=@idsucursal;";
                     else
-                        query = "INSERT INTO especialidad(especialidad, idarea, clave) values(@nombre, @identidad, @clave);";
+                        query = "INSERT INTO cursoregular(idespecialidad, idarea, nombre, clave) values(@idespecialidad, @identidad, @nombre, @clave);";
 
                     MySqlCommand cmd = new MySqlCommand(query, con);
 
 
                     cmd.Parameters.AddWithValue("@idsucursal", idS.Value);
+                    cmd.Parameters.AddWithValue("@idespecialidad", idespecialidad.SelectedValue);
                     cmd.Parameters.AddWithValue("@identidad", identidad.SelectedValue);
                     cmd.Parameters.AddWithValue("@nombre", nombre.Text.ToUpper().Trim());
                     cmd.Parameters.AddWithValue("@clave", clave.Text.ToUpper().Trim());
