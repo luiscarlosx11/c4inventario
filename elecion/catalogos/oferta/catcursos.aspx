@@ -52,6 +52,7 @@ body { padding-right: 0 !important }
                    </div>
                     <div class="col-md-9 float-md-right">
                                <asp:HiddenField runat="server" ID="idP" />
+                                <asp:HiddenField runat="server" ID="idOP" />
                                <asp:HiddenField runat="server" ID="limite" Value="48" />
                                <asp:HiddenField runat="server" ID="idS" />
                                <asp:HiddenField runat="server" ID="idSU" />
@@ -110,7 +111,7 @@ body { padding-right: 0 !important }
                                    <div class="col-md-2" runat="server">
                                        <div class="form-group">
                                            <label class="text-bold-600 font-small-3">Periodo</label>
-                                           <asp:DropDownList runat="server" ID="bperiodo" CssClass="select2 form-control" DataSourceID="DSperiodo" DataTextField="periodo" DataValueField="idperiodo" onChange="consultaPrincipal()">
+                                           <asp:DropDownList runat="server" ID="bperiodo" CssClass="select2 form-control" DataSourceID="DSperiodo" DataTextField="periodo" DataValueField="idperiodo" onChange="consultaPrincipal(1)">
                                            </asp:DropDownList>
                                            <asp:SqlDataSource ID="DSperiodo" runat="server" ProviderName="MySql.Data.MySqlClient" ConnectionString="<%$ ConnectionStrings:DBconexion %>" SelectCommand="SELECT idperiodo, periodo FROM periodo UNION select 999999, 'SELECCIONE UN PERIODO' ORDER BY idperiodo desc ">
                                                
@@ -1847,8 +1848,14 @@ body { padding-right: 0 !important }
             cerrarLoading();
         }
 
-        function consultaPrincipal() {
+        function consultaPrincipal(op) {
             mostrarLoading();
+
+            if (op)
+                $("*[id$='idOP']").val(op);
+            else
+                $("*[id$='idOP']").val(2);
+
             $('#<%= Bconsultar.ClientID %>').click();
             cerrarLoading();
         }

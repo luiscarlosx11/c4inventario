@@ -7,11 +7,13 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace elecion.ingresos {
-    
-    
-    public partial class pagos {
-        
+namespace elecion.ingresos
+{
+
+
+    public partial class pagos
+    {
+
         /// <summary>
         /// Control ScriptManager1.
         /// </summary>
@@ -20,7 +22,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.ScriptManager ScriptManager1;
-        
+
         /// <summary>
         /// Control pU.
         /// </summary>
@@ -29,7 +31,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel pU;
-        
+
         /// <summary>
         /// Control labelConteo.
         /// </summary>
@@ -38,7 +40,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label labelConteo;
-        
+
         /// <summary>
         /// Control idP.
         /// </summary>
@@ -47,7 +49,16 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField idP;
-        
+
+        /// <summary>
+        /// Control idOP.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField idOP;
+
         /// <summary>
         /// Control idC.
         /// </summary>
@@ -56,7 +67,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField idC;
-        
+
         /// <summary>
         /// Control idA.
         /// </summary>
@@ -65,7 +76,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField idA;
-        
+
         /// <summary>
         /// Control limite.
         /// </summary>
@@ -74,7 +85,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField limite;
-        
+
         /// <summary>
         /// Control idS.
         /// </summary>
@@ -83,7 +94,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField idS;
-        
+
         /// <summary>
         /// Control idSU.
         /// </summary>
@@ -92,7 +103,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField idSU;
-        
+
         /// <summary>
         /// Control idF.
         /// </summary>
@@ -101,7 +112,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField idF;
-        
+
         /// <summary>
         /// Control cve.
         /// </summary>
@@ -110,7 +121,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField cve;
-        
+
         /// <summary>
         /// Control bandpago.
         /// </summary>
@@ -119,7 +130,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField bandpago;
-        
+
         /// <summary>
         /// Control Bconsultar.
         /// </summary>
@@ -128,7 +139,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Bconsultar;
-        
+
         /// <summary>
         /// Control Bcancelarcurso.
         /// </summary>
@@ -137,25 +148,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Bcancelarcurso;
-        
-        /// <summary>
-        /// Control Bnuevo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Bnuevo;
-        
-        /// <summary>
-        /// Control bname.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox bname;
-        
+
         /// <summary>
         /// Control bnamecurso.
         /// </summary>
@@ -164,7 +157,16 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox bnamecurso;
-        
+
+        /// <summary>
+        /// Control bname.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox bname;
+
         /// <summary>
         /// Control busplantel.
         /// </summary>
@@ -173,7 +175,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl busplantel;
-        
+
         /// <summary>
         /// Control bplantel.
         /// </summary>
@@ -182,7 +184,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList bplantel;
-        
+
         /// <summary>
         /// Control DSplantel.
         /// </summary>
@@ -191,16 +193,52 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource DSplantel;
-        
+
         /// <summary>
-        /// Control lusuarios.
+        /// Control bciclo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView lusuarios;
-        
+        protected global::System.Web.UI.WebControls.DropDownList bciclo;
+
+        /// <summary>
+        /// Control DSciclo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource DSciclo;
+
+        /// <summary>
+        /// Control bperiodo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList bperiodo;
+
+        /// <summary>
+        /// Control DSperiodo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource DSperiodo;
+
+        /// <summary>
+        /// Control lGeneral.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView lGeneral;
+
         /// <summary>
         /// Control DsUsuarios.
         /// </summary>
@@ -209,7 +247,16 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource DsUsuarios;
-        
+
+        /// <summary>
+        /// Control divNoRegistros.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divNoRegistros;
+
         /// <summary>
         /// Control idr.
         /// </summary>
@@ -218,7 +265,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField idr;
-        
+
         /// <summary>
         /// Control UpdatePanel2.
         /// </summary>
@@ -227,7 +274,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel2;
-        
+
         /// <summary>
         /// Control tipocurso.
         /// </summary>
@@ -236,7 +283,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList tipocurso;
-        
+
         /// <summary>
         /// Control Dstipocurso.
         /// </summary>
@@ -245,7 +292,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource Dstipocurso;
-        
+
         /// <summary>
         /// Control tipooferta.
         /// </summary>
@@ -254,7 +301,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList tipooferta;
-        
+
         /// <summary>
         /// Control DStipooferta.
         /// </summary>
@@ -263,7 +310,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource DStipooferta;
-        
+
         /// <summary>
         /// Control alumnosminimo.
         /// </summary>
@@ -272,7 +319,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox alumnosminimo;
-        
+
         /// <summary>
         /// Control UpdatePanel1.
         /// </summary>
@@ -281,7 +328,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
-        
+
         /// <summary>
         /// Control area.
         /// </summary>
@@ -290,7 +337,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList area;
-        
+
         /// <summary>
         /// Control Dsareas.
         /// </summary>
@@ -299,7 +346,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource Dsareas;
-        
+
         /// <summary>
         /// Control especialidad.
         /// </summary>
@@ -308,7 +355,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList especialidad;
-        
+
         /// <summary>
         /// Control Dsespecialidades.
         /// </summary>
@@ -317,7 +364,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource Dsespecialidades;
-        
+
         /// <summary>
         /// Control divreg.
         /// </summary>
@@ -326,7 +373,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divreg;
-        
+
         /// <summary>
         /// Control UpdatePanel6.
         /// </summary>
@@ -335,7 +382,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel6;
-        
+
         /// <summary>
         /// Control regular.
         /// </summary>
@@ -344,7 +391,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList regular;
-        
+
         /// <summary>
         /// Control DSregulares.
         /// </summary>
@@ -353,7 +400,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource DSregulares;
-        
+
         /// <summary>
         /// Control clave.
         /// </summary>
@@ -362,7 +409,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox clave;
-        
+
         /// <summary>
         /// Control nombre.
         /// </summary>
@@ -371,7 +418,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox nombre;
-        
+
         /// <summary>
         /// Control instructor.
         /// </summary>
@@ -380,7 +427,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList instructor;
-        
+
         /// <summary>
         /// Control Dsinstructores.
         /// </summary>
@@ -389,7 +436,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource Dsinstructores;
-        
+
         /// <summary>
         /// Control instalacion.
         /// </summary>
@@ -398,7 +445,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList instalacion;
-        
+
         /// <summary>
         /// Control Dsinstalaciones.
         /// </summary>
@@ -407,7 +454,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource Dsinstalaciones;
-        
+
         /// <summary>
         /// Control extramuros.
         /// </summary>
@@ -416,7 +463,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl extramuros;
-        
+
         /// <summary>
         /// Control instalacionext.
         /// </summary>
@@ -425,7 +472,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox instalacionext;
-        
+
         /// <summary>
         /// Control instalaciondomext.
         /// </summary>
@@ -434,7 +481,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox instalaciondomext;
-        
+
         /// <summary>
         /// Control costomodulo.
         /// </summary>
@@ -443,7 +490,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox costomodulo;
-        
+
         /// <summary>
         /// Control costoalumno.
         /// </summary>
@@ -452,7 +499,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox costoalumno;
-        
+
         /// <summary>
         /// Control pagohora.
         /// </summary>
@@ -461,7 +508,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox pagohora;
-        
+
         /// <summary>
         /// Control observaciones.
         /// </summary>
@@ -470,7 +517,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox observaciones;
-        
+
         /// <summary>
         /// Control UpdatePanel3.
         /// </summary>
@@ -479,7 +526,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel3;
-        
+
         /// <summary>
         /// Control fechalimite.
         /// </summary>
@@ -488,7 +535,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox fechalimite;
-        
+
         /// <summary>
         /// Control fechaini.
         /// </summary>
@@ -497,7 +544,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox fechaini;
-        
+
         /// <summary>
         /// Control fechafin.
         /// </summary>
@@ -506,7 +553,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox fechafin;
-        
+
         /// <summary>
         /// Control hdias.
         /// </summary>
@@ -515,7 +562,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdias;
-        
+
         /// <summary>
         /// Control dias.
         /// </summary>
@@ -524,7 +571,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox dias;
-        
+
         /// <summary>
         /// Control horaini.
         /// </summary>
@@ -533,7 +580,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox horaini;
-        
+
         /// <summary>
         /// Control horafin.
         /// </summary>
@@ -542,7 +589,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox horafin;
-        
+
         /// <summary>
         /// Control horas.
         /// </summary>
@@ -551,7 +598,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox horas;
-        
+
         /// <summary>
         /// Control bimprimir.
         /// </summary>
@@ -560,7 +607,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button bimprimir;
-        
+
         /// <summary>
         /// Control bimprimirlista.
         /// </summary>
@@ -569,7 +616,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button bimprimirlista;
-        
+
         /// <summary>
         /// Control bimprimirriadc.
         /// </summary>
@@ -578,7 +625,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button bimprimirriadc;
-        
+
         /// <summary>
         /// Control bimprimiroficial.
         /// </summary>
@@ -587,7 +634,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button bimprimiroficial;
-        
+
         /// <summary>
         /// Control bimprimirprovisional.
         /// </summary>
@@ -596,7 +643,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button bimprimirprovisional;
-        
+
         /// <summary>
         /// Control guardar.
         /// </summary>
@@ -605,7 +652,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button guardar;
-        
+
         /// <summary>
         /// Control bautorizacion.
         /// </summary>
@@ -614,7 +661,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button bautorizacion;
-        
+
         /// <summary>
         /// Control Beditar.
         /// </summary>
@@ -623,7 +670,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Beditar;
-        
+
         /// <summary>
         /// Control bfechascurso.
         /// </summary>
@@ -632,7 +679,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button bfechascurso;
-        
+
         /// <summary>
         /// Control eliminarFechas.
         /// </summary>
@@ -641,7 +688,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button eliminarFechas;
-        
+
         /// <summary>
         /// Control guardarFechas.
         /// </summary>
@@ -650,7 +697,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button guardarFechas;
-        
+
         /// <summary>
         /// Control Bfechas.
         /// </summary>
@@ -659,7 +706,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Bfechas;
-        
+
         /// <summary>
         /// Control Bguardarpago.
         /// </summary>
@@ -668,7 +715,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Bguardarpago;
-        
+
         /// <summary>
         /// Control UpdatePanel4.
         /// </summary>
@@ -677,7 +724,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel4;
-        
+
         /// <summary>
         /// Control GValumnos.
         /// </summary>
@@ -686,7 +733,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GValumnos;
-        
+
         /// <summary>
         /// Control DSalumnos.
         /// </summary>
@@ -695,7 +742,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource DSalumnos;
-        
+
         /// <summary>
         /// Control UpdatePanel5.
         /// </summary>
@@ -704,7 +751,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel5;
-        
+
         /// <summary>
         /// Control UpdatePanel7.
         /// </summary>
@@ -713,7 +760,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel7;
-        
+
         /// <summary>
         /// Control mes.
         /// </summary>
@@ -722,7 +769,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList mes;
-        
+
         /// <summary>
         /// Control DSmes.
         /// </summary>
@@ -731,7 +778,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource DSmes;
-        
+
         /// <summary>
         /// Control fagenda.
         /// </summary>
@@ -740,7 +787,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox fagenda;
-        
+
         /// <summary>
         /// Control horanini.
         /// </summary>
@@ -749,7 +796,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox horanini;
-        
+
         /// <summary>
         /// Control horanfin.
         /// </summary>
@@ -758,7 +805,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox horanfin;
-        
+
         /// <summary>
         /// Control cursopago.
         /// </summary>
@@ -767,7 +814,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox cursopago;
-        
+
         /// <summary>
         /// Control alumnopago.
         /// </summary>
@@ -776,7 +823,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox alumnopago;
-        
+
         /// <summary>
         /// Control conceptopago.
         /// </summary>
@@ -785,7 +832,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox conceptopago;
-        
+
         /// <summary>
         /// Control costopago.
         /// </summary>
@@ -794,7 +841,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox costopago;
-        
+
         /// <summary>
         /// Control pagadopago.
         /// </summary>
@@ -803,7 +850,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox pagadopago;
-        
+
         /// <summary>
         /// Control porpagarpago.
         /// </summary>
@@ -812,7 +859,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox porpagarpago;
-        
+
         /// <summary>
         /// Control importepago.
         /// </summary>
@@ -821,7 +868,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox importepago;
-        
+
         /// <summary>
         /// Control motcancelacion.
         /// </summary>
@@ -830,7 +877,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox motcancelacion;
-        
+
         /// <summary>
         /// Control UpdatePanel8.
         /// </summary>
@@ -839,7 +886,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel8;
-        
+
         /// <summary>
         /// Control Bhistorial.
         /// </summary>
@@ -848,7 +895,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Bhistorial;
-        
+
         /// <summary>
         /// Control Bcancelarpago.
         /// </summary>
@@ -857,7 +904,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Bcancelarpago;
-        
+
         /// <summary>
         /// Control GVhistorialg.
         /// </summary>
@@ -866,7 +913,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GVhistorialg;
-        
+
         /// <summary>
         /// Control DShistorialg.
         /// </summary>
@@ -875,7 +922,7 @@ namespace elecion.ingresos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource DShistorialg;
-        
+
         /// <summary>
         /// Control cancelacionmot.
         /// </summary>

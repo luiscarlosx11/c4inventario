@@ -48,68 +48,71 @@ namespace elecion.tecnicoaca
 
         protected void listadoClientes(object sender, EventArgs e)
         {
-            int limit = Convert.ToInt32(limite.Value);
+          
+            Convert.ToInt32(this.limite.Value);
             int pag = 1;
-
-            int offset = 0;
-
-            if (pag > 1)
-            {
-                offset = limit * (pag - 1);
-            }
             try
             {
-                 
-                lusuarios.DataSourceID = DsUsuarios.ID;
-
-                String query = "select c.idcurso, c.clave, c.idsucursal, coalesce(c.nombre,'NO DEFINIDO')as nombre,  coalesce(a.area,'AREA NO ASIGNADA') as area,  coalesce(e.especialidad,'ESPECIALIDAD NO ASIGNADA')as especialidad,  coalesce(i.nombre,'INSTRUCTOR NO DEFINIDO') as instructor, t.tipocurso, c.estatus, c.costo, cast(c.fechaini as char)as fechaini, cast(c.fechafin as char)as fechafin, cast(TIME_FORMAT(c.horaini, '%h:%i %p') as char)as horaini, cast(TIME_FORMAT(c.horafin, '%h:%i %p') as char)as horafin,  " +
-                               "c.alumnosminimo, (select count(s.idalumno) from solicitudinscripcion s where s.idcurso = c.idcurso and s.estatus not in('CANCELADO')) as inscritos, s.nombre as plantel " +
-                               "from curso c "+
-                               "left join area a on a.idarea = c.idarea " +
-                               "left join especialidad e on e.idespecialidad = c.idespecialidad " +
-                               "left join tipocurso t on t.idtipocurso = c.idtipocurso " +
-                               "left join instructor i on i.idinstructor = c.idinstructor " +
-                               "left join sucursal s on s.idsucursal = c.idsucursal " +
-                               "where c.tipo='C' and c.estatus in ('EN REVISION','AUTORIZADO','OBSERVADO','RECHAZADO') ";
-                               
-    
-           
-                if (bname.Text.Trim() != "")
-                    query = query + " and c.nombre LIKE '%" + bname.Text.Trim().ToUpper() + "%' ";
-
-                //ADMINISTRADOR
-                
-                if (roles.IndexOf('1', 0) >= 0)
+                if (idOP.Value.Equals("") || idOP.Value.Equals("2"))
                 {
-                    if (!bplantel.SelectedValue.Equals("0"))
-                        query = query + " and c.idsucursal = " + bplantel.SelectedValue + " ";
+                    if (!bperiodo.SelectedValue.Equals(""))
+                        DSperiodo.SelectCommand = "SELECT idperiodo, periodo FROM periodo where idcicloescolar=" + bciclo.SelectedValue + " UNION select 999999, 'SELECCIONE UN PERIODO' ORDER BY idperiodo desc";
+                    else
+                        DSperiodo.SelectCommand = "SELECT idperiodo, periodo FROM periodo where idcicloescolar=99999 UNION select 999999, 'SELECCIONE UN PERIODO' ORDER BY idperiodo desc";
+
+                    bperiodo.DataBind();
+                    DSperiodo.DataBind();
                 }
+
+
+                this.lGeneral.DataSourceID = this.DsUsuarios.ID;
+                string query = "select c.idcurso, c.clave, c.idsucursal, coalesce(c.nombre,'NO DEFINIDO')as nombre,  coalesce(a.area,'AREA NO ASIGNADA') as area,  coalesce(e.especialidad,'ESPECIALIDAD NO ASIGNADA')as especialidad,  coalesce(i.nombre,'INSTRUCTOR NO DEFINIDO') as instructor, t.tipocurso, c.estatus, c.costo, cast(c.fechaini as char)as fechaini, cast(c.fechafin as char)as fechafin, cast(TIME_FORMAT(c.horaini, '%h:%i %p') as char)as horaini, cast(TIME_FORMAT(c.horafin, '%h:%i %p') as char)as horafin,  c.alumnosminimo, (select count(s.idalumno) from solicitudinscripcion s where s.idcurso = c.idcurso and s.estatus not in('CANCELADO')) as inscritos, s.nombre as plantel from curso c left join area a on a.idarea = c.idarea left join especialidad e on e.idespecialidad = c.idespecialidad left join tipocurso t on t.idtipocurso = c.idtipocurso left join instructor i on i.idinstructor = c.idinstructor left join sucursal s on s.idsucursal = c.idsucursal where c.tipo='C' and c.estatus not in('CANCELADO') ";
+                if (this.bname.Text.Trim() != "")
+                {
+                    query = string.Concat(new string[] { query, " and (c.nombre LIKE '%", this.bname.Text.Trim().ToUpper(), "%' or c.clave LIKE '%", this.bname.Text.Trim().ToUpper(), "%') " });
+                }
+                if (this.roles.IndexOf('1', 0) < 0)
+                {
+                    query = string.Concat(new object[] { query, " and c.idsucursal = ", this.idsucursal, " " });
+                }
+                else if (!this.bplantel.SelectedValue.Equals("0"))
+                {
+                    query = string.Concat(query, " and c.idsucursal = ", this.bplantel.SelectedValue, " ");
+                }
+
+                if (!bciclo.SelectedValue.Equals("") && !bciclo.SelectedValue.Equals("999999"))
+                    query += "and c.idcicloescolar=" + bciclo.SelectedValue + " ";
+
+                if (!bperiodo.SelectedValue.Equals("") && !bperiodo.SelectedValue.Equals("999999"))
+                    query += "and(select p.idperiodo from periodo p where c.fechaini between p.fechaini and p.fechafin)=" + bperiodo.SelectedValue + " ";
+
+                if (!bestatus.SelectedValue.Equals("0"))
+                    query += "and c.estatus='" + bestatus.SelectedValue + "' ";
+                else
+                    query += "and c.estatus in ('EN REVISION','AUTORIZADO','OBSERVADO','RECHAZADO','FINALIZADO')";
+
+                query = string.Concat(query, " order by c.idsucursal, c.fechaini desc,  c.nombre");
+                this.DsUsuarios.SelectCommand = query;
+
+                DataView dvAccess = (DataView)DsUsuarios.Select(DataSourceSelectArguments.Empty);
+
+                if (dvAccess != null && dvAccess.Count > 0)
+                {
+                    labelConteo.Text = dvAccess.Count.ToString();
+                    divNoRegistros.Visible = false;
+                }
+
                 else
                 {
-                    query = query + " and c.idsucursal = " + idsucursal + " ";
+                    labelConteo.Text = "0";
+                    divNoRegistros.Visible = true;
                 }
 
 
-
-                query = query + " order by c.idsucursal, c.nombre";
-
-                if (bname.Text.Trim().Equals(""))
-                    query = query + " LIMIT " + limit + " OFFSET " + offset;
-                DsUsuarios.SelectCommand = query;
-
-                //DsUsuarios.DataBind();
-               // lusuarios.DataBind();
-
-                //if (String.IsNullOrEmpty(lusuarios.SortExpression)) lusuarios.Sort("ncompleto", SortDirection.Ascending);
-
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                System.Diagnostics.Debug.WriteLine("ERROR:" + ex.Message.Replace("\r\n", ""));
             }
-            
-            //ScriptManager.RegisterClientScriptBlock(Page, typeof(string), "myScriptName", "cerrarLoading();", true);
-            //gridSeguimiento.DataBind();
 
         }
 
@@ -1678,8 +1681,8 @@ namespace elecion.tecnicoaca
    
         protected void refrescaGrid(object sender, EventArgs e)
         {
-            DsUsuarios.DataBind();
-            lusuarios.DataBind();
+            //DsUsuarios.DataBind();
+            //lusuarios.DataBind();
         }
 
         protected void area_DataBound(object sender, EventArgs e)

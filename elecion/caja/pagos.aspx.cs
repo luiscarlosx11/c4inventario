@@ -58,26 +58,58 @@ namespace elecion.ingresos
 
             try
             {
-                this.lusuarios.DataSourceID = this.DsUsuarios.ID;
-                string str = "select c.idcurso, c.clave, c.idsucursal, coalesce(c.nombre,'NO DEFINIDO')as nombre,  coalesce(a.area,'AREA NO ASIGNADA') as area,  coalesce(e.especialidad,'ESPECIALIDAD NO ASIGNADA')as especialidad,  coalesce(i.nombre,'INSTRUCTOR NO DEFINIDO') as instructor, t.tipocurso, c.estatus, c.costo, cast(c.fechaini as char) as fechaini, cast(c.fechafin as char) as fechafin, cast(TIME_FORMAT(c.horaini, '%h:%i %p') as char) as horaini, cast(TIME_FORMAT(c.horafin, '%h:%i %p') as char) as horafin, c.alumnosminimo,  si.idsolicitud, si.pagado, case si.pagado when 1 then 'PAGADO' else 'POR PAGAR' end as pagadotext,  s.nombre as plantel, si.becado, si.porcentaje, case si.becado when 1 then round(c.costo -c.costo * (si.porcentaje / 100),2) else c.costo end as saldoapagar, (select count(p.idpago) from cursopago p where p.idsolicitud = si.idsolicitud and p.contabilizar=1 ) as pagos, (select coalesce(sum(p.importe), 0) from cursopago p where p.idsolicitud = si.idsolicitud and p.contabilizar=1 and p.estatus not in('CANCELADO') ) as saldopagado, case si.becado when 1 then round(c.costo - c.costo * (si.porcentaje / 100), 2) - (select coalesce(sum(p.importe),0) from cursopago p where p.idsolicitud = si.idsolicitud and p.contabilizar=1 and p.estatus not in('CANCELADO') ) else c.costo - (select coalesce(sum(p.importe), 0) from cursopago p where p.idsolicitud = si.idsolicitud and p.contabilizar=1 and p.estatus not in('CANCELADO') ) end as saldorestante, CASE si.becado WHEN 1 THEN 'checked' ELSE '' END as becadocheck, concat(al.apaterno,' ',al.amaterno,' ',al.nombre) as alumno, al.nocontrol, ( select max(cp.idpago) from cursopago cp where cp.idsolicitud = si.idsolicitud and cp.tipo = 'O' and cp.estatus not in('CANCELADO') )as recoficial from curso c left join area a on a.idarea = c.idarea left join especialidad e on e.idespecialidad = c.idespecialidad left join tipocurso t on t.idtipocurso = c.idtipocurso left join instructor i on i.idinstructor = c.idinstructor left join solicitudinscripcion si on si.idcurso = c.idcurso left join sucursal s on s.idsucursal = c.idsucursal left join alumno al on si.idalumno = al.idalumno where c.idcurso >0 and c.estatus not in('CANCELADO','RECHAZADO') and si.estatus not in('CANCELADO') and al.idalumno>0 ";
+                if (idOP.Value.Equals("") || idOP.Value.Equals("2"))
+                {
+                    if (!bperiodo.SelectedValue.Equals(""))
+                        DSperiodo.SelectCommand = "SELECT idperiodo, periodo FROM periodo where idcicloescolar=" + bciclo.SelectedValue + " UNION select 999999, 'SELECCIONE UN PERIODO' ORDER BY idperiodo desc";
+                    else
+                        DSperiodo.SelectCommand = "SELECT idperiodo, periodo FROM periodo where idcicloescolar=99999 UNION select 999999, 'SELECCIONE UN PERIODO' ORDER BY idperiodo desc";
+
+                    bperiodo.DataBind();
+                    DSperiodo.DataBind();
+                }
+
+                this.lGeneral.DataSourceID = this.DsUsuarios.ID;
+                string query = "select c.idcurso, c.clave, c.idsucursal, coalesce(c.nombre,'NO DEFINIDO')as nombre,  coalesce(a.area,'AREA NO ASIGNADA') as area,  coalesce(e.especialidad,'ESPECIALIDAD NO ASIGNADA')as especialidad,  coalesce(i.nombre,'INSTRUCTOR NO DEFINIDO') as instructor, t.tipocurso, c.estatus, c.costo, cast(c.fechaini as char) as fechaini, cast(c.fechafin as char) as fechafin, cast(TIME_FORMAT(c.horaini, '%h:%i %p') as char) as horaini, cast(TIME_FORMAT(c.horafin, '%h:%i %p') as char) as horafin, c.alumnosminimo,  si.idsolicitud, si.pagado, case si.pagado when 1 then 'PAGADO' else 'POR PAGAR' end as pagadotext,  s.nombre as plantel, si.becado, si.porcentaje, case si.becado when 1 then round(c.costo -c.costo * (si.porcentaje / 100),2) else c.costo end as saldoapagar, (select count(p.idpago) from cursopago p where p.idsolicitud = si.idsolicitud and p.contabilizar=1 ) as pagos, (select coalesce(sum(p.importe), 0) from cursopago p where p.idsolicitud = si.idsolicitud and p.contabilizar=1 and p.estatus not in('CANCELADO') ) as saldopagado, case si.becado when 1 then round(c.costo - c.costo * (si.porcentaje / 100), 2) - (select coalesce(sum(p.importe),0) from cursopago p where p.idsolicitud = si.idsolicitud and p.contabilizar=1 and p.estatus not in('CANCELADO') ) else c.costo - (select coalesce(sum(p.importe), 0) from cursopago p where p.idsolicitud = si.idsolicitud and p.contabilizar=1 and p.estatus not in('CANCELADO') ) end as saldorestante, CASE si.becado WHEN 1 THEN 'checked' ELSE '' END as becadocheck, concat(al.apaterno,' ',al.amaterno,' ',al.nombre) as alumno, al.nocontrol, ( select max(cp.idpago) from cursopago cp where cp.idsolicitud = si.idsolicitud and cp.tipo = 'O' and cp.estatus not in('CANCELADO') )as recoficial from curso c left join area a on a.idarea = c.idarea left join especialidad e on e.idespecialidad = c.idespecialidad left join tipocurso t on t.idtipocurso = c.idtipocurso left join instructor i on i.idinstructor = c.idinstructor left join solicitudinscripcion si on si.idcurso = c.idcurso left join sucursal s on s.idsucursal = c.idsucursal left join alumno al on si.idalumno = al.idalumno where c.idcurso >0 and c.estatus not in('CANCELADO','RECHAZADO') and si.estatus not in('CANCELADO') and al.idalumno>0 ";
                 if (this.bname.Text.Trim() != "")
                 {
-                    str = string.Concat(new string[] { str, " and (concat(al.nombre,' ',al.apaterno,' ',al.amaterno) like'%", this.bname.Text.ToUpper(), "%' or al.nocontrol like'%", this.bname.Text.ToUpper(), "%') " });
+                    query = string.Concat(new string[] { query, " and (concat(al.nombre,' ',al.apaterno,' ',al.amaterno) like'%", this.bname.Text.ToUpper(), "%' or al.nocontrol like'%", this.bname.Text.ToUpper(), "%') " });
                 }
                 if (this.bnamecurso.Text.Trim() != "")
                 {
-                    str = string.Concat(str, " and ( c.nombre like'%", this.bnamecurso.Text.ToUpper(), "%') ");
+                    query = string.Concat(query, " and ( c.nombre like'%", this.bnamecurso.Text.ToUpper(), "%') ");
                 }
                 if (this.roles.IndexOf('1', 0) < 0)
                 {
-                    str = string.Concat(new object[] { str, " and c.idsucursal = ", this.idsucursal, " " });
+                    query = string.Concat(new object[] { query, " and c.idsucursal = ", this.idsucursal, " " });
                 }
                 else if (!this.bplantel.SelectedValue.Equals("0"))
                 {
-                    str = string.Concat(str, " and c.idsucursal = ", this.bplantel.SelectedValue, " ");
+                    query = string.Concat(query, " and c.idsucursal = ", this.bplantel.SelectedValue, " ");
                 }
-                str = string.Concat(str, " order by c.idsucursal, c.nombre, al.apaterno, al.amaterno, al.nombre");
-                this.DsUsuarios.SelectCommand = str;
+
+                if (!bciclo.SelectedValue.Equals("") && !bciclo.SelectedValue.Equals("999999"))
+                    query += "and c.idcicloescolar=" + bciclo.SelectedValue + " ";
+
+                if (!bperiodo.SelectedValue.Equals("") && !bperiodo.SelectedValue.Equals("999999"))
+                    query += "and(select p.idperiodo from periodo p where c.fechaini between p.fechaini and p.fechafin)=" + bperiodo.SelectedValue + " ";
+
+                query = string.Concat(query, " order by c.idsucursal, c.nombre, al.apaterno, al.amaterno, al.nombre");
+                this.DsUsuarios.SelectCommand = query;
+
+                DataView dvAccess = (DataView)DsUsuarios.Select(DataSourceSelectArguments.Empty);
+
+                if (dvAccess != null && dvAccess.Count > 0)
+                {
+                    labelConteo.Text = dvAccess.Count.ToString();
+                    divNoRegistros.Visible = false;
+                }
+
+                else
+                {
+                    labelConteo.Text = "0";
+                    divNoRegistros.Visible = true;
+                }
             }
             catch (Exception exception)
             {
@@ -1818,8 +1850,8 @@ namespace elecion.ingresos
    
         protected void refrescaGrid(object sender, EventArgs e)
         {
-            DsUsuarios.DataBind();
-            lusuarios.DataBind();
+           // DsUsuarios.DataBind();
+            //.DataBind();
         }
 
         protected void area_DataBound(object sender, EventArgs e)

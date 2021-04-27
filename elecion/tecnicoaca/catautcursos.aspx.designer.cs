@@ -7,11 +7,13 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace elecion.tecnicoaca {
-    
-    
-    public partial class catautcursos {
-        
+namespace elecion.tecnicoaca
+{
+
+
+    public partial class catautcursos
+    {
+
         /// <summary>
         /// Control ScriptManager1.
         /// </summary>
@@ -20,7 +22,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.ScriptManager ScriptManager1;
-        
+
         /// <summary>
         /// Control pU.
         /// </summary>
@@ -29,7 +31,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel pU;
-        
+
         /// <summary>
         /// Control labelConteo.
         /// </summary>
@@ -38,7 +40,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label labelConteo;
-        
+
         /// <summary>
         /// Control idP.
         /// </summary>
@@ -47,7 +49,16 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField idP;
-        
+
+        /// <summary>
+        /// Control idOP.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField idOP;
+
         /// <summary>
         /// Control limite.
         /// </summary>
@@ -56,7 +67,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField limite;
-        
+
         /// <summary>
         /// Control idS.
         /// </summary>
@@ -65,7 +76,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField idS;
-        
+
         /// <summary>
         /// Control idSU.
         /// </summary>
@@ -74,7 +85,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField idSU;
-        
+
         /// <summary>
         /// Control idF.
         /// </summary>
@@ -83,7 +94,16 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField idF;
-        
+
+        /// <summary>
+        /// Control finhabil.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField finhabil;
+
         /// <summary>
         /// Control cve.
         /// </summary>
@@ -92,7 +112,16 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField cve;
-        
+
+        /// <summary>
+        /// Control idOE.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField idOE;
+
         /// <summary>
         /// Control Bconsultar.
         /// </summary>
@@ -101,16 +130,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Bconsultar;
-        
-        /// <summary>
-        /// Control Bnuevo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Bnuevo;
-        
+
         /// <summary>
         /// Control bname.
         /// </summary>
@@ -119,7 +139,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox bname;
-        
+
         /// <summary>
         /// Control busplantel.
         /// </summary>
@@ -128,7 +148,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl busplantel;
-        
+
         /// <summary>
         /// Control bplantel.
         /// </summary>
@@ -137,7 +157,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList bplantel;
-        
+
         /// <summary>
         /// Control DSplantel.
         /// </summary>
@@ -146,16 +166,61 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource DSplantel;
-        
+
         /// <summary>
-        /// Control lusuarios.
+        /// Control bciclo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView lusuarios;
-        
+        protected global::System.Web.UI.WebControls.DropDownList bciclo;
+
+        /// <summary>
+        /// Control DSciclo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource DSciclo;
+
+        /// <summary>
+        /// Control bperiodo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList bperiodo;
+
+        /// <summary>
+        /// Control DSperiodo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource DSperiodo;
+
+        /// <summary>
+        /// Control bestatus.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList bestatus;
+
+        /// <summary>
+        /// Control lGeneral.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView lGeneral;
+
         /// <summary>
         /// Control DsUsuarios.
         /// </summary>
@@ -164,7 +229,16 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource DsUsuarios;
-        
+
+        /// <summary>
+        /// Control divNoRegistros.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divNoRegistros;
+
         /// <summary>
         /// Control idr.
         /// </summary>
@@ -173,7 +247,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField idr;
-        
+
         /// <summary>
         /// Control UpdatePanel2.
         /// </summary>
@@ -182,7 +256,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel2;
-        
+
         /// <summary>
         /// Control clave.
         /// </summary>
@@ -191,7 +265,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox clave;
-        
+
         /// <summary>
         /// Control nombre.
         /// </summary>
@@ -200,7 +274,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox nombre;
-        
+
         /// <summary>
         /// Control tipocurso.
         /// </summary>
@@ -209,7 +283,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList tipocurso;
-        
+
         /// <summary>
         /// Control Dstipocurso.
         /// </summary>
@@ -218,7 +292,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource Dstipocurso;
-        
+
         /// <summary>
         /// Control tipooferta.
         /// </summary>
@@ -227,7 +301,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList tipooferta;
-        
+
         /// <summary>
         /// Control DStipooferta.
         /// </summary>
@@ -236,7 +310,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource DStipooferta;
-        
+
         /// <summary>
         /// Control alumnosminimo.
         /// </summary>
@@ -245,7 +319,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox alumnosminimo;
-        
+
         /// <summary>
         /// Control UpdatePanel1.
         /// </summary>
@@ -254,7 +328,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
-        
+
         /// <summary>
         /// Control area.
         /// </summary>
@@ -263,7 +337,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList area;
-        
+
         /// <summary>
         /// Control Dsareas.
         /// </summary>
@@ -272,7 +346,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource Dsareas;
-        
+
         /// <summary>
         /// Control especialidad.
         /// </summary>
@@ -281,7 +355,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList especialidad;
-        
+
         /// <summary>
         /// Control Dsespecialidades.
         /// </summary>
@@ -290,7 +364,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource Dsespecialidades;
-        
+
         /// <summary>
         /// Control instructor.
         /// </summary>
@@ -299,7 +373,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList instructor;
-        
+
         /// <summary>
         /// Control Dsinstructores.
         /// </summary>
@@ -308,7 +382,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource Dsinstructores;
-        
+
         /// <summary>
         /// Control instalacion.
         /// </summary>
@@ -317,7 +391,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList instalacion;
-        
+
         /// <summary>
         /// Control Dsinstalaciones.
         /// </summary>
@@ -326,7 +400,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource Dsinstalaciones;
-        
+
         /// <summary>
         /// Control extramuros.
         /// </summary>
@@ -335,7 +409,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl extramuros;
-        
+
         /// <summary>
         /// Control instalacionext.
         /// </summary>
@@ -344,7 +418,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox instalacionext;
-        
+
         /// <summary>
         /// Control instalaciondomext.
         /// </summary>
@@ -353,7 +427,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox instalaciondomext;
-        
+
         /// <summary>
         /// Control costomodulo.
         /// </summary>
@@ -362,7 +436,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox costomodulo;
-        
+
         /// <summary>
         /// Control costoalumno.
         /// </summary>
@@ -371,7 +445,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox costoalumno;
-        
+
         /// <summary>
         /// Control pagohora.
         /// </summary>
@@ -380,7 +454,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox pagohora;
-        
+
         /// <summary>
         /// Control observaciones.
         /// </summary>
@@ -389,7 +463,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox observaciones;
-        
+
         /// <summary>
         /// Control UpdatePanel3.
         /// </summary>
@@ -398,7 +472,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel3;
-        
+
         /// <summary>
         /// Control fechalimite.
         /// </summary>
@@ -407,7 +481,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox fechalimite;
-        
+
         /// <summary>
         /// Control fechaini.
         /// </summary>
@@ -416,7 +490,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox fechaini;
-        
+
         /// <summary>
         /// Control fechafin.
         /// </summary>
@@ -425,7 +499,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox fechafin;
-        
+
         /// <summary>
         /// Control hdias.
         /// </summary>
@@ -434,7 +508,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdias;
-        
+
         /// <summary>
         /// Control dias.
         /// </summary>
@@ -443,7 +517,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox dias;
-        
+
         /// <summary>
         /// Control horaini.
         /// </summary>
@@ -452,7 +526,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox horaini;
-        
+
         /// <summary>
         /// Control horafin.
         /// </summary>
@@ -461,7 +535,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox horafin;
-        
+
         /// <summary>
         /// Control horas.
         /// </summary>
@@ -470,7 +544,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox horas;
-        
+
         /// <summary>
         /// Control bimprimir.
         /// </summary>
@@ -479,7 +553,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button bimprimir;
-        
+
         /// <summary>
         /// Control guardar.
         /// </summary>
@@ -488,7 +562,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button guardar;
-        
+
         /// <summary>
         /// Control bautorizacion.
         /// </summary>
@@ -497,7 +571,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button bautorizacion;
-        
+
         /// <summary>
         /// Control brechazo.
         /// </summary>
@@ -506,7 +580,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button brechazo;
-        
+
         /// <summary>
         /// Control Beditar.
         /// </summary>
@@ -515,7 +589,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Beditar;
-        
+
         /// <summary>
         /// Control bfechascurso.
         /// </summary>
@@ -524,7 +598,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button bfechascurso;
-        
+
         /// <summary>
         /// Control eliminarFechas.
         /// </summary>
@@ -533,7 +607,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button eliminarFechas;
-        
+
         /// <summary>
         /// Control guardarFechas.
         /// </summary>
@@ -542,7 +616,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button guardarFechas;
-        
+
         /// <summary>
         /// Control Bfechas.
         /// </summary>
@@ -551,7 +625,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Bfechas;
-        
+
         /// <summary>
         /// Control UpdatePanel4.
         /// </summary>
@@ -560,7 +634,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel4;
-        
+
         /// <summary>
         /// Control GValumnos.
         /// </summary>
@@ -569,7 +643,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GValumnos;
-        
+
         /// <summary>
         /// Control DSalumnos.
         /// </summary>
@@ -578,7 +652,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource DSalumnos;
-        
+
         /// <summary>
         /// Control UpdatePanel5.
         /// </summary>
@@ -587,7 +661,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel5;
-        
+
         /// <summary>
         /// Control GVhistorial.
         /// </summary>
@@ -596,7 +670,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GVhistorial;
-        
+
         /// <summary>
         /// Control DShistorial.
         /// </summary>
@@ -605,7 +679,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource DShistorial;
-        
+
         /// <summary>
         /// Control UpdatePanel8.
         /// </summary>
@@ -614,7 +688,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel8;
-        
+
         /// <summary>
         /// Control GVobjetivos.
         /// </summary>
@@ -623,7 +697,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GVobjetivos;
-        
+
         /// <summary>
         /// Control DSobjetivos.
         /// </summary>
@@ -632,7 +706,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource DSobjetivos;
-        
+
         /// <summary>
         /// Control UpdatePanel6.
         /// </summary>
@@ -641,7 +715,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel6;
-        
+
         /// <summary>
         /// Control oprechazo.
         /// </summary>
@@ -650,7 +724,7 @@ namespace elecion.tecnicoaca {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField oprechazo;
-        
+
         /// <summary>
         /// Control observrechazo.
         /// </summary>

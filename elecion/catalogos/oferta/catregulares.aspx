@@ -255,7 +255,7 @@
                                                         <div class="form-group">
                                                             <div class="col-md-12">
                                                                 <label class="text-bold-600">Nombre del curso</label>
-                                                                <asp:TextBox ID="nombre" CssClass="form-control text-uppercase" required="required" data-validation-required-message="Campo requerido" placeholder="Especialidad" name="nombre" runat="server"></asp:TextBox>
+                                                                <asp:TextBox ID="nombre" CssClass="form-control text-uppercase" required="required" data-validation-required-message="Campo requerido" placeholder="Curso" name="nombre" runat="server"></asp:TextBox>
                                                                 <div class="help-block"></div>
                                                             </div>
 

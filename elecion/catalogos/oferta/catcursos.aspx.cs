@@ -887,13 +887,17 @@ namespace elecion.catalogos.oferta
             int pag = 1;
             try
             {
-                if (!bperiodo.SelectedValue.Equals("") )
-                    DSperiodo.SelectCommand = "SELECT idperiodo, periodo FROM periodo where idcicloescolar="+bciclo.SelectedValue+  " UNION select 999999, 'SELECCIONE UN PERIODO' ORDER BY idperiodo desc";
-                else
-                    DSperiodo.SelectCommand = "SELECT idperiodo, periodo FROM periodo where idcicloescolar=99999 UNION select 999999, 'SELECCIONE UN PERIODO' ORDER BY idperiodo desc";
+                if (idOP.Value.Equals("")|| idOP.Value.Equals("2"))
+                {
+                    if (!bperiodo.SelectedValue.Equals(""))
+                        DSperiodo.SelectCommand = "SELECT idperiodo, periodo FROM periodo where idcicloescolar=" + bciclo.SelectedValue + " UNION select 999999, 'SELECCIONE UN PERIODO' ORDER BY idperiodo desc";
+                    else
+                        DSperiodo.SelectCommand = "SELECT idperiodo, periodo FROM periodo where idcicloescolar=99999 UNION select 999999, 'SELECCIONE UN PERIODO' ORDER BY idperiodo desc";
 
-                DSperiodo.DataBind();
-
+                    bperiodo.DataBind();
+                    DSperiodo.DataBind();
+                }
+                
 
                 this.lGeneral.DataSourceID = this.DsUsuarios.ID;
                 string query = "select c.idcurso, c.clave, c.idsucursal, coalesce(c.nombre,'NO DEFINIDO')as nombre,  coalesce(a.area,'AREA NO ASIGNADA') as area,  coalesce(e.especialidad,'ESPECIALIDAD NO ASIGNADA')as especialidad,  coalesce(i.nombre,'INSTRUCTOR NO DEFINIDO') as instructor, t.tipocurso, c.estatus, c.costo, cast(c.fechaini as char)as fechaini, cast(c.fechafin as char)as fechafin, cast(TIME_FORMAT(c.horaini, '%h:%i %p') as char)as horaini, cast(TIME_FORMAT(c.horafin, '%h:%i %p') as char)as horafin,  c.alumnosminimo, (select count(s.idalumno) from solicitudinscripcion s where s.idcurso = c.idcurso and s.estatus not in('CANCELADO')) as inscritos, s.nombre as plantel from curso c left join area a on a.idarea = c.idarea left join especialidad e on e.idespecialidad = c.idespecialidad left join tipocurso t on t.idtipocurso = c.idtipocurso left join instructor i on i.idinstructor = c.idinstructor left join sucursal s on s.idsucursal = c.idsucursal where c.tipo='C' and c.estatus not in('CANCELADO') ";

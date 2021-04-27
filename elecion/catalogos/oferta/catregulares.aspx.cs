@@ -122,7 +122,7 @@ namespace elecion.catalogos.oferta
 
                     //Si el idmunicipio es mayor que cero se hace UPDATE
                     if (Int32.Parse(idS.Value) > 0)
-                        query = "UPDATE cursoregular set nomre=@nombre, idarea=@identidad, idespecialidad=@idespecialidad, clave=@clave where idcursoregular=@idsucursal;";
+                        query = "UPDATE cursoregular set nombre=@nombre, idarea=@identidad, idespecialidad=@idespecialidad, clave=@clave where idcursoregular=@idsucursal;";
                     else
                         query = "INSERT INTO cursoregular(idespecialidad, idarea, nombre, clave) values(@idespecialidad, @identidad, @nombre, @clave);";
 
