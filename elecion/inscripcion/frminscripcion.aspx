@@ -38,6 +38,7 @@ body { padding-right: 0 !important }
                          <asp:HiddenField runat="server" ID="idP" Value="0" />
                                                     <asp:HiddenField runat="server" ID="idA" Value="0"/>
                                                     <asp:HiddenField runat="server" ID="idI" />
+                                                    <asp:HiddenField runat="server" ID="idOP" />
                                                     <asp:HiddenField runat="server" ID="limite" Value="48" />
                                                     <asp:HiddenField runat="server" ID="idS" />
                                                     <asp:HiddenField runat="server" ID="idF" />
@@ -107,7 +108,7 @@ body { padding-right: 0 !important }
                                         <div class="col-md-2" runat="server">
                                             <div class="form-group">
                                                 <label class="text-bold-600 font-small-3">Periodo</label>
-                                                <asp:DropDownList runat="server" ID="bperiodo" CssClass="select2 form-control" DataSourceID="DSperiodo" DataTextField="periodo" DataValueField="idperiodo" onChange="consultaPrincipal()">
+                                                <asp:DropDownList runat="server" ID="bperiodo" CssClass="select2 form-control" DataSourceID="DSperiodo" DataTextField="periodo" DataValueField="idperiodo" onChange="consultaPrincipal(1)">
                                                 </asp:DropDownList>
                                                 <asp:SqlDataSource ID="DSperiodo" runat="server" ProviderName="MySql.Data.MySqlClient" ConnectionString="<%$ ConnectionStrings:DBconexion %>" SelectCommand="SELECT idperiodo, periodo FROM periodo UNION select 999999, 'SELECCIONE UN PERIODO' ORDER BY idperiodo desc "></asp:SqlDataSource>
                                             </div>
@@ -118,6 +119,7 @@ body { padding-right: 0 !important }
                                             <label class="text-bold-600 font-small-3">Estatus</label>
                                             <asp:DropDownList ID="bestatus" runat="server" CssClass="form-control select2" onChange="consultaPrincipal()">
                                                 <asp:ListItem Selected="True" Value="0">SELECCIONE UN ESTATUS</asp:ListItem>
+                                                <asp:ListItem Value="EN CAPTURA">EN CAPTURA</asp:ListItem>
                                                 <asp:ListItem Value="AUTORIZADO">AUTORIZADO</asp:ListItem>
                                                 <asp:ListItem Value="FINALIZADO">FINALIZADO</asp:ListItem>
                                             </asp:DropDownList>
@@ -2631,16 +2633,17 @@ body { padding-right: 0 !important }
 
         }
 
-        function consultaPrincipal() {
-            $("*[id$='idP']").val(0); 
-            $("*[id$='labelCurso']").val(''); 
-            //$("*[id$='nuevo']").show(); 
-            //$("*[id$='busnom']").show(); 
-
+        function consultaPrincipal(op) {
             mostrarLoading();
+
+            if (op)
+                $("*[id$='idOP']").val(op);
+            else
+                $("*[id$='idOP']").val(2);
+
             $('#<%= Bconsultar.ClientID %>').click();
-            cerrarLoading();
-        }
+             cerrarLoading();
+         }
 
          function consultaAlumnos() {
             mostrarLoading();

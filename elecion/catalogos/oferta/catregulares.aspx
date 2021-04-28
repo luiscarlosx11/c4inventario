@@ -334,6 +334,8 @@
         }
 
         function abrirModalNuevo() {
+            $("*[id$='idS']").val(0);
+
             var categoria = $("*[id$='bcategoria']").val();
             var especialidad = $("*[id$='bespecialidad']").val();
 
