@@ -334,8 +334,7 @@
         }
 
         function abrirModalNuevo() {
-            $("*[id$='idS']").val(0);
-
+	    $("*[id$='idS']").val(0);
             var categoria = $("*[id$='bcategoria']").val();
             var especialidad = $("*[id$='bespecialidad']").val();
 
@@ -444,29 +443,29 @@
 
         function pageLoad(sender, args) {
 
-               // $("*[id$='cp']").ForceNumericOnly(); 
-               // $("*[id$='seccion']").ForceNumericOnly();
-                loadJS("/app-assets/js/scripts/forms/select/form-select2.js");
-                loadJS("/app-assets/js/scripts/forms/extended/form-inputmask.js");
-                loadJS("/app-assets/js/scripts/forms/validation/form-validation.js");
-                loadJS("/app-assets/js/scripts/extensions/sweet-alerts.js");
+            // $("*[id$='cp']").ForceNumericOnly(); 
+            // $("*[id$='seccion']").ForceNumericOnly();
+            loadJS("/app-assets/js/scripts/forms/select/form-select2.js");
+            loadJS("/app-assets/js/scripts/forms/extended/form-inputmask.js");
+            loadJS("/app-assets/js/scripts/forms/validation/form-validation.js");
+            loadJS("/app-assets/js/scripts/extensions/sweet-alerts.js");
 
-                walert = 0;
-                $('#bootstrap').on('shown.bs.modal', function () {
-                    $("*[id$='clave']").focus();
-                });
+            walert = 0;
+            $('#bootstrap').on('shown.bs.modal', function () {
+                $("*[id$='clave']").focus();
+            });
 
-                $('#bootstrap').on('keypress', function (e) {
-                    if (e.keyCode === 13) {
-                        if (walert == 0) {
-                            valida();
-                            return false;
-                        }
-                        else {
-                            swal.close();
-                        }
+            $('#bootstrap').on('keypress', function (e) {
+                if (e.keyCode === 13) {
+                    if (walert == 0) {
+                        valida();
+                        return false;
                     }
-                });
+                    else {
+                        swal.close();
+                    }
+                }
+            });
 
         }
     </script>

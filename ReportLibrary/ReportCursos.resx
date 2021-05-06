@@ -124,11 +124,13 @@
     <value>select s.nombre as instalacion,
 s.nombre as nombresucursal, s.clavecct as clavesucursal, c.estatus,
 c.nombre, cast(c.fechaini as char)as fechaini, cast(c.fechafin as char) as fechafin, c.horas, 
-coalesce(i.nombre,'INSTRUCTOR NO DEFINIDO') as instructor,
+coalesce(i.nombre,'INSTRUCTOR NO DEFINIDO') as instructor, e.especialidad, a.area,
+concat(s.calle,' # ', s.numext,' COL. ',s.colonia,' ',coalesce(s.localidad,''))as direccion, c.instalacionext, c.instalaciondomext, 
 (
 SELECT count(si.idsolicitud)
 from solicitudinscripcion si
 where si.idcurso = c.idcurso
+and si.estatus in('INSCRITO')
 )as capacitandos
 ,
 (
@@ -136,6 +138,7 @@ SELECT count(si.idsolicitud)
 from solicitudinscripcion si
 where si.idcurso = c.idcurso
 and si.becado=1
+and si.estatus in('INSCRITO')
 )as becados
 ,
 (
@@ -143,6 +146,7 @@ SELECT count(si.idsolicitud)
 from solicitudinscripcion si
 where si.idcurso = c.idcurso
 and si.becado=0
+and si.estatus in('INSCRITO')
 )as pagado,
 (
 SELECT count(si.idsolicitud)
@@ -150,6 +154,7 @@ from solicitudinscripcion si
 left join alumno a on si.idalumno = a.idalumno
 where si.idcurso = c.idcurso
 and a.sexo = 'H'
+and si.estatus in('INSCRITO')
 )as hombres,
 (
 SELECT count(si.idsolicitud)
@@ -157,6 +162,7 @@ from solicitudinscripcion si
 left join alumno a on si.idalumno = a.idalumno
 where si.idcurso = c.idcurso
 and a.sexo = 'M'
+and si.estatus in('INSCRITO')
 )as mujeres,
 (
 SELECT count(si.idsolicitud)
@@ -164,6 +170,7 @@ from solicitudinscripcion si
 left join alumno al on al.idalumno = si.idalumno
 where timestampdiff(YEAR,al.fechanacimiento,now()) between 15 and 18
 and si.idcurso = c.idcurso
+and si.estatus in('INSCRITO')
 )as e1518,
 (
 SELECT count(si.idsolicitud)
@@ -171,6 +178,7 @@ from solicitudinscripcion si
 left join alumno al on al.idalumno = si.idalumno
 where timestampdiff(YEAR,al.fechanacimiento,now()) between 19 and 24
 and si.idcurso = c.idcurso
+and si.estatus in('INSCRITO')
 )as e1924,
 (
 SELECT count(si.idsolicitud)
@@ -178,6 +186,7 @@ from solicitudinscripcion si
 left join alumno al on al.idalumno = si.idalumno
 where timestampdiff(YEAR,al.fechanacimiento,now()) between 25 and 34
 and si.idcurso = c.idcurso
+and si.estatus in('INSCRITO')
 )as e2534,
 (
 SELECT count(si.idsolicitud)
@@ -185,6 +194,7 @@ from solicitudinscripcion si
 left join alumno al on al.idalumno = si.idalumno
 where timestampdiff(YEAR,al.fechanacimiento,now()) between 35 and 44
 and si.idcurso = c.idcurso
+and si.estatus in('INSCRITO')
 )as e3544,
 (
 SELECT count(si.idsolicitud)
@@ -192,6 +202,7 @@ from solicitudinscripcion si
 left join alumno al on al.idalumno = si.idalumno
 where timestampdiff(YEAR,al.fechanacimiento,now()) between 45 and 54
 and si.idcurso = c.idcurso
+and si.estatus in('INSCRITO')
 )as e4554,
 (
 SELECT count(si.idsolicitud)
@@ -199,6 +210,7 @@ from solicitudinscripcion si
 left join alumno al on al.idalumno = si.idalumno
 where timestampdiff(YEAR,al.fechanacimiento,now()) between 55 and 64
 and si.idcurso = c.idcurso
+and si.estatus in('INSCRITO')
 )as e5564,
 (
 SELECT count(si.idsolicitud)
@@ -206,6 +218,7 @@ from solicitudinscripcion si
 left join alumno al on al.idalumno = si.idalumno
 where timestampdiff(YEAR,al.fechanacimiento,now()) &gt;= 65
 and si.idcurso = c.idcurso
+and si.estatus in('INSCRITO')
 )as e65,
 (
 SELECT count(si.idsolicitud)
@@ -214,6 +227,7 @@ left join alumno a on si.idalumno = a.idalumno
 where si.idcurso = c.idcurso
 and a.sexo = 'H'
 and si.idcondicion =2
+and si.estatus in('INSCRITO')
 )as acreditahombres,
 (
 SELECT count(si.idsolicitud)
@@ -222,7 +236,30 @@ left join alumno a on si.idalumno = a.idalumno
 where si.idcurso = c.idcurso
 and a.sexo = 'M'
 and si.idcondicion =2
+and si.estatus in('INSCRITO')
 )as acreditamujeres,
+
+(
+SELECT count(si.idsolicitud)
+from solicitudinscripcion si
+left join alumno a on si.idalumno = a.idalumno
+where si.idcurso = c.idcurso
+and a.sexo = 'H'
+and si.idcondicion =1
+and si.estatus in('INSCRITO')
+)as noacreditahombres,
+(
+SELECT count(si.idsolicitud)
+from solicitudinscripcion si
+left join alumno a on si.idalumno = a.idalumno
+where si.idcurso = c.idcurso
+and a.sexo = 'M'
+and si.idcondicion =1
+and si.estatus in('INSCRITO')
+)as noacreditamujeres,
+
+
+
 (
 SELECT count(si.idsolicitud)
 from solicitudinscripcion si
@@ -241,9 +278,11 @@ and si.idcondicion =3
 )as desertamujeres
 from sucursal s
 left join curso c on c.idsucursal = s.idsucursal
+left join especialidad e on c.idespecialidad = e.idespecialidad 
+left join area a on a.idarea = e.idarea
 left join (select p.fechaini, p.fechafin from periodo p where p.idperiodo=@idperiodo) v2 on true
 left join instructor i on i.idinstructor = c.idinstructor
-where s.idsucursal=@idsucursal
+where s.idsucursal=@idsucursal and c.estatus not in('EN CAPTURA', 'CANCELADO')
 and c.fechaini between v2.fechaini and v2.fechafin
 order by c.nombre</value>
   </data>
@@ -258,4 +297,7 @@ where s.idsucursal=@idsucursal
 and ce.idcicloescolar=@idcicloescolar
 and pe.idperiodo=@idperiodo</value>
   </data>
+  <metadata name="$this.Zoom" type="System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>0.6666667</value>
+  </metadata>
 </root>

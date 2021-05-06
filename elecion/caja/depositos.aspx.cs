@@ -4,6 +4,7 @@ using ReportLibrary;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.IO;
 using System.Security.Principal;
 using System.Web;
@@ -628,8 +629,41 @@ namespace elecion.caja
                 {
                     query = string.Concat(new string[] { query, " and (d.nombre LIKE '%", this.bname.Text.Trim().ToUpper(), "%' or d.folio LIKE '%", this.bname.Text.Trim().ToUpper(), "%') " });
                 }
+
+                if (this.roles.IndexOf('1', 0) < 0)
+                {
+                    query = string.Concat(new object[] { query, " and d.idsucursal = ", this.idsucursal, " " });
+                }
+                else if (!this.bplantel.SelectedValue.Equals("0"))
+                {
+                    query = string.Concat(query, " and d.idsucursal = ", this.bplantel.SelectedValue, " ");
+                }
+
+
+                if (!bfechaini.Text.Equals("") && !bfechafin.Text.Equals(""))
+                {
+                    query = string.Concat(new object[] { query, " and d.fecha between '"+bfechaini.Text+"' and '"+bfechafin.Text+"' " });
+                }
+
+
+
                 query = string.Concat(query, " order by d.folio desc");
                 this.DsUsuarios.SelectCommand = query;
+
+                DataView dvAccess = (DataView)DsUsuarios.Select(DataSourceSelectArguments.Empty);
+
+                if (dvAccess != null && dvAccess.Count > 0)
+                {
+                    labelConteo.Text = dvAccess.Count.ToString();
+                    divNoRegistros.Visible = false;
+                }
+
+                else
+                {
+                    labelConteo.Text = "0";
+                    divNoRegistros.Visible = true;
+                }
+
                 ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading();  ", true);
             }
             catch (Exception exception)
@@ -743,6 +777,17 @@ namespace elecion.caja
             this.idsucursal = Convert.ToInt32(datos2[4]);
             this.roles = datos2[3].ToString();
             this.idSU.Value = this.idsucursal.ToString();
+
+            if (this.roles.IndexOf('1', 0) < 0)
+            {
+                this.busplantel.Visible = false;
+            }
+            else
+            {
+                this.busplantel.Visible = true;
+            }
+
+
             if (!base.IsPostBack)
             {
                 this.listadoClientes(sender, e);

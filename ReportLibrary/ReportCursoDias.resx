@@ -122,7 +122,7 @@
   </metadata>
   <data name="sqlcursosdias.SelectCommand" xml:space="preserve">
     <value>SET lc_time_names = 'es_MX';
-select distinct(MONTHNAME(f.fecha))as mes,count(f.fecha)as dias, TIMESTAMPDIFF(HOUR, f.horaini, f.horafin) AS horas
+select distinct(MONTHNAME(f.fecha))as mes,count(f.fecha)as dias, round((unix_timestamp(f.horafin) - unix_timestamp(f.horaini)) / 3600.0,1) as horas
 from fechascurso f
 left join curso c on f.idcurso = c.idcurso
 where f.idcurso = @idcurso
