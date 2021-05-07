@@ -49,7 +49,7 @@ body { padding-right: 0 !important }
 
                         <asp:Button runat="server" ID="bvolver" OnClick="volverCursos" Style="display: none"  UseSubmitBehavior="false" />
 
-                        <asp:Button runat="server" ID="Bconsultar" OnClick="listadoGrupos" Style="display: none" UseSubmitBehavior="false" />
+                        <asp:Button runat="server" ID="Bconsultar" OnClick="listadoClientes" Style="display: none" UseSubmitBehavior="false" />
                         <asp:Button runat="server" ID="Bnuevo" OnClick="limpiarCampos" Style="display: none" UseSubmitBehavior="false" />
                         <asp:Button runat="server" ID="BnuevoInscripcion" OnClick="limpiarCamposInscripcion" Style="display: none" UseSubmitBehavior="false" />
                         <asp:Button runat="server" ID="Bcancelarcurso" OnClick="cancelaAlumno" Style="display: none" UseSubmitBehavior="false"/>
@@ -67,7 +67,7 @@ body { padding-right: 0 !important }
                                     <div class="media-body">
                                         <h4 class="font-weight-bold">Inscripción</h4>
                                         <span class="font-small-3">
-                                            <asp:Label runat="server" ID="labelConteo"></asp:Label>
+                                            <asp:Label runat="server" ID="labelConteo">0</asp:Label>
                                             registro(s) encontrado(s)</span>
                                     </div>
 

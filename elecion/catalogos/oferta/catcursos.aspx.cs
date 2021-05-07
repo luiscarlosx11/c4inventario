@@ -1279,8 +1279,8 @@ namespace elecion.catalogos.oferta
             this.idSU.Value = this.idsucursal.ToString();
             if (!IsPostBack)
             {
-                
-                this.listadoClientes(sender, e);
+                if (this.roles.IndexOf('1', 0) < 0)
+                    this.listadoClientes(sender, e);
             }
             ScriptManager.RegisterStartupScript(this, base.GetType(), "actu", "dar(); ", true);
         }

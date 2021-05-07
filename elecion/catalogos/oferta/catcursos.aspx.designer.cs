@@ -33,15 +33,6 @@ namespace elecion.catalogos.oferta
         protected global::System.Web.UI.UpdatePanel pU;
 
         /// <summary>
-        /// Control labelConteo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labelConteo;
-
-        /// <summary>
         /// Control idP.
         /// </summary>
         /// <remarks>

@@ -1089,7 +1089,7 @@ namespace elecion.inscripcion
                 gridAlumnos.Visible = false;
                 gridCursos.Visible = true;
 
-            listadoGrupos(sender, e);
+            listadoClientes(sender, e);
 
                 ScriptManager.RegisterClientScriptBlock(this.Page, typeof(string), "myScriptName", "cerrarLoading();   ", true);
            
@@ -1189,35 +1189,7 @@ namespace elecion.inscripcion
 
         protected void listadoClientes(object sender, EventArgs e)
         {
-        }
 
-        protected void listadoDocumentacion(object sender, EventArgs e)
-        {
-            try
-            {
-                this.GVdocumentacion.DataSourceID = this.DSdocumentacion.ID;
-                string str = string.Concat(new string[] { "select d.iddocumentacion, d.documentacion, ( select count(c.iddocumentacion) from cursodocumentacion c where c.idsolicitud = ", this.idI.Value, " and c.iddocumentacion = d.iddocumentacion )as entregado, (select movilidad from curso where idcurso=", this.idP.Value, ")as movilidad, (select enlinea from curso where idcurso=", this.idP.Value, ")as enlinea from documentacion d order by d.documentacion" });
-                this.DSdocumentacion.SelectCommand = str;
-            }
-            catch (Exception exception)
-            {
-            }
-        }
-
-        protected void listadoFechas(object sender, EventArgs e)
-        {
-            try
-            {
-                this.listadoDocumentacion(sender, e);
-                ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading();  $('#winscripcion').modal('show'); cargatags(); ", true);
-            }
-            catch (Exception exception)
-            {
-            }
-        }
-
-        protected void listadoGrupos(object sender, EventArgs e)
-        {
             Convert.ToInt32(this.limite.Value);
             int pag = 1;
             try
@@ -1282,6 +1254,37 @@ namespace elecion.inscripcion
             catch (Exception exception)
             {
             }
+
+        }
+
+        protected void listadoDocumentacion(object sender, EventArgs e)
+        {
+            try
+            {
+                this.GVdocumentacion.DataSourceID = this.DSdocumentacion.ID;
+                string str = string.Concat(new string[] { "select d.iddocumentacion, d.documentacion, ( select count(c.iddocumentacion) from cursodocumentacion c where c.idsolicitud = ", this.idI.Value, " and c.iddocumentacion = d.iddocumentacion )as entregado, (select movilidad from curso where idcurso=", this.idP.Value, ")as movilidad, (select enlinea from curso where idcurso=", this.idP.Value, ")as enlinea from documentacion d order by d.documentacion" });
+                this.DSdocumentacion.SelectCommand = str;
+            }
+            catch (Exception exception)
+            {
+            }
+        }
+
+        protected void listadoFechas(object sender, EventArgs e)
+        {
+            try
+            {
+                this.listadoDocumentacion(sender, e);
+                ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading();  $('#winscripcion').modal('show'); cargatags(); ", true);
+            }
+            catch (Exception exception)
+            {
+            }
+        }
+
+        protected void listadoGrupos(object sender, EventArgs e)
+        {
+            
         }
 
         protected void lusuarios_Sorting(object sender, GridViewSortEventArgs e)
@@ -1316,8 +1319,8 @@ namespace elecion.inscripcion
             }
             if (!base.IsPostBack)
             {
-                this.listadoAlumnos(sender, e);
-                this.listadoGrupos(sender, e);
+                if (this.roles.IndexOf('1', 0) < 0)
+                    this.listadoClientes(sender, e);
                 //this.nuevo.Visible = false;
                 //this.barrabus.Visible = false;
                 gridAlumnos.Visible = false;

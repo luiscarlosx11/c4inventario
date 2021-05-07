@@ -44,7 +44,7 @@ body { padding-right: 0 !important }
                        <div class="media-body">
                            <h4 class="font-weight-bold">Autorización de Cursos</h4>
                            <span class="font-small-3">
-                               <asp:Label runat="server" ID="labelConteo"></asp:Label>
+                               <asp:Label runat="server" ID="labelConteo">0</asp:Label>
                                registro(s) encontrado(s)</span>
                        </div>
 

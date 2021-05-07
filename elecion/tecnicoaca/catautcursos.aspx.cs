@@ -38,7 +38,8 @@ namespace elecion.tecnicoaca
 
             if (!IsPostBack)
             {
-                listadoClientes(sender, e);
+                if (this.roles.IndexOf('1', 0) < 0)
+                    listadoClientes(sender, e);
             }
 
             //if (bnombre.Text.Trim().)
