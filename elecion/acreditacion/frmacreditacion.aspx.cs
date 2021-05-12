@@ -166,7 +166,13 @@ namespace elecion.acreditacion
                         mySqlCommand.ExecuteNonQuery();
                         mySqlTransaction.Commit();
                         this.listadoAlumnos(sender, e);
-                        ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading(); toastExito();", true);
+
+                        gridAlumnos.Visible = false;
+                        gridCursos.Visible = true;
+
+                        listadoClientes(sender, e);
+
+                        ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading(); toastExito(); ", true);
                     }
                     catch (Exception exception1)
                     {
@@ -1069,7 +1075,7 @@ namespace elecion.acreditacion
             try
             {
                 this.GValumnos.DataSourceID = this.DSalumnos.ID;
-                string str = string.Concat("select c.nombre, c.idcurso, al.idalumno, al.nocontrol, si.idsolicitud, si.estatus, concat(al.apaterno,' ', al.amaterno,' ', al.nombre)as nombrealumno, case si.becado when 1 then round(c.costo -c.costo * (si.porcentaje / 100),2) else c.costo end as costoalumno, si.folio,  cast(si.fecha as char)as fecha, si.observaciones as observacionesalumno, c.estatus as cursoestatus, si.asistencias, si.calificacion, c.dias, co.condicion, c.estatus as estatuscurso from alumno al  left join solicitudinscripcion si on si.idalumno = al.idalumno  left join curso c on si.idcurso = c.idcurso left join condicionescolar co on co.idcondicion = si.idcondicion  where si.idcurso = ", this.idP.Value, " and si.estatus not in('CANCELADO') ");
+                string str = string.Concat("select c.nombre, c.idcurso, al.idalumno, al.nocontrol, si.idsolicitud, si.estatus, concat(al.apaterno,' ', al.amaterno,' ', al.nombre)as nombrealumno, case si.becado when 1 then round(c.costo -c.costo * (si.porcentaje / 100),2) else c.costo end as costoalumno, si.folio,  cast(si.fecha as char)as fecha, si.observaciones as observacionesalumno, c.estatus as cursoestatus, si.asistencias, si.calificacion, c.dias, co.condicion, c.estatus as estatuscurso, (select count(idobjetivo) from cursoobjetivo where idcurso="+idP.Value+")as subobjetivos from alumno al  left join solicitudinscripcion si on si.idalumno = al.idalumno  left join curso c on si.idcurso = c.idcurso left join condicionescolar co on co.idcondicion = si.idcondicion  where si.idcurso = ", this.idP.Value, " and si.estatus not in('CANCELADO') ");
                 if (this.busnom.Text.Trim() != "")
                 {
                     str = string.Concat(str, " and concat(al.apaterno,' ',al.amaterno,' ',al.nombre) LIKE '%", this.busnom.Text.Trim().ToUpper(), "%' ");
@@ -1172,7 +1178,7 @@ namespace elecion.acreditacion
 
 
                 this.lGeneral.DataSourceID = this.DsUsuarios.ID;
-                string query = "select c.idcurso, c.clave, c.idsucursal, coalesce(c.nombre,'NO DEFINIDO')as nombre,  coalesce(a.area,'AREA NO ASIGNADA') as area,  coalesce(e.especialidad,'ESPECIALIDAD NO ASIGNADA')as especialidad,  coalesce(i.nombre,'INSTRUCTOR NO DEFINIDO') as instructor, t.tipocurso, c.estatus, c.costo, cast(c.fechaini as char)as fechaini, cast(c.fechafin as char)as fechafin, cast(TIME_FORMAT(c.horaini, '%h:%i %p') as char)as horaini, cast(TIME_FORMAT(c.horafin, '%h:%i %p') as char)as horafin,  c.alumnosminimo, (select count(s.idalumno) from solicitudinscripcion s where s.idcurso = c.idcurso and s.estatus not in('CANCELADO')) as inscritos, s.nombre as plantel from curso c left join area a on a.idarea = c.idarea left join especialidad e on e.idespecialidad = c.idespecialidad left join tipocurso t on t.idtipocurso = c.idtipocurso left join instructor i on i.idinstructor = c.idinstructor left join sucursal s on s.idsucursal = c.idsucursal where c.tipo='C' and c.estatus in('AUTORIZADO','FINALIZADO') ";
+                string query = "select c.idcurso, c.clave, c.idsucursal, coalesce(c.nombre,'NO DEFINIDO')as nombre,  coalesce(a.area,'AREA NO ASIGNADA') as area,  coalesce(e.especialidad,'ESPECIALIDAD NO ASIGNADA')as especialidad,  coalesce(i.nombre,'INSTRUCTOR NO DEFINIDO') as instructor, t.tipocurso, c.estatus, c.costo, cast(c.fechaini as char)as fechaini, cast(c.fechafin as char)as fechafin, cast(TIME_FORMAT(c.horaini, '%h:%i %p') as char)as horaini, cast(TIME_FORMAT(c.horafin, '%h:%i %p') as char)as horafin,  c.alumnosminimo, (select count(s.idalumno) from solicitudinscripcion s where s.idcurso = c.idcurso and s.estatus not in('CANCELADO')) as inscritos, s.nombre as plantel, c.dias, (select count(idobjetivo) from cursoobjetivo where idcurso=c.idcurso)as subobjetivos from curso c left join area a on a.idarea = c.idarea left join especialidad e on e.idespecialidad = c.idespecialidad left join tipocurso t on t.idtipocurso = c.idtipocurso left join instructor i on i.idinstructor = c.idinstructor left join sucursal s on s.idsucursal = c.idsucursal where c.tipo='C' and c.estatus in('AUTORIZADO','FINALIZADO') and c.fechafin<=current_date ";
                 if (this.bname.Text.Trim() != "")
                 {
                     query = string.Concat(new string[] { query, " and (c.nombre LIKE '%", this.bname.Text.Trim().ToUpper(), "%' or c.clave LIKE '%", this.bname.Text.Trim().ToUpper(), "%') " });

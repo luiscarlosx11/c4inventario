@@ -7,11 +7,13 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace elecion.catalogos.ciclo {
-    
-    
-    public partial class calendario {
-        
+namespace elecion.catalogos.ciclo
+{
+
+
+    public partial class calendario
+    {
+
         /// <summary>
         /// Control ScriptManager1.
         /// </summary>
@@ -20,7 +22,7 @@ namespace elecion.catalogos.ciclo {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.ScriptManager ScriptManager1;
-        
+
         /// <summary>
         /// Control pU.
         /// </summary>
@@ -29,16 +31,7 @@ namespace elecion.catalogos.ciclo {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel pU;
-        
-        /// <summary>
-        /// Control labelConteo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labelConteo;
-        
+
         /// <summary>
         /// Control idP.
         /// </summary>
@@ -47,7 +40,7 @@ namespace elecion.catalogos.ciclo {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField idP;
-        
+
         /// <summary>
         /// Control limite.
         /// </summary>
@@ -56,7 +49,7 @@ namespace elecion.catalogos.ciclo {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField limite;
-        
+
         /// <summary>
         /// Control idS.
         /// </summary>
@@ -65,7 +58,7 @@ namespace elecion.catalogos.ciclo {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField idS;
-        
+
         /// <summary>
         /// Control idF.
         /// </summary>
@@ -74,7 +67,7 @@ namespace elecion.catalogos.ciclo {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField idF;
-        
+
         /// <summary>
         /// Control Bfechas.
         /// </summary>
@@ -83,7 +76,7 @@ namespace elecion.catalogos.ciclo {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Bfechas;
-        
+
         /// <summary>
         /// Control guardarFechas.
         /// </summary>
@@ -92,7 +85,7 @@ namespace elecion.catalogos.ciclo {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button guardarFechas;
-        
+
         /// <summary>
         /// Control borrarFechas.
         /// </summary>
@@ -101,7 +94,7 @@ namespace elecion.catalogos.ciclo {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button borrarFechas;
-        
+
         /// <summary>
         /// Control fechaini.
         /// </summary>
@@ -110,7 +103,7 @@ namespace elecion.catalogos.ciclo {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox fechaini;
-        
+
         /// <summary>
         /// Control fechafin.
         /// </summary>

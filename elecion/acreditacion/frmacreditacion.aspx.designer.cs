@@ -429,6 +429,15 @@ namespace elecion.acreditacion
         protected global::System.Web.UI.WebControls.TextBox busnom;
 
         /// <summary>
+        /// Control nuevo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton nuevo;
+
+        /// <summary>
         /// Control GValumnos.
         /// </summary>
         /// <remarks>

@@ -154,7 +154,7 @@ body { padding-right: 0 !important }
                                                                     <Columns>
 
 
-                                                                        <asp:TemplateField HeaderText="Generales" HeaderStyle-CssClass="primary">
+                                                                        <asp:TemplateField HeaderText="Curso" HeaderStyle-CssClass="primary">
                                                                             <ItemTemplate>
 
                                                                                 <h7 class="font-weight-bold"><%# Eval("clave")+ " / "+Eval("nombre")%></h7>
@@ -172,17 +172,33 @@ body { padding-right: 0 !important }
                                                                         </asp:TemplateField>
 
 
-                                                                        <asp:TemplateField HeaderText="Alumno" HeaderStyle-CssClass="centrarCelda primary" ItemStyle-CssClass="centrarCelda">
+                                                                        <asp:TemplateField HeaderText="Alumnos" HeaderStyle-CssClass="centrarCelda primary" ItemStyle-CssClass="centrarCelda">
                                                                             <ItemTemplate>
 
                                                                                 <ul class="list-inline">
                                                                                     <li class="border-right-blue-grey border-right-lighten-2 pr-2">
                                                                                         <h4 class="danger font-weight-bold"><%# Eval("alumnosminimo")%></h4>
-                                                                                        <span class="blue-grey darken-1 font-small-3"><i class="icon-user"></i>Requerido</span>
+                                                                                        <span class="blue-grey darken-1 font-small-3"><i class="icon-user"></i> Requeridos</span>
                                                                                     </li>
                                                                                     <li class="pl-2">
                                                                                         <h4 class="danger font-weight-bold"><%# Eval("inscritos")%></h4>
-                                                                                        <span class="blue-grey darken-1 font-small-3"><i class="icon-user-follow"></i>Inscritos</span>
+                                                                                        <span class="blue-grey darken-1 font-small-3"><i class="icon-user-follow"></i> Inscritos</span>
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </ItemTemplate>
+                                                                        </asp:TemplateField>
+
+                                                                        <asp:TemplateField HeaderText="Normatividad" HeaderStyle-CssClass="centrarCelda primary" ItemStyle-CssClass="centrarCelda">
+                                                                            <ItemTemplate>
+
+                                                                                <ul class="list-inline">
+                                                                                    <li class="border-right-blue-grey border-right-lighten-2 pr-2">
+                                                                                        <h4 class="danger font-weight-bold"><%# Eval("dias")%></h4>
+                                                                                        <span class="blue-grey darken-1 font-small-3"><i class="icon-calendar"></i> Días</span>
+                                                                                    </li>
+                                                                                    <li class="pl-2">
+                                                                                        <h4 class="danger font-weight-bold"><%# Eval("subobjetivos")%></h4>
+                                                                                        <span class="blue-grey darken-1 font-small-3"><i class="icon-check"></i> SubObjetivos</span>
                                                                                     </li>
                                                                                 </ul>
                                                                             </ItemTemplate>
@@ -283,7 +299,17 @@ body { padding-right: 0 !important }
                                     <asp:TextBox ID="busnom" CssClass="form-control text-uppercase" MaxLength="60" placeholder="Búsqueda por nombre..." name="busnom" runat="server" onChange="consultaAlumnos()"></asp:TextBox>
                                     
                                 </div>
-                            </div>                            
+                            </div>     
+                            <div class="col-md-8 float-md-right">
+                                 <span class="pull-right">
+                                <label class="text-bold-600 font-small-3">&nbsp</label>
+                                 <div class="heading-elements">
+                                        <button type="button" id="nuevo" onclick="finalizarCurso();" class="btn btn-icon btn-black mr-1 text-bold-700" data-toggle="modal" runat="server">
+                                           Finalizar curso
+                                        </button>
+                                    </div>
+                                 </div> 
+                             </span>
                         </div>
 
                         <div class="row">
@@ -318,14 +344,39 @@ body { padding-right: 0 !important }
                                                                         <h7 class="text-bold-400 font-small-2"> <%# "No. control: "+Eval("nocontrol")%></h7>
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
-
-                                                                <asp:TemplateField HeaderText="Asistencias" ItemStyle-Width="20px" HeaderStyle-CssClass="centrarCelda primary" ItemStyle-CssClass="centrarCelda">
+                                                               
+                                                                <asp:TemplateField HeaderText="Asistencias" HeaderStyle-CssClass="centrarCelda primary" ItemStyle-CssClass="centrarCelda">
                                                                     <ItemTemplate>
-                                                                        <span class="font-size-small"><%# Eval("asistencias")+ "/" + Eval("dias")%> </span>
+
+                                                                        <ul class="list-inline">
+                                                                            <li class="border-right-blue-grey border-right-lighten-2 pr-2">
+                                                                                <h4 class="danger font-weight-bold"><%# Eval("asistencias").ToString().Equals("")?"N/A":Eval("asistencias")%></h4>
+                                                                                <span class="blue-grey darken-1 font-small-3"><i class="icon-calendar"></i> Asistencias</span>
+                                                                            </li>
+                                                                            <li class="pl-2">
+                                                                                <h4 class="danger font-weight-bold"><%# Eval("dias")%></h4>
+                                                                                <span class="blue-grey darken-1 font-small-3"><i class="icon-check"></i> Días</span>
+                                                                            </li>
+                                                                        </ul>
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
-                                                                 <asp:BoundField DataField="calificacion" HeaderText="Calificación" ItemStyle-Width="50px" HeaderStyle-CssClass="centrarCelda primary" ItemStyle-CssClass="centrarCelda"/>
 
+
+                                                                 <asp:TemplateField HeaderText="Calificación" HeaderStyle-CssClass="centrarCelda primary" ItemStyle-CssClass="centrarCelda">
+                                                                    <ItemTemplate>
+
+                                                                        <ul class="list-inline">
+                                                                            <li class="border-right-blue-grey border-right-lighten-2 pr-2">
+                                                                                <h4 class="danger font-weight-bold"><%# Eval("calificacion").ToString().Equals("")?"N/A":Eval("calificacion")%></h4>
+                                                                                <span class="blue-grey darken-1 font-small-3"><i class="icon-calendar"></i> Calificación</span>
+                                                                            </li>
+                                                                            <li class="pl-2">
+                                                                                <h4 class="danger font-weight-bold"><%# Eval("subobjetivos")%></h4>
+                                                                                <span class="blue-grey darken-1 font-small-3"><i class="icon-check"></i> SubObjetivos</span>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
                                                                  
                                                                 <asp:TemplateField HeaderText="Estatus" ItemStyle-Width="20px" HeaderStyle-CssClass="centrarCelda primary" ItemStyle-CssClass="centrarCelda">
                                                                     <ItemTemplate>
@@ -342,7 +393,7 @@ body { padding-right: 0 !important }
                                                                             <i class="ft-delete"></i>
                                                                         </button>
 
-                                                                        <button type="button" onclick="abrirModalObjetivo(<%# Eval("idsolicitud")%>,<%# Eval("idcurso").ToString() %>,'<%# Eval("nombrealumno").ToString() %>',<%# Eval("dias").ToString() %>,<%# Eval("asistencias").ToString() %>)" class="btn btn-icon btn-success mr-1 btn-sm tooltips" <%#  Eval("estatuscurso").Equals("FINALIZADO")||Eval("estatus").Equals("DESERCIÓN")||Eval("estatus").Equals("CANCELADO")?"disabled":"" %>
+                                                                        <button type="button" onclick="abrirModalObjetivo(<%# Eval("idsolicitud")%>,<%# Eval("idcurso").ToString() %>,'<%# Eval("nombrealumno").ToString() %>',<%# Eval("dias").ToString() %>,<%# Eval("asistencias").ToString() %>)" class="btn btn-icon btn-success mr-1 btn-sm tooltips" <%#  Eval("estatuscurso").Equals("FINALIZADO")||Eval("estatus").Equals("DESERCIÓN")||Eval("estatus").Equals("CANCELADO")||Eval("subobjetivos").ToString().Equals("0")?"disabled":"" %>
                                                                             data-toggle="tooltip" data-original-title="Calificación">
                                                                             <i class="fa fa-check-circle"></i>
                                                                         </button>

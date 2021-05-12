@@ -4,6 +4,7 @@ using ReportLibrary;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Security.Principal;
 using System.Web;
 using System.Web.Configuration;
@@ -22,6 +23,7 @@ namespace elecion.acreditacion
         private int idsucursal;
         private int idusuario;
         private int idtipousuario;
+        string roles = "";
 
        
 
@@ -32,6 +34,10 @@ namespace elecion.acreditacion
             this.idusuario = Convert.ToInt32(datos[0]);
             this.idsucursal = Convert.ToInt32(datos2[4]);
             this.idS.Value = this.idsucursal.ToString();
+
+            this.roles = datos2[3].ToString();
+
+
             if (datos2[3].ToString().IndexOf('1', 0) < 0)
             {
                 this.busplantel.Visible = false;
@@ -42,12 +48,16 @@ namespace elecion.acreditacion
             }
             if (!base.IsPostBack)
             {
-                this.listadoAlumnos(sender, e);
-                this.listadoGrupos(sender, e);
-            }
-            if (this.lbcurso.Text.Equals(""))
-            {
-                this.lbcurso.Text = "SELECCIONE UN CURSO";
+                //this.listadoAlumnos(sender, e);
+                if (this.roles.IndexOf('1', 0) < 0)
+                    this.listadoClientes(sender, e);
+
+
+                //this.nuevo.Visible = false;
+                //this.barrabus.Visible = false;
+                gridAlumnos.Visible = false;
+                gridCursos.Visible = true;
+
             }
             ScriptManager.RegisterStartupScript(this, base.GetType(), "actu", "cargatags(); ", true);
         }
@@ -57,6 +67,19 @@ namespace elecion.acreditacion
             this.Dsespecialidades.DataBind();
             this.especialidad.DataBind();
         }
+
+
+        protected void volverCursos(object sender, EventArgs e)
+        {
+            gridAlumnos.Visible = false;
+            gridCursos.Visible = true;
+
+            listadoClientes(sender, e);
+
+            ScriptManager.RegisterClientScriptBlock(this.Page, typeof(string), "myScriptName", "cerrarLoading();   ", true);
+
+        }
+
 
         protected void becado_CheckedChanged(object sender, EventArgs e)
         {
@@ -1074,23 +1097,55 @@ namespace elecion.acreditacion
             try
             {
                 this.GValumnos.DataSourceID = this.DSalumnos.ID;
-                string query = string.Concat("select al.idalumno, al.nocontrol, si.idcurso, si.idsolicitud, si.estatus, si.foliodiploma, cast(si.fechadiploma as char) as fechadiploma, co.condicion, concat(al.apaterno,' ', al.amaterno,' ', al.nombre)as nombrealumno, case si.becado when 1 then round(c.costo -c.costo * (si.porcentaje / 100),2) else c.costo end as costoalumno, si.folio,  cast(si.fecha as char)as fecha, si.observaciones as observacionesalumno, si.calificacion, si.asistencias, c.estatus as estatuscurso, c.dias from alumno al  left join solicitudinscripcion si on si.idalumno = al.idalumno  left join curso c on si.idcurso = c.idcurso  left join condicionescolar co on co.idcondicion = si.idcondicion  where si.idcurso = ", this.idP.Value, " and si.idcondicion=2 ");
+                string query = string.Concat("select c.nombre, c.idcurso, al.idalumno, al.nocontrol, si.idcurso, si.idsolicitud, si.estatus, si.foliodiploma, cast(si.fechadiploma as char) as fechadiploma, co.condicion, concat(al.apaterno,' ', al.amaterno,' ', al.nombre)as nombrealumno, case si.becado when 1 then round(c.costo -c.costo * (si.porcentaje / 100),2) else c.costo end as costoalumno, si.folio,  cast(si.fecha as char)as fecha, si.observaciones as observacionesalumno, si.calificacion, si.asistencias, c.estatus as estatuscurso, c.dias, (select count(idobjetivo) from cursoobjetivo where idcurso=" + idP.Value + ")as subobjetivos from alumno al  left join solicitudinscripcion si on si.idalumno = al.idalumno  left join curso c on si.idcurso = c.idcurso  left join condicionescolar co on co.idcondicion = si.idcondicion  where si.idcurso = ", this.idP.Value, " and si.idcondicion=2 ");
                 if (this.busnom.Text.Trim() != "")
                 {
                     query = string.Concat(query, " and concat(al.apaterno,' ',al.amaterno,' ',al.nombre) LIKE '%", this.busnom.Text.Trim().ToUpper(), "%' ");
                 }
                 query = string.Concat(query, " order by nombrealumno");
                 this.DSalumnos.SelectCommand = query;
-                this.lbcurso.Text = this.labelCurso.Value;
+
+                //this.lbcurso.Text = this.labelCurso.Value;
                 if (this.idP.Value != "0")
                 {
+                    //this.nuevo.Visible = true;
                     this.barrabus.Visible = true;
                 }
                 else
                 {
-                    this.barrabus.Visible = false;
+                    //this.nuevo.Visible = false;
+                    //this.barrabus.Visible = false;
                 }
-                this.estatusCurso.Value.Equals("FINALIZADO");
+
+                DataView dvAccess = (DataView)DSalumnos.Select(DataSourceSelectArguments.Empty);
+
+                if (dvAccess != null && dvAccess.Count > 0)
+                {
+                    labelcurso.Text = dvAccess[0][0].ToString();
+                }
+                else
+                {
+
+                    using (MySqlConnection mySqlConnection = new MySqlConnection(WebConfigurationManager.ConnectionStrings["DBconexion"].ConnectionString))
+                    {
+                        mySqlConnection.Open();
+
+                        MySqlDataReader mySqlDataReader = (new MySqlCommand(string.Concat("select nombre from curso where idcurso=" + idP.Value), mySqlConnection)).ExecuteReader();
+                        if (mySqlDataReader.HasRows)
+                        {
+                            mySqlDataReader.Read();
+                            labelcurso.Text = mySqlDataReader["nombre"].ToString();
+                        }
+
+                        mySqlConnection.Close();
+
+                    }
+
+                }
+
+                gridAlumnos.Visible = true;
+                gridCursos.Visible = false;
+
                 ScriptManager.RegisterClientScriptBlock(this.Page, typeof(string), "myScriptName", "cerrarLoading();", true);
             }
             catch (Exception exception)
@@ -1128,6 +1183,71 @@ namespace elecion.acreditacion
 
         protected void listadoClientes(object sender, EventArgs e)
         {
+
+            Convert.ToInt32(this.limite.Value);
+            int pag = 1;
+            try
+            {
+                if (idOP.Value.Equals("") || idOP.Value.Equals("2"))
+                {
+                    if (!bperiodo.SelectedValue.Equals(""))
+                        DSperiodo.SelectCommand = "SELECT idperiodo, periodo FROM periodo where idcicloescolar=" + bciclo.SelectedValue + " UNION select 999999, 'SELECCIONE UN PERIODO' ORDER BY idperiodo desc";
+                    else
+                        DSperiodo.SelectCommand = "SELECT idperiodo, periodo FROM periodo where idcicloescolar=99999 UNION select 999999, 'SELECCIONE UN PERIODO' ORDER BY idperiodo desc";
+
+                    bperiodo.DataBind();
+                    DSperiodo.DataBind();
+                }
+
+
+                this.lGeneral.DataSourceID = this.DsUsuarios.ID;
+                string query = "select c.idcurso, c.clave, c.idsucursal, coalesce(c.nombre,'NO DEFINIDO')as nombre,  coalesce(a.area,'AREA NO ASIGNADA') as area,  coalesce(e.especialidad,'ESPECIALIDAD NO ASIGNADA')as especialidad,  coalesce(i.nombre,'INSTRUCTOR NO DEFINIDO') as instructor, t.tipocurso, c.estatus, c.costo, cast(c.fechaini as char)as fechaini, cast(c.fechafin as char)as fechafin, cast(TIME_FORMAT(c.horaini, '%h:%i %p') as char)as horaini, cast(TIME_FORMAT(c.horafin, '%h:%i %p') as char)as horafin,  c.alumnosminimo, (select count(s.idalumno) from solicitudinscripcion s where s.idcurso = c.idcurso and s.estatus not in('CANCELADO')) as inscritos, s.nombre as plantel, c.dias, (select count(idobjetivo) from cursoobjetivo where idcurso=c.idcurso)as subobjetivos from curso c left join area a on a.idarea = c.idarea left join especialidad e on e.idespecialidad = c.idespecialidad left join tipocurso t on t.idtipocurso = c.idtipocurso left join instructor i on i.idinstructor = c.idinstructor left join sucursal s on s.idsucursal = c.idsucursal where c.tipo='C' and c.estatus in('FINALIZADO') and c.fechafin<=current_date ";
+                if (this.bname.Text.Trim() != "")
+                {
+                    query = string.Concat(new string[] { query, " and (c.nombre LIKE '%", this.bname.Text.Trim().ToUpper(), "%' or c.clave LIKE '%", this.bname.Text.Trim().ToUpper(), "%') " });
+                }
+                if (this.roles.IndexOf('1', 0) < 0)
+                {
+                    query = string.Concat(new object[] { query, " and c.idsucursal = ", this.idsucursal, " " });
+                }
+                else if (!this.bplantel.SelectedValue.Equals("0"))
+                {
+                    query = string.Concat(query, " and c.idsucursal = ", this.bplantel.SelectedValue, " ");
+                }
+
+                if (!bciclo.SelectedValue.Equals("") && !bciclo.SelectedValue.Equals("999999"))
+                    query += "and c.idcicloescolar=" + bciclo.SelectedValue + " ";
+
+                if (!bperiodo.SelectedValue.Equals("") && !bperiodo.SelectedValue.Equals("999999"))
+                    query += "and(select p.idperiodo from periodo p where c.fechaini between p.fechaini and p.fechafin)=" + bperiodo.SelectedValue + " ";
+
+                if (!bestatus.SelectedValue.Equals("0"))
+                    query += "and c.estatus='" + bestatus.SelectedValue + "' ";
+
+
+                query = string.Concat(query, " order by c.idsucursal, c.fechaini desc,  c.nombre");
+                this.DsUsuarios.SelectCommand = query;
+
+                DataView dvAccess = (DataView)DsUsuarios.Select(DataSourceSelectArguments.Empty);
+
+                if (dvAccess != null && dvAccess.Count > 0)
+                {
+                    labelConteo.Text = dvAccess.Count.ToString();
+                    divNoRegistros.Visible = false;
+                }
+
+                else
+                {
+
+                    labelConteo.Text = "0";
+                    divNoRegistros.Visible = true;
+                }
+
+
+            }
+            catch (Exception exception)
+            {
+            }
         }
 
         protected void listadoDocumentacion(object sender, EventArgs e)
@@ -1157,29 +1277,7 @@ namespace elecion.acreditacion
 
         protected void listadoGrupos(object sender, EventArgs e)
         {
-            try
-            {
-                this.lgrupos.DataSourceID = this.DSgrupos.ID;
-                string query = "select c.idcurso, c.idsucursal, coalesce(c.nombre,'NO DEFINIDO')as nombre,  coalesce(a.area,'AREA NO ASIGNADA') as area,  coalesce(e.especialidad,'ESPECIALIDAD NO ASIGNADA')as especialidad,  coalesce(i.nombre,'INSTRUCTOR NO DEFINIDO') as instructor, t.tipocurso, c.estatus, c.costo, cast(c.fechaini as char)as fechaini, cast(c.fechafin as char)as fechafin, cast(TIME_FORMAT(c.horaini, '%h:%i %p') as char)as horaini, cast(TIME_FORMAT(c.horafin, '%h:%i %p') as char)as horafin,  c.alumnosminimo, (select count(s.idalumno) from solicitudinscripcion s where s.idcurso = c.idcurso) as inscritos, s.nombre as plantel,  c.estatus from curso c left join area a on a.idarea = c.idarea left join especialidad e on e.idespecialidad = c.idespecialidad left join tipocurso t on t.idtipocurso = c.idtipocurso left join instructor i on i.idinstructor = c.idinstructor left join sucursal s on s.idsucursal = c.idsucursal where c.tipo='C' and c.estatus='FINALIZADO' ";
-                if (!this.bplantel.Visible)
-                {
-                    query = string.Concat(new object[] { query, " and c.idsucursal=", this.idsucursal, " " });
-                }
-                else if (!this.bplantel.SelectedValue.Equals("0"))
-                {
-                    query = string.Concat(query, " and c.idsucursal=", this.bplantel.SelectedValue, " ");
-                }
-                if (this.bname.Text.Trim() != "")
-                {
-                    query = string.Concat(query, " and c.nombre LIKE '%", this.bname.Text.Trim().ToUpper(), "%' ");
-                }
-                query = string.Concat(query, " order by c.idsucursal, c.nombre");
-                this.DSgrupos.SelectCommand = query;
-                this.listadoAlumnos(sender, e);
-            }
-            catch (Exception exception)
-            {
-            }
+           
         }
 
         protected void listadoObjetivos(object sender, EventArgs e)

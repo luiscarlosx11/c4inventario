@@ -7,11 +7,13 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace elecion.catalogos.ciclo {
-    
-    
-    public partial class catciclos {
-        
+namespace elecion.catalogos.ciclo
+{
+
+
+    public partial class catciclos
+    {
+
         /// <summary>
         /// Control ScriptManager1.
         /// </summary>
@@ -20,7 +22,7 @@ namespace elecion.catalogos.ciclo {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.ScriptManager ScriptManager1;
-        
+
         /// <summary>
         /// Control pU.
         /// </summary>
@@ -29,25 +31,7 @@ namespace elecion.catalogos.ciclo {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel pU;
-        
-        /// <summary>
-        /// Control idS.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField idS;
-        
-        /// <summary>
-        /// Control idP.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField idP;
-        
+
         /// <summary>
         /// Control labelConteo.
         /// </summary>
@@ -56,16 +40,25 @@ namespace elecion.catalogos.ciclo {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label labelConteo;
-        
+
         /// <summary>
-        /// Control nuevo.
+        /// Control idP.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton nuevo;
-        
+        protected global::System.Web.UI.WebControls.HiddenField idP;
+
+        /// <summary>
+        /// Control idS.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField idS;
+
         /// <summary>
         /// Control Bperiodos.
         /// </summary>
@@ -74,7 +67,7 @@ namespace elecion.catalogos.ciclo {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Bperiodos;
-        
+
         /// <summary>
         /// Control lgastos.
         /// </summary>
@@ -83,7 +76,7 @@ namespace elecion.catalogos.ciclo {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView lgastos;
-        
+
         /// <summary>
         /// Control DsListadoGastos.
         /// </summary>
@@ -92,7 +85,7 @@ namespace elecion.catalogos.ciclo {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource DsListadoGastos;
-        
+
         /// <summary>
         /// Control UpdatePanel3.
         /// </summary>
@@ -101,7 +94,7 @@ namespace elecion.catalogos.ciclo {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel3;
-        
+
         /// <summary>
         /// Control idr.
         /// </summary>
@@ -110,7 +103,7 @@ namespace elecion.catalogos.ciclo {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField idr;
-        
+
         /// <summary>
         /// Control cicloescolar.
         /// </summary>
@@ -119,7 +112,7 @@ namespace elecion.catalogos.ciclo {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox cicloescolar;
-        
+
         /// <summary>
         /// Control fechaini.
         /// </summary>
@@ -128,7 +121,7 @@ namespace elecion.catalogos.ciclo {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox fechaini;
-        
+
         /// <summary>
         /// Control fechafin.
         /// </summary>
@@ -137,7 +130,7 @@ namespace elecion.catalogos.ciclo {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox fechafin;
-        
+
         /// <summary>
         /// Control guardar.
         /// </summary>
@@ -146,7 +139,7 @@ namespace elecion.catalogos.ciclo {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button guardar;
-        
+
         /// <summary>
         /// Control UpdatePanel1.
         /// </summary>
@@ -155,7 +148,7 @@ namespace elecion.catalogos.ciclo {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
-        
+
         /// <summary>
         /// Control periodo.
         /// </summary>
@@ -164,7 +157,7 @@ namespace elecion.catalogos.ciclo {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox periodo;
-        
+
         /// <summary>
         /// Control Pfini.
         /// </summary>
@@ -173,7 +166,7 @@ namespace elecion.catalogos.ciclo {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Pfini;
-        
+
         /// <summary>
         /// Control Pffin.
         /// </summary>
@@ -182,7 +175,7 @@ namespace elecion.catalogos.ciclo {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Pffin;
-        
+
         /// <summary>
         /// Control Button3.
         /// </summary>
@@ -191,7 +184,7 @@ namespace elecion.catalogos.ciclo {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlButton Button3;
-        
+
         /// <summary>
         /// Control UpdatePanel2.
         /// </summary>
@@ -200,7 +193,7 @@ namespace elecion.catalogos.ciclo {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel2;
-        
+
         /// <summary>
         /// Control BeliminaPeriodo.
         /// </summary>
@@ -209,7 +202,7 @@ namespace elecion.catalogos.ciclo {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button BeliminaPeriodo;
-        
+
         /// <summary>
         /// Control guardarPeriodo.
         /// </summary>
@@ -218,7 +211,7 @@ namespace elecion.catalogos.ciclo {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button guardarPeriodo;
-        
+
         /// <summary>
         /// Control GVperiodos.
         /// </summary>
@@ -227,7 +220,7 @@ namespace elecion.catalogos.ciclo {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GVperiodos;
-        
+
         /// <summary>
         /// Control DSperiodos.
         /// </summary>

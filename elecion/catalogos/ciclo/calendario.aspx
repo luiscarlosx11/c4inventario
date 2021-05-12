@@ -25,23 +25,7 @@ body { padding-right: 0 !important }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="titulobreads" runat="server">
-    <div class="content-header row">
-        <div class="content-header-left col-md-6 col-xs-12 mb-1">
-            <h3 class="content-header-title">CICLO ESCOLAR</h3>
-          </div>
-          <div class="content-header-right breadcrumbs-right breadcrumbs-top col-md-6 col-xs-12">
-            <div class="breadcrumb-wrapper col-xs-12">
-              <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">Inicio</a>
-                </li>
-                <li class="breadcrumb-item"><a href="#">Catálogos</a>
-                </li>
-                <li class="breadcrumb-item active"><a href="#">Ciclo Escolar</a>
-                </li>
-              </ol>
-            </div>
-          </div>
-    </div>
+   
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cuerpo" runat="server">
  <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true"></asp:ScriptManager>
@@ -50,54 +34,39 @@ body { padding-right: 0 !important }
 
     <asp:UpdatePanel runat="server" ID="pU">
         <ContentTemplate>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">CALENDARIO</h4>
-                            <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
-                            <div class="heading-elements">
-                                <ul class="list-inline mb-0">
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="card-body collapse in">
 
+              <div class="content-header row">
 
-                            <div class="col-md-12">
-                                <div class="card overflow-hidden">
-                                    <div class="card-body">
-                                        <div class="card-block cleartfix">
-                                            <div class="media">
-                                                <div class="media-left media-middle">
-                                                    <i class="icon-speech primary font-large-2 mr-2"></i>
-                                                </div>
-                                                <div class="media-body">
-                                                    <h4>Elementos registrados</h4>
-                                                    <span>
-                                                        <asp:Label runat="server" ID="labelConteo"></asp:Label>
-                                                        actualmente</span>
-                                                </div>
-                                                <div class="media-right media-middle">
+                   <div class="col-md-3">
+                       <div class="media-left media-middle">
+                           <i class="icon-speech primary font-large-2 mr-1"></i>
+                       </div>
+                       <div class="media-body">
+                           <h4 class="font-weight-bold">Calendario</h4>
+                           <span class="font-small-3">
+                             
+                       </div>
 
-                                                    <asp:HiddenField runat="server" ID="idP" />
+                   </div>
+                    <div class="col-md-9 float-md-right">
+                               <asp:HiddenField runat="server" ID="idP" />
                                                     <asp:HiddenField runat="server" ID="limite" Value="48" />
                                                     <asp:HiddenField runat="server" ID="idS" />
                                                     <asp:HiddenField runat="server" ID="idF" />
-   
-                                                    <button type="button" id="nuevo" onclick="nuevoRegistro();" class="btn btn-icon btn-primary mr-1" data-toggle="modal">
-                                                        <i class="ft-file"></i>Nuevo Registro 
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
 
 
-                            <div class="row" id="tbhorario">
+                              
+
+                              
+                               <span class="pull-right">
+                                   <label class="text-bold-600 font-small-3"></label>
+                                   <button type="button" id="nuevo" onclick="nuevoRegistro();" class="btn btn-icon btn-primary mr-1 text-bold-700" data-toggle="modal">
+                                       Nuevo Registro 
+                                   </button>
+                               </span>
+                           </div>
+               </div>    <br />
+             <div class="row" id="tbhorario">
                                 <div class="col-md-12">
 
 
@@ -128,13 +97,7 @@ body { padding-right: 0 !important }
                             </div>
 
 
-                        </div>
-
-
-
-                    </div>
-                </div>
-            </div>
+           
 
         </ContentTemplate>
     </asp:UpdatePanel>

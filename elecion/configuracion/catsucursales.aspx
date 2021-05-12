@@ -115,29 +115,41 @@
                             
                             <div class="card-block card-dashboard">
                             <div style="overflow-x:auto;width:100%"> 
-                            <asp:GridView runat="server" ID="lgastos" PageSize="25" AllowPaging="true" AllowSorting="true" CssClass="table table-striped table-bordered zero-configuration" 
+                            <asp:GridView runat="server" ID="lgastos" PageSize="25" AllowPaging="true" AllowSorting="true" CssClass="table table-striped lGeneral" 
                                 AutoGenerateColumns="False" DataSourceID="DsListadoGastos" OnSorting="lgastos_Sorting" EnableSortingAndPagingCallbacks="true"
-                                AlternatingRowStyle-BackColor="#F5F7FA" OnDataBinding="conteoRegistros">
+                                 GridLines="Horizontal" BorderWidth="0" RowStyle-CssClass="rowHover" ClientIDMode="Static"
+                                OnDataBinding="conteoRegistros">
                                 <SortedAscendingHeaderStyle CssClass="ascending rendila-color" ForeColor="White" />
                                 <SortedDescendingHeaderStyle CssClass="descending rendila-color" ForeColor="White"/>
                                         <Columns>
-                                            <asp:TemplateField HeaderText="No." HeaderStyle-HorizontalAlign="Center" ItemStyle-Width="20px">
+                                            <asp:TemplateField HeaderText="No." HeaderStyle-HorizontalAlign="Center" ItemStyle-Width="20px" HeaderStyle-CssClass="primary">
                                                 <ItemTemplate>
                                                     <%# Container.DataItemIndex + 1 %>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:BoundField DataField="nombre" HeaderText="Nombre" SortExpression="nombre"/> 
-                                            <asp:BoundField DataField="clavecct" HeaderText="Clave CCT" SortExpression="clavecct" /> 
-                                            <asp:BoundField DataField="direccion" HeaderText="Dirección" SortExpression="direccion" />                                                                      
-                                            <asp:BoundField DataField="tiposucursal" HeaderText="Tipo" SortExpression="tiposucursal" />                                                                                               
-                                            <asp:TemplateField HeaderText="Activo" ItemStyle-Width="20px" ItemStyle-HorizontalAlign="Center">
+                                             <asp:TemplateField HeaderText="Unidad Educativa" HeaderStyle-CssClass="primary">
+                                                    <ItemTemplate>
+
+                                                        <h7 class="font-weight-bold"><%# Eval("clavecct")+ " / "+Eval("nombre")%></h7><br />
+                                                        <h7 class="font-small-2  text-bold-400"><i class="fa fa-home"></i> <%# " "+Eval("direccion")%></h7>                                                        
+
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                                                                                                                        
+                                             <asp:TemplateField HeaderText="Tipo de Plantel" ItemStyle-Width="150px" HeaderStyle-CssClass="primary centrarCelda" ItemStyle-CssClass="centrarCelda">
+                                                    <ItemTemplate>
+                                                            <span class="tag bg-<%# Eval("tiposucursal").Equals("UNIDAD MÓVIL")?"cyan":"success"%>"><span class="text-bold-700"><%# Eval("tiposucursal")%></span></span>                                                        
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                            
+                                            <asp:TemplateField HeaderText="Activo" ItemStyle-Width="20px" ItemStyle-HorizontalAlign="Center" HeaderStyle-CssClass="primary">
                                                 <ItemTemplate>
                                                     <div class="row skin skin-flat">
                                                         <div class="state icheckbox_flat-green <%# Eval("activotext")%> mr-1"></div>
                                                     </div>
                                                 </ItemTemplate>
                                             </asp:TemplateField>  
-                                            <asp:TemplateField HeaderText="Acciones" ItemStyle-Width="20px" HeaderStyle-CssClass="centrarCelda" ItemStyle-CssClass="centrarCelda">
+                                            <asp:TemplateField HeaderText="Acciones" ItemStyle-Width="20px" HeaderStyle-CssClass="centrarCelda primary" ItemStyle-CssClass="centrarCelda">
                                                 <ItemTemplate>
 
                                                     <button type="button" id="editar" onclick="abrirModal(<%# Eval("idsucursal")%>,'<%# Eval("nombre").ToString() %>','<%# Eval("clavecct").ToString() %>','<%# Eval("calle").ToString() %>','<%# Eval("numext").ToString() %>','<%# Eval("colonia").ToString() %>','<%# Eval("cp").ToString() %>','<%# Eval("telefono").ToString() %>', <%# Eval("idtiposucursal").ToString() %>, <%# Eval("activo").ToString() %>, '<%# Eval("telefono2").ToString() %>','<%# Eval("localidad").ToString() %>', '<%# Eval("encargado").ToString() %>', <%# Eval("idcargo").ToString() %>)" class="btn btn-icon btn-warning mr-1 btn-sm"
