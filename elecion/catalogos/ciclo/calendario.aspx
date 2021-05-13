@@ -39,7 +39,7 @@ body { padding-right: 0 !important }
 
                    <div class="col-md-3">
                        <div class="media-left media-middle">
-                           <i class="icon-speech primary font-large-2 mr-1"></i>
+                           <i class="fa fa-calendar primary font-large-2 mr-1"></i>
                        </div>
                        <div class="media-body">
                            <h4 class="font-weight-bold">Calendario</h4>

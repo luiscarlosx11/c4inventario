@@ -69,6 +69,12 @@
     <Compile Include="Report1.Designer.cs">
       <DependentUpon>Report1.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportSubObjetivos.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportSubObjetivos.Designer.cs">
+      <DependentUpon>ReportSubObjetivos.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportAsistencia.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -280,6 +286,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Report1.resx">
       <DependentUpon>Report1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSubObjetivos.resx">
+      <DependentUpon>ReportSubObjetivos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportAsistencia.resx">
       <DependentUpon>ReportAsistencia.cs</DependentUpon>

@@ -15,7 +15,7 @@ namespace elecion.catalogos.configuracion
         {
             if (!IsPostBack)
             {
-                listadoGrid(sender, e);
+                listadoClientes(sender, e);
             }
 
             
@@ -67,7 +67,7 @@ namespace elecion.catalogos.configuracion
         }
 
 
-        protected void listadoGrid(object sender, EventArgs e)
+        protected void listadoClientes(object sender, EventArgs e)
         {
 
             lgastos.DataSourceID = DsListadoGastos.ID;
@@ -156,7 +156,7 @@ namespace elecion.catalogos.configuracion
                 }
 
                 //ScriptManager.RegisterStartupScript(this, GetType(), "cerrar", "$('.modal-backdrop').remove();", true);
-                listadoGrid(sender, e);
+                listadoClientes(sender, e);
 
             }
 

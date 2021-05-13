@@ -1503,7 +1503,7 @@ namespace ReportLibrary
             styleRule1.Style.Padding.Right = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.StyleSheet.AddRange(new Telerik.Reporting.Drawing.StyleRule[] {
             styleRule1});
-            this.Width = Telerik.Reporting.Drawing.Unit.Cm(55.5D);
+            this.Width = Telerik.Reporting.Drawing.Unit.Cm(52.6D);
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
         }

@@ -15,7 +15,7 @@ namespace elecion.catalogos.configuracion
         {
             if (!IsPostBack)
             {
-                if (String.IsNullOrEmpty(lgastos.SortExpression)) lgastos.Sort("nombre", SortDirection.Ascending);
+                listadoClientes(sender, e);
             }
         }
 
@@ -26,6 +26,52 @@ namespace elecion.catalogos.configuracion
 
             
             labelConteo.Text = numberOfRows.ToString();
+        }
+
+
+        protected void listadoClientes(object sender, EventArgs e)
+        {
+            //Convert.ToInt32(this.limite.Value);
+            //int pag = 1;
+            try
+            {
+
+                this.lgastos.DataSourceID = this.DsListadoGastos.ID;
+                string query = "select s.idsucursal, s.idcargo, s.nombre, s.clavecct,  s.calle, s.numext, s.colonia, s.cp, s.telefono, s.telefono2, s.localidad, concat(s.calle,' # ', s.numext,' COL. ',s.colonia,' ',coalesce(s.localidad,''))as direccion, t.idtiposucursal, t.tiposucursal, CASE WHEN s.activo=1 THEN 'checked' ELSE '' END as activotext, s.activo, s.encargado "+
+                               "from sucursal s "+
+                               "left join tiposucursal t on s.idtiposucursal = t.idtiposucursal where s.idsucursal>0 ";
+
+                if (this.bname.Text.Trim() != "")
+                {
+                    query = string.Concat(new string[] { query, " and (s.nombre LIKE '%", this.bname.Text.Trim().ToUpper(), "%' or s.clavecct LIKE '%", this.bname.Text.Trim().ToUpper(), "%') " });
+                }
+                              
+                if (!btipounidad.SelectedValue.Equals("0"))
+                    query += "and t.idtiposucursal=" + btipounidad.SelectedValue + " ";
+
+
+                query = string.Concat(query, " order by s.nombre");
+                this.DsListadoGastos.SelectCommand = query;
+
+                DataView dvAccess = (DataView)DsListadoGastos.Select(DataSourceSelectArguments.Empty);
+
+                if (dvAccess != null && dvAccess.Count > 0)
+                {
+                    labelConteo.Text = dvAccess.Count.ToString();
+                    //divNoRegistros.Visible = false;
+                }
+
+                else
+                {
+                    labelConteo.Text = "0";
+                   // divNoRegistros.Visible = true;
+                }
+
+
+            }
+            catch (Exception exception)
+            {
+            }
         }
 
         protected void refrescaGrid(object sender, EventArgs e)
@@ -48,9 +94,9 @@ namespace elecion.catalogos.configuracion
 
                     //Si el idmunicipio es mayor que cero se hace UPDATE
                     if (Int32.Parse(idS.Value) > 0)
-                        query = "UPDATE sucursal set idtiposucursal=@idtiposucursal, nombre=@nombre, clavecct=@clavecct, calle=@calle, numext=@numext, colonia=@colonia, cp=@cp, telefono=@telefono, activo=@activo, telefono2=@telefono2, localidad=@localidad, encargado=@encargado where idsucursal=@idsucursal;";
+                        query = "UPDATE sucursal set idtiposucursal=@idtiposucursal, nombre=@nombre, clavecct=@clavecct, calle=@calle, numext=@numext, colonia=@colonia, cp=@cp, telefono=@telefono, activo=@activo, telefono2=@telefono2, localidad=@localidad, encargado=@encargado, idcargo=@idcargo where idsucursal=@idsucursal;";
                     else
-                        query = "INSERT INTO sucursal(idtiposucursal, nombre, clavecct, calle, numext, colonia, cp, telefono, activo, telefono2, localidad, encargado) values(@idtiposucursal, @nombre, @clavecct, @calle, @numext, @colonia, @cp, @telefono, @activo, @telefono2, @localidad, @encargado);";
+                        query = "INSERT INTO sucursal(idtiposucursal, nombre, clavecct, calle, numext, colonia, cp, telefono, activo, telefono2, localidad, encargado, idcargo) values(@idtiposucursal, @nombre, @clavecct, @calle, @numext, @colonia, @cp, @telefono, @activo, @telefono2, @localidad, @encargado, @idcargo);";
 
                     MySqlCommand cmd = new MySqlCommand(query, con);
 
@@ -67,6 +113,8 @@ namespace elecion.catalogos.configuracion
                     cmd.Parameters.AddWithValue("@localidad", localidad.Text.ToUpper().Trim());
                     cmd.Parameters.AddWithValue("@idtiposucursal", tiposucursal.SelectedValue);
                     cmd.Parameters.AddWithValue("@encargado", encargado.Text.ToUpper().Trim());
+
+                    cmd.Parameters.AddWithValue("@idcargo", cargo.SelectedValue);
 
                     if (activo.Checked)
                         uactivo = 1;
@@ -92,7 +140,7 @@ namespace elecion.catalogos.configuracion
                 }
 
                 //ScriptManager.RegisterStartupScript(this, GetType(), "cerrar", "$('.modal-backdrop').remove();", true);
-                refrescaGrid(sender, e);
+                listadoClientes(sender, e);
 
             }
 
@@ -127,7 +175,7 @@ namespace elecion.catalogos.configuracion
                     con.Close();
                 }
 
-                refrescaGrid(sender, e);
+                listadoClientes(sender, e);
 
 
             }
