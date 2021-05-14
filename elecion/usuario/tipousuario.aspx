@@ -28,87 +28,60 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="titulobreads" runat="server">
-    
-    <div class="content-header row">
-        <div class="content-header-left col-md-6 col-xs-12 mb-1">
-            <h3 class="content-header-title">Catálogos Sistema</h3>
-          </div>
-          <div class="content-header-right breadcrumbs-right breadcrumbs-top col-md-6 col-xs-12">
-            <div class="breadcrumb-wrapper col-xs-12">
-              <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">Inicio</a>
-                </li>
-                <li class="breadcrumb-item"><a href="#">Seguridad</a>
-                </li>
-                <li class="breadcrumb-item active"><a href="#">Roles</a>
-                </li>
-              </ol>
-            </div>
-          </div>
-    </div>
+  
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cuerpo" runat="server">
    
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <asp:UpdatePanel runat="server" ID="pU">
         <ContentTemplate>
+
+             <div class="content-header row">
+
+                <div class="col-md-3">
+                    <div class="media-left media-middle">
+                        <i class="fa fa-user-circle-o primary font-large-2 mr-1"></i>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="font-weight-bold">Roles de acceso</h4>
+                        <span class="font-small-3">
+                            <asp:Label runat="server" ID="labelConteo">0</asp:Label>
+                            registro(s) encontrado(s)</span>
+                    </div>
+
+                </div>
+                <div class="col-md-9 float-md-right">
+                    <asp:HiddenField runat="server" ID="idP" />
+                    <asp:HiddenField runat="server" ID="idS" />
+                    <span class="pull-right">
+                        <label class="text-bold-600 font-small-3"></label>
+                        <button type="button" id="nuevo" onclick="abrirModal(0,'');" class="btn btn-icon btn-primary mr-1 text-bold-700" data-toggle="modal">
+                            Nuevo Registro 
+                        </button>
+                    </span>
+                </div>
+            </div>    <br />
+
             <div class="row" id="header-styling">
                 <div class="col-xs-12">
                     <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">LISTADO DE ROLES DE ACCESO</h4>
-                            <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
-                            <div class="heading-elements">
-                                <ul class="list-inline mb-0">
-                                   
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="card-body collapse in">
-                             <div class="col-md-12">
-                                <div class="card overflow-hidden">
-                                    <div class="card-body">
-                                        <div class="card-block cleartfix">
-                                            <div class="media">
-                                                <div class="media-left media-middle">
-                                                    <i class="icon-speech primary font-large-2 mr-2"></i>
-                                                </div>
-                                                <div class="media-body">
-                                                    <h4>Elementos registrados</h4>
-                                                    <span>
-                                                        <asp:Label runat="server" ID="labelConteo"></asp:Label>
-                                                        actualmente</span>
-                                                </div>
-                                                <div class="media-right media-middle">
-                                                    <button type="button" id="nuevo" runat="server" onclick="abrirModal(0,'')" class="btn btn-icon btn-primary mr-1 " data-toggle="modal">
-                                                        <i class="ft-file"></i>Nuevo registro 
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                           
-                           
-                            </div>
+                       
+                       
                             
                             <div class="card-block card-dashboard">
                             <div style="overflow-x:auto;width:100%"> 
-                            <asp:GridView runat="server" ID="lgastos" PageSize="10" AllowPaging="true" AllowSorting="true" CssClass="table table-striped table-bordered zero-configuration" 
+                            <asp:GridView runat="server" ID="lgastos" PageSize="10" AllowPaging="true" CssClass="table table-striped lGeneral" 
                                 AutoGenerateColumns="False" DataSourceID="DsListadoGastos" OnSorting="lgastos_Sorting" EnableSortingAndPagingCallbacks="true"
-                                AlternatingRowStyle-BackColor="#F5F7FA" OnDataBinding="conteoRegistros">
-                                <SortedAscendingHeaderStyle CssClass="ascending rendila-color" ForeColor="White" />
-                                <SortedDescendingHeaderStyle CssClass="descending rendila-color" ForeColor="White"/>
+                                GridLines="Horizontal" BorderWidth="0" RowStyle-CssClass="rowHover" ClientIDMode="Static" OnDataBinding="conteoRegistros">
+                                
                                         <Columns>
-                                            <asp:TemplateField HeaderText="No." HeaderStyle-HorizontalAlign="Center" ItemStyle-Width="20px">
+                                            <asp:TemplateField HeaderText="No." HeaderStyle-HorizontalAlign="Center" ItemStyle-Width="20px" HeaderStyle-CssClass="centrarCelda primary" ItemStyle-CssClass="centrarCelda font-small-3"> 
                                                 <ItemTemplate>
                                                     <%# Container.DataItemIndex + 1 %>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:BoundField DataField="tipousuario" HeaderText="Rol de Acceso" SortExpression="tipousuario" />                           
-                                            <asp:TemplateField HeaderText="Acciones" ItemStyle-Width="50px">
+                                            <asp:BoundField DataField="tipousuario" HeaderText="Rol de Acceso" SortExpression="tipousuario" ItemStyle-CssClass="font-small-3 font-weight-bold" HeaderStyle-CssClass="primary"/>                           
+                                            <asp:TemplateField HeaderText="Acciones" ItemStyle-Width="50px" HeaderStyle-CssClass="centrarCelda primary" ItemStyle-CssClass="centrarCelda">
                                                 <ItemTemplate>
 
                                                     <button type="button" id="editar" onclick="abrirModal(<%# Eval("idtipousuario")%>,'<%# Eval("tipousuario").ToString() %>');" class="btn btn-icon btn-warning mr-1 btn-sm"

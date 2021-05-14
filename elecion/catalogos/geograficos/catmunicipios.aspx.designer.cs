@@ -7,11 +7,13 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace elecion.catalogos.geograficos {
-    
-    
-    public partial class catmunicipios {
-        
+namespace elecion.catalogos.geograficos
+{
+
+
+    public partial class catmunicipios
+    {
+
         /// <summary>
         /// Control ScriptManager1.
         /// </summary>
@@ -20,7 +22,7 @@ namespace elecion.catalogos.geograficos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.ScriptManager ScriptManager1;
-        
+
         /// <summary>
         /// Control pU.
         /// </summary>
@@ -29,16 +31,7 @@ namespace elecion.catalogos.geograficos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel pU;
-        
-        /// <summary>
-        /// Control idS.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField idS;
-        
+
         /// <summary>
         /// Control labelConteo.
         /// </summary>
@@ -47,16 +40,25 @@ namespace elecion.catalogos.geograficos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label labelConteo;
-        
+
         /// <summary>
-        /// Control nuevo.
+        /// Control idP.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton nuevo;
-        
+        protected global::System.Web.UI.WebControls.HiddenField idP;
+
+        /// <summary>
+        /// Control idS.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField idS;
+
         /// <summary>
         /// Control datiende.
         /// </summary>
@@ -65,7 +67,7 @@ namespace elecion.catalogos.geograficos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl datiende;
-        
+
         /// <summary>
         /// Control bcategoria.
         /// </summary>
@@ -74,7 +76,7 @@ namespace elecion.catalogos.geograficos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList bcategoria;
-        
+
         /// <summary>
         /// Control Dsusuarios.
         /// </summary>
@@ -83,7 +85,7 @@ namespace elecion.catalogos.geograficos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource Dsusuarios;
-        
+
         /// <summary>
         /// Control Div1.
         /// </summary>
@@ -92,7 +94,7 @@ namespace elecion.catalogos.geograficos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div1;
-        
+
         /// <summary>
         /// Control bmunicipio.
         /// </summary>
@@ -101,7 +103,7 @@ namespace elecion.catalogos.geograficos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox bmunicipio;
-        
+
         /// <summary>
         /// Control lgastos.
         /// </summary>
@@ -110,7 +112,7 @@ namespace elecion.catalogos.geograficos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView lgastos;
-        
+
         /// <summary>
         /// Control DsListadoGastos.
         /// </summary>
@@ -119,7 +121,7 @@ namespace elecion.catalogos.geograficos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource DsListadoGastos;
-        
+
         /// <summary>
         /// Control identidad.
         /// </summary>
@@ -128,7 +130,7 @@ namespace elecion.catalogos.geograficos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList identidad;
-        
+
         /// <summary>
         /// Control DsAreas.
         /// </summary>
@@ -137,7 +139,7 @@ namespace elecion.catalogos.geograficos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource DsAreas;
-        
+
         /// <summary>
         /// Control nombre.
         /// </summary>
@@ -146,7 +148,7 @@ namespace elecion.catalogos.geograficos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox nombre;
-        
+
         /// <summary>
         /// Control guardar.
         /// </summary>
@@ -155,7 +157,7 @@ namespace elecion.catalogos.geograficos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button guardar;
-        
+
         /// <summary>
         /// Control borrar.
         /// </summary>

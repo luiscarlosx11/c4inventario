@@ -91,10 +91,15 @@ body { padding-right: 0 !important }
                                                     <%# Container.DataItemIndex + 1 %>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:BoundField DataField="cicloescolar" HeaderText="Ciclo Escolar" SortExpression="cicloescolar" ItemStyle-CssClass="font-small-3"/> 
-                                            <asp:BoundField DataField="fechaini" HeaderText="Inicia" SortExpression="fechaini" ItemStyle-Width="100px" HeaderStyle-CssClass="centrarCelda" ItemStyle-CssClass="centrarCelda font-small-3"/>
-                                            <asp:BoundField DataField="fechafin" HeaderText="Termina" SortExpression="fechafin" ItemStyle-Width="100px" HeaderStyle-CssClass="centrarCelda" ItemStyle-CssClass="centrarCelda font-small-3"/>
-                                            <asp:BoundField DataField="periodos" HeaderText="Periodos" SortExpression="periodos" ItemStyle-Width="100px" HeaderStyle-CssClass="centrarCelda" ItemStyle-CssClass="centrarCelda font-small-3"/>
+
+                                             <asp:TemplateField HeaderText="Ciclo Escolar" HeaderStyle-CssClass="primary">
+                                                    <ItemTemplate>
+                                                        <h7 class="font-weight-bold"><%# Eval("cicloescolar")%></h7><br />
+                                                        <h7 class="text-bold-400 font-small-2"><i class="fa fa-calendar "></i><%# " "+Eval("fechaini") +" al "+ Eval("fechafin")+" "%></h7>                                                    
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+
+                                             <asp:BoundField DataField="periodos" HeaderText="Periodos" SortExpression="periodos" ItemStyle-Width="100px" HeaderStyle-CssClass="centrarCelda" ItemStyle-CssClass="centrarCelda font-small-3"/>
                                            
                                             <asp:TemplateField HeaderText="Acciones" ItemStyle-Width="250px" HeaderStyle-CssClass="centrarCelda primary" ItemStyle-CssClass="centrarCelda">
                                                 <ItemTemplate>

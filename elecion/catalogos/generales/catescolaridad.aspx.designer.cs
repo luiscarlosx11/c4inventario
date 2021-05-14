@@ -7,11 +7,13 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace elecion.catalogos.generales {
-    
-    
-    public partial class catescolaridad {
-        
+namespace elecion.catalogos.generales
+{
+
+
+    public partial class catescolaridad
+    {
+
         /// <summary>
         /// Control ScriptManager1.
         /// </summary>
@@ -20,7 +22,7 @@ namespace elecion.catalogos.generales {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.ScriptManager ScriptManager1;
-        
+
         /// <summary>
         /// Control pU.
         /// </summary>
@@ -29,16 +31,7 @@ namespace elecion.catalogos.generales {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel pU;
-        
-        /// <summary>
-        /// Control idS.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField idS;
-        
+
         /// <summary>
         /// Control labelConteo.
         /// </summary>
@@ -47,16 +40,25 @@ namespace elecion.catalogos.generales {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label labelConteo;
-        
+
         /// <summary>
-        /// Control nuevo.
+        /// Control idP.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton nuevo;
-        
+        protected global::System.Web.UI.WebControls.HiddenField idP;
+
+        /// <summary>
+        /// Control idS.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField idS;
+
         /// <summary>
         /// Control lgastos.
         /// </summary>
@@ -65,7 +67,7 @@ namespace elecion.catalogos.generales {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView lgastos;
-        
+
         /// <summary>
         /// Control DsListadoGastos.
         /// </summary>
@@ -74,7 +76,7 @@ namespace elecion.catalogos.generales {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource DsListadoGastos;
-        
+
         /// <summary>
         /// Control idr.
         /// </summary>
@@ -83,7 +85,7 @@ namespace elecion.catalogos.generales {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField idr;
-        
+
         /// <summary>
         /// Control clave.
         /// </summary>
@@ -92,7 +94,7 @@ namespace elecion.catalogos.generales {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox clave;
-        
+
         /// <summary>
         /// Control nombre.
         /// </summary>
@@ -101,7 +103,7 @@ namespace elecion.catalogos.generales {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox nombre;
-        
+
         /// <summary>
         /// Control guardar.
         /// </summary>
@@ -110,7 +112,7 @@ namespace elecion.catalogos.generales {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button guardar;
-        
+
         /// <summary>
         /// Control borrar.
         /// </summary>

@@ -107,7 +107,7 @@ namespace ReportLibrary
             // textBox32
             // 
             this.textBox32.Name = "textBox32";
-            this.textBox32.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(7.371D), Telerik.Reporting.Drawing.Unit.Cm(1.09D));
+            this.textBox32.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(7.37D), Telerik.Reporting.Drawing.Unit.Cm(1.09D));
             this.textBox32.Style.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.textBox32.Style.BorderColor.Default = System.Drawing.Color.DimGray;
             this.textBox32.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
@@ -606,7 +606,7 @@ namespace ReportLibrary
             // textBox48
             // 
             this.textBox48.Name = "textBox48";
-            this.textBox48.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(7.371D), Telerik.Reporting.Drawing.Unit.Cm(0.397D));
+            this.textBox48.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(7.37D), Telerik.Reporting.Drawing.Unit.Cm(0.397D));
             this.textBox48.Style.BorderColor.Default = System.Drawing.Color.DimGray;
             this.textBox48.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox48.Style.Font.Bold = false;

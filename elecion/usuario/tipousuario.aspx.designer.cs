@@ -7,11 +7,13 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace elecion.usuarios {
-    
-    
-    public partial class tipousuario {
-        
+namespace elecion.usuarios
+{
+
+
+    public partial class tipousuario
+    {
+
         /// <summary>
         /// Control ScriptManager1.
         /// </summary>
@@ -20,7 +22,7 @@ namespace elecion.usuarios {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.ScriptManager ScriptManager1;
-        
+
         /// <summary>
         /// Control pU.
         /// </summary>
@@ -29,7 +31,7 @@ namespace elecion.usuarios {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel pU;
-        
+
         /// <summary>
         /// Control labelConteo.
         /// </summary>
@@ -38,16 +40,25 @@ namespace elecion.usuarios {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label labelConteo;
-        
+
         /// <summary>
-        /// Control nuevo.
+        /// Control idP.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton nuevo;
-        
+        protected global::System.Web.UI.WebControls.HiddenField idP;
+
+        /// <summary>
+        /// Control idS.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField idS;
+
         /// <summary>
         /// Control lgastos.
         /// </summary>
@@ -56,7 +67,7 @@ namespace elecion.usuarios {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView lgastos;
-        
+
         /// <summary>
         /// Control DsListadoGastos.
         /// </summary>
@@ -65,7 +76,7 @@ namespace elecion.usuarios {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource DsListadoGastos;
-        
+
         /// <summary>
         /// Control idg.
         /// </summary>
@@ -74,7 +85,7 @@ namespace elecion.usuarios {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField idg;
-        
+
         /// <summary>
         /// Control idtipog.
         /// </summary>
@@ -83,7 +94,7 @@ namespace elecion.usuarios {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox idtipog;
-        
+
         /// <summary>
         /// Control tipogasto.
         /// </summary>
@@ -92,7 +103,7 @@ namespace elecion.usuarios {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tipogasto;
-        
+
         /// <summary>
         /// Control guardar.
         /// </summary>
@@ -101,7 +112,7 @@ namespace elecion.usuarios {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button guardar;
-        
+
         /// <summary>
         /// Control borrar.
         /// </summary>

@@ -31,99 +31,75 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="titulobreads" runat="server">
     
-    <div class="content-header row">
-        <div class="content-header-left col-md-6 col-xs-12 mb-1">
-            <h3 class="content-header-title">Personales</h3>
-          </div>
-          <div class="content-header-right breadcrumbs-right breadcrumbs-top col-md-6 col-xs-12">
-            <div class="breadcrumb-wrapper col-xs-12">
-              <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">Inicio</a>
-                </li>
-                <li class="breadcrumb-item"><a href="#">Catálogos</a>
-                </li>
-                <li class="breadcrumb-item active"><a href="#">Personales</a>
-                </li>
-              </ol>
-            </div>
-          </div>
-    </div>
+   
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cuerpo" runat="server">
    
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <asp:UpdatePanel runat="server" ID="pU">
         <ContentTemplate>
+            <div class="content-header row">
+
+                   <div class="col-md-3">
+                       <div class="media-left media-middle">
+                           <i class="fa fa-map primary font-large-2 mr-1"></i>
+                       </div>
+                       <div class="media-body">
+                           <h4 class="font-weight-bold">Municipios</h4>
+                           <span class="font-small-3">
+                               <asp:Label runat="server" ID="labelConteo">0</asp:Label>
+                               registro(s) encontrado(s)</span>
+                       </div>
+
+                   </div>
+                    <div class="col-md-9 float-md-right">
+                               <asp:HiddenField runat="server" ID="idP" />                                
+                               <asp:HiddenField runat="server" ID="idS" />                               
+                               <span class="pull-right">
+                                   <label class="text-bold-600 font-small-3"></label>
+                                   <button type="button" id="nuevo" onclick="abrirModal(0,'',1)" class="btn btn-icon btn-primary mr-1 text-bold-700" data-toggle="modal">
+                                  
+                                       Nuevo Registro 
+                                   </button>
+                               </span>
+                           </div>
+               </div>    <br />
+
             <div class="row" id="header-styling">
+                <div class="col-md-12">
+
+                    <div class="media">
+
+                        <div class="col-md-4" id="datiende" runat="server">
+                            <div class="form-group">
+                                <label for="atiende" class="text-bold-600 font-small-3">Entidad</label>
+                                <asp:DropDownList runat="server" ID="bcategoria" CssClass="select2 form-control" DataSourceID="Dsusuarios" DataTextField="entidad" OnSelectedIndexChanged="listadoGrid" AutoPostBack="true" DataValueField="identidad" Style="width: 100%" AppendDataBoundItems="true">
+                                    <asp:ListItem Value="0">Seleccione una entidad</asp:ListItem>
+                                </asp:DropDownList>
+                                <asp:SqlDataSource ID="Dsusuarios" ProviderName="MySql.Data.MySqlClient" runat="server" ConnectionString="<%$ ConnectionStrings:DBconexion %>"
+                                    SelectCommand="SELECT identidad, entidad from entidad order by entidad"></asp:SqlDataSource>
+
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4" id="Div1" runat="server">
+                            <div class="form-group">
+                                <label class="text-bold-600 font-small-3">Municipio</label>
+                                <asp:TextBox ID="bmunicipio" CssClass="form-control text-uppercase" required="required" data-validation-required-message="Campo requerido" MaxLength="60" placeholder="Municipio" name="nombre" runat="server" AutoPostBack="true" OnTextChanged="listadoGrid"></asp:TextBox>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row" >
                 <div class="col-xs-12">
                     <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">MUNICIPIOS</h4>
-                            <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
-                            <div class="heading-elements">
-                                <ul class="list-inline mb-0">
-                                    <asp:HiddenField ID="idS" runat="server" />
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="card-body collapse in">
-                            <div class="col-md-12">
-                                <div class="card overflow-hidden">
-                                    <div class="card-body">
-                                        <div class="card-block cleartfix">
-                                            <div class="media">
-                                                <div class="media-left media-middle">
-                                                    <i class="icon-speech primary font-large-2 mr-2"></i>
-                                                </div>
-                                                <div class="media-body">
-                                                    <h4>Elementos registrados</h4>
-                                                    <span>
-                                                        <asp:Label runat="server" ID="labelConteo"></asp:Label>
-                                                        actualmente</span>
-                                                </div>
-                                                <div class="media-right media-middle">
-                                                    <button type="button" id="nuevo" runat="server" onclick="abrirModal(0,'',1)" class="btn btn-icon btn-primary mr-1" data-toggle="modal">
-                                                        <i class="ft-file"></i>Nuevo registro 
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-block card-dashboard">
-                                            <div class="row">
-
-                                                <div class="col-md-4" id="datiende" runat="server">
-                                                    <div class="form-group">
-                                                        <label for="atiende" class="text-bold-600">Entidad</label>
-                                                        <asp:DropDownList runat="server" ID="bcategoria" CssClass="select2 form-control" DataSourceID="Dsusuarios" DataTextField="entidad" OnSelectedIndexChanged="listadoGrid" AutoPostBack="true" DataValueField="identidad" Style="width: 100%" AppendDataBoundItems="true" >
-                                                            <asp:ListItem Value="0">Seleccione una entidad</asp:ListItem>
-                                                        </asp:DropDownList>
-                                                        <asp:SqlDataSource ID="Dsusuarios" ProviderName="MySql.Data.MySqlClient" runat="server" ConnectionString="<%$ ConnectionStrings:DBconexion %>"
-                                                            SelectCommand="SELECT identidad, entidad from entidad order by entidad" ></asp:SqlDataSource>
-
-                                                    </div>
-                                                </div>
-
-
-                                                <div class="col-md-4" id="Div1" runat="server">
-                                                    <div class="form-group">                                                        
-                                                        <label class="text-bold-600">Municipio</label>
-
-                                                                                                                                              
-                                                          <asp:TextBox ID="bmunicipio" CssClass="form-control text-uppercase" required="required" data-validation-required-message="Campo requerido" MaxLength="60" placeholder="Municipio" name="nombre" runat="server" AutoPostBack="true" OnTextChanged="listadoGrid"></asp:TextBox>
-
-                                                    </div>
-                                                </div>
-
-
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                            
+                       
                             <div class="card-block card-dashboard">
                             <div style="overflow-x:auto;width:100%"> 
                             <asp:GridView runat="server" ID="lgastos" PageSize="50" AllowPaging="true" AllowSorting="true" CssClass="table table-striped table-bordered zero-configuration" 
@@ -132,14 +108,21 @@
                                 <SortedAscendingHeaderStyle CssClass="ascending rendila-color" ForeColor="White" />
                                 <SortedDescendingHeaderStyle CssClass="descending rendila-color" ForeColor="White"/>
                                         <Columns>
-                                            <asp:TemplateField HeaderText="No." HeaderStyle-HorizontalAlign="Center" ItemStyle-Width="20px">
+                                            <asp:TemplateField HeaderText="No." HeaderStyle-HorizontalAlign="Center" ItemStyle-Width="20px" ItemStyle-CssClass="centrarCelda font-small-3" HeaderStyle-CssClass="centrarCelda primary">
                                                 <ItemTemplate>
                                                     <%# Container.DataItemIndex + 1 %>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:BoundField DataField="entidad" HeaderText="Entidad" ItemStyle-Width="300px" SortExpression="entidad" /> 
-                                            <asp:BoundField DataField="municipio" HeaderText="Municipio" SortExpression="municipio" />                           
-                                            <asp:TemplateField HeaderText="Acciones" ItemStyle-Width="180px">
+                                              <asp:TemplateField HeaderText="Generales" HeaderStyle-CssClass="primary">
+                                                    <ItemTemplate>
+
+                                                        <h7 class="font-weight-bold"><%# Eval("municipio")%></h7><br />
+                                                        <h7 class="font-small-2 text-bold-400"><i class="fa fa-map-marker"></i> <%# " "+Eval("entidad")%></h7>
+                                                        
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                            
+                                            <asp:TemplateField HeaderText="Acciones" ItemStyle-Width="180px"  HeaderStyle-CssClass="centrarCelda primary" ItemStyle-CssClass="centrarCelda">
                                                 <ItemTemplate>
 
                                                     <button type="button" onclick="abrirModal(<%# Eval("idmunicipio")%>,'<%# Eval("municipio").ToString() %>',<%# Eval("identidad")%>)" class="btn btn-icon btn-warning mr-1 btn-sm"

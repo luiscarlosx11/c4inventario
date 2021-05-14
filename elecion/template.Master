@@ -354,7 +354,7 @@
                             <ul class="menu-content">  
                                 <li id="catsucursales"><a href="/configuracion/catsucursales.aspx" onclick="mostrarLoading()" class="menu-item">Unidades Educativas</a>
                                 </li>
-                                <li id="catinstalaciones"><a href="/configuracion/catinstalaciones.aspx" onclick="mostrarLoading()" class="menu-item">Aulas</a>
+                                <li id="catinstalaciones"><a href="/configuracion/catinstalaciones.aspx" onclick="mostrarLoading()" class="menu-item">Instalaciones</a>
                                 </li>                                                                             
                             </ul>
                         </li>
