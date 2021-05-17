@@ -37,7 +37,7 @@
 
                         </div>
                         <div class="col-md-4">
-                            <asp:TextBox ID="bname" CssClass="form-control text-uppercase" placeholder="Buscar por nombre..." name="bname" runat="server" OnTextChanged="listadoClientes" AutoPostBack="true"></asp:TextBox>
+                            
                         </div>
                         <div class="col-md-4 float-md-right">
                             <asp:Button runat="server" ID="Beditar" OnClick="editaRegistro" Style="display: none" UseSubmitBehavior="false" />
@@ -51,9 +51,11 @@
 
                             <asp:Button runat="server" ID="Bnuevo" OnClick="nuevoRegistro" Style="display: none" UseSubmitBehavior="false" />
                             <span class="pull-right">
-                            <button type="button" id="nuevo" onclick="abrirModal(0,0,1,'',1,'','','','','','','','','',0,'');" class="btn btn-icon btn-primary mr-1" data-toggle="modal" runat="server">
-                                <i class="ft-file"></i>Nuevo Registro 
-                            </button>
+                                
+                                    <button type="button" id="nuevo" onclick="abrirModal(0,0,1,'',1,'','','','','','','','','',0,'');" class="btn btn-icon btn-primary mr-1" data-toggle="modal" runat="server">
+                                        <i class="ft-file"></i>Nuevo Registro 
+                                    </button>
+                                
                                 </span>
                         </div>
                     </div>
@@ -62,113 +64,86 @@
             </div>
 
         <br />
+
+             <div class="row" >
+                   <div class="col-md-12">
+                       <div class="media">                           
+                           <div class="col-md-4">
+                               <div class="form-group">      
+                                   <label class="text-bold-600 font-small-3">Instructor</label>
+                                  <asp:TextBox ID="bname" CssClass="form-control text-uppercase" placeholder="Búsqueda por Nombre..." name="bname" runat="server" OnTextChanged="listadoClientes" AutoPostBack="true"></asp:TextBox>
+                               </div>
+                           </div>
+                                           
+                       </div>
+                   </div>
+               </div>
+
             <div class="row">
 
-                <asp:DataList ID="lusuarios" runat="server" DataSourceID="DsUsuarios" RepeatLayout="Flow" RepeatDirection="Horizontal" OnDataBinding="conteoRegistros">
-                    <ItemTemplate>
-
-
-                        <div class="col-xl-3 col-md-6 col-xs-12">
-                            <div class="card box-shadow-1 height-350">
-                                <div class="card-header">
-
-                                    <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
-                                    <div class="heading-elements">
-                                        <ul class="list-inline">
-                                            <h4 class="card-title"></h4>
-                                        </ul>
-                                    </div>
-
-                                    <span class="float-xs-right">
-                                        <span class="tag bg-<%# Eval("activoText").Equals("ACTIVO")?"success":"danger"%>"><%# Eval("activoText")%></span>
-                                    </span>
-                                </div>
-
-                                <div class="modal-body text-xs-center">
-                                    
-                                        <img src="../../../app-assets/images/portrait/medium/avatar-m-2.png" class="rounded-circle height-100">
-                                    
-                                    <div class="card-block">
-                                        <h5 class="text-bold-700"><%# Eval("nombre")%></h5>
-                                        <h7 class="text-bold-400"><%# Eval("profesion")%></h7>                                        
-                                        <br />
-                                        <br />
-                                        <button type="button" class="btn btn-icon btn-primary mr-1 btn-sm" data-toggle="tooltip" data-original-title="Editar" onclick="abrirModal(<%# Eval("idinstructor") %>,<%# Eval("idsucursal") %>, <%# Eval("idespecialidad")%>,'<%# Eval("profesion")%>',<%# Eval("idescolaridad")%>,'<%# Eval("rfc")%>','<%# Eval("curp")%>','<%# Eval("fechanacimiento")%>','<%# Eval("domicilio")%>','<%# Eval("localidad")%>','<%# Eval("email")%>','<%# Eval("telefono")%>','<%# Eval("celular")%>','<%# Eval("observaciones")%>',<%# Eval("activo")%>, '<%#Eval ("nombre") %>')"><i class="ft-edit" ></i> Detalles</button>
-                                          <br />                                     
-                                    </div>
-
-
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--
-        <div class="col-md-3 col-sm-12">
-			<div class="card box-shadow-1">
-				<div class="card-header">
-					<h5 class="text-bold-700" style="width:90%"><%# Eval("nombre")%></h5>                    
-                    <h5 class="text-bold-700 height-75" style="width:90%"><%# Eval("profesion")%></h5>                    
-					<a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
-        			<div class="heading-elements">
-						<ul class="list-inline">
-	                        	<h4 class="card-title"></h4>                                                                              
-	                    </ul>
-					</div>
-                    <div>
+                 <div style="overflow-x: auto; width: 100%; background-color:white">
+                                        <asp:GridView runat="server" ID="lGeneral" PageSize="50" AllowPaging="true" AllowSorting="true" CssClass="table table-striped lGeneral"
+                                            AutoGenerateColumns="False" DataSourceID="DsUsuarios" EnableSortingAndPagingCallbacks="true"
+                                              OnPageIndexChanged="listadoClientes" GridLines="Horizontal" BorderWidth="0" RowStyle-CssClass="rowHover" ClientIDMode="Static">
+                                            <SortedAscendingHeaderStyle CssClass="ascending rendila-color" ForeColor="White" />
+                                            <SortedDescendingHeaderStyle CssClass="descending rendila-color" ForeColor="White" />
+                                            <Columns>
                                                
-							<span class="float-xs-right">
-								<span class="tag bg-<%# Eval("activo").Equals("0")?"danger":"success"%>"><%# Eval("activoText")%></span>								
-							</span>
-					</div>
-				</div>
-				<div class="card-body collapse in">
-					<div class="card-block">
-                        <h6 class="text-bold-600"> <i class="icon-briefcase font-medium-3"></i><%# " "+ Eval("telefono")%> </h6>
-                        <h6 class=""> <i class="icon-user font-medium-4"></i><%# " "+ Eval("email")%> </h6>						
-						
-					</div>
-				</div>
-			</div>
-		</div>  
-        -->
-                    </ItemTemplate>
 
-                </asp:DataList>
-                <asp:SqlDataSource ID="DsUsuarios" ProviderName="MySql.Data.MySqlClient" runat="server" ConnectionString="<%$ ConnectionStrings:DBconexion %>"></asp:SqlDataSource>
+                                                <asp:TemplateField HeaderText="Instructor" HeaderStyle-CssClass="primary">
+                                                    <ItemTemplate>
+
+                                                        <h7 class="font-weight-bold"><%# Eval("nombre")%></h7><br />
+                                                        <h7 class="font-small-3 font-italic text-bold-600"><i class="fa fa-certificate"></i> <%# " "+Eval("profesion")%></h7><br />
+                                                        <h7 class="text-bold-400 font-small-2"><i class="fa fa-calendar "></i><%# " FECHA NACIMIENTO: "+Eval("fechanacimiento") %></h7><br />
+                                                        <h7 class="text-bold-400 font-small-2"><i class="fa fa-paperclip"></i> <%# " CURP: "+Eval("curp")%></h7><br />
+                                                        
+                                                       
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
 
 
+                                               
 
+                                                <asp:TemplateField HeaderText="Estatus" ItemStyle-Width="20px" HeaderStyle-CssClass="centrarCelda primary" ItemStyle-CssClass="centrarCelda">
+                                                    <ItemTemplate>
+                                                            <span class="tag bg-<%# Eval("activoText").Equals("ACTIVO")?"success":"danger"%>"><span class="text-bold-700"><%# Eval("activoText")%></span></span>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+
+
+                                                <asp:TemplateField HeaderText="Acciones" ItemStyle-Width="180px" HeaderStyle-CssClass="centrarCelda primary" ItemStyle-CssClass="centrarCelda">
+                                                    <ItemTemplate>
+
+                                                       <button type="button" class="btn btn-icon btn-warning mr-1 btn-sm" data-toggle="tooltip" data-original-title="Editar" onclick="abrirModal(<%# Eval("idinstructor") %>,<%# Eval("idsucursal") %>, <%# Eval("idespecialidad")%>,'<%# Eval("profesion")%>',<%# Eval("idescolaridad")%>,'<%# Eval("rfc")%>','<%# Eval("curp")%>','<%# Eval("fechanacimiento")%>','<%# Eval("domicilio")%>','<%# Eval("localidad")%>','<%# Eval("email")%>','<%# Eval("telefono")%>','<%# Eval("celular")%>','<%# Eval("observaciones")%>',<%# Eval("activo")%>, '<%#Eval ("nombre") %>')"><i class="ft-edit" ></i> </button>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                            </Columns>
+
+                                        </asp:GridView>
+
+                                        <asp:SqlDataSource ID="DsUsuarios" ProviderName="MySql.Data.MySqlClient" runat="server" ConnectionString="<%$ ConnectionStrings:DBconexion %>"></asp:SqlDataSource>
+
+                                        
+
+                                    </div>
+
+                                    <div id="divNoRegistros" runat="server" visible="false" class="centrarCelda">
+                                            <div class="col-md-12">
+                                                <div class="row align-items-center justify-content-center" style="padding-top: 100px">
+                                                    <span class="h2 text-center">NO HAY REGISTROS QUE MOSTRAR</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+              
 
             </div>
 
-            <div class="row">
-							<div class="col-md-12 ">
-								
-								<div class="text-xs-center">
-									<nav aria-label="Page navigation">
-                                        <h5 class="text-xs-center"></h5>
-                                        <asp:HiddenField id="pagina" runat="server" Value="1"/>
-										<ul class="pagination pagination-lg mb-1">
-                                            <% 
-                                                int totalreg = Convert.ToInt32(labelConteo.Text);
-                                                int nreg = Convert.ToInt32(limite.Value);
-                                                double total = Math.Ceiling((double)totalreg / nreg);
-                                                int i;
-
-                                                if (totalreg > nreg)
-                                                {
-                                                    for (i = 0; i < Convert.ToInt32(total); i++)
-                                                    { %>
-											<li class="page-item"><a class="page-link" href="javascript:void(0)" onclick="paging(<%=i + 1%>)"> <%=i + 1%></a></li>
-											<%}
-                                                } %>								
-										</ul>
-									</nav>
-									
-								</div>
-							</div>
-</div>
+           
 
 
             <div class="modal fade text-xs-left" id="bootstrap" role="dialog" aria-labelledby="myModalLabel35" aria-hidden="true">

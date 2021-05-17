@@ -51,15 +51,6 @@ namespace elecion.catalogos.directorio
         protected global::System.Web.UI.WebControls.Label labelConteo;
 
         /// <summary>
-        /// Control bname.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox bname;
-
-        /// <summary>
         /// Control Beditar.
         /// </summary>
         /// <remarks>
@@ -132,13 +123,22 @@ namespace elecion.catalogos.directorio
         protected global::System.Web.UI.HtmlControls.HtmlButton nuevo;
 
         /// <summary>
-        /// Control lusuarios.
+        /// Control bname.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList lusuarios;
+        protected global::System.Web.UI.WebControls.TextBox bname;
+
+        /// <summary>
+        /// Control lGeneral.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView lGeneral;
 
         /// <summary>
         /// Control DsUsuarios.
@@ -150,13 +150,13 @@ namespace elecion.catalogos.directorio
         protected global::System.Web.UI.WebControls.SqlDataSource DsUsuarios;
 
         /// <summary>
-        /// Control pagina.
+        /// Control divNoRegistros.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField pagina;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divNoRegistros;
 
         /// <summary>
         /// Control idr.

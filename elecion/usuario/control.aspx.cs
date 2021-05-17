@@ -16,10 +16,64 @@ namespace elecion.usuarios
         {
             if (!IsPostBack)
             {
-                if (String.IsNullOrEmpty(lusuarios.SortExpression)) lusuarios.Sort("nombre", SortDirection.Ascending);
+                listadoClientes(sender, e);
             }
 
         }
+
+
+        protected void listadoClientes(object sender, EventArgs e)
+        {
+           
+            try
+            {
+
+
+                this.lusuarios.DataSourceID = this.DsUsuarios.ID;
+                string query = "SELECT u.idusuario, (CONCAT(COALESCE(u.nombre,''),' ',COALESCE(u.apaterno,''),' ',COALESCE(u.amaterno,'')))as nombre, u.email, u.telefono,  CASE WHEN u.activo=1 THEN 'checked' ELSE '' END as activo, t.TIPOUSUARIO, s.nombre as sucursal,  " +
+                               " (  " +
+                               "select GROUP_CONCAT(t.tipousuario) from tipousuario t where FIND_IN_SET(cast(t.idtipousuario as char), replace(u.roles, '|', ','))  " +
+                               ") as rol  " +
+                               "from usuario u  " +
+                               "left join tipousuario t on u.idtipousuario = t.idtipousuario  " +
+                                "left join sucursal s on s.idsucursal = u.idsucursal where u.idusuario>0 ";
+
+                if (this.bname.Text.Trim() != "")
+                {
+                    query = string.Concat(new string[] { query, " and CONCAT(COALESCE(u.nombre,''),' ',COALESCE(u.apaterno,''),' ',COALESCE(u.amaterno,'')) LIKE '%", this.bname.Text.Trim().ToUpper(), "%' " });
+                }
+                if (!this.bplantel.SelectedValue.Equals("0"))
+                {
+                    query = string.Concat(query, " and u.idsucursal = ", this.bplantel.SelectedValue, " ");
+                }
+
+
+
+                query = string.Concat(query, " order by sucursal, u.nombre");
+                this.DsUsuarios.SelectCommand = query;
+
+                DataView dvAccess = (DataView)DsUsuarios.Select(DataSourceSelectArguments.Empty);
+
+                if (dvAccess != null && dvAccess.Count > 0)
+                {
+                    labelConteo.Text = dvAccess.Count.ToString();
+                    //divNoRegistros.Visible = false;
+                }
+
+                else
+                {
+                    labelConteo.Text = "0";
+                    //divNoRegistros.Visible = true;
+                }
+
+
+            }
+            catch (Exception exception)
+            {
+            }
+        }
+
+
 
         protected void gUsuarios_RowCreated(object sender, GridViewRowEventArgs e)
         {

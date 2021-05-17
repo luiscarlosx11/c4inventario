@@ -11,23 +11,7 @@
     <link rel="stylesheet" type="text/css" href="/app-assets/css/plugins/forms/checkboxes-radios.css"/>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="titulobreads" runat="server">
-    <div class="content-header row">
-        <div class="content-header-left col-md-6 col-xs-12 mb-1">
-            <h3 class="content-header-title">Agregar nuevo usuario</h3>
-          </div>
-          <div class="content-header-right breadcrumbs-right breadcrumbs-top col-md-6 col-xs-12">
-            <div class="breadcrumb-wrapper col-xs-12">
-              <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">Inicio</a>
-                </li>
-                <li class="breadcrumb-item"><a href="/usuarios/control.aspx">Usuario</a>
-                </li>
-                <li class="breadcrumb-item active"><a href="#">Agregar</a>
-                </li>
-              </ol>
-            </div>
-          </div>
-    </div>
+   
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cuerpo" runat="server">
     <asp:HiddenField ID="hep" runat="server" />
@@ -38,13 +22,11 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title" id="horz-layout-basic">Usuario</h4>
-                        <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
-                        <div class="heading-elements">
-                            <ul class="list-inline mb-0">
-                               
-                            </ul>
-                        </div>
+                         <div class="media-body">
+                        <h4 class="font-weight-bold">Usuario</h4>
+                        <span class="font-small-3">
+                           
+                    </div>
                     </div>
                     <div class="card-body collapse in">
                         <div class="card-block">
@@ -56,7 +38,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                     
-                                        <label for="nombre">Nombre</label>
+                                        <label for="nombre" class="text-bold-600">Nombre</label>
                                     
                                             <asp:TextBox ID="nombre" CssClass="form-control text-uppercase" placeholder="Nombre" MaxLength="40" name="nombre" runat="server"></asp:TextBox>
                                              <div class="help-block"></div>
@@ -67,7 +49,7 @@
                                     <div class="col-md-4">
                                     <div class="form-group">
                                     
-                                        <label class="label-control" for="nombre">Apellido Paterno</label>
+                                        <label class="label-control text-bold-600" for="nombre" >Apellido Paterno</label>
                                     
                                             <asp:TextBox ID="apaterno" CssClass="form-control text-uppercase" placeholder="Apellido Paterno" MaxLength="40" name="nombre" runat="server"></asp:TextBox>
                                              <div class="help-block"></div>
@@ -78,7 +60,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                       
-                                    <label class="label-control" for="nombre">Apellido Materno</label>
+                                    <label class="label-control text-bold-600" for="nombre">Apellido Materno</label>
                                    
                                         <asp:TextBox ID="amaterno" CssClass="form-control text-uppercase" placeholder="Apellido Materno" MaxLength="40" name="nombre" runat="server"></asp:TextBox>
                                          <div class="help-block"></div>
@@ -89,7 +71,7 @@
                                 <div class="row">
                                 <div class="col-md-4">                                
                                     <div class="form-group">
-                                        <label>Login</label>
+                                        <label class="text-bold-600">Login</label>
                                     
                                             <asp:HiddenField runat="server" ID="idP" Value="0"/> 
                                             <asp:TextBox ID="usuario" CssClass="form-control" MaxLength="18" placeholder="Nombre de usuario" name="cusuario" runat="server"></asp:TextBox>
@@ -99,7 +81,7 @@
 
                                     <div class="col-md-4">                                
                                         <div class="form-group">
-                                            <label>Password</label>
+                                            <label class="text-bold-600">Password</label>
                                     
                                                 <asp:HiddenField runat="server" ID="HiddenField1" Value="0"/> 
                                                 <asp:TextBox ID="pass" CssClass="form-control" MaxLength="18" placeholder="Nombre de usuario" name="cusuario" runat="server"></asp:TextBox>
@@ -109,7 +91,7 @@
 
                                     <div class="col-md-4">                                
                                         <div class="form-group">
-                                            <label for="activo">Activo</label>
+                                            <label for="activo" class="text-bold-600">Activo</label>
                                     
                                             <div class="skin skin-flat">
                                                 <asp:CheckBox runat="server" ID="activo"/>
@@ -124,7 +106,7 @@
                              <div class="row">
                                  <div class="col-md-4 ocultar">
                                  <div class="form-group">
-                                    <label  for="tipo">Tipo </label>
+                                    <label  for="tipo" class="text-bold-600">Tipo </label>
                                     
                                      
                                          <asp:DropDownList runat="server" ID="tipo" CssClass="select2 form-control" DataSourceID="DsTipos" DataTextField="tipoUsuario" DataValueField="idtipousuario" AutoPostBack="false" ></asp:DropDownList>
@@ -146,7 +128,7 @@
                                  
                                  <div class="col-md-4">
                                  <div class="form-group">
-                                    <label  for="tipo">Plantel </label>                                                                         
+                                    <label  for="tipo" class="text-bold-600">Plantel </label>                                                                         
                                          <asp:DropDownList runat="server" ID="area" CssClass="select2 form-control" DataSourceID="DsAreas" DataTextField="nombre" DataValueField="idsucursal" AutoPostBack="false" ></asp:DropDownList>
                                          <asp:SqlDataSource ID="DsAreas" runat="server" ProviderName="MySql.Data.MySqlClient" ConnectionString="<%$ ConnectionStrings:DBconexion %>" SelectCommand="SELECT idsucursal, nombre FROM sucursal ORDER BY nombre"></asp:SqlDataSource>                                          
                                     </div>
@@ -159,7 +141,7 @@
 
                                     <div class="col-md-4">
                                     <div class="form-group">
-                                        <label  for="email">E-mail</label>
+                                        <label  for="email" class="text-bold-600">E-mail</label>
                                     
                                             <asp:TextBox ID="email" CssClass="form-control email-inputmask" placeholder="E-mail" MaxLength="35" name="email" runat="server"></asp:TextBox>
                                         </div>
@@ -167,7 +149,7 @@
 
                                     <div class="col-md-4">
                                     <div class="form-group">
-                                        <label  for="telefono">Télefono</label>
+                                        <label  for="telefono" class="text-bold-600">Télefono</label>
                                     
                                             <asp:TextBox ID="telefono" CssClass="form-control phone-inputmask"  placeholder="Teléfono" name="phone" runat="server"></asp:TextBox>
                                          

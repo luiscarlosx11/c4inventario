@@ -52,26 +52,18 @@ namespace elecion.catalogos.directorio
 
         protected void listadoClientes(object sender, EventArgs e)
         {
-            int limit = Convert.ToInt32(limite.Value);
-            int pag = Convert.ToInt32(pagina.Value);
-
-            int offset = 0;
-
-            if (pag > 1)
-            {
-                offset = limit * (pag - 1);
-            }
+            
             try
             {
                  
-                lusuarios.DataSourceID = DsUsuarios.ID;
+                lGeneral.DataSourceID = DsUsuarios.ID;
 
                 String query = "select idinstructor, idsucursal, idespecialidad, idescolaridad, nombre, profesion, telefono, telefono2 as celular, email, activo, domicilio, localidad, rfc, curp, cast(fechanacimiento as char) as fechanacimiento, observaciones, " +
                                " case " +
                                " when activo = 1 then 'ACTIVO' " +
                                " else 'INACTIVO' " +
                                " end " +
-                               " as activoText, observaciones " +
+                               " as activoText, observaciones, curp, cast(fechanacimiento as char)as fechanacimiento " +
                                " from instructor where idinstructor > 0";
 
               
@@ -81,12 +73,27 @@ namespace elecion.catalogos.directorio
                 
                 query= query + " order by nombre";
 
-                if (bname.Text.Trim().Equals(""))
-                    query = query + " LIMIT " + limit + " OFFSET " + offset;
+                
                 DsUsuarios.SelectCommand = query;
 
+                DataView dvAccess = (DataView)DsUsuarios.Select(DataSourceSelectArguments.Empty);
+
+                if (dvAccess != null && dvAccess.Count > 0)
+                {
+                    labelConteo.Text = dvAccess.Count.ToString();
+                    divNoRegistros.Visible = false;
+                }
+
+                else
+                {
+                    labelConteo.Text = "0";
+                    divNoRegistros.Visible = true;
+                }
+
+
+
                 //DsUsuarios.DataBind();
-               // lusuarios.DataBind();
+                // lusuarios.DataBind();
 
                 //if (String.IsNullOrEmpty(lusuarios.SortExpression)) lusuarios.Sort("ncompleto", SortDirection.Ascending);
 
@@ -317,7 +324,7 @@ namespace elecion.catalogos.directorio
         protected void refrescaGrid(object sender, EventArgs e)
         {
             DsUsuarios.DataBind();
-            lusuarios.DataBind();
+            lGeneral.DataBind();
         }
 
 

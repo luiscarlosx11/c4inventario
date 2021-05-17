@@ -21,8 +21,8 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cuerpo" runat="server">
  <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true"></asp:ScriptManager>
-    <asp:UpdatePanel runat="server" ID="pU">
-        <ContentTemplate>
+   
+           
 
              <div class="content-header row">
 
@@ -43,18 +43,18 @@
                     <asp:HiddenField runat="server" ID="idS" />
                     <span class="pull-right">
                         <label class="text-bold-600 font-small-3"></label>
-                        <asp:Button runat="server" ID="Beditar" OnClick="editaRegistro" style="display:none"/> 
-                                                    <asp:Button runat="server" ID="Bborrar" OnClick="borrarRegistro" style="display:none"/> 
+                        <asp:Button runat="server" ID="Beditar" OnClick="editaRegistro" style="display:none" UseSubmitBehavior="false"/> 
+                                                    <asp:Button runat="server" ID="Bborrar" OnClick="borrarRegistro" style="display:none" UseSubmitBehavior="false"/> 
                                                    
                                                                                                                                                                   
-                                                    <asp:Button runat="server" ID="Bnuevo" OnClick="nuevoRegistro" style="display:none"/>                                            
+                                                    <asp:Button runat="server" ID="Bnuevo" OnClick="nuevoRegistro" style="display:none" UseSubmitBehavior="false"/>                                            
                                                     <button type="button" id="nuevo" onclick="nuevoRegistro();" class="btn btn-icon btn-primary mr-1  text-bold-700" data-toggle="modal" >
                                                         Nuevo Registro 
                                                     </button>
                     </span>
                 </div>
             </div>    <br />
-             <div class="row" id="header-styling">
+             <div class="row" >
                    <div class="col-md-12">
 
                        <div class="media">
@@ -81,15 +81,19 @@
                    </div>
                </div>
         
+     <asp:UpdatePanel runat="server" ID="pU">
+        <ContentTemplate>
         <div class="row" id="header-styling">
                 <div class="col-xs-12">
                     <div class="card">
                    
+                         <asp:Button runat="server" ID="Bconsultar" OnClick="listadoClientes" Style="display: none" UseSubmitBehavior="false" />
                         <div class="card-block card-dashboard"> 
                         <div style="overflow-x:auto;width:100%"> 
-                        <asp:GridView runat="server" ID="lusuarios" PageSize="25" AllowPaging="true" AllowSorting="true" CssClass="table table-striped table-bordered base-style" 
+                        <asp:GridView runat="server" ID="lusuarios" PageSize="25" AllowPaging="true"  CssClass="table table-striped lGeneral" 
                              AutoGenerateColumns="False" DataSourceID="DsUsuarios" DataKeyNames="idusuario"
-                            OnDataBinding="conteoRegistros">    
+                            GridLines="Horizontal" BorderWidth="0" RowStyle-CssClass="rowHover" ClientIDMode="Static"
+                            >    
                                                  
                             <Columns>
                                 <asp:TemplateField HeaderText="No." ItemStyle-Width="20px" ItemStyle-HorizontalAlign="Center"  HeaderStyle-CssClass="centrarCelda primary" ItemStyle-CssClass="centrarCelda font-small-3"> 
@@ -132,14 +136,7 @@
                             </Columns>
                         </asp:GridView>
                         <asp:SqlDataSource ID="DsUsuarios" ProviderName="MySql.Data.MySqlClient" runat="server" ConnectionString="<%$ ConnectionStrings:DBconexion %>" 
-                            SelectCommand="SELECT u.idusuario, (CONCAT(COALESCE(u.nombre,''),' ',COALESCE(u.apaterno,''),' ',COALESCE(u.amaterno,'')))as nombre, u.email, u.telefono,  CASE WHEN u.activo=1 THEN 'checked' ELSE '' END as activo, t.TIPOUSUARIO, s.nombre as sucursal, 
-                                                (
-                                            select GROUP_CONCAT(t.tipousuario) from tipousuario t where FIND_IN_SET (cast(t.idtipousuario as char) , replace(u.roles,'|',','))
-                                            )  as rol
-                                                from usuario u
-                                                left join tipousuario t on u.idtipousuario = t.idtipousuario
-                                                left join sucursal s on s.idsucursal = u.idsucursal
-                                                order by sucursal, u.nombre"></asp:SqlDataSource>
+                            ></asp:SqlDataSource>
                         </div>
                         </div>
 
@@ -184,6 +181,15 @@
             mostrarLoading();
             $('#<%= Bnuevo.ClientID %>').click();
         }
+
+
+        function consultaPrincipal() {
+            mostrarLoading();
+
+            $('#<%= Bconsultar.ClientID %>').click();
+            cerrarLoading();
+        }
+
 
     </script>
 </asp:Content>
