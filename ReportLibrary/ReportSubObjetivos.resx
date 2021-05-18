@@ -398,7 +398,14 @@ s.nombre as nombresucursal, s.clave as clavesucursal, ce.cicloescolar,
 al.nocontrol, 
 concat(al.apaterno,' ', al.amaterno,' ', al.nombre)as nombrealumno, si.becado, al.sexo, 
 timestampdiff(YEAR,al.fechanacimiento,now())as edad,
-es.escolaridad, o.clave, o.objetivo, o.idobjetivo,
+es.escolaridad, o.clave, o.objetivo, o.idobjetivo, o.clave as clavesub,si.calificacion,
+
+(
+select cc.calificacion 
+from cursocalificacion cc
+where cc.idsolicitud = si.idsolicitud
+and cc.idobjetivo = o.idobjetivo
+) as califobjetivo,
 (
 select GROUP_CONCAT(distinct(d.discapacidad) SEPARATOR ', ')
 from discapacidad d 
@@ -424,7 +431,7 @@ left join cursoobjetivo o on o.idcurso = c.idcurso
 where c.idcurso = @idcurso
 and c.idsucursal= @idsucursal
 and si.estatus not in ('CANCELADO')
-order by nombrealumno</value>
+order by nombrealumno,o.clave desc</value>
   </data>
   <metadata name="Generales.ParameterValues" xml:space="preserve">
     <value>{"@idcurso":"25","@idsucursal":"1"}</value>
@@ -460,7 +467,4 @@ and c.idsucursal = @idsucursal
 
 </value>
   </data>
-  <metadata name="$this.Zoom" type="System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>0.6666667</value>
-  </metadata>
 </root>

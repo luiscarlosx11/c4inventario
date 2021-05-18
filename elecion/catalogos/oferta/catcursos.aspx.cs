@@ -699,16 +699,18 @@ namespace elecion.catalogos.oferta
                         if (!this.idobj.Value.Equals("0"))
                         {
                             cmd.Parameters.Clear();
-                            cmd.CommandText = "update cursoobjetivo set objetivo= @objetivo where idobjetivo=@idobjetivo;";
+                            cmd.CommandText = "update cursoobjetivo set objetivo= @objetivo, clave=@clave where idobjetivo=@idobjetivo;";
                             cmd.Parameters.AddWithValue("@idobjetivo", this.idobj.Value);
                             cmd.Parameters.AddWithValue("@objetivo", this.objetivo.Text.ToUpper());
+                            cmd.Parameters.AddWithValue("@clave", this.objetcl.Text.ToUpper());
                         }
                         else
                         {
                             cmd.Parameters.Clear();
-                            cmd.CommandText = "insert into cursoobjetivo(idcurso, objetivo) values(@idcurso, @objetivo);";
+                            cmd.CommandText = "insert into cursoobjetivo(idcurso, objetivo, clave) values(@idcurso, @objetivo, @clave);";
                             cmd.Parameters.AddWithValue("@idcurso", this.idP.Value);
                             cmd.Parameters.AddWithValue("@objetivo", this.objetivo.Text.ToUpper());
+                            cmd.Parameters.AddWithValue("@clave", this.objetcl.Text.ToUpper());
                         }
                         cmd.ExecuteNonQuery();
                         transaction.Commit();
@@ -767,6 +769,15 @@ namespace elecion.catalogos.oferta
             reporte.ReportParameters["idsucursal"].Value = this.idS.Value;
             reporte.ReportParameters["idcurso"].Value = this.idP.Value;
             this.ExportToPDF(reporte, string.Concat("RIADC-02 Acreditación ", this.cve.Value));
+        }
+
+
+        protected void imprimirSubObjetivos(object sender, EventArgs e)
+        {
+            SubObjetivos reporte = new SubObjetivos();
+            reporte.ReportParameters["idsucursal"].Value = this.idS.Value;
+            reporte.ReportParameters["idcurso"].Value = this.idP.Value;
+            this.ExportToPDF(reporte, string.Concat("RESD-05 SubObjetivos ", this.cve.Value));
         }
 
         protected void insertaFechas(object sender, EventArgs e)
@@ -1176,7 +1187,7 @@ namespace elecion.catalogos.oferta
             try
             {
                 this.GVobjetivos.DataSourceID = this.DSobjetivos.ID;
-                string query = string.Concat("SELECT idobjetivo, objetivo from cursoobjetivo where idcurso = ", this.idP.Value);
+                string query = string.Concat("SELECT idobjetivo, objetivo, clave from cursoobjetivo where idcurso = ", this.idP.Value, " order by clave desc");
                 this.DSobjetivos.SelectCommand = query;
             }
             catch (Exception exception)

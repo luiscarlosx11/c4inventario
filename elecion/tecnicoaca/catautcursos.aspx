@@ -652,20 +652,20 @@ body { padding-right: 0 !important }
                                         <div class="col-md-12">
 
                                             
-                                            <asp:GridView runat="server" ID="GValumnos" PageSize="10" AllowPaging="true" AllowSorting="true" CssClass="table table-striped table-bordered zero-configuration" 
+                                            <asp:GridView runat="server" ID="GValumnos" PageSize="10" AllowPaging="true" AllowSorting="false" CssClass="table table-striped lGeneral" 
                                                 AutoGenerateColumns="False" DataSourceID="DSalumnos" EnableSortingAndPagingCallbacks="true"
-                                                AlternatingRowStyle-BackColor="#F5F7FA" OnPageIndexChanged="listadoAlumnos">
+                                                 GridLines="Horizontal" BorderWidth="0" RowStyle-CssClass="rowHover" ClientIDMode="Static" OnPageIndexChanged="listadoAlumnos">
                                                 
                                                 <Columns>
-                                                    <asp:TemplateField HeaderText="No." ItemStyle-Width="20px" ItemStyle-CssClass="centrarCelda " HeaderStyle-CssClass="centrarCelda">
+                                                    <asp:TemplateField HeaderText="No." ItemStyle-Width="20px" ItemStyle-CssClass="centrarCelda " HeaderStyle-CssClass="centrarCelda primary">
                                                         <ItemTemplate>
                                                             <%# Container.DataItemIndex + 1 %>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    <asp:BoundField DataField="nombrealumno" HeaderText="Nombre" SortExpression="nombre" ItemStyle-Font-Size="Small" />
-                                                    <asp:BoundField DataField="costoAlumno" HeaderText="Cantidad" SortExpression="costoAlumno" ItemStyle-Width="50px" ItemStyle-Font-Size="Small" ItemStyle-CssClass="centrarCelda " HeaderStyle-CssClass="centrarCelda" DataFormatString="{0:c}" HtmlEncode="False"/>
-                                                    <asp:BoundField DataField="folio" HeaderText="Folio" SortExpression="folio"  ItemStyle-Width="150px" ItemStyle-Font-Size="Small" ItemStyle-CssClass="centrarCelda " HeaderStyle-CssClass="centrarCelda"/>
-                                                    <asp:BoundField DataField="fecha" HeaderText="Fecha" SortExpression="fecha" ItemStyle-Width="150px" ItemStyle-Font-Size="Small"  ItemStyle-CssClass="centrarCelda " HeaderStyle-CssClass="centrarCelda"/>
+                                                    <asp:BoundField DataField="nombrealumno" HeaderText="Nombre" SortExpression="nombre" ItemStyle-Font-Size="Small" HeaderStyle-CssClass="primary"/>
+                                                    <asp:BoundField DataField="costoAlumno" HeaderText="Cantidad" SortExpression="costoAlumno" ItemStyle-Width="50px" ItemStyle-Font-Size="Small" ItemStyle-CssClass="centrarCelda " HeaderStyle-CssClass="centrarCelda primary" DataFormatString="{0:c}" HtmlEncode="False"/>
+                                                    <asp:BoundField DataField="folio" HeaderText="Folio" SortExpression="folio"  ItemStyle-Width="150px" ItemStyle-Font-Size="Small" ItemStyle-CssClass="centrarCelda " HeaderStyle-CssClass="centrarCelda primary"/>
+                                                    <asp:BoundField DataField="fecha" HeaderText="Fecha" SortExpression="fecha" ItemStyle-Width="150px" ItemStyle-Font-Size="Small"  ItemStyle-CssClass="centrarCelda " HeaderStyle-CssClass="centrarCelda primary"/>
                                                 </Columns>
 
                                             </asp:GridView>
@@ -688,20 +688,20 @@ body { padding-right: 0 !important }
                                         <div class="col-md-12">
 
                                             
-                                            <asp:GridView runat="server" ID="GVhistorial" PageSize="10" AllowPaging="true" AllowSorting="true" CssClass="table table-striped table-bordered zero-configuration" 
+                                            <asp:GridView runat="server" ID="GVhistorial" PageSize="10" AllowPaging="true" AllowSorting="false" CssClass="table table-striped lGeneral" 
                                                 AutoGenerateColumns="False" DataSourceID="DShistorial" EnableSortingAndPagingCallbacks="true"
-                                                AlternatingRowStyle-BackColor="#F5F7FA" OnPageIndexChanged="listadoHistorial">
+                                                GridLines="Horizontal" BorderWidth="0" RowStyle-CssClass="rowHover" ClientIDMode="Static" OnPageIndexChanged="listadoHistorial">
                                                 
                                                 <Columns>
-                                                    <asp:TemplateField HeaderText="No." ItemStyle-Width="20px" ItemStyle-CssClass="centrarCelda " HeaderStyle-CssClass="centrarCelda">
+                                                    <asp:TemplateField HeaderText="No." ItemStyle-Width="20px" ItemStyle-CssClass="centrarCelda " HeaderStyle-CssClass="centrarCelda primary">
                                                         <ItemTemplate>
                                                             <%# Container.DataItemIndex + 1 %>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    <asp:BoundField DataField="fecha" HeaderText="Fecha" SortExpression="fecha"  ItemStyle-Width="150px" ItemStyle-Font-Size="Small" ItemStyle-CssClass="centrarCelda " HeaderStyle-CssClass="centrarCelda"/>
-                                                    <asp:BoundField DataField="hora" HeaderText="Hora" SortExpression="hora" ItemStyle-Width="100px" ItemStyle-Font-Size="Small"  ItemStyle-CssClass="centrarCelda " HeaderStyle-CssClass="centrarCelda"/>
-                                                    <asp:BoundField DataField="usuario" HeaderText="Usuario" SortExpression="usuario" ItemStyle-Width="150px" ItemStyle-Font-Size="Small"  ItemStyle-CssClass="centrarCelda " HeaderStyle-CssClass="centrarCelda" />
-                                                    <asp:BoundField DataField="observacion" HeaderText="Observación" SortExpression="observacion" ItemStyle-Font-Size="Small" />
+                                                    <asp:BoundField DataField="fecha" HeaderText="Fecha" SortExpression="fecha"  ItemStyle-Width="150px" ItemStyle-Font-Size="Small" ItemStyle-CssClass="centrarCelda " HeaderStyle-CssClass="centrarCelda primary"/>
+                                                    <asp:BoundField DataField="hora" HeaderText="Hora" SortExpression="hora" ItemStyle-Width="100px" ItemStyle-Font-Size="Small"  ItemStyle-CssClass="centrarCelda " HeaderStyle-CssClass="centrarCelda primary"/>
+                                                    <asp:BoundField DataField="usuario" HeaderText="Usuario" SortExpression="usuario" ItemStyle-Width="150px" ItemStyle-Font-Size="Small"  ItemStyle-CssClass="centrarCelda " HeaderStyle-CssClass="centrarCelda primary" />
+                                                    <asp:BoundField DataField="observacion" HeaderText="Observación" SortExpression="observacion" ItemStyle-Font-Size="Small" HeaderStyle-CssClass="primary" />
                                                     
                                                     
                                                 </Columns>
@@ -725,21 +725,21 @@ body { padding-right: 0 !important }
                                     <div class="row">
                                         <div class="col-md-12">
                                                                                        
-                                            <asp:GridView runat="server" ID="GVobjetivos" PageSize="10" AllowPaging="true" AllowSorting="true" CssClass="table table-striped table-bordered zero-configuration" 
+                                            <asp:GridView runat="server" ID="GVobjetivos" PageSize="10" AllowPaging="true" AllowSorting="false" CssClass="table table-striped lGeneral" 
                                                 AutoGenerateColumns="False" DataSourceID="DSobjetivos" EnableSortingAndPagingCallbacks="true"
-                                                AlternatingRowStyle-BackColor="#F5F7FA" OnPageIndexChanged="listadoObjetivos">
-                                                
+                                                OnPageIndexChanged="listadoObjetivos" GridLines="Horizontal" BorderWidth="0" RowStyle-CssClass="rowHover" ClientIDMode="Static">                                                
                                                 <Columns>
-                                                    <asp:TemplateField HeaderText="No." ItemStyle-Width="20px" ItemStyle-CssClass="centrarCelda " HeaderStyle-CssClass="centrarCelda">
+                                                    <asp:TemplateField HeaderText="No." ItemStyle-Width="20px" ItemStyle-CssClass="centrarCelda Small" HeaderStyle-CssClass="centrarCelda primary">
                                                         <ItemTemplate>
                                                             <%# Container.DataItemIndex + 1 %>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    <asp:BoundField DataField="objetivo" HeaderText="Objetivo" SortExpression="objetivo" ItemStyle-Font-Size="Small" />                                                    
+                                                     <asp:BoundField DataField="clave" HeaderText="Clave" SortExpression="clave" ItemStyle-Font-Size="Small" ItemStyle-Width="80px" HeaderStyle-CssClass="primary"  />
+                                                    <asp:BoundField DataField="objetivo" HeaderText="Objetivo" SortExpression="objetivo" ItemStyle-Font-Size="Small" ItemStyle-Width="420px" HeaderStyle-CssClass="primary"  />
+                                                   
                                                 </Columns>
 
                                             </asp:GridView>
-                                               
                                             <asp:SqlDataSource ID="DSobjetivos" ProviderName="MySql.Data.MySqlClient" runat="server" ConnectionString="<%$ ConnectionStrings:DBconexion %>"></asp:SqlDataSource>
 
                                         </div>

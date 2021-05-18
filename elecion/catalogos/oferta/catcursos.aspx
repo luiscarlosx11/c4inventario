@@ -673,6 +673,7 @@ body { padding-right: 0 !important }
                             <asp:Button runat="server" ID="bimprimirlista" OnClick="imprimirListaAsistencia" UseSubmitBehavior="false" Style="display: none" />
                             <asp:Button runat="server" ID="bimprimirriadc" OnClick="imprimirRIADC" UseSubmitBehavior="false" Style="display: none" />
                             <asp:Button runat="server" ID="bimprimirriadcacred" OnClick="imprimirRIADCAcred" UseSubmitBehavior="false" Style="display: none" />
+                            <asp:Button runat="server" ID="bimprimirsubobjetivos" OnClick="imprimirSubObjetivos" UseSubmitBehavior="false" Style="display: none" />
                              
                             <div class="row" id="tbhorario">
                                 <div class="col-md-12">
@@ -728,12 +729,12 @@ body { padding-right: 0 !important }
                                         <div class="col-md-12">
 
                                             
-                                            <asp:GridView runat="server" ID="GValumnos" PageSize="10" AllowPaging="true"  CssClass="table table-striped table-bordered zero-configuration" 
+                                            <asp:GridView runat="server" ID="GValumnos" PageSize="10" AllowPaging="true"  CssClass="table table-striped lGeneral" 
                                                 AutoGenerateColumns="False" DataSourceID="DSalumnos" EnableSortingAndPagingCallbacks="true" 
-                                                AlternatingRowStyle-BackColor="#F5F7FA" OnPageIndexChanged="listadoAlumnos">
+                                                GridLines="Horizontal" BorderWidth="0" RowStyle-CssClass="rowHover" ClientIDMode="Static" OnPageIndexChanged="listadoAlumnos">
                                                 
                                                 <Columns>
-                                                    <asp:TemplateField HeaderText="No." ItemStyle-Width="20px" ItemStyle-CssClass="centrarCelda " HeaderStyle-CssClass="centrarCelda primary">
+                                                    <asp:TemplateField HeaderText="No." ItemStyle-Width="20px" ItemStyle-CssClass="centrarCelda font-small-2" HeaderStyle-CssClass="centrarCelda primary">
                                                         <ItemTemplate>
                                                             <%# Container.DataItemIndex + 1 %>
                                                         </ItemTemplate>
@@ -764,20 +765,20 @@ body { padding-right: 0 !important }
                                         <div class="col-md-12">
 
                                             
-                                            <asp:GridView runat="server" ID="GVhistorial" PageSize="10" AllowPaging="true" AllowSorting="false" CssClass="table table-striped table-bordered zero-configuration" 
+                                            <asp:GridView runat="server" ID="GVhistorial" PageSize="10" AllowPaging="true" AllowSorting="false" CssClass="table table-striped lGeneral" 
                                                 AutoGenerateColumns="False" DataSourceID="DShistorial" EnableSortingAndPagingCallbacks="true" 
-                                                AlternatingRowStyle-BackColor="#F5F7FA" OnPageIndexChanged="listadoHistorial">
+                                                GridLines="Horizontal" BorderWidth="0" RowStyle-CssClass="rowHover" ClientIDMode="Static" OnPageIndexChanged="listadoHistorial">
                                                 
                                                 <Columns>
-                                                    <asp:TemplateField HeaderText="No." ItemStyle-Width="20px" ItemStyle-CssClass="centrarCelda " HeaderStyle-CssClass="centrarCelda">
+                                                    <asp:TemplateField HeaderText="No." ItemStyle-Width="20px" ItemStyle-CssClass="centrarCelda Small" HeaderStyle-CssClass="centrarCelda primary">
                                                         <ItemTemplate>
                                                             <%# Container.DataItemIndex + 1 %>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    <asp:BoundField DataField="fecha" HeaderText="Fecha" SortExpression="fecha"  ItemStyle-Width="150px" ItemStyle-Font-Size="Small" ItemStyle-CssClass="centrarCelda " HeaderStyle-CssClass="centrarCelda"/>
-                                                    <asp:BoundField DataField="hora" HeaderText="Hora" SortExpression="hora" ItemStyle-Width="100px" ItemStyle-Font-Size="Small"  ItemStyle-CssClass="centrarCelda " HeaderStyle-CssClass="centrarCelda"/>
-                                                    <asp:BoundField DataField="usuario" HeaderText="Usuario" SortExpression="usuario" ItemStyle-Width="150px" ItemStyle-Font-Size="Small"  ItemStyle-CssClass="centrarCelda " HeaderStyle-CssClass="centrarCelda" />
-                                                    <asp:BoundField DataField="observacion" HeaderText="Observación" SortExpression="observacion" ItemStyle-Font-Size="Small" />
+                                                    <asp:BoundField DataField="fecha" HeaderText="Fecha" SortExpression="fecha"  ItemStyle-Width="150px" ItemStyle-Font-Size="Small" ItemStyle-CssClass="centrarCelda " HeaderStyle-CssClass="centrarCelda primary"/>
+                                                    <asp:BoundField DataField="hora" HeaderText="Hora" SortExpression="hora" ItemStyle-Width="100px" ItemStyle-Font-Size="Small"  ItemStyle-CssClass="centrarCelda  " HeaderStyle-CssClass="centrarCelda primary"/>
+                                                    <asp:BoundField DataField="usuario" HeaderText="Usuario" SortExpression="usuario" ItemStyle-Width="150px" ItemStyle-Font-Size="Small"  ItemStyle-CssClass="centrarCelda " HeaderStyle-CssClass="centrarCelda primary" />
+                                                    <asp:BoundField DataField="observacion" HeaderText="Observación" SortExpression="observacion" ItemStyle-Font-Size="Small" HeaderStyle-CssClass="primary" />
                                                     
                                                     
                                                 </Columns>
@@ -801,25 +802,25 @@ body { padding-right: 0 !important }
 
                                     <div class="row">
                                         <div class="col-md-12">
-                                           <button type="button" id="nuevo" onclick="abrirModalObjetivo(0,'');" class="btn btn-icon btn-primary mr-1" data-toggle="modal" >
+                                           <button type="button" id="nuevo" onclick="abrirModalObjetivo(0,'','');" class="btn btn-icon btn-primary mr-1" data-toggle="modal" >
                                                          <i class="ft-file"></i> Nuevo Registro 
                                            </button><br /><br />
 
                                             
-                                            <asp:GridView runat="server" ID="GVobjetivos" PageSize="10" AllowPaging="true" AllowSorting="false" CssClass="table table-striped table-bordered zero-configuration" 
+                                            <asp:GridView runat="server" ID="GVobjetivos" PageSize="10" AllowPaging="true" AllowSorting="false" CssClass="table table-striped lGeneral" 
                                                 AutoGenerateColumns="False" DataSourceID="DSobjetivos" EnableSortingAndPagingCallbacks="true"
-                                                AlternatingRowStyle-BackColor="#F5F7FA" OnPageIndexChanged="listadoObjetivos">
-                                                
+                                                OnPageIndexChanged="listadoObjetivos" GridLines="Horizontal" BorderWidth="0" RowStyle-CssClass="rowHover" ClientIDMode="Static">                                                
                                                 <Columns>
-                                                    <asp:TemplateField HeaderText="No." ItemStyle-Width="20px" ItemStyle-CssClass="centrarCelda " HeaderStyle-CssClass="centrarCelda">
+                                                    <asp:TemplateField HeaderText="No." ItemStyle-Width="20px" ItemStyle-CssClass="centrarCelda Small" HeaderStyle-CssClass="centrarCelda primary">
                                                         <ItemTemplate>
                                                             <%# Container.DataItemIndex + 1 %>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    <asp:BoundField DataField="objetivo" HeaderText="Objetivo" SortExpression="objetivo" ItemStyle-Font-Size="Small" />
-                                                    <asp:TemplateField HeaderText="Acciones" ItemStyle-Width="180px" HeaderStyle-CssClass="centrarCelda" ItemStyle-CssClass="centrarCelda">
+                                                     <asp:BoundField DataField="clave" HeaderText="Clave" SortExpression="clave" ItemStyle-Font-Size="Small" ItemStyle-Width="80px" HeaderStyle-CssClass="primary"/>
+                                                    <asp:BoundField DataField="objetivo" HeaderText="Objetivo" SortExpression="objetivo" ItemStyle-Font-Size="Small" ItemStyle-Width="420px"  HeaderStyle-CssClass="primary"/>
+                                                    <asp:TemplateField HeaderText="Acciones" ItemStyle-Width="180px" HeaderStyle-CssClass="centrarCelda primary" ItemStyle-CssClass="centrarCelda" >
                                                         <ItemTemplate>
-                                                            <button type="button" class="btn btn-icon btn-warning mr-1 btn-sm tooltips" onclick="abrirModalObjetivo(<%# Eval("idobjetivo") %>,'<%# Eval("objetivo") %>')" value="" data-toggle="tooltip" data-original-title="Detalles"><i class="ft-edit"></i></button>
+                                                            <button type="button" class="btn btn-icon btn-warning mr-1 btn-sm tooltips" onclick="abrirModalObjetivo(<%# Eval("idobjetivo") %>,'<%# Eval("objetivo") %>','<%# Eval("clave") %>')" value="" data-toggle="tooltip" data-original-title="Detalles"><i class="ft-edit"></i></button>
                                                             <button type="button" class="btn btn-icon btn-danger mr-1 btn-sm tooltips" onclick="eliminarObjetivo(<%# Eval("idobjetivo") %>)" value="" data-toggle="tooltip" data-original-title="Eliminar"><i class="ft-delete"></i></button>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
@@ -869,20 +870,15 @@ body { padding-right: 0 !important }
                                                     <i class="fa fa-file-pdf-o primary font-large-2 mr-2"></i>
                                                 </div>
                                                 <div class="media-body">
-                                                    <h4>Solicitud</h4>
-                                                    <span>Autorización de Curso</span>
-                                                </div>
-                                                
+                                                    <h7 class="font-weight-bold">Solicitud</h7><br />
+                                                    <span  class="font-small-3">Autorización de Curso</span>                                           
+                                                </div>                                                
                                                 </div><br />
-
-                                                <button type="button" id="bsolicitud" onclick="imprimirSolicitudAut();" class="btn btn-icon btn-primary mr-1" data-toggle="modal">
-                                                    <i class="ft-file"></i>Imprimir 
+                                                <button type="button" id="bsolicitud" onclick="imprimirSolicitudAut();" class="btn btn-icon btn-primary mr-1 " data-toggle="modal">
+                                                    <i class="ft-file"></i> Imprimir 
                                                 </button>
-                                            </div>
-                                        
-                                                   
-                                        </div>
-                                        
+                                            </div>                                                                                           
+                                        </div>                                        
                                     </div>
                                 </div>
 
@@ -895,9 +891,9 @@ body { padding-right: 0 !important }
                                                 <div class="media-left media-middle">
                                                     <i class="fa fa-file-pdf-o primary font-large-2 mr-2"></i>
                                                 </div>
-                                                <div class="media-body">
-                                                    <h4>Lista</h4>
-                                                    <span>Asistencia</span>
+                                                <div class="media-body">                                                     
+                                                    <h7 class="font-weight-bold">Lista </h7><br />
+                                                    <span class="font-small-3">Asistencia</span>  
                                                 </div>
                                                 
                                                 </div><br />
@@ -954,8 +950,10 @@ body { padding-right: 0 !important }
                                                     <i class="fa fa-file-pdf-o primary font-large-2 mr-2"></i>
                                                 </div>
                                                 <div class="media-body">
-                                                    <h4>Formato</h4>
-                                                    <span>RIADC-02 Inscripción</span>
+
+                                                    <h7 class="font-weight-bold">Formato </h7><br />
+                                                    <span  class="font-small-3">RIADC-02 Inscripción</span> 
+
                                                 </div>
                                                 
                                                 </div><br />
@@ -981,8 +979,8 @@ body { padding-right: 0 !important }
                                                     <i class="fa fa-file-pdf-o primary font-large-2 mr-2"></i>
                                                 </div>
                                                 <div class="media-body">
-                                                    <h4>Formato</h4>
-                                                    <span>RIADC-02 Acreditación</span>
+                                                    <h7 class="font-weight-bold">Formato </h7><br />
+                                                    <span  class="font-small-3">RIADC-02 Acreditación</span> 
                                                 </div>
                                                 
                                                 </div><br />
@@ -997,6 +995,34 @@ body { padding-right: 0 !important }
                                         
                                     </div>
                                 </div>
+
+
+                                    <div class="col-md-4" id="Div1" runat="server">
+                                <div class="card overflow-hidden">
+                                    <div class="card-body">
+                                        <div class="card-block cleartfix">
+                                            <div class="media">
+                                                <div class="media-left media-middle">
+                                                    <i class="fa fa-file-pdf-o primary font-large-2 mr-2"></i>
+                                                </div>
+                                                <div class="media-body">
+                                                    <h7 class="font-weight-bold">Formato </h7><br />
+                                                    <span  class="font-small-3">RESD-05 Subobjetivos</span> 
+                                                </div>
+                                                
+                                                </div><br />
+
+                                                <button type="button" id="bsubobjetivos" onclick="imprimirSubObjetivos();" class="btn btn-icon btn-primary mr-1" data-toggle="modal">
+                                                    <i class="ft-file"></i>Imprimir 
+                                                </button>
+                                            </div>
+                                        
+                                                   
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+
                            </div>
                                </div>
                                 
@@ -1176,6 +1202,16 @@ body { padding-right: 0 !important }
 
                 <div class="modal-body">
                      <asp:HiddenField runat="server" ID="idobj" Value="0"/>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="text-bold-600">Clave</label>
+                                <asp:TextBox ID="objetcl" CssClass="form-control text-uppercase"  placeholder="Clave objetivo" name="clave" runat="server"></asp:TextBox>
+
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="row">
                         <div class="col-md-12">
@@ -1848,6 +1884,13 @@ body { padding-right: 0 !important }
             cerrarLoading();
         }
 
+
+        function imprimirSubObjetivos() {
+            mostrarLoading();
+            $('#<%= bimprimirsubobjetivos.ClientID %>').click();
+             cerrarLoading();
+         }
+
         function consultaPrincipal(op) {
             mostrarLoading();
 
@@ -1860,8 +1903,9 @@ body { padding-right: 0 !important }
             cerrarLoading();
         }
 
-        function abrirModalObjetivo(idobjetivo, objetivo) {
+        function abrirModalObjetivo(idobjetivo, objetivo, clave) {
             $("*[id$='idobj']").val(idobjetivo);
+            $("*[id$='objetcl']").val(clave); 
             $("*[id$='objetivo']").val(objetivo);                       
             $("#wobjetivo").modal('show');
         }

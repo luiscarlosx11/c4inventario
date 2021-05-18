@@ -526,9 +526,9 @@ namespace elecion.tecnicoaca
 
                 GVobjetivos.DataSourceID = DSobjetivos.ID;
 
-                String query = "SELECT idobjetivo, objetivo " +
+                String query = "SELECT idobjetivo, objetivo, clave " +
                                "from cursoobjetivo " +
-                               "where idcurso = " + idP.Value;
+                               "where idcurso = " + idP.Value +" order by clave desc";
 
                 DSobjetivos.SelectCommand = query;
 

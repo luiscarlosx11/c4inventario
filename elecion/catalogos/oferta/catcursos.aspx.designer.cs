@@ -681,6 +681,15 @@ namespace elecion.catalogos.oferta
         protected global::System.Web.UI.WebControls.Button bimprimirriadcacred;
 
         /// <summary>
+        /// Control bimprimirsubobjetivos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button bimprimirsubobjetivos;
+
+        /// <summary>
         /// Control guardar.
         /// </summary>
         /// <remarks>
@@ -906,6 +915,15 @@ namespace elecion.catalogos.oferta
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl acreditacion;
 
         /// <summary>
+        /// Control Div1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div1;
+
+        /// <summary>
         /// Control fagenda.
         /// </summary>
         /// <remarks>
@@ -949,6 +967,15 @@ namespace elecion.catalogos.oferta
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField idobj;
+
+        /// <summary>
+        /// Control objetcl.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox objetcl;
 
         /// <summary>
         /// Control objetivo.
