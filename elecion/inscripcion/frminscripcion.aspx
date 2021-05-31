@@ -121,6 +121,7 @@ body { padding-right: 0 !important }
                                                 <asp:ListItem Selected="True" Value="0">SELECCIONE UN ESTATUS</asp:ListItem>
                                                 <asp:ListItem Value="EN CAPTURA">EN CAPTURA</asp:ListItem>
                                                 <asp:ListItem Value="AUTORIZADO">AUTORIZADO</asp:ListItem>
+                                                <asp:ListItem Value="OBSERVADO">OBSERVADO</asp:ListItem>
                                                 <asp:ListItem Value="FINALIZADO">FINALIZADO</asp:ListItem>
                                             </asp:DropDownList>
 

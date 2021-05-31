@@ -6,7 +6,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Rendilana - Boleta de Empeño</title>
-	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    <link href="https://kendo.cdn.telerik.com/2018.2.620/styles/kendo.common.min.css" rel="stylesheet" />
+    <link href="https://kendo.cdn.telerik.com/2018.2.620/styles/kendo.blueopal.min.css" rel="stylesheet" />
+
+	<!--If Kendo is used it should be added before the report viewer.-->
+	<script src="/api/reports/resources/js/telerikReportViewer"></script>
     <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
 	<style>
 		#reportViewer1 {

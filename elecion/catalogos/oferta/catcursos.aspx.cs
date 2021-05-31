@@ -1512,7 +1512,21 @@ namespace elecion.catalogos.oferta
                         cmd.Parameters.AddWithValue("@idcurso", this.idP.Value);
                         cmd.ExecuteNonQuery();
                         cmd.Parameters.Clear();
-                        
+
+
+                        cmd.Parameters.Clear();
+                        string query = "insert into historialcurso(idcurso, idusuario, fecha, hora, observacion) " +
+                                           "values(@idcurso, @idusuario, curdate(), curtime(), @observacion); ";
+
+                        cmd.CommandText = query;
+                        cmd.Parameters.AddWithValue("@idcurso", idP.Value);
+                        cmd.Parameters.AddWithValue("@idusuario", idusuario);
+                        cmd.Parameters.AddWithValue("@observacion", "REAPERTURA DE CAPTURA DE CURSO");
+
+                        cmd.ExecuteNonQuery();
+
+
+
                         transaction.Commit();
                         this.listadoClientes(sender, e);
                         ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading(); toastExito(); $('#bootstrap').modal('hide');", true);
