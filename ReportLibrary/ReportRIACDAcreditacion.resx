@@ -194,7 +194,7 @@ left join alumnodiscapacidad ad  on ad.iddiscapacidad = d.iddiscapacidad
 where ad.idalumno = si.idalumno
 )as discapacidades,
 
-si.idcondicion, ces.condicion, si.foliodiploma, cast(si.fechadiploma as char)as fechadiploma 
+si.idcondicion, ces.condicion, si.foliodiploma, cast(c.fechafin as char)as fechadiploma 
 
 
 from curso c 

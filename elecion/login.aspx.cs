@@ -16,6 +16,7 @@ namespace elecion
         static Usuarios usr;
         static AuthyClient.IAuthyApiClient client;
         static string authyUserId;
+        //
 
         protected void Page_Load(object sender, EventArgs e)
         {
