@@ -254,7 +254,8 @@ namespace ReportLibrary
             this.textBox27.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(7D);
             this.textBox27.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
             this.textBox27.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox27.Value = "= Fields.instalacionext.Equals(\"\")? Fields.direccion: Fields.instalaciondomext";
+            this.textBox27.Value = "= Fields.idinstalacion.toString().Equals(\"9999\")? Fields.instalaciondomext: Field" +
+    "s.direccion";
             // 
             // textBox1
             // 
@@ -908,7 +909,7 @@ namespace ReportLibrary
             reportParameter1.Value = "9";
             reportParameter2.Name = "idcurso";
             reportParameter2.Type = Telerik.Reporting.ReportParameterType.Integer;
-            reportParameter2.Value = "31";
+            reportParameter2.Value = "45";
             this.ReportParameters.Add(reportParameter1);
             this.ReportParameters.Add(reportParameter2);
             this.Style.BackgroundImage.MimeType = "";

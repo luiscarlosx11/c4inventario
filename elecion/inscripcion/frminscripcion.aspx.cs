@@ -775,6 +775,7 @@ namespace elecion.inscripcion
                         existe = Convert.ToInt32(mySqlCommand.ExecuteScalar());
 
                         if (existe == 0) { 
+                            //
 
                             if (Convert.ToInt32(this.idA.Value) != 0)
                             {

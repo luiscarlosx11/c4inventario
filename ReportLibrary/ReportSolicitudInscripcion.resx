@@ -403,7 +403,11 @@ order by d.iddocumentacion</value>
 
 select s.nombre as nombresucursal, s.clavecct as clavesucursal, t.tipocurso, cast(si.fecha as char)as fechasolicitud,
 
- 
+(
+select GROUP_CONCAT(distinct(UPPER(DAYNAME(f.fecha))) SEPARATOR ', ')
+from fechascurso f
+where f.idcurso = c.idcurso
+)as diassemana, 
  
 
 al.nocontrol, al.apaterno, al.amaterno, al.nombre, si.becado, al.sexo, al.curp, timestampdiff(YEAR,al.fechanacimiento,now())as edad,
@@ -421,7 +425,8 @@ left join alumnodiscapacidad ad  on ad.iddiscapacidad = d.iddiscapacidad
 where ad.idalumno = si.idalumno
 )as discapacidades,
 
-al.empresa, al.puesto, al.antiguedad, al.direccion as domicilioempresa, al.telefonoempresa, si.idtipoinscripcion, si.jefafamilia, si.indigena, si.condicioncalle
+al.empresa, al.puesto, al.antiguedad, al.direccion as domicilioempresa, al.telefonoempresa, si.idtipoinscripcion, si.jefafamilia, si.indigena, si.condicioncalle,
+case when si.becado=0 then 'NO' else 'SI' end as becadotext, si.porcentaje
 
 from curso c 
 left join area a on a.idarea = c.idarea 
