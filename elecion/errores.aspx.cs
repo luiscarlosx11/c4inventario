@@ -9,6 +9,7 @@ namespace elecion
 {
     public partial class errores : System.Web.UI.Page
     {
+        //
         protected void Page_Load(object sender, EventArgs e)
         {
             String msj = Request["msg"];

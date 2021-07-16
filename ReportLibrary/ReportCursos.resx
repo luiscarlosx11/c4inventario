@@ -283,7 +283,7 @@ left join area a on a.idarea = e.idarea
 left join (select p.fechaini, p.fechafin from periodo p where p.idperiodo=@idperiodo) v2 on true
 left join instructor i on i.idinstructor = c.idinstructor
 where s.idsucursal=@idsucursal and c.estatus not in('EN CAPTURA', 'CANCELADO')
-and c.fechaini between v2.fechaini and v2.fechafin
+and (c.fechaini between v2.fechaini and v2.fechafin or c.fechafin between v2.fechaini and v2.fechafin)
 order by c.nombre</value>
   </data>
   <metadata name="generales.ParameterValues" xml:space="preserve">
