@@ -344,7 +344,7 @@ namespace ReportLibrary
             // textBox90
             // 
             this.textBox90.Name = "textBox90";
-            this.textBox90.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.047D), Telerik.Reporting.Drawing.Unit.Cm(1D));
+            this.textBox90.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.048D), Telerik.Reporting.Drawing.Unit.Cm(1D));
             this.textBox90.Style.BackgroundColor = System.Drawing.Color.White;
             this.textBox90.Style.BorderColor.Default = System.Drawing.Color.DimGray;
             this.textBox90.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
@@ -581,7 +581,7 @@ namespace ReportLibrary
             // textBox86
             // 
             this.textBox86.Name = "textBox86";
-            this.textBox86.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.074D), Telerik.Reporting.Drawing.Unit.Cm(0.609D));
+            this.textBox86.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(6.075D), Telerik.Reporting.Drawing.Unit.Cm(0.609D));
             this.textBox86.Style.BackgroundColor = System.Drawing.Color.White;
             this.textBox86.Style.BorderColor.Default = System.Drawing.Color.DimGray;
             this.textBox86.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
@@ -1020,7 +1020,7 @@ namespace ReportLibrary
             this.textBox94.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(7D);
             this.textBox94.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox94.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox94.Value = "= RowNumber()";
+            this.textBox94.Value = "= RowNumber(\"table2\")";
             // 
             // textBox34
             // 

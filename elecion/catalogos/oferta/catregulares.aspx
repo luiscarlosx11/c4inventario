@@ -119,7 +119,7 @@
                                                 </div>
 
 
-                                                <div class="col-md-4" id="Div1" runat="server">
+                                                <div class="col-md-3" id="Div1" runat="server">
                                                     <div class="form-group">                                                        
                                                         <label class="text-bold-600">Especialidad</label>
                                                         <asp:DropDownList runat="server" ID="bespecialidad" CssClass="select2 form-control" DataSourceID="Dsespecialidades" DataTextField="especialidad" DataValueField="idespecialidad" Style="width: 100%" AutoPostBack="true" OnSelectedIndexChanged="listadoGrid" OnDataBound="listadoGrid"></asp:DropDownList>
@@ -128,6 +128,17 @@
                                                                 <SelectParameters>
                                                                       <asp:ControlParameter ControlID="bcategoria" Name="idcat" PropertyName="SelectedValue" />
                                                                 </SelectParameters>
+                                                             </asp:SqlDataSource>               
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-3" id="Div3" runat="server">
+                                                    <div class="form-group">                                                        
+                                                        <label class="text-bold-600">Nivel</label>
+                                                        <asp:DropDownList runat="server" ID="bnivel" CssClass="select2 form-control" DataSourceID="dsBusnivel" DataTextField="nivel" DataValueField="idnivel" Style="width: 100%" AutoPostBack="true" OnSelectedIndexChanged="listadoGrid" OnDataBound="listadoGrid"></asp:DropDownList>
+                                                             <asp:SqlDataSource ID="dsBusnivel" ProviderName="MySql.Data.MySqlClient" runat="server" ConnectionString="<%$ ConnectionStrings:DBconexion %>"
+                                                                 SelectCommand="SELECT 0 as idnivel, 'SELECCIONE UN NIVEL' as nivel union select idnivel, nivel FROM nivel ORDER BY idnivel">
+                                                                
                                                              </asp:SqlDataSource>               
                                                     </div>
                                                 </div>
@@ -158,11 +169,12 @@
                                             <asp:BoundField DataField="clave" HeaderText="Clave" ItemStyle-Width="300px" SortExpression="clave" /> 
                                             <asp:BoundField DataField="nombre" HeaderText="Nombre" ItemStyle-Width="300px" SortExpression="nombre" /> 
                                             <asp:BoundField DataField="area" HeaderText="Area" ItemStyle-Width="300px" SortExpression="area" /> 
-                                            <asp:BoundField DataField="especialidad" HeaderText="Especialidad" SortExpression="especialidad" />                           
-                                            <asp:TemplateField HeaderText="Acciones" ItemStyle-Width="180px">
+                                            <asp:BoundField DataField="especialidad" HeaderText="Especialidad" SortExpression="especialidad" /> 
+                                            <asp:BoundField DataField="nivel" HeaderText="Nivel" SortExpression="nivel" /> 
+                                            <asp:TemplateField HeaderText="Acciones" ItemStyle-Width="120px">
                                                 <ItemTemplate>
 
-                                                    <button type="button" id="editar" onclick="abrirModal(<%# Eval("idcursoregular")%>,<%# Eval("idespecialidad")%>,'<%# Eval("especialidad").ToString() %>',<%# Eval("idarea")%>, '<%# Eval("clave").ToString() %>', '<%# Eval("nombre").ToString() %>')" class="btn btn-icon btn-warning mr-1 btn-sm"
+                                                    <button type="button" id="editar" onclick="abrirModal(<%# Eval("idcursoregular")%>,<%# Eval("idespecialidad")%>,'<%# Eval("especialidad").ToString() %>',<%# Eval("idarea")%>, '<%# Eval("clave").ToString() %>', '<%# Eval("nombre").ToString() %>',<%# Eval("idnivel")%>)" class="btn btn-icon btn-warning mr-1 btn-sm"
                                                         data-toggle="tooltip" data-original-title="Editar" >
                                                          <i class="ft-edit"></i>
                                                     </button>
@@ -234,8 +246,21 @@
 
 
                                                         </div>
-                                                    </div>                                                                                                                       
-                                                        
+                                                    </div>
+
+                                                    <div class="row">
+
+                                                        <div class="form-group">
+                                                            <div class="col-md-12">
+                                                                <label class="text-bold-600">Nivel</label>
+                                                                 <asp:DropDownList runat="server" ID="idnivel" CssClass="select2 form-control" DataSourceID="Dsnivel" DataTextField="nivel" DataValueField="idnivel" AutoPostBack="false" Style="width: 100%"></asp:DropDownList>
+                                                                <asp:SqlDataSource ID="Dsnivel" runat="server" ProviderName="MySql.Data.MySqlClient" ConnectionString="<%$ ConnectionStrings:DBconexion %>" SelectCommand="SELECT 0 as idnivel, 'SELECCIONE UN NIVEL' as nivel union select idnivel, nivel FROM nivel ORDER BY idnivel"></asp:SqlDataSource>
+                                                            
+                                                            </div>
+
+
+                                                        </div>
+                                                    </div>                                                         
 
                                                     <div class="row">
 
@@ -318,7 +343,7 @@
         $(".nav-item>ul>li.active").removeClass("active");
         $("#catcursosregulares").addClass("active");
 
-        function abrirModal(idcurso, idespecialidad, tipogasto, idarea, clave, nombre) {
+        function abrirModal(idcurso, idespecialidad, tipogasto, idarea, clave, nombre, idnivel) {
             $("*[id$='idS']").val(idcurso);
 
             $("*[id$='clave']").val(clave);
@@ -329,6 +354,9 @@
 
             $("*[id$='idespecialidad']").val(idespecialidad);
             $("*[id$='idespecialidad']").change();
+
+            $("*[id$='idnivel']").val(idnivel);
+            $("*[id$='idnivel']").change();
                              
             $("#bootstrap").modal('show');
         }
@@ -338,11 +366,16 @@
             var categoria = $("*[id$='bcategoria']").val();
             var especialidad = $("*[id$='bespecialidad']").val();
 
+            var nivel = $("*[id$='bnivel']").val();
+
             $("*[id$='identidad']").val(categoria);
             $("*[id$='identidad']").change();
 
             $("*[id$='idespecialidad']").val(especialidad);
             $("*[id$='idespecialidad']").change();
+
+            $("*[id$='idnivel']").val(nivel);
+            $("*[id$='idnivel']").change();
 
             $("*[id$='clave']").val('');
             $("*[id$='nombre']").val('');

@@ -72,10 +72,11 @@ namespace elecion.catalogos.oferta
 
             lgastos.DataSourceID = DsListadoGastos.ID;
 
-            String query = "select s.idcursoregular, s.idarea, s.idespecialidad, s.clave, s.nombre, c.area, e.especialidad " +
+            String query = "select s.idcursoregular, s.idarea, s.idespecialidad, s.clave, s.nombre, c.area, e.especialidad, case  when n.nivel is null then 'NO ESPECIFICADO' else n.nivel end as nivel, s.idnivel " +
                            "from cursoregular s  " +
                            "left join area c on c.idarea = s.idarea " +
-                           "left join especialidad e on e.idespecialidad = s.idespecialidad ";
+                           "left join especialidad e on e.idespecialidad = s.idespecialidad "+
+                           "left join nivel n on n.idnivel = s.idnivel ";
 
 
             //if (idtipousuario == 4)
@@ -88,6 +89,10 @@ namespace elecion.catalogos.oferta
 
             if (bespecialidad.SelectedValue != "")
                 query = query + " and s.idespecialidad = " + Convert.ToInt32(bespecialidad.SelectedValue) + " ";
+
+
+            if (bnivel.SelectedValue != "" && bnivel.SelectedValue != "0")
+                query = query + " and s.idnivel = " + Convert.ToInt32(bnivel.SelectedValue) + " ";
 
             /* if (cliente.SelectedValue != "0")
                  query = query + " AND T.IDCLIENTE=" + Convert.ToInt32(cliente.SelectedValue);*/
@@ -122,15 +127,18 @@ namespace elecion.catalogos.oferta
 
                     //Si el idmunicipio es mayor que cero se hace UPDATE
                     if (Int32.Parse(idS.Value) > 0)
-                        query = "UPDATE cursoregular set nombre=@nombre, idarea=@identidad, idespecialidad=@idespecialidad, clave=@clave where idcursoregular=@idsucursal;";
+                        query = "UPDATE cursoregular set nombre=@nombre, idarea=@identidad, idespecialidad=@idespecialidad, idnivel=@idnivel, clave=@clave where idcursoregular=@idsucursal;";
                     else
-                        query = "INSERT INTO cursoregular(idespecialidad, idarea, nombre, clave) values(@idespecialidad, @identidad, @nombre, @clave);";
+                        query = "INSERT INTO cursoregular(idespecialidad, idarea, idnivel, nombre, clave) values(@idespecialidad, @identidad, @idnivel, @nombre, @clave);";
 
                     MySqlCommand cmd = new MySqlCommand(query, con);
 
 
                     cmd.Parameters.AddWithValue("@idsucursal", idS.Value);
-                    cmd.Parameters.AddWithValue("@idespecialidad", idespecialidad.SelectedValue);
+                    cmd.Parameters.AddWithValue("@idespecialidad", idespecialidad.SelectedValue);                    
+                    cmd.Parameters.AddWithValue("@idnivel", idnivel.SelectedValue);
+                  
+
                     cmd.Parameters.AddWithValue("@identidad", identidad.SelectedValue);
                     cmd.Parameters.AddWithValue("@nombre", nombre.Text.ToUpper().Trim());
                     cmd.Parameters.AddWithValue("@clave", clave.Text.ToUpper().Trim());
