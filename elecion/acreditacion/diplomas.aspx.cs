@@ -526,7 +526,7 @@ namespace elecion.acreditacion
                     {
                         con.Open();
 
-                        String sql = "select count(idsolicitud) from solicitudinscripcion where foliodiploma=@foliodiploma;";
+                        String sql = "select count(idsolicitud) from solicitudinscripcion where foliodiploma=@foliodiploma and estatus not in ('CANCELADO');";
                         MySqlCommand cmd = new MySqlCommand(sql, con);
                         cmd.Parameters.AddWithValue("@foliodiploma", folio.Text.Trim().ToUpper());
                         int conteo = Convert.ToInt32(cmd.ExecuteScalar());
