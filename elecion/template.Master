@@ -14,7 +14,7 @@
     <meta name="description" content="Stack admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities." />
     <meta name="keywords" content="admin template, stack admin template, dashboard template, flat admin template, responsive admin template, web app" />
     <meta name="author" content="PIXINVENT" />
-    <title>Icaten - Plataforma de Gestión Escolar</title>
+    <title>C4 - Control de inventario</title>
     <link rel="apple-touch-icon" href="/app-assets/images/ico/favicon2.png" />
     <link rel="shortcut icon" type="image/x-icon" href="/app-assets/images/ico/favicon2.ico" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i%7COpen+Sans:300,300i,400,400i,600,600i,700,700i" rel="stylesheet" />
@@ -88,8 +88,8 @@
           <ul class="nav navbar-nav">
             <li class="nav-item mobile-menu hidden-md-up float-xs-left"><a href="#" class="nav-link nav-menu-main menu-toggle hidden-xs"><i class="ft-menu font-large-1"></i></a></li>
               <li class="nav-item">
-                        <a class="navbar-brand" href="/html/ltr/vertical-menu-template-nav-dark/index.html"><img class="brand-logo" alt="stack admin logo" src="/app-assets/images/logo/stack-logo-light.png">
-                            <h4 class="brand-text">ICATEN</h4>
+                        <a class="navbar-brand" href="/html/ltr/vertical-menu-template-nav-dark/index.html">
+                            <h4 class="brand-text">C4 INVENTARIO</h4>
                         </a>
                     </li><!--
             <li class="nav-item"><a href="/" class="navbar-brand">
@@ -338,78 +338,21 @@
                 <li class="navigation-header " id="catalogos" runat="server"><span>Catálogos</span><i data-toggle="tooltip" data-placement="right" data-original-title="Catálogos" class=" ft-minus"></i>
                 </li>
                         
-                    <li class="nav-item" id="ciclo" runat="server"><a href="index.html"><i class="fa fa-calendar"></i><span data-i18n="" class="menu-title">Ciclo Escolar</span>
+                    <li class="nav-item" id="ciclo" runat="server"><a href="index.html"><i class="fa fa-cog"></i><span data-i18n="" class="menu-title">Básicos</span>
                             <span class="tag tag tag-primary tag-pill float-xs-right mr-2"></span></a>
                             <ul class="menu-content">       
-                                 <li id="calendario"><a href="/catalogos/ciclo/calendario.aspx" onclick="mostrarLoading()" class="menu-item">Calendario</a>
+                                 <li id="calendario"><a href="/catalogos/ciclo/calendario.aspx" onclick="mostrarLoading()" class="menu-item">Estado</a>
                                 </li>    
-                                <li id="catciclos"><a href="/catalogos/ciclo/catciclos.aspx" onclick="mostrarLoading()" class="menu-item">Ciclos</a>
+                                <li id="catciclos"><a href="/catalogos/ciclo/catciclos.aspx" onclick="mostrarLoading()" class="menu-item">Tipo movimiento</a>
                                 </li>
                             </ul>
                         </li> 
 
-                        <li class="nav-item" id="infraestructura" runat="server"><a href="index.html"><i class="ft-home"></i><span data-i18n="" class="menu-title" runat="server" >Infraestructura</span>
+                      
 
-                            <span class="tag tag tag-primary tag-pill float-xs-right mr-2"></span></a>
-                            <ul class="menu-content">  
-                                <li id="catsucursales"><a href="/configuracion/catsucursales.aspx" onclick="mostrarLoading()" class="menu-item">Unidades Educativas</a>
-                                </li>
-                                <li id="catinstalaciones"><a href="/configuracion/catinstalaciones.aspx" onclick="mostrarLoading()" class="menu-item">Instalaciones</a>
-                                </li>                                                                             
-                            </ul>
-                        </li>
-
-                    <li class="nav-item" id="directorio" runat="server"><a href="index.html"><i class="icon-users"></i><span data-i18n="" class="menu-title" >Directorio</span>
-                                <span class="tag tag tag-primary tag-pill float-xs-right mr-2"></span></a>
-                                    <ul class="menu-content">
-                                        <li id="catinstructores"><a href="/catalogos/directorio/catinstructores.aspx" onclick="mostrarLoading()" class="menu-item">Instructores</a>
-                                        </li>
-                                        <!--<li id="catalumnos"><a href="/catalogos/directorio/catalumnos.aspx" class="menu-item">Alumnos</a>
-                                        </li>-->                                                                                                     
-                                    </ul>
-                        </li>
-
-                        <li class="nav-item" id="datospersonales" runat="server"><a href="index.html"><i class="ft-user"></i><span data-i18n="" class="menu-title" runat="server">Datos Personales</span>
-                            <span class="tag tag tag-primary tag-pill float-xs-right mr-2"></span></a>
-                            <ul class="menu-content">       
-                                 <li id="catentidades"><a href="/catalogos/geograficos/catentidades.aspx" onclick="mostrarLoading()" class="menu-item">Entidades</a>
-                                </li>
-                                 <li id="catmunicipios"><a href="/catalogos/geograficos/catmunicipios.aspx" onclick="mostrarLoading()" class="menu-item">Municipios</a>
-                                </li>                                         
-                                <li id="catedocivil"><a href="/catalogos/personales/catedocivil.aspx" onclick="mostrarLoading()" class="menu-item">Estado Civil</a>
-                                </li>
-                                <li id="catdiscapacidad"><a href="/catalogos/personales/catdiscapacidad.aspx" onclick="mostrarLoading()" class="menu-item">Discapacidad</a>
-                                </li>
-                                <li id="catenfermedades"><a href="/catalogos/personales/catenfermedades.aspx" onclick="mostrarLoading()" class="menu-item">Enfermedades</a>
-                                </li>
-                                <li id="cattiposangre"><a href="/catalogos/personales/cattiposangre.aspx" onclick="mostrarLoading()" class="menu-item">Tipo de Sangre</a>
-                                </li>
-                                
+                   
+                
                         
-                            </ul>
-                        </li> 
-                
-                        <li class="nav-item" id="datosgenerales" runat="server"><a href="index.html"><i class="ft-folder"></i><span data-i18n="" class="menu-title">Datos Generales</span>
-                            <span class="tag tag tag-primary tag-pill float-xs-right mr-2"></span></a>
-                            <ul class="menu-content">               
-                                <li id="catescolaridad"><a href="/catalogos/generales/catescolaridad.aspx" onclick="mostrarLoading()" class="menu-item">Escolaridad</a>
-                                </li>        
-                                <li id="catdocumentacion"><a href="/catalogos/generales/catdocumentacion.aspx" onclick="mostrarLoading()" class="menu-item">Documentación</a>
-                                </li>                               
-                            </ul>
-                        </li>   
-                
-                        <li class="nav-item" id="datoscapaticacion" runat="server"><a href="index.html"><i class="ft-briefcase"></i><span data-i18n="" class="menu-title">Datos Capacitación</span>
-                            <span class="tag tag tag-primary tag-pill float-xs-right mr-2"></span></a>
-                            <ul class="menu-content">                       
-                                <li id="catmedios"><a href="/catalogos/capacitacion/catmedios.aspx" onclick="mostrarLoading()" class="menu-item">Medios de Interés</a>
-                                </li>
-                                
-                                <li id="catmotivos"><a href="/catalogos/capacitacion/catmotivos.aspx" onclick="mostrarLoading()" class="menu-item">Motivos de Elección</a>
-                                </li>                               
-                            </ul>
-                        </li>                     
-
                         
 
                         <li class="nav-item" id="seguridad" runat="server"><a href="index.html"><i class="ft-lock"></i><span data-i18n="" class="menu-title">Seguridad</span>
@@ -422,155 +365,28 @@
                                     </ul>
                         </li>
 
-                <li class="nav-item" id="otros" runat="server"><a href="index.html"><i class="ft-grid"></i><span data-i18n="" class="menu-title">Otros</span>
-                                <span class="tag tag tag-primary tag-pill float-xs-right mr-2"></span></a>
-                                    <ul class="menu-content">
-                                        <li id="catbancos"><a href="/catalogos/otros/catbancos.aspx" onclick="mostrarLoading()" class="menu-item">Bancos</a>
-                                        </li> 
-
-                                        <li id="catconvenios"><a href="/catalogos/otros/catconvenios.aspx" onclick="mostrarLoading()" class="menu-item">Convenios</a>
-                                        </li>
-
-                                        
-                                                               
-                                    </ul>
-                        </li>
+              
                 
 
-                <li class="navigation-header" id="capacitacion"  runat="server"><span>Capacitación</span><i data-toggle="tooltip" data-placement="right" data-original-title="Capacitación" class=" ft-minus"></i>
+                <li class="navigation-header" id="capacitacion"  runat="server"><span>Almacén</span><i data-toggle="tooltip" data-placement="right" data-original-title="Capacitación" class=" ft-minus"></i>
                 </li>
                         
-						<li class="nav-item" id="oferta" runat="server"><a href="index.html"><i class="ft-tag"></i><span data-i18n="" class="menu-title">Oferta Educativa</span>
+						<li class="nav-item" id="oferta" runat="server"><a href="index.html"><i class="ft-tag"></i><span data-i18n="" class="menu-title">Gestión</span>
                             <span class="tag tag tag-primary tag-pill float-xs-right mr-2"></span></a>
                             <ul class="menu-content">              
                                <!-- <li id="catconfig"><a href="#" class="menu-item">Ciclo Escolar</a>
                                 </li>  -->                              
-                                <li id="catofertas"><a href="/catalogos/oferta/catofertas.aspx" onclick="mostrarLoading()" class="menu-item">Oferta</a>
+                                <li id="catofertas"><a href="/catalogos/oferta/catofertas.aspx" onclick="mostrarLoading()" class="menu-item">Inventario</a>
                                 </li>
 
-                                <li id="catareas"><a href="/catalogos/oferta/catareas.aspx" onclick="mostrarLoading()" class="menu-item">Áreas</a>
-                                </li>
-                                <li id="catespecialidades"><a href="/catalogos/oferta/catespecialidades.aspx" onclick="mostrarLoading()" class="menu-item">Especialidades</a>
-                                </li>
-
-                                <li id="catcursosregulares"><a href="/catalogos/oferta/catregulares.aspx" onclick="mostrarLoading()" class="menu-item">Regulares</a>
-                                </li>
-
-                                <li id="catcursos"><a href="/catalogos/oferta/catcursos.aspx" onclick="mostrarLoading()" class="menu-item">Cursos</a>
-                                </li>
-
-                                <li id="catrocos"><a href="/catalogos/oferta/catrocos.aspx" onclick="mostrarLoading()" class="menu-item">ROCO</a>
-                                </li>
-                                
-                            </ul>
-                        </li>
-
-                        
-
-                        <li class="nav-item"><a href="index.html" id="inscripcion" runat="server"><i class="icon-screen-tablet"></i><span data-i18n="" class="menu-title">Inscripción</span>
-                            <span class="tag tag tag-primary tag-pill float-xs-right mr-2"></span></a>
-                            <ul class="menu-content">                       
-                                <!--<li id="ticketsagregar"><a href="/tickets/agregar.aspx" class="menu-item">Nuevo ticket</a>
-                                </li>-->
-                                <li id="frminscripcion"><a href="/inscripcion/frminscripcion.aspx" onclick="mostrarLoading()" class="menu-item">Cursos</a>
-                                </li> 
-								<li id="frminscripcionROCO"><a href="#" onclick="mostrarLoading()" class="menu-item">ROCO</a>
-                                </li>
                                
-                                                                                                           
                             </ul>
                         </li>
 
-
-				<li class="navigation-header" id="tecnico" runat="server"><span>Técnico Académico</span><i data-toggle="tooltip" data-placement="right" data-original-title="Técnico Académico" class=" ft-minus" ></i>
-                </li>
-				
-				<li class="nav-item" id="ofertatecnico" runat="server"><a href="index.html"><i class="ft-tag"></i><span data-i18n="" class="menu-title">Oferta Educativa</span>
-                            <span class="tag tag tag-primary tag-pill float-xs-right mr-2"></span></a>
-                            <ul class="menu-content">                                              
-                                <li id="catautcursos"><a href="/tecnicoaca/catautcursos.aspx" onclick="mostrarLoading()" class="menu-item">Cursos</a>
-                                </li>
-                                
-                            </ul>
-                        </li>
-				
-              
-				
-                 <li class="navigation-header" id="caja" runat="server"><span>Contabilidad</span><i data-toggle="tooltip" data-placement="right" data-original-title="Flujo" class=" ft-minus"></i>
-                </li>
-               
-                <li class="nav-item" id="pagos" runat="server"><a href="index.html"><i class="fa fa-usd"></i><span data-i18n="" class="menu-title">Caja</span>
-                    <span class="tag tag tag-primary tag-pill float-xs-right mr-2"></span></a>
-                    <ul class="menu-content">
-                        <li class="menu-item"><a href="/caja/pagos.aspx">
-                            Pagos</a>
-                        </li>
-                        <li class="menu-item" id="depositos"><a href="/caja/depositos.aspx">
-                            Depositos</a>
-                        </li>
-                        
-                    </ul>
-                </li>
-               
-
-
-                  <li class="navigation-header" id="Li1" runat="server"><span>Acreditación</span><i data-toggle="tooltip" data-placement="right" data-original-title="Flujo" class=" ft-minus"></i>
-                </li>
-               
-                <li class="nav-item" id="acredcursos" runat="server"><a href="index.html"><i class="fa ft-tag"></i><span data-i18n="" class="menu-title">Curso</span>
-                    <span class="tag tag tag-primary tag-pill float-xs-right mr-2"></span></a>
-                    <ul class="menu-content">
-                        <li  class="menu-item" id="frmacreditacion"><a href="/acreditacion/frmacreditacion.aspx">
-                            Finalización</a>
-                        </li>
-                        
-                    </ul>
-                   
-                </li>
-
-                <li class="nav-item" id="Li3" runat="server"><a href="index.html"><i class="fa fa-file-text-o"></i><span data-i18n="" class="menu-title">Documentación</span>
-                    <span class="tag tag tag-primary tag-pill float-xs-right mr-2"></span></a>
-                    <ul class="menu-content">
-                        <li  class="menu-item" id="diplomas"><a href="/acreditacion/diplomas.aspx">
-                            Diplomas</a>
-                        </li>
-                        
-                    </ul>
-                   
-                </li>
-
-
-                
-
-                        
+                      
 
                     
-                 <li class="navigation-header" id="reportes" runat="server"><span>Reportes</span><i data-toggle="tooltip" data-placement="right" data-original-title="Reportes" class=" ft-minus"></i>
-                </li>
-                
-
-                        <!--<li id="corted" class="menu-item" runat="server"><a href="#" >
-                            <i class="icon-docs"></i><span data-i18n="" class="menu-title">Instituto</span></a>                            
-                        </li>-->
-                         <li id="sep" class="menu-item" runat="server"><a href="/report/anexos.aspx" >
-                             <i class="icon-directions"></i><span data-i18n="" class="menu-title">SEP</span>  </a>                          
-                        </li>
-                        <li id="subsidio" class="menu-item" runat="server"><a href="/report/subsidios.aspx" >
-                             <i class="icon-directions"></i><span data-i18n="" class="menu-title">Subsidios</span>  </a>                          
-                        </li>
-                        <!--
-                        <li id="rvarios" class="menu-item" runat="server"><a href="#" >
-                             <i class="fa fa-briefcase"></i><span data-i18n="" class="menu-title">Complementarios</span>  </a>                          
-                        </li>-->
-
-                <li class="navigation-header" id="ayuda" runat="server"><span>Ayuda</span><i data-toggle="tooltip" data-placement="right" data-original-title="Ayuda" class="ft-minus"></i>
-                </li>
-                
-
-                         <li id="documentacion" class="menu-item" runat="server"><a href="/ayuda/documentacion.aspx" >
-                             <i class="fa fa-question"></i><span data-i18n="" class="menu-title">Soporte</span>  </a>                          
-                        </li>
-                     
+                 
                      
                        
             </ul>

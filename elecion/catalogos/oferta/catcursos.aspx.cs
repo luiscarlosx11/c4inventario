@@ -24,11 +24,7 @@ namespace elecion.catalogos.oferta
         int idtipousuario;
         string roles;
 
-        protected void area_DataBound(object sender, EventArgs e)
-        {
-            this.Dsespecialidades.DataBind();
-            this.especialidad.DataBind();
-        }
+        
 
         protected void bimprimir_Click(object sender, EventArgs e)
         {
@@ -187,270 +183,9 @@ namespace elecion.catalogos.oferta
             base.Response.End();
         }
 
-        protected void generaFechasCurso(object sender, EventArgs e)
-        {
-            using (MySqlConnection con = new MySqlConnection(WebConfigurationManager.ConnectionStrings["DBconexion"].ConnectionString))
-            {
-                MySqlTransaction transaction = null;
-                MySqlDataReader reader = null;
-                string query = "";
-                int idfecha = 0;
-                int idcurso = 0;
-                int nohoras = 0;
-                List<fechascurso> listafechas = null;
-                try
-                {
-                    try
-                    {
-                        con.Open();
-                        MySqlCommand cmd = con.CreateCommand();
-                        transaction = con.BeginTransaction();
-                        cmd.Connection = con;
-                        cmd.Transaction = transaction;
-                        if (Convert.ToInt32(this.idP.Value) != 0)
-                        {
-                            cmd.Parameters.Clear();
-                            cmd.CommandText = string.Concat("update curso set nombre=@nombre, clave=@clave, idcicloescolar=(select idcicloescolar from cicloescolar where @fechaini between fechaini and fechafin), idtipocurso=@idtipocurso, idarea=@idarea, idespecialidad=@idespecialidad, idinstructor=@idinstructor, idinstalacion=@idinstalacion, fechaini=@fechaini, fechafin=@fechafin, dias=@dias, horaini=@horaini, horafin=@horafin, horas=@horas,  costomodulo=@costomodulo, costo=@costo, pagohora=@pagohora, observaciones=@observaciones, diascurso=@diascurso, idtipooferta=@idtipooferta, instalacionext=@instalacionext, instalaciondomext=@instalaciondomext, idcursoregular= @idcursoregular ", "where idcurso=@idcurso;");
-                            cmd.Parameters.AddWithValue("@idcurso", this.idP.Value);
-                            //cmd.Parameters.AddWithValue("@idcicloescolar", 1);
-                            cmd.Parameters.AddWithValue("@clave", this.clave.Text.ToUpper().Trim());
-                            cmd.Parameters.AddWithValue("@nombre", this.nombre.Text.ToUpper().Trim());
-                            cmd.Parameters.AddWithValue("@idtipocurso", this.tipocurso.SelectedValue);
-                            cmd.Parameters.AddWithValue("@idarea", this.area.SelectedValue);
-                            cmd.Parameters.AddWithValue("@idespecialidad", this.especialidad.SelectedValue);
-                            cmd.Parameters.AddWithValue("@idinstructor", this.instructor.SelectedValue);
-                            cmd.Parameters.AddWithValue("@idinstalacion", this.instalacion.SelectedValue);
-                            cmd.Parameters.AddWithValue("@fechaini", this.fechaini.Text);
-                            cmd.Parameters.AddWithValue("@fechafin", this.fechafin.Text);
-                            cmd.Parameters.AddWithValue("@dias", this.dias.Text);
-                            cmd.Parameters.AddWithValue("@horaini", this.horaini.Text);
-                            cmd.Parameters.AddWithValue("@horafin", this.horafin.Text);
-                            cmd.Parameters.AddWithValue("@horas", this.horas.Text);
-                            if (this.costomodulo.Text.Equals(""))
-                            {
-                                cmd.Parameters.AddWithValue("@costomodulo", "0");
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@costomodulo", this.costomodulo.Text);
-                            }
-                            if (this.costoalumno.Text.Equals(""))
-                            {
-                                cmd.Parameters.AddWithValue("@costo", "0");
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@costo", this.costoalumno.Text);
-                            }
-                            if (this.pagohora.Text.Equals(""))
-                            {
-                                cmd.Parameters.AddWithValue("@pagohora", "0");
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@pagohora", this.pagohora.Text);
-                            }
-                            cmd.Parameters.AddWithValue("@observaciones", this.observaciones.Text.Trim());
-                            cmd.Parameters.AddWithValue("@diascurso", this.hdias.Value);
-                            cmd.Parameters.AddWithValue("@idtipooferta", this.tipooferta.SelectedValue);
-                            cmd.Parameters.AddWithValue("@instalacionext", this.instalacionext.Text.ToUpper().Trim());
-                            cmd.Parameters.AddWithValue("@instalaciondomext", this.instalaciondomext.Text.ToUpper().Trim());
-                            if (!this.tipocurso.SelectedValue.Equals("3"))
-                            {
-                                cmd.Parameters.AddWithValue("@idcursoregular", null);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idcursoregular", this.regular.SelectedValue);
-                            }
-                            cmd.ExecuteNonQuery();
-                        }
-                        else
-                        {
-                            cmd.Parameters.Clear();
-                            cmd.CommandText = "insert into curso(idsucursal, idcicloescolar, clave, nombre, idtipocurso, idarea, idespecialidad, idinstructor, idinstalacion, fechaini, fechafin, dias, horaini, horafin, horas, costomodulo, costo, pagohora, observaciones, estatus, pagado, diascurso, idtipooferta, instalacionext,  instalaciondomext, solicita, autoriza, idcursoregular, tipo) values(@idsucursal, (select idcicloescolar from cicloescolar where @fechaini between fechaini and fechafin), @clave, @nombre, @idtipocurso, @idarea, @idespecialidad, @idinstructor, @idinstalacion, @fechaini, @fechafin, @dias, @horaini, @horafin, @horas, @costomodulo, @costo, @pagohora, @observaciones, 'EN CAPTURA', 0, @diascurso, @idtipooferta, @instalacionext, @instalaciondomext, (select encargado from sucursal where idsucursal=@idsucursal), 'PROF. GERSOM PÉREZ RAMÍREZ', @idcursoregular, 'C'); ";
-                           // cmd.Parameters.AddWithValue("@idcicloescolar", 1);
-                            cmd.Parameters.AddWithValue("@idsucursal", this.idsucursal);
-                            cmd.Parameters.AddWithValue("@clave", this.clave.Text.ToUpper().Trim());
-                            cmd.Parameters.AddWithValue("@nombre", this.nombre.Text.ToUpper().Trim());
-                            cmd.Parameters.AddWithValue("@idtipocurso", this.tipocurso.SelectedValue);
-                            cmd.Parameters.AddWithValue("@idarea", this.area.SelectedValue);
-                            cmd.Parameters.AddWithValue("@idespecialidad", this.especialidad.SelectedValue);
-                            cmd.Parameters.AddWithValue("@idinstructor", this.instructor.SelectedValue);
-                            cmd.Parameters.AddWithValue("@idinstalacion", this.instalacion.SelectedValue);
-                            cmd.Parameters.AddWithValue("@fechaini", this.fechaini.Text);
-                            cmd.Parameters.AddWithValue("@fechafin", this.fechafin.Text);
-                            cmd.Parameters.AddWithValue("@dias", 0);
-                            cmd.Parameters.AddWithValue("@horaini", this.horaini.Text);
-                            cmd.Parameters.AddWithValue("@horafin", this.horafin.Text);
-                            cmd.Parameters.AddWithValue("@horas", 0);
-                            if (this.costomodulo.Text.Equals(""))
-                            {
-                                cmd.Parameters.AddWithValue("@costomodulo", "0");
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@costomodulo", this.costomodulo.Text);
-                            }
-                            if (this.costoalumno.Text.Equals(""))
-                            {
-                                cmd.Parameters.AddWithValue("@costo", "0");
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@costo", this.costoalumno.Text);
-                            }
-                            if (this.pagohora.Text.Equals(""))
-                            {
-                                cmd.Parameters.AddWithValue("@pagohora", "0");
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@pagohora", this.pagohora.Text);
-                            }
-                            cmd.Parameters.AddWithValue("@observaciones", this.observaciones.Text.Trim());
-                            cmd.Parameters.AddWithValue("@diascurso", this.hdias.Value);
-                            cmd.Parameters.AddWithValue("@idtipooferta", this.tipooferta.SelectedValue);
-                            cmd.Parameters.AddWithValue("@instalacionext", this.instalacionext.Text.ToUpper().Trim());
-                            cmd.Parameters.AddWithValue("@instalaciondomext", this.instalaciondomext.Text.ToUpper().Trim());
-                            if (!this.tipocurso.SelectedValue.Equals("3"))
-                            {
-                                cmd.Parameters.AddWithValue("@idcursoregular", null);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("@idcursoregular", this.regular.SelectedValue);
-                            }
-                            cmd.ExecuteNonQuery();
-                            idcurso = (int)cmd.LastInsertedId;
-                            this.idP.Value = idcurso.ToString();
-                            cmd.Parameters.Clear();
-                            cmd.CommandText = "insert into historialcurso(idcurso, idusuario, fecha, hora, observacion) values(@idcurso, @idusuario, curdate(), curtime(), @observacion); ";
-                            cmd.Parameters.AddWithValue("@idcurso", this.idP.Value);
-                            cmd.Parameters.AddWithValue("@idusuario", this.idusuario);
-                            cmd.Parameters.AddWithValue("@observacion", "DADO DE ALTA");
-                            cmd.ExecuteNonQuery();
-                        }
-                       
-                        cmd.Parameters.Clear();
-                        cmd.CommandText = string.Concat("SELECT COALESCE(MAX(idfecha),0)as idfecha FROM fechascurso where idcurso=", this.idP.Value, ";");
-                        idfecha = Convert.ToInt32(cmd.ExecuteScalar());
-                        cmd.Parameters.Clear();
-                        query = "delete from fechascurso where idcurso=@idcurso; ";
-                        cmd.Parameters.AddWithValue("@idcurso", this.idP.Value);
-                        cmd.CommandText = query;
-                        cmd.ExecuteNonQuery();
-                        
+      
 
-                        cmd.Parameters.Clear();
-                        cmd.CommandText = string.Concat(new string[] { "select * from (select adddate('1970-01-01', t4.i * 10000 + t3.i * 1000 + t2.i * 100 + t1.i * 10 + t0.i) fecha from  (select 0 i union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t0,  (select 0 i union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t1,  (select 0 i union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t2,  (select 0 i union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t3,  (select 0 i union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t4) v where fecha between '", this.fechaini.Text, "' and '", this.fechafin.Text, "'and DAYOFWEEK(fecha) in (", this.hdias.Value, ") and fecha not in (select fecha from fechaslibres)  union (select fecha from fechascurso where idcurso=" + idP.Value + "); " });
-                        listafechas = new List<fechascurso>();
-                        reader = cmd.ExecuteReader();
-                        while (reader.Read())
-                        {
-                            fechascurso item = new fechascurso()
-                            {
-                                fecha = reader.GetString(0)
-                            };
-                            listafechas.Add(item);
-                        }
-                        reader.Close();
-                        reader.Dispose();
-
-                        foreach (fechascurso item in listafechas)
-                        {
-                            cmd.Parameters.Clear();
-                            cmd.CommandText = "insert into fechascurso (idcurso, idfecha, fecha, horaini, horafin) values (@idcurso, @idfecha, @fecha, @horaini, @horafin); ";
-                            cmd.Parameters.AddWithValue("@idcurso", this.idP.Value);
-                            cmd.Parameters.AddWithValue("@idfecha", idfecha);
-                            cmd.Parameters.AddWithValue("@fecha", item.fecha);
-                            cmd.Parameters.AddWithValue("@horaini", this.horaini.Text);
-                            cmd.Parameters.AddWithValue("@horafin", this.horafin.Text);
-                            idfecha++;
-                            cmd.ExecuteNonQuery();
-                        }
-
-
-                        cmd.Parameters.Clear();
-                        cmd.CommandText = string.Concat("select COALESCE(ROUND(sum(TIME_TO_SEC(TIMEDIFF(horafin, horaini))/3600),0),0) as horas from fechascurso where idcurso =", this.idP.Value, ";");
-                        nohoras = Convert.ToInt32(cmd.ExecuteScalar());
-                        cmd.Parameters.Clear();
-                        cmd.CommandText = string.Concat("select cast(DATE_ADD(c.fechaini, INTERVAL ceil(count(fc.idfecha)*0.2) day)as char) as fechalimite from fechascurso fc left join curso c on fc.idcurso = c.idcurso where c.idcurso = ", this.idP.Value, ";");
-                        string fechalim = Convert.ToString(cmd.ExecuteScalar());
-                        cmd.Parameters.Clear();
-                        cmd.CommandText = "update curso set dias=@dias, horas=@horas, fechalimite=@fechalimite where idcurso=@idcurso; ";
-                        cmd.Parameters.AddWithValue("@idcurso", this.idP.Value);
-                        cmd.Parameters.AddWithValue("@dias", listafechas.Count);
-                        cmd.Parameters.AddWithValue("@horas", nohoras);
-                        cmd.Parameters.AddWithValue("@fechalimite", fechalim);
-                        cmd.ExecuteNonQuery();
-                        this.dias.Text = listafechas.Count.ToString();
-                        this.horas.Text = nohoras.ToString();
-                        this.fechalimite.Text = fechalim;
-                        transaction.Commit();
-                    }
-                    catch (Exception exception)
-                    {
-                        Exception ex = exception;
-                        transaction.Rollback();
-                        Console.WriteLine(string.Concat("error:", ex.ToString()));
-                    }
-                }
-                finally
-                {
-                    con.Close();
-                }
-                this.getCalendario(sender, e);
-                ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading(); ", true);
-            }
-        }
-
-        protected void getCalendario(object sender, EventArgs e)
-        {
-            string json = "";
-            try
-            {
-                using (MySqlConnection con = new MySqlConnection(WebConfigurationManager.ConnectionStrings["DBconexion"].ConnectionString))
-                {
-                    con.Open();
-                    MySqlDataReader rdr = null;
-                    rdr = (new MySqlCommand(string.Concat("select * from  (  (  select idfecha, cast(fecha as char) as fecha, cast(TIME_FORMAT(horaini, '%H:%i') as char) as horaini, cast(TIME_FORMAT(horafin, '%H:%i') as char) as horafin, concat(cast(TIME_FORMAT(horaini, '%H:%i') as char), ' - ', cast(TIME_FORMAT(horafin, '%H:%i') as char)) as horario, 'SI' as dia  from fechascurso  where idcurso =", this.idP.Value, "  )  union  (  SELECT -1 as idfecha, cast(fecha as char) as fecha, '' as horaini, '' as horafin, '' as horario, (select case  when dayofweek(fecha) in(select distinct(dayofweek(f.fecha)) from fechascurso f where f.idcurso = ", this.idP.Value, ") then' SI'  ELSE 'NO'  end )AS dia   from fechaslibres  where fecha not in(select fecha from fechascurso where idcurso=", this.idP.Value, ") ) )as v  order by v.fecha "), con)).ExecuteReader();
-                    json = string.Concat(json, "[");
-                    if (rdr.HasRows)
-                    {
-                        while (rdr.Read())
-                        {
-                            json = string.Concat(json, "{");
-                            json = string.Concat(json, "id:'", rdr["idfecha"].ToString(), "',");
-                            if (rdr["idfecha"].ToString().Equals("-1"))
-                            {
-                                json = string.Concat(json, "color:'#967ADC',");
-                                json = string.Concat(json, "title:'INHÁBIL',");
-                                json = string.Concat(json, "description:'NO SE LABORA',");
-                            }
-                            else
-                            {                                
-                                json = string.Concat(json, "title:'", rdr["horario"].ToString(), "',");
-                                json = string.Concat(new string[] { json, "description:'", rdr["horaini"].ToString(), " - ", rdr["horafin"].ToString(), "'," });
-                            }
-                            json = string.Concat(json, "fecha:'", rdr["fecha"].ToString(), "',");
-                            json = string.Concat(json, "dia:'", rdr["dia"].ToString(), "',");
-                            json = string.Concat(json, "horaini:'", rdr["horaini"].ToString(), "',");
-                            json = string.Concat(json, "horafin:'", rdr["horafin"].ToString(), "',");
-                            json = string.Concat(json, "start:'", rdr["fecha"].ToString(), "',");
-                            json = string.Concat(json, "end:'", rdr["fecha"].ToString(), "'");
-                            json = string.Concat(json, "},");
-                        }
-                    }
-                    json = string.Concat(json, "]");
-                    rdr.Close();
-                }
-            }
-            catch (Exception exception)
-            {
-            }
-            ScriptManager.RegisterStartupScript(this, base.GetType(), "inicilizarMun", string.Concat("dataEvent =", json), true);
-        }
+      
 
         protected void guardaEdita(object sender, EventArgs e)
         {
@@ -478,11 +213,11 @@ namespace elecion.catalogos.oferta
                             //cmd.Parameters.AddWithValue("@idcicloescolar", 1);
                             cmd.Parameters.AddWithValue("@clave", this.clave.Text.ToUpper().Trim());
                             cmd.Parameters.AddWithValue("@nombre", this.nombre.Text.ToUpper().Trim());
-                            cmd.Parameters.AddWithValue("@idtipocurso", this.tipocurso.SelectedValue);
-                            cmd.Parameters.AddWithValue("@idarea", this.area.SelectedValue);
-                            cmd.Parameters.AddWithValue("@idespecialidad", this.especialidad.SelectedValue);
-                            cmd.Parameters.AddWithValue("@idinstructor", this.instructor.SelectedValue);
-                            cmd.Parameters.AddWithValue("@idinstalacion", this.instalacion.SelectedValue);
+                            //cmd.Parameters.AddWithValue("@idtipocurso", this.tipocurso.SelectedValue);
+                            //cmd.Parameters.AddWithValue("@idarea", this.area.SelectedValue);
+                            //cmd.Parameters.AddWithValue("@idespecialidad", this.especialidad.SelectedValue);
+                           // cmd.Parameters.AddWithValue("@idinstructor", this.instructor.SelectedValue);
+                            //cmd.Parameters.AddWithValue("@idinstalacion", this.instalacion.SelectedValue);
                             cmd.Parameters.AddWithValue("@fechaini", this.fechaini.Text);
                             cmd.Parameters.AddWithValue("@fechafin", this.fechafin.Text);
                             cmd.Parameters.AddWithValue("@dias", this.dias.Text);
@@ -515,22 +250,22 @@ namespace elecion.catalogos.oferta
                             }
                             cmd.Parameters.AddWithValue("@observaciones", this.observaciones.Text.Trim());
                             cmd.Parameters.AddWithValue("@diascurso", this.hdias.Value);
-                            cmd.Parameters.AddWithValue("@idtipooferta", this.tipooferta.SelectedValue);
-                            cmd.Parameters.AddWithValue("@instalacionext", this.instalacionext.Text.ToUpper().Trim());
-                            cmd.Parameters.AddWithValue("@instalaciondomext", this.instalaciondomext.Text.ToUpper().Trim());
+                            //cmd.Parameters.AddWithValue("@idtipooferta", this.tipooferta.SelectedValue);
+                           // cmd.Parameters.AddWithValue("@instalacionext", this.instalacionext.Text.ToUpper().Trim());
+                            //cmd.Parameters.AddWithValue("@instalaciondomext", this.instalaciondomext.Text.ToUpper().Trim());
                             cmd.Parameters.AddWithValue("@alumnosminimo", this.alumnosminimo.Text);
                             cmd.Parameters.AddWithValue("@alumnosmaximo", this.alumnosmaximo.Text);
                             cmd.Parameters.AddWithValue("@fechalimite", this.fechalimite.Text);
-                            if (!this.tipocurso.SelectedValue.Equals("3"))
+                           /* if (!this.tipocurso.SelectedValue.Equals("3"))
                             {
                                 cmd.Parameters.AddWithValue("@idcursoregular", null);
                             }
                             else
                             {
                                 cmd.Parameters.AddWithValue("@idcursoregular", this.regular.SelectedValue);
-                            }
-                            esmovilidad = (!this.movilidad.Checked ? 0 : 1);
-                            cmd.Parameters.AddWithValue("@movilidad", esmovilidad);
+                            }*/
+                           // esmovilidad = (!this.movilidad.Checked ? 0 : 1);
+                            //cmd.Parameters.AddWithValue("@movilidad", esmovilidad);
                             esenlinea = (!this.enlinea.Checked ? 0 : 1);
                             cmd.Parameters.AddWithValue("@enlinea", esenlinea);
                             cmd.ExecuteNonQuery();
@@ -543,11 +278,11 @@ namespace elecion.catalogos.oferta
                             cmd.Parameters.AddWithValue("@idsucursal", this.idsucursal);
                             cmd.Parameters.AddWithValue("@nombre", this.nombre.Text.ToUpper().Trim());
                             cmd.Parameters.AddWithValue("@clave", this.clave.Text.ToUpper().Trim());
-                            cmd.Parameters.AddWithValue("@idtipocurso", this.tipocurso.SelectedValue);
-                            cmd.Parameters.AddWithValue("@idarea", this.area.SelectedValue);
-                            cmd.Parameters.AddWithValue("@idespecialidad", this.especialidad.SelectedValue);
-                            cmd.Parameters.AddWithValue("@idinstructor", this.instructor.SelectedValue);
-                            cmd.Parameters.AddWithValue("@idinstalacion", this.instalacion.SelectedValue);
+                            //cmd.Parameters.AddWithValue("@idtipocurso", this.tipocurso.SelectedValue);
+                           // cmd.Parameters.AddWithValue("@idarea", this.area.SelectedValue);
+                           // cmd.Parameters.AddWithValue("@idespecialidad", this.especialidad.SelectedValue);
+                           // cmd.Parameters.AddWithValue("@idinstructor", this.instructor.SelectedValue);
+                           // cmd.Parameters.AddWithValue("@idinstalacion", this.instalacion.SelectedValue);
                             cmd.Parameters.AddWithValue("@fechaini", this.fechaini.Text);
                             cmd.Parameters.AddWithValue("@fechafin", this.fechafin.Text);
                             cmd.Parameters.AddWithValue("@dias", this.dias.Text);
@@ -580,22 +315,22 @@ namespace elecion.catalogos.oferta
                             }
                             cmd.Parameters.AddWithValue("@observaciones", this.observaciones.Text.Trim());
                             cmd.Parameters.AddWithValue("@diascurso", this.hdias.Value);
-                            cmd.Parameters.AddWithValue("@idtipooferta", this.tipooferta.SelectedValue);
-                            cmd.Parameters.AddWithValue("@instalacionext", this.instalacionext.Text.ToUpper().Trim());
-                            cmd.Parameters.AddWithValue("@instalaciondomext", this.instalaciondomext.Text.ToUpper().Trim());
+                           // cmd.Parameters.AddWithValue("@idtipooferta", this.tipooferta.SelectedValue);
+                            //cmd.Parameters.AddWithValue("@instalacionext", this.instalacionext.Text.ToUpper().Trim());
+                            //cmd.Parameters.AddWithValue("@instalaciondomext", this.instalaciondomext.Text.ToUpper().Trim());
                             cmd.Parameters.AddWithValue("@alumnosminimo", this.alumnosminimo.Text);
                             cmd.Parameters.AddWithValue("@alumnosmaximo", this.alumnosmaximo.Text);
                             cmd.Parameters.AddWithValue("@fechalimite", this.fechalimite.Text);
-                            if (!this.tipocurso.SelectedValue.Equals("3"))
+                            /*if (!this.tipocurso.SelectedValue.Equals("3"))
                             {
                                 cmd.Parameters.AddWithValue("@idcursoregular", null);
                             }
                             else
                             {
                                 cmd.Parameters.AddWithValue("@idcursoregular", this.regular.SelectedValue);
-                            }
-                            esmovilidad = (!this.movilidad.Checked ? 0 : 1);
-                            cmd.Parameters.AddWithValue("@movilidad", esmovilidad);
+                            }*/
+                           // esmovilidad = (!this.movilidad.Checked ? 0 : 1);
+                           // cmd.Parameters.AddWithValue("@movilidad", esmovilidad);
                             esenlinea = (!this.enlinea.Checked ? 0 : 1);
                             cmd.Parameters.AddWithValue("@enlinea", esenlinea);
                             cmd.ExecuteNonQuery();
@@ -627,60 +362,7 @@ namespace elecion.catalogos.oferta
             }
         }
 
-        protected void guardaEditaFechas(object sender, EventArgs e)
-        {
-            int nohoras = 0;
-            using (MySqlConnection con = new MySqlConnection(WebConfigurationManager.ConnectionStrings["DBconexion"].ConnectionString))
-            {
-                MySqlTransaction transaction = null;
-                MySqlDataReader reader = null;
-                try
-                {
-                    try
-                    {
-                        con.Open();
-                        MySqlCommand cmd = con.CreateCommand();
-                        transaction = con.BeginTransaction();
-                        cmd.Connection = con;
-                        cmd.Transaction = transaction;
-                        cmd.Parameters.Clear();
-                        cmd.CommandText = "update fechascurso set horaini=@horaini,  horafin=@horafin where idcurso=@idcurso and idfecha=@idfecha; ";
-                        cmd.Parameters.AddWithValue("@idcurso", this.idP.Value);
-                        cmd.Parameters.AddWithValue("@idfecha", this.idF.Value);
-                        cmd.Parameters.AddWithValue("@horaini", this.horanini.Text);
-                        cmd.Parameters.AddWithValue("@horafin", this.horanfin.Text);
-                        cmd.ExecuteNonQuery();
-                        cmd.Parameters.Clear();
-                        cmd.CommandText = string.Concat("select sum(TIMESTAMPDIFF(HOUR, horaini, horafin))as horas from fechascurso where idcurso =", this.idP.Value, ";");
-                        reader = cmd.ExecuteReader();
-                        while (reader.Read())
-                        {
-                            nohoras = reader.GetInt32(0);
-                        }
-                        reader.Close();
-                        cmd.Parameters.Clear();
-                        cmd.CommandText = "update curso set horas=@horas where idcurso=@idcurso; ";
-                        cmd.Parameters.AddWithValue("@idcurso", this.idP.Value);
-                        cmd.Parameters.AddWithValue("@horas", nohoras);
-                        cmd.ExecuteNonQuery();
-                        this.horas.Text = nohoras.ToString();
-                        transaction.Commit();
-                        this.getCalendario(sender, e);
-                        ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading();  $('#wfechas').modal('hide');", true);
-                    }
-                    catch (Exception exception)
-                    {
-                        Exception ex = exception;
-                        transaction.Rollback();
-                        Console.WriteLine(string.Concat("error:", ex.ToString()));
-                    }
-                }
-                finally
-                {
-                    con.Close();
-                }
-            }
-        }
+      
 
         protected void guardaObjetivo(object sender, EventArgs e)
         {
@@ -741,7 +423,7 @@ namespace elecion.catalogos.oferta
 
         protected void imprimirListaAsistencia(object sender, EventArgs e)
         {
-            int mesint = 0;
+           /* int mesint = 0;
             int anio = 0;
             string[] strArrays = this.mes.SelectedValue.Split(new char[] { '|' });
             mesint = Convert.ToInt32(strArrays[0]);
@@ -750,9 +432,9 @@ namespace elecion.catalogos.oferta
             reporte.ReportParameters["idsucursal"].Value = this.idS.Value;
             reporte.ReportParameters["idcurso"].Value = this.idP.Value;
             reporte.ReportParameters["mes"].Value = mesint;
-            reporte.ReportParameters["mesText"].Value = this.mes.SelectedItem.Text;
+            //reporte.ReportParameters["mesText"].Value = this.mes.SelectedItem.Text;
             reporte.ReportParameters["anio"].Value = anio;
-            this.ExportToPDF(reporte, string.Concat("LISTA ASISTENCIA ", this.cve.Value, " ", this.mes.SelectedItem.Text));
+            this.ExportToPDF(reporte, string.Concat("LISTA ASISTENCIA ", this.cve.Value, " ", this.mes.SelectedItem.Text));*/
         }
 
         protected void imprimirRIADC(object sender, EventArgs e)
@@ -786,12 +468,7 @@ namespace elecion.catalogos.oferta
 
         protected void instalacion_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.instalacion.SelectedValue.Equals("9999"))
-            {
-                this.extramuros.Visible = true;
-                return;
-            }
-            this.extramuros.Visible = false;
+            
         }
 
         protected void limpiarCampos(object sender, EventArgs e)
@@ -817,16 +494,8 @@ namespace elecion.catalogos.oferta
                 this.idP.Value = "0";
                 this.clave.Text = "";
                 this.nombre.Text = "";
-                this.tipocurso.ClearSelection();
-                this.instructor.ClearSelection();
-                this.instalacion.ClearSelection();
-                this.area.ClearSelection();
-                this.Dsareas.DataBind();
-                this.Dsespecialidades.DataBind();
-                this.area.DataBind();
-                this.especialidad.DataBind();
-                this.especialidad.ClearSelection();
-                this.regular.ClearSelection();
+                
+               
                 this.fechalimite.Text = "";
                 this.fechaini.Text = "";
                 this.fechafin.Text = "";
@@ -841,13 +510,11 @@ namespace elecion.catalogos.oferta
                 this.hdias.Value = "";
                 alumnosmaximo.Text = "";
                 alumnosminimo.Text = "";
-                documentos.Visible = false;
-                acreditacion.Visible = false;
-                llinks.Text = "";
+               
 
                 json = "[]";
                 this.alumnosminimo.Text = "";
-                this.divreg.Visible = false;
+                //this.divreg.Visible = false;
                 bloqueo = "$('#tbgenerales').removeAttr('disabled');";
                 bloqueo = string.Concat(bloqueo, "$('#tbcostoss *').removeAttr('disabled');");
                 bloqueo = string.Concat(bloqueo, "$('#tbhorario *').removeAttr('disabled');");
@@ -879,18 +546,7 @@ namespace elecion.catalogos.oferta
             }
         }
 
-        protected void listadoareas(object sender, EventArgs e)
-        {
-            try
-            {
-                this.area.DataSourceID = this.Dsareas.ID;
-                string query = string.Concat("SELECT idarea, area from area where idofertaeducativa=", this.idOE.Value, " order by area");
-                this.Dsareas.SelectCommand = query;
-            }
-            catch (Exception exception)
-            {
-            }
-        }
+        
 
         protected void listadoClientes(object sender, EventArgs e)
         {
@@ -898,44 +554,19 @@ namespace elecion.catalogos.oferta
             int pag = 1;
             try
             {
-                if (idOP.Value.Equals("")|| idOP.Value.Equals("2"))
-                {
-                    if (!bperiodo.SelectedValue.Equals(""))
-                        DSperiodo.SelectCommand = "SELECT idperiodo, periodo FROM periodo where idcicloescolar=" + bciclo.SelectedValue + " UNION select 999999, 'SELECCIONE UN PERIODO' ORDER BY idperiodo desc";
-                    else
-                        DSperiodo.SelectCommand = "SELECT idperiodo, periodo FROM periodo where idcicloescolar=99999 UNION select 999999, 'SELECCIONE UN PERIODO' ORDER BY idperiodo desc";
-
-                    bperiodo.DataBind();
-                    DSperiodo.DataBind();
-                }
+               
                 
 
                 this.lGeneral.DataSourceID = this.DsUsuarios.ID;
-                string query = "select c.idcurso, c.clave, c.idsucursal, coalesce(c.nombre,'NO DEFINIDO')as nombre,  coalesce(a.area,'AREA NO ASIGNADA') as area,  coalesce(e.especialidad,'ESPECIALIDAD NO ASIGNADA')as especialidad,  coalesce(i.nombre,'INSTRUCTOR NO DEFINIDO') as instructor, t.tipocurso, c.estatus, c.costo, cast(c.fechaini as char)as fechaini, cast(c.fechafin as char)as fechafin, cast(TIME_FORMAT(c.horaini, '%h:%i %p') as char)as horaini, cast(TIME_FORMAT(c.horafin, '%h:%i %p') as char)as horafin,  c.alumnosminimo, (select count(s.idalumno) from solicitudinscripcion s where s.idcurso = c.idcurso and s.estatus not in('CANCELADO')) as inscritos, s.nombre as plantel from curso c left join area a on a.idarea = c.idarea left join especialidad e on e.idespecialidad = c.idespecialidad left join tipocurso t on t.idtipocurso = c.idtipocurso left join instructor i on i.idinstructor = c.idinstructor left join sucursal s on s.idsucursal = c.idsucursal where c.tipo='C' and c.estatus not in('CANCELADO') ";
+                string query = "select b.*, e.estado, c.centro, cast(b.fechaalta as char)as fechaaltatext from bien b left join estado e on b.idestado = e.idestado left join centro c on c.idcentro = b.idcentro ";
                 if (this.bname.Text.Trim() != "")
                 {
                     query = string.Concat(new string[] { query, " and (c.nombre LIKE '%", this.bname.Text.Trim().ToUpper(), "%' or c.clave LIKE '%", this.bname.Text.Trim().ToUpper(), "%') " });
                 }
-                if (this.roles.IndexOf('1', 0) < 0)
-                {
-                    query = string.Concat(new object[] { query, " and c.idsucursal = ", this.idsucursal, " " });
-                }
-                else if (!this.bplantel.SelectedValue.Equals("0"))
-                {
-                    query = string.Concat(query, " and c.idsucursal = ", this.bplantel.SelectedValue, " ");
-                }
-
-                if (!bciclo.SelectedValue.Equals("") && !bciclo.SelectedValue.Equals("999999"))
-                    query += "and c.idcicloescolar="+bciclo.SelectedValue+" ";
-
-                if (!bperiodo.SelectedValue.Equals("") && !bperiodo.SelectedValue.Equals("999999"))
-                    query += "and(select p.idperiodo from periodo p where c.fechaini between p.fechaini and p.fechafin)="+bperiodo.SelectedValue+" ";
-
-                if (!bestatus.SelectedValue.Equals("0"))
-                    query += "and c.estatus='" + bestatus.SelectedValue + "' ";
+               
                
 
-                query = string.Concat(query, " order by c.idsucursal, c.fechaini desc,  c.nombre");
+                query = string.Concat(query, " order by b.noinventario ");
                 this.DsUsuarios.SelectCommand = query;
 
                 DataView dvAccess = (DataView)DsUsuarios.Select(DataSourceSelectArguments.Empty);
@@ -959,18 +590,7 @@ namespace elecion.catalogos.oferta
             }
         }
 
-        protected void listadoEspecialidades(object sender, EventArgs e)
-        {
-            try
-            {
-                this.especialidad.DataSourceID = this.Dsespecialidades.ID;
-                string query2 = string.Concat("SELECT idespecialidad, especialidad FROM especialidad  WHERE idarea =", this.area.SelectedValue, " ORDER BY especialidad");
-                this.Dsespecialidades.SelectCommand = query2;
-            }
-            catch (Exception exception)
-            {
-            }
-        }
+        
 
         protected void listadoFechas(object sender, EventArgs e)
         {
@@ -991,48 +611,8 @@ namespace elecion.catalogos.oferta
                         this.clave.Text = rdr["clave"].ToString();
                         this.cve.Value = this.clave.Text;
                         this.nombre.Text = rdr["nombre"].ToString();
-                        if (rdr["idtipocurso"].GetType() != typeof(DBNull))
-                        {
-                            this.tipocurso.SelectedValue = rdr["idtipocurso"].ToString();
-                        }
-                        if (rdr["idinstructor"].GetType() != typeof(DBNull))
-                        {
-                            this.instructor.SelectedValue = rdr["idinstructor"].ToString();
-                        }
-                        if (rdr["idinstalacion"].GetType() != typeof(DBNull))
-                        {
-                            this.instalacion.SelectedValue = rdr["idinstalacion"].ToString();
-                            this.instalacionext.Text = rdr["instalacionext"].ToString();
-                            this.instalaciondomext.Text = rdr["instalaciondomext"].ToString();
-                            if (this.instalacion.SelectedValue != "9999")
-                            {
-                                this.extramuros.Visible = false;
-                            }
-                            else
-                            {
-                                this.extramuros.Visible = true;
-                            }
-                        }
-                        if (!ad.Equals(""))
-                        {
-                            this.Dsareas.DataBind();
-                            this.area.DataBind();
-                            this.area.SelectedValue = ad;
-                            this.Dsespecialidades.DataBind();
-                            this.especialidad.DataBind();
-                            this.especialidad.SelectedValue = es;
-                            this.DSregulares.DataBind();
-                            this.regular.DataBind();
-                            if (this.tipocurso.SelectedValue.Equals("3") && rdr["idcursoregular"].GetType() != typeof(DBNull))
-                            {
-                                this.regular.SelectedValue = rdr["idcursoregular"].ToString();
-                                this.regular_DataBound(sender, e);
-                            }
-                        }
-                        if (rdr["idtipooferta"].GetType() != typeof(DBNull))
-                        {
-                            this.tipooferta.SelectedValue = rdr["idtipooferta"].ToString();
-                        }
+                       
+                        
                         this.fechaini.Text = rdr["fechaini"].ToString();
                         this.fechafin.Text = rdr["fechafin"].ToString();
                         this.dias.Text = rdr["dias"].ToString();
@@ -1047,24 +627,17 @@ namespace elecion.catalogos.oferta
                         this.alumnosminimo.Text = rdr["alumnosminimo"].ToString();
                         this.alumnosmaximo.Text = rdr["alumnosmaximo"].ToString();
                         this.fechalimite.Text = rdr["fechalimite"].ToString();
-                        if (!this.tipocurso.SelectedValue.Equals("3"))
-                        {
-                            this.divreg.Visible = false;
-                        }
-                        else
-                        {
-                            this.divreg.Visible = true;
-                        }
-                        if (rdr["movilidad"].ToString() != "1")
+                        
+                       /* if (rdr["movilidad"].ToString() != "1")
                         {
                             this.movilidad.Checked = false;
                         }
                         else
                         {
                             this.movilidad.Checked = true;
-                        }
+                        }*/
 
-                        llinks.Text = string.Concat(new string[] { "https://enlinea.icaten.gob.mx/registro.aspx?crs=", this.idP.Value, "&enl=", rdr["enlinea"].ToString(), "&cve=", this.clave.Text, "&of=", this.idOE.Value });
+                       // llinks.Text = string.Concat(new string[] { "https://enlinea.icaten.gob.mx/registro.aspx?crs=", this.idP.Value, "&enl=", rdr["enlinea"].ToString(), "&cve=", this.clave.Text, "&of=", this.idOE.Value });
                         if (rdr["enlinea"].ToString() != "1")
                         {
                             this.enlinea.Checked = false;
@@ -1075,53 +648,8 @@ namespace elecion.catalogos.oferta
                             this.enlinea.Checked = true;
                             bloqueo = "$('#accesoenlinea').show();";
                         }
-                        if (rdr["estatus"].ToString().Equals("AUTORIZADO") || rdr["estatus"].ToString().Equals("FINALIZADO"))
-                        {
-                            this.documentos.Visible = true;
-
-                            if (rdr["estatus"].ToString().Equals("FINALIZADO"))
-                                acreditacion.Visible = true;
-                            else
-                                acreditacion.Visible = false;
-
-                            if (this.roles.IndexOf('1', 0) < 0)
-                            {
-                                bloqueo = string.Concat(bloqueo, "$('#baperturar *').hide();");
-                            }
-                            else
-                            {
-                                bloqueo = string.Concat(bloqueo, "$('#baperturar').show();");
-                            }
-                                                       
-
-                        }
-                        else
-                        {
-                            this.documentos.Visible = false;
-                            acreditacion.Visible = false;
-                            bloqueo = string.Concat(bloqueo, "$('#baperturar').hide();");
-
-                        }
-                        if (rdr["estatus"].ToString().Equals("EN CAPTURA") || rdr["estatus"].ToString().Equals("OBSERVADO"))
-                        {
-                            bloqueo = string.Concat(bloqueo, "$('#tbgenerales *').removeAttr('disabled');");
-                            bloqueo = string.Concat(bloqueo, "$('#tbcostos *').removeAttr('disabled');");
-                            bloqueo = string.Concat(bloqueo, "$('#horario *').removeAttr('disabled');");
-                            bloqueo = string.Concat(bloqueo, "$('#tbhorario *').removeAttr('disabled');");
-                            bloqueo = string.Concat(bloqueo, "$('#bproponer *').show();");
-                            bloqueo = string.Concat(bloqueo, "$('#bguardar *').show();");
-
-
-                        }
-                        else
-                        {
-                            bloqueo = string.Concat(bloqueo, "$('#tbgenerales *').attr('disabled', true);");
-                            bloqueo = string.Concat(bloqueo, "$('#tbcostos *').attr('disabled', true);");
-                            bloqueo = string.Concat(bloqueo, "$('#horario *').attr('disabled', true);");
-                            bloqueo = string.Concat(bloqueo, "$('#tbhorario *').attr('disabled', true);");
-                            bloqueo = string.Concat(bloqueo, "$('#bproponer *').hide();");
-                            bloqueo = string.Concat(bloqueo, "$('#bguardar *').hide();");
-                        }
+                        
+                        
                     }
                     rdr.Close();
                     rdr = (new MySqlCommand(string.Concat("select * from  (  (  select idfecha, cast(fecha as char) as fecha, cast(TIME_FORMAT(horaini, '%H:%i') as char) as horaini, cast(TIME_FORMAT(horafin, '%H:%i') as char) as horafin, concat(cast(TIME_FORMAT(horaini, '%H:%i') as char), ' - ', cast(TIME_FORMAT(horafin, '%H:%i') as char)) as horario, 'SI' as dia  from fechascurso  where idcurso =", this.idP.Value, "  )  union  (  SELECT -1 as idfecha, cast(fecha as char) as fecha, '' as horaini, '' as horafin, '' as horario, (select case  when dayofweek(fecha) in(select distinct(dayofweek(f.fecha)) from fechascurso f where f.idcurso = ", this.idP.Value, ") then' SI'  ELSE 'NO'  end )AS dia   from fechaslibres where fecha not in(select fecha from fechascurso where idcurso=", this.idP.Value, " ) ) )as v  order by v.fecha "), con)).ExecuteReader();
@@ -1209,19 +737,7 @@ namespace elecion.catalogos.oferta
 
         protected void ocultaCursos(object sender, EventArgs e)
         {
-            if (this.tipocurso.SelectedValue.Equals("3"))
-            {
-                this.divreg.Visible = true;
-                this.clave.ReadOnly = true;
-                this.nombre.ReadOnly = true;
-                return;
-            }
-            this.divreg.Visible = false;
-            this.divreg.Disabled = false;
-            this.clave.ReadOnly = false;
-            this.nombre.ReadOnly = false;
-            this.clave.Text = "";
-            this.nombre.Text = "";
+           
         }
 
         protected void ofertaCurso(object sender, EventArgs e)
@@ -1271,28 +787,27 @@ namespace elecion.catalogos.oferta
             string[] datos = ((FormsIdentity)this.Page.User.Identity).Ticket.UserData.Split(new char[] { ',' });
             string[] datos2 = datos[1].Split(new char[] { ';' });
             this.idusuario = Convert.ToInt32(datos[0]);
-            this.idsucursal = Convert.ToInt32(datos2[4]);
-            this.roles = datos2[3].ToString();
-            int idperiodo = 0;
-            int idciclo = 0;
-
+            
+            //this.roles = datos2[3].ToString();
+           
 
            
 
-            if (this.roles.IndexOf('1', 0) < 0)
+            /*if (this.roles.IndexOf('1', 0) < 0)
             {
                 this.busplantel.Visible = false;
             }
             else
             {
                 this.busplantel.Visible = true;
-            }
-            this.idSU.Value = this.idsucursal.ToString();
-            if (!IsPostBack)
-            {
-                if (this.roles.IndexOf('1', 0) < 0)
+            }*/
+
+           // this.idSU.Value = this.idsucursal.ToString();
+           // if (!IsPostBack)
+           // {
+               // if (this.roles.IndexOf('1', 0) < 0)
                     this.listadoClientes(sender, e);
-            }
+           // }
             ScriptManager.RegisterStartupScript(this, base.GetType(), "actu", "dar(); ", true);
         }
 
@@ -1302,22 +817,7 @@ namespace elecion.catalogos.oferta
             this.lGeneral.DataBind();
         }
 
-        protected void regular_DataBound(object sender, EventArgs e)
-        {
-            string[] strArrays = this.regular.SelectedItem.Text.Split(new char[] { '/' });
-            string cve = strArrays[0].Trim();
-            string nom = strArrays[1].Trim();
-            if (!this.tipocurso.SelectedValue.Equals("3"))
-            {
-                this.divreg.Visible = false;
-                this.divreg.Disabled = false;
-                return;
-            }
-            this.divreg.Visible = true;
-            this.divreg.Disabled = true;
-            this.clave.Text = cve;
-            this.nombre.Text = nom;
-        }
+       
 
         private void SaveReport(Telerik.Reporting.Report report, string fileName)
         {
@@ -1356,11 +856,7 @@ namespace elecion.catalogos.oferta
                             
                             cmd.Parameters.AddWithValue("@clave", this.clave.Text.ToUpper().Trim());
                             cmd.Parameters.AddWithValue("@nombre", this.nombre.Text.ToUpper().Trim());
-                            cmd.Parameters.AddWithValue("@idtipocurso", this.tipocurso.SelectedValue);
-                            cmd.Parameters.AddWithValue("@idarea", this.area.SelectedValue);
-                            cmd.Parameters.AddWithValue("@idespecialidad", this.especialidad.SelectedValue);
-                            cmd.Parameters.AddWithValue("@idinstructor", this.instructor.SelectedValue);
-                            cmd.Parameters.AddWithValue("@idinstalacion", this.instalacion.SelectedValue);
+                           
                             cmd.Parameters.AddWithValue("@fechaini", this.fechaini.Text);
                             cmd.Parameters.AddWithValue("@fechafin", this.fechafin.Text);
                             cmd.Parameters.AddWithValue("@dias", this.dias.Text);
@@ -1393,9 +889,9 @@ namespace elecion.catalogos.oferta
                             }
                             cmd.Parameters.AddWithValue("@observaciones", this.observaciones.Text.Trim());
                             cmd.Parameters.AddWithValue("@diascurso", this.hdias.Value);
-                            cmd.Parameters.AddWithValue("@idtipooferta", this.tipooferta.SelectedValue);
-                            cmd.Parameters.AddWithValue("@instalacionext", this.instalacionext.Text.ToUpper().Trim());
-                            cmd.Parameters.AddWithValue("@instalaciondomext", this.instalaciondomext.Text.ToUpper().Trim());
+                            //cmd.Parameters.AddWithValue("@idtipooferta", this.tipooferta.SelectedValue);
+                            //cmd.Parameters.AddWithValue("@instalacionext", this.instalacionext.Text.ToUpper().Trim());
+                            //cmd.Parameters.AddWithValue("@instalaciondomext", this.instalaciondomext.Text.ToUpper().Trim());
                             cmd.Parameters.AddWithValue("@alumnosminimo", this.alumnosminimo.Text);
                             cmd.Parameters.AddWithValue("@alumnosmaximo", this.alumnosmaximo.Text);
                             cmd.Parameters.AddWithValue("@fechalimite", this.fechalimite.Text);
@@ -1409,11 +905,7 @@ namespace elecion.catalogos.oferta
                             cmd.Parameters.AddWithValue("@idsucursal", this.idsucursal);
                             cmd.Parameters.AddWithValue("@nombre", this.nombre.Text.ToUpper().Trim());
                             cmd.Parameters.AddWithValue("@clave", this.clave.Text.ToUpper().Trim());
-                            cmd.Parameters.AddWithValue("@idtipocurso", this.tipocurso.SelectedValue);
-                            cmd.Parameters.AddWithValue("@idarea", this.area.SelectedValue);
-                            cmd.Parameters.AddWithValue("@idespecialidad", this.especialidad.SelectedValue);
-                            cmd.Parameters.AddWithValue("@idinstructor", this.instructor.SelectedValue);
-                            cmd.Parameters.AddWithValue("@idinstalacion", this.instalacion.SelectedValue);
+                            
                             cmd.Parameters.AddWithValue("@fechaini", this.fechaini.Text);
                             cmd.Parameters.AddWithValue("@fechafin", this.fechafin.Text);
                             cmd.Parameters.AddWithValue("@dias", this.dias.Text);
@@ -1446,9 +938,9 @@ namespace elecion.catalogos.oferta
                             }
                             cmd.Parameters.AddWithValue("@observaciones", this.observaciones.Text.Trim());
                             cmd.Parameters.AddWithValue("@diascurso", this.hdias.Value);
-                            cmd.Parameters.AddWithValue("@idtipooferta", this.tipooferta.SelectedValue);
-                            cmd.Parameters.AddWithValue("@instalacionext", this.instalacionext.Text.ToUpper().Trim());
-                            cmd.Parameters.AddWithValue("@instalaciondomext", this.instalaciondomext.Text.ToUpper().Trim());
+                           
+                            //cmd.Parameters.AddWithValue("@instalacionext", this.instalacionext.Text.ToUpper().Trim());
+                            //cmd.Parameters.AddWithValue("@instalaciondomext", this.instalaciondomext.Text.ToUpper().Trim());
                             cmd.Parameters.AddWithValue("@alumnosminimo", this.alumnosminimo.Text);
                             cmd.Parameters.AddWithValue("@alumnosmaximo", this.alumnosmaximo.Text);
                             cmd.Parameters.AddWithValue("@fechalimite", this.fechalimite.Text);
@@ -1598,7 +1090,7 @@ namespace elecion.catalogos.oferta
 
                         transaction.Commit();
 
-                        this.getCalendario(sender, e);
+                        //this.getCalendario(sender, e);
                         ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading(); $('#winhabiles').modal('hide');", true);
                     }
                     catch (Exception exception)
@@ -1664,7 +1156,7 @@ namespace elecion.catalogos.oferta
 
                         transaction.Commit();
 
-                        this.getCalendario(sender, e);
+                        //this.getCalendario(sender, e);
                         ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading(); $('#wfechas').modal('hide');", true);
 
                     }
