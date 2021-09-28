@@ -376,7 +376,17 @@
                             <ul class="menu-content">              
                                <!-- <li id="catconfig"><a href="#" class="menu-item">Ciclo Escolar</a>
                                 </li>  -->                              
-                                <li id="catofertas"><a href="/catalogos/oferta/catofertas.aspx" onclick="mostrarLoading()" class="menu-item">Inventario</a>
+                                <li id="catofertas"><a href="/catalogos/oferta/catinventario.aspx" onclick="mostrarLoading()" class="menu-item">Inventario</a>
+                                </li>
+
+                                <li id="catentradas"><a href="/catalogos/oferta/catinventario.aspx" onclick="mostrarLoading()" class="menu-item">Entradas</a>
+                                </li>
+
+                                <li id="catsalidas"><a href="/inscripcion/frminscripcion.aspx" onclick="mostrarLoading()" class="menu-item">Salidas</a>
+                                </li>
+
+
+                               <li id="catbajas"><a href="" onclick="mostrarLoading()" class="menu-item">Bajas</a>
                                 </li>
 
                                
@@ -384,8 +394,22 @@
                         </li>
 
                       
+                 <li class="navigation-header" id="Li1"  runat="server"><span>Reportes</span><i data-toggle="tooltip" data-placement="right" data-original-title="Capacitación" class=" ft-minus"></i>
+                </li>
 
-                    
+                    <li class="nav-item" id="Li2" runat="server"><a href="index.html"><i class="ft-pie-chart"></i><span data-i18n="" class="menu-title">Estadísticas</span>
+                            <span class="tag tag tag-primary tag-pill float-xs-right mr-2"></span></a>
+                            <ul class="menu-content">              
+                               <!-- <li id="catconfig"><a href="#" class="menu-item">Ciclo Escolar</a>
+                                </li>  -->                              
+                                <li id="catofertas"><a href="/catalogos/oferta/catinventario.aspx" onclick="mostrarLoading()" class="menu-item">Inventario</a>
+                                </li>
+
+                            
+
+                               
+                            </ul>
+                        </li>
                  
                      
                        

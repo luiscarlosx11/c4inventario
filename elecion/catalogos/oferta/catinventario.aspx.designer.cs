@@ -11,7 +11,7 @@ namespace elecion.catalogos.oferta
 {
 
 
-    public partial class catcursos
+    public partial class catinventario
     {
 
         /// <summary>
@@ -204,13 +204,13 @@ namespace elecion.catalogos.oferta
         protected global::System.Web.UI.WebControls.DropDownList bcentro;
 
         /// <summary>
-        /// Control DScentro.
+        /// Control DSBuscentro.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource DScentro;
+        protected global::System.Web.UI.WebControls.SqlDataSource DSBuscentro;
 
         /// <summary>
         /// Control busplantel.
@@ -294,22 +294,13 @@ namespace elecion.catalogos.oferta
         protected global::System.Web.UI.WebControls.Button bautorizacion;
 
         /// <summary>
-        /// Control Beditar.
+        /// Control Brecuperabien.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Beditar;
-
-        /// <summary>
-        /// Control Bfechas.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Bfechas;
+        protected global::System.Web.UI.WebControls.Button Brecuperabien;
 
         /// <summary>
         /// Control UpdatePanel2.
@@ -321,166 +312,121 @@ namespace elecion.catalogos.oferta
         protected global::System.Web.UI.UpdatePanel UpdatePanel2;
 
         /// <summary>
-        /// Control alumnosminimo.
+        /// Control centro.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox alumnosminimo;
+        protected global::System.Web.UI.WebControls.DropDownList centro;
 
         /// <summary>
-        /// Control alumnosmaximo.
+        /// Control DSCentro.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox alumnosmaximo;
+        protected global::System.Web.UI.WebControls.SqlDataSource DSCentro;
 
         /// <summary>
-        /// Control clave.
+        /// Control noinventario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox clave;
+        protected global::System.Web.UI.WebControls.TextBox noinventario;
 
         /// <summary>
-        /// Control nombre.
+        /// Control adscripcion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox nombre;
+        protected global::System.Web.UI.WebControls.TextBox adscripcion;
 
         /// <summary>
-        /// Control costomodulo.
+        /// Control fechaalta.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox costomodulo;
+        protected global::System.Web.UI.WebControls.TextBox fechaalta;
 
         /// <summary>
-        /// Control costoalumno.
+        /// Control descripcion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox costoalumno;
+        protected global::System.Web.UI.WebControls.TextBox descripcion;
 
         /// <summary>
-        /// Control pagohora.
+        /// Control marca.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox pagohora;
+        protected global::System.Web.UI.WebControls.TextBox marca;
 
         /// <summary>
-        /// Control observaciones.
+        /// Control modelo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox observaciones;
+        protected global::System.Web.UI.WebControls.TextBox modelo;
 
         /// <summary>
-        /// Control enlinea.
+        /// Control noserie.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox enlinea;
+        protected global::System.Web.UI.WebControls.TextBox noserie;
 
         /// <summary>
-        /// Control UpdatePanel3.
+        /// Control costo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel3;
+        protected global::System.Web.UI.WebControls.TextBox costo;
 
         /// <summary>
-        /// Control fechalimite.
+        /// Control responsable.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox fechalimite;
+        protected global::System.Web.UI.WebControls.TextBox responsable;
 
         /// <summary>
-        /// Control fechaini.
+        /// Control usuario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox fechaini;
+        protected global::System.Web.UI.WebControls.TextBox usuario;
 
         /// <summary>
-        /// Control fechafin.
+        /// Control ubicacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox fechafin;
-
-        /// <summary>
-        /// Control hdias.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdias;
-
-        /// <summary>
-        /// Control dias.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox dias;
-
-        /// <summary>
-        /// Control horaini.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox horaini;
-
-        /// <summary>
-        /// Control horafin.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox horafin;
-
-        /// <summary>
-        /// Control horas.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox horas;
+        protected global::System.Web.UI.WebControls.TextBox ubicacion;
 
         /// <summary>
         /// Control UpdatePanel4.

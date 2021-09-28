@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/template.Master" AutoEventWireup="true" EnableEventValidation="false"
-     CodeBehind="catcursos.aspx.cs"  Inherits="elecion.catalogos.oferta.catcursos" %>
+     CodeBehind="catinventario.aspx.cs"  Inherits="elecion.catalogos.oferta.catinventario" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     
     <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/forms/spinner/jquery.bootstrap-touchspin.css" />
@@ -81,9 +81,7 @@ body { padding-right: 0 !important }
                    <div class="col-md-12">
 
                        <div class="media">
-                           <div class="progress">
-							<div class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="25" aria-valuemax="100" style="width:25%"  aria-describedby="example-caption-2"></div>
-						</div>
+                           
                            
                            <div class="col-md-2">
                                <div class="form-group">      
@@ -109,11 +107,11 @@ body { padding-right: 0 !important }
                                                       
                            <div class="col-md-2" runat="server">
                                <div class="form-group">
-                                   <label class="text-bold-600 font-small-3">Estado</label>
-                                   <asp:DropDownList runat="server" ID="bcentro" CssClass="select2 form-control" DataSourceID="DScentro" DataTextField="centro" DataValueField="idcentro" AppendDataBoundItems="true" onChange="consultaPrincipal()">
+                                   <label class="text-bold-600 font-small-3">Centro</label>
+                                   <asp:DropDownList runat="server" ID="bcentro" CssClass="select2 form-control" DataSourceID="DSBuscentro" DataTextField="centro" DataValueField="idcentro" AppendDataBoundItems="true" onChange="consultaPrincipal()">
                                        <asp:ListItem Value="0" Text="SELECCIONE UN CENTRO"></asp:ListItem>
                                    </asp:DropDownList>
-                                   <asp:SqlDataSource ID="DScentro" runat="server" ProviderName="MySql.Data.MySqlClient" ConnectionString="<%$ ConnectionStrings:DBconexion %>" SelectCommand="SELECT idcentro, centro FROM centro ORDER BY idcentro"></asp:SqlDataSource>
+                                   <asp:SqlDataSource ID="DSBuscentro" runat="server" ProviderName="MySql.Data.MySqlClient" ConnectionString="<%$ ConnectionStrings:DBconexion %>" SelectCommand="SELECT idcentro, centro FROM centro ORDER BY idcentro"></asp:SqlDataSource>
                                </div>
                            </div>
 
@@ -126,13 +124,6 @@ body { padding-right: 0 !important }
                                    <asp:SqlDataSource ID="DSplantel" runat="server" ProviderName="MySql.Data.MySqlClient" ConnectionString="<%$ ConnectionStrings:DBconexion %>" SelectCommand="SELECT idestado, estado FROM estado ORDER BY idestado"></asp:SqlDataSource>
                                </div>
                            </div>
-
-
-
-                           
-                                  
-                               
-                          
                           
                        </div>
 
@@ -178,7 +169,7 @@ body { padding-right: 0 !important }
                                                         <h7 class="font-weight-bold"><%# Eval("adscripcion") + " "+Eval("centro") %></h7><br />
                                                         <h7 class="font-small-3 font-italic text-bold-600"> <%# "  "+Eval("usuario")%></h7>
                                                         <br />                                                        
-                                                        <h7 class="text-bold-400 font-small-2"><%# " FECHA ALTA "+Eval("fechaaltatext") %></h7>
+                                                        <h7 class="text-bold-400 font-small-2"><%# Eval("ubicacion") %></h7>
                                                         
 
                                                     </ItemTemplate>
@@ -193,12 +184,11 @@ body { padding-right: 0 !important }
                                                 </asp:TemplateField>
 
 
-                                                <asp:TemplateField HeaderText="Acciones" ItemStyle-Width="180px" HeaderStyle-CssClass="centrarCelda primary" ItemStyle-CssClass="centrarCelda">
+                                                <asp:TemplateField HeaderText="Acciones" ItemStyle-Width="120px" HeaderStyle-CssClass="centrarCelda primary" ItemStyle-CssClass="centrarCelda">
                                                     <ItemTemplate>
 
-                                                        <button type="button" class="btn btn-icon btn-warning mr-1 btn-sm tooltips" onclick="abrirModal(<%# Eval("idbien") %>)" value="" data-toggle="tooltip" data-original-title="Detalles"><i class="ft-edit"></i></button>
-                                                        <button type="button" class="btn btn-icon btn-danger mr-1 btn-sm tooltips" onclick="abrirModalCancelacion(<%# Eval("idbien") %>)" value="" data-toggle="tooltip" data-original-title="Cancelar" ><i class="ft-delete"></i></button>
-
+                                                        <button type="button" class="btn btn-icon btn-warning mr-1 btn-sm tooltips" onclick="abrirModal(<%# Eval("idbien") %>)" value="" data-toggle="tooltip" data-original-title="Ver detalles"><i class="ft-edit"></i></button>
+                                                       
 
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
@@ -264,12 +254,9 @@ body { padding-right: 0 !important }
                         <li class="nav-item">
                             <a class="nav-link active" id="tabgenerales" data-toggle="tab" href="#generales" aria-controls="tabgenerales" aria-expanded="true"><i class="fa fa-folder"></i>Generales</a>
                         </li>
+                        
                         <li class="nav-item">
-                            <a class="nav-link" id="tabcostos" data-toggle="tab" href="#costos" aria-controls="tabcostos" aria-expanded="false"><i class="fa fa-check-square-o"></i>Programación</a>
-                        </li>
-                      
-                        <li class="nav-item">
-                            <a class="nav-link" id="tabalumnos" data-toggle="tab" href="#alumnos" aria-controls="tabalumnos" aria-expanded="false"><i class="fa fa-user"></i>Alumnos</a>
+                            <a class="nav-link" id="tabalumnos" data-toggle="tab" href="#alumnos" aria-controls="tabalumnos" aria-expanded="false"><i class="fa fa-user"></i>Historial</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="tabobserv" data-toggle="tab" href="#observ" aria-controls="tabobserv" aria-expanded="false"><i class="fa fa-folder-open-o"></i>Observaciones</a>
@@ -285,8 +272,8 @@ body { padding-right: 0 !important }
                                                                     
                                                                     <asp:Button runat="server" ID="guardar" OnClick="guardaEdita" style="display:none" UseSubmitBehavior="false"/>
                                                                     <asp:Button runat="server" ID="bautorizacion" OnClick="solicitaAutorizacion" style="display:none" UseSubmitBehavior="false"/>                                                                    
-                                                                    <asp:Button runat="server" ID="Beditar" OnClick="editaRegistro" style="display:none" UseSubmitBehavior="false"/>
-                                                                    <asp:Button runat="server" ID="Bfechas" OnClick="listadoFechas" Style="display: none" UseSubmitBehavior="false" />
+                                                                    
+                                                                    <asp:Button runat="server" ID="Brecuperabien" OnClick="recuperaBien" Style="display: none" UseSubmitBehavior="false" />
 
                                                                 </ContentTemplate>
                                                             </asp:UpdatePanel>
@@ -295,112 +282,130 @@ body { padding-right: 0 !important }
                                 <ContentTemplate>
                                     <div class="row" id="tbgenerales">
                                         <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="text-bold-600">Centro</label>
+                                                        <asp:DropDownList runat="server" ID="centro" CssClass="select2 form-control" DataSourceID="DScentro" DataTextField="centro" DataValueField="idcentro" Style="width: 100%">
+                                                        </asp:DropDownList>
+                                                        <asp:SqlDataSource ID="DSCentro" runat="server" ProviderName="MySql.Data.MySqlClient" ConnectionString="<%$ ConnectionStrings:DBconexion %>" SelectCommand="SELECT idcentro, centro FROM centro ORDER BY idcentro"></asp:SqlDataSource>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label class="text-bold-600">Estatus</label><br />
+                                                        <span class="tag bg-success"><span class="h4 text-bold-700" >LOCALIZADO</span></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="text-bold-600">No. inventario</label>
+                                                        <asp:TextBox ID="noinventario" CssClass="form-control text-uppercase" placeholder="inventario" runat="server"></asp:TextBox>
+                                                    </div>
+                                                </div>
+                                                 <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label class="text-bold-600">Adscripción</label>
+                                                        <asp:TextBox ID="adscripcion" CssClass="form-control text-uppercase" placeholder="adscripción" runat="server" disabled></asp:TextBox>
+                                                    </div>
+                                                </div>
+
+                                                 <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label class="text-bold-600">Fecha alta</label>
+                                                        <asp:TextBox ID="fechaalta" CssClass="form-control text-uppercase" placeholder="fecha alta" runat="server"></asp:TextBox>
+                                                    </div>
+                                                </div>
+
+                                                
+                                                 
+
+                                                
+
+                                               
+                                            </div>
+
+
                                            
-                                                        <div class="row">                                                                                                                                                                                    
-                                                            <div class="col-md-3">
-                                                                <div class="form-group">
-                                                                    <label class="text-bold-600">Mínimo de alumnos</label>
-                                                                    <asp:TextBox ID="alumnosminimo" type="number" CssClass="form-control text-uppercase" placeholder="Mínimo de alumnos" name="alumnosminimo" runat="server" Min="0"></asp:TextBox>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-md-3">
-                                                                <div class="form-group">
-                                                                    <label class="text-bold-600">Máximo de alumnos</label>
-                                                                    <asp:TextBox ID="alumnosmaximo" type="number" CssClass="form-control text-uppercase" placeholder="Máximo de alumnos" name="alumnosmaximo" runat="server" Min="0"></asp:TextBox>
-                                                                </div>
-                                                            </div>
-                                                            
-                                                         </div>
-
-                                                                                                              
-                                                        <div class="row">
-
-                                                            <div class="col-md-3">
-                                                                <div class="form-group">
-                                                                    <label class="text-bold-600">Clave del curso</label>
-                                                                    <asp:TextBox ID="clave" CssClass="form-control text-uppercase" placeholder="Clave" name="clave" runat="server"></asp:TextBox>
-
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-md-9">
-                                                                <div class="form-group">
-                                                                    <label class="text-bold-600">Nombre del curso</label>
-                                                                    <asp:TextBox ID="nombre" CssClass="form-control text-uppercase" placeholder="Nombre del Curso" name="nombre" runat="server"></asp:TextBox>
-
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-
-                                                      
-                                                       
-                                                        <div class="row">
-
-                                                            <div class="col-md-4">
-                                                                <div class="form-group">
-
-                                                                    <label class="text-bold-600">Costo del Módulo</label>
-                                                                    <asp:TextBox ID="costomodulo" CssClass="form-control decimal-inputmask text-md-left text-uppercase" Style="text-align: left;" placeholder="Costo Modulo" name="cotitular" runat="server"></asp:TextBox>
 
 
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-md-4">
-                                                                <div class="form-group">
-
-                                                                    <label class="text-bold-600">Costo por alumno</label>
-                                                                    <asp:TextBox ID="costoalumno" CssClass="form-control decimal-inputmask text-md-left text-uppercase" placeholder="Costo Alumno" name="cotitular" runat="server"></asp:TextBox>
-
-
-                                                                </div>
-                                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="text-bold-600">Descripción</label>
+                                                        <asp:TextBox ID="descripcion" CssClass="form-control text-uppercase" placeholder="descripción" runat="server" TextMode="MultiLine" Rows="5"></asp:TextBox>
+                                                    </div>
+                                                </div>
+                                            </div>
 
 
-                                                            <div class="col-md-4">
-                                                                <div class="form-group">
+                                            <div class="row">
 
-                                                                    <label class="text-bold-600">Pago x hora al Instructor</label>
-                                                                    <asp:TextBox ID="pagohora" CssClass="form-control decimal-inputmask text-md-left text-uppercase" placeholder="Pago" name="cotitular" runat="server"></asp:TextBox>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label class="text-bold-600">Marca</label>
+                                                        <asp:TextBox ID="marca" CssClass="form-control text-uppercase" placeholder="marca" runat="server"></asp:TextBox>
+                                                    </div>
+                                                </div>
 
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label class="text-bold-600">Modelo</label>
+                                                        <asp:TextBox ID="modelo" CssClass="form-control text-uppercase" placeholder="modelo" runat="server"></asp:TextBox>
+                                                    </div>
+                                                </div>
+                                                 <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label class="text-bold-600">No. serie</label>
+                                                        <asp:TextBox ID="noserie" CssClass="form-control text-uppercase" placeholder="noserie" runat="server"></asp:TextBox>
+                                                    </div>
+                                                </div>
 
-                                                                </div>
-                                                            </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label class="text-bold-600">Costo</label>
+                                                        <asp:TextBox ID="costo" CssClass="form-control text-uppercase" placeholder="costo" runat="server" disabled></asp:TextBox>
+                                                    </div>
+                                                </div>
 
-                                                        </div>
+                                            </div>
 
 
 
+                                           <div class="row">
 
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="text-bold-600">Responsable</label>
+                                                        <asp:TextBox ID="responsable" CssClass="form-control text-uppercase" placeholder="responsable" runat="server"></asp:TextBox>
+                                                    </div>
+                                                </div>
 
-                                                        <div class="row">
-                                                            <div class="col-md-8">
-                                                                <div class="form-group">
-                                                                    <label class="text-bold-600">Observaciones</label>
-                                                                    <asp:TextBox ID="observaciones" CssClass="form-control text-uppercase" MaxLength="0" placeholder="Observaciones" name="telefono" runat="server" TextMode="MultiLine" Rows="3"></asp:TextBox>
+                                                
+                                                 <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="text-bold-600">Usuario</label>
+                                                        <asp:TextBox ID="usuario" CssClass="form-control text-uppercase" placeholder="usuario" runat="server" disabled></asp:TextBox>
+                                                    </div>
+                                                </div>
 
-                                                                </div>
+                                               
 
+                                            </div>
 
-                                                            </div>
-                                                          
+                                             <div class="row">
+                                                  <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="text-bold-600">Ubicación física</label>
+                                                        <asp:TextBox ID="ubicacion" CssClass="form-control text-uppercase" placeholder="ubicacion" runat="server" disabled></asp:TextBox>
+                                                    </div>
+                                                </div>
+                                                 </div>
 
-                                                            <div class="col-md-4">
-                                                                <div class="form-group">
-                                                                    <label for="activo">Es Curso en Linea?</label>
+                                           
 
-                                                                    <div class="skin skin-flat">
-                                                                        <asp:CheckBox runat="server" ID="enlinea"  CssClass="cksenlinea" />
-                                                                    </div>
-
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-
-                                                   
                                         </div>
                                     </div>
                                      
@@ -409,111 +414,7 @@ body { padding-right: 0 !important }
                             </asp:UpdatePanel>
 
                         </div>
-                        <div role="tabpanel" class="tab-pane fade " id="costos" aria-labelledby="tabcostos" aria-expanded="true">
-                            <asp:UpdatePanel runat="server" ID="UpdatePanel3">
-                                <ContentTemplate>
-                                    
-                                    <div class="row" id="tbcostos">
-                                        <div class="col-md-12">
-                                            
-                                                        <div class="row">
-
-                                                            <div class="col-md-4">
-                                                                <div class="form-group">
-                                                                    <label class="text-bold-600">Fecha límite de Inscripción</label>
-                                                                    <asp:TextBox ID="fechalimite" CssClass="form-control pickadate text-uppercase" placeholder="Inicia en" name="fechalimite" runat="server" Text="" disabled></asp:TextBox>
-
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-md-4">
-                                                                <div class="form-group">
-                                                                    <label class="text-bold-600">Fecha de inicio</label>
-                                                                    <asp:TextBox ID="fechaini" CssClass="form-control pickadate text-uppercase" placeholder="Inicia en" name="fechaini" runat="server" Text="" onchange="calendario()"></asp:TextBox>
-
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-md-4">
-                                                                <div class="form-group">
-                                                                    <label class="text-bold-600">Fecha de Término</label>
-                                                                    <asp:TextBox ID="fechafin" CssClass="form-control pickadate text-uppercase" placeholder="Finaliza en" name="fechafin" runat="server" onchange="calendario()"></asp:TextBox>
-
-                                                                </div>
-                                                            </div>
-
-
-
-
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-md-8">
-                                                                <div class="form-group">
-                                                                    <label class="text-bold-600">Días hábiles</label>
-                                                                    <asp:HiddenField runat="server" ID="hdias" />
-                                                                    <select class="select2 form-control" multiple="multiple" id="algo" onchange="ver()" style="width: 100%">
-                                                                        <option value="2">Lunes</option>
-                                                                        <option value="3">Martes</option>
-                                                                        <option value="4">Miércoles</option>
-                                                                        <option value="5">Jueves</option>
-                                                                        <option value="6">Viernes</option>
-                                                                        <option value="7">Sábado</option>
-                                                                        <option value="1">Domingo</option>
-                                                                    </select>
-
-
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-md-4">
-                                                                <div class="form-group">
-                                                                    <label class="text-bold-600">Total de Días</label>
-                                                                    <asp:TextBox ID="dias" type="number" CssClass="form-control text-uppercase" placeholder="Días" name="dias" runat="server" disabled></asp:TextBox>
-
-                                                                </div>
-                                                            </div>
-
-
-                                                        </div>
-
-
-                                                        <div class="row">
-
-                                                            <div class="col-md-4">
-                                                                <div class="form-group">
-                                                                    <label class="text-bold-600">Hora de inicio</label>
-                                                                    <asp:TextBox ID="horaini" CssClass="form-control pickatime-button text-uppercase" placeholder="Desde" name="horaini" runat="server"></asp:TextBox>
-
-                                                                </div>
-                                                            </div>
-
-
-                                                            <div class="col-md-4">
-                                                                <div class="form-group">
-                                                                    <label class="text-bold-600">Hora de término</label>
-                                                                    <asp:TextBox ID="horafin" CssClass="form-control pickatime-button text-uppercase" placeholder="Hasta" name="horafin" runat="server"></asp:TextBox>
-
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-4">
-                                                                <div class="form-group">
-                                                                    <label class="text-bold-600">Total de Horas</label>
-                                                                    <asp:TextBox ID="horas" type="number" CssClass="form-control text-uppercase" placeholder="Horas" name="cotitular" runat="server" disabled></asp:TextBox>
-
-                                                                </div>
-                                                            </div>
-
-
-                                                        </div>
-
-
-                                        </div>
-                                    </div>
-                                   
-                                </ContentTemplate>
-                            </asp:UpdatePanel>
-                        </div>
-
+                     
                     
 
                         <div class="tab-pane fade" id="alumnos" role="tabpanel" aria-labelledby="tabalumnos" aria-expanded="false">
@@ -640,11 +541,11 @@ body { padding-right: 0 !important }
                 <div class="modal-footer">
                                                
                             <button id="bguardar" class="btn btn-primary" onclick="valida()" type="button" data-backdrop="false" >
-                                <i class="fa fa-check-square-o"></i>Guardar
+                                Guardar
                             </button>
 
                             <button id="bcerrar" type="button" class="btn btn-danger mr-1" data-dismiss="modal" id="cerrarModal">
-                                <i class="ft-x"></i>Cancelar
+                                Cancelar
                             </button>
 
                         
@@ -1247,7 +1148,7 @@ body { padding-right: 0 !important }
             $("*[id$='idP']").val(idcurso);
             $("*[id$='idS']").val(idsucursal);
             $("#bootstrap").modal('show');                                   
-            $('#<%= Bfechas.ClientID %>').click();                                                            
+            $('#<%= Brecuperabien.ClientID %>').click();                                                            
         }
 
         function abrirModalFechas() {
@@ -1306,7 +1207,7 @@ body { padding-right: 0 !important }
             mostrarLoading();
             $("*[id$='idP']").val(id);
             $("*[id$='idS']").val(ids);
-           $('#<%= Beditar.ClientID %>').click();
+           
         }
 
         function nuevoRegistro() {

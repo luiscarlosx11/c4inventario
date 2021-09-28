@@ -100,7 +100,7 @@ namespace elecion
                         string url = Request["ReturnUrl"];
 
                         
-                        Response.Redirect("default.aspx");
+                        Response.Redirect("/catalogos/oferta/catinventario.aspx");
                                                /*
 
                        ScriptManager.RegisterStartupScript(this, GetType(), "abrirModal", "window.onload = function(){ cerrarLoading(); modal(); };", true);*/

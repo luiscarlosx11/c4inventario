@@ -201,7 +201,7 @@
     <Content Include="catalogos\oferta\catregulares.aspx" />
     <Content Include="catalogos\oferta\catrocos.aspx" />
     <Content Include="catalogos\oferta\catespecialidades.aspx" />
-    <Content Include="catalogos\oferta\catcursos.aspx" />
+    <Content Include="catalogos\oferta\catinventario.aspx" />
     <Content Include="catalogos\oferta\frmcurso.aspx" />
     <Content Include="catalogos\oferta\WebForm1.aspx" />
     <Content Include="catalogos\otros\catconvenios.aspx" />
@@ -625,12 +625,12 @@
     <Compile Include="catalogos\oferta\catespecialidades.aspx.designer.cs">
       <DependentUpon>catespecialidades.aspx</DependentUpon>
     </Compile>
-    <Compile Include="catalogos\oferta\catcursos.aspx.cs">
-      <DependentUpon>catcursos.aspx</DependentUpon>
+    <Compile Include="catalogos\oferta\catinventario.aspx.cs">
+      <DependentUpon>catinventario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="catalogos\oferta\catcursos.aspx.designer.cs">
-      <DependentUpon>catcursos.aspx</DependentUpon>
+    <Compile Include="catalogos\oferta\catinventario.aspx.designer.cs">
+      <DependentUpon>catinventario.aspx</DependentUpon>
     </Compile>
     <Compile Include="catalogos\oferta\frmcurso.aspx.cs">
       <DependentUpon>frmcurso.aspx</DependentUpon>

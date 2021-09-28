@@ -87,6 +87,24 @@ namespace elecion
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl oferta;
 
         /// <summary>
+        /// Control Li1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Li1;
+
+        /// <summary>
+        /// Control Li2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Li2;
+
+        /// <summary>
         /// Control titulobreads.
         /// </summary>
         /// <remarks>
