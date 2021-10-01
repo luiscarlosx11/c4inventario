@@ -50,9 +50,9 @@ body { padding-right: 0 !important }
             <asp:HiddenField runat="server" ID="idP" />
 
             <asp:Button runat="server" ID="bbuscacursos" OnClick="listadoAlumnos" Style="display: none" UseSubmitBehavior="false" />
-            <asp:Button runat="server" ID="guardar" OnClick="guardaEdita" Style="display: block" UseSubmitBehavior="false" />
+            <asp:Button runat="server" ID="guardar" OnClick="guardaEdita" Style="display: none" UseSubmitBehavior="false" />
 
-
+            <asp:Button runat="server" ID="Bseleccionar" OnClick="getBien" Style="display: none" UseSubmitBehavior="false"/>
             <asp:Button runat="server" ID="bvolver" OnClick="volverCursos" Style="display: none" UseSubmitBehavior="false" />
             <asp:Button runat="server" ID="Bconsultar" OnClick="listadoClientes" Style="display: none" UseSubmitBehavior="false" />
             <asp:Button runat="server" ID="Bnuevo" OnClick="limpiarCampos" Style="display: none" UseSubmitBehavior="false" />
@@ -374,7 +374,7 @@ body { padding-right: 0 !important }
                             <asp:UpdatePanel runat="server">
                                 <ContentTemplate>
 
-                                    <asp:Button runat="server" ID="Bseleccionar" OnClick="getBien" Style="display: none" UseSubmitBehavior="false"/>
+                                    
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
@@ -389,7 +389,7 @@ body { padding-right: 0 !important }
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div style="overflow-x: auto; width: 100%">
-                                                <asp:GridView runat="server" ID="GVlistaalumnos" PageSize="8" AllowPaging="true" AllowSorting="true" CssClass="table table-striped lGeneral"
+                                                <asp:GridView runat="server" ID="GVlistaalumnos" PageSize="5" AllowPaging="true" AllowSorting="true" CssClass="table table-striped lGeneral"
                                                     AutoGenerateColumns="False" DataSourceID="DSlistaalumnos" DataKeyNames="idbien" GridLines="Horizontal" BorderWidth="0" RowStyle-CssClass="rowHover" ClientIDMode="Static"
                                                      OnPageIndexChanged="listadoAlumnosBus">                                                    
                                                     <Columns>                                                       
@@ -399,9 +399,8 @@ body { padding-right: 0 !important }
                                                                 <br />
                                                                 <h7 class="font-small-3 font-italic text-bold-600"><%# " "+Eval("descripcion")%></h7>
                                                                 <br />
-                                                                <h7 class="text-bold-400 font-small-2"> <%# " MARCA "+Eval("marca")+ ", MODELO "+Eval("modelo")%></h7>
-                                                                <br />
-                                                                <h7 class="text-bold-400 font-small-2"><%# " NO SERIE. "+Eval("noserie") +", COSTO $"+ Eval("costo")+" "%></h7>
+                                                                <h7 class="text-bold-400 font-small-2"> <%# " MARCA "+Eval("marca")+ ", MODELO "+Eval("modelo")+ ", "+" NO SERIE. "+Eval("noserie")%></h7>
+                                                                
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:TemplateField ItemStyle-Width="300px" HeaderText="Ubicación" HeaderStyle-CssClass="primary">

@@ -203,27 +203,28 @@ namespace elecion.inscripcion
                         {
                             lastInsertedId = (int)cmd.LastInsertedId;
                             idP.Value = lastInsertedId.ToString();
-
-
-
+                            /*
                             MySqlDataReader mySqlDataReader = (new MySqlCommand(string.Concat("select concat(LPAD(idsalida, 3, 0),'/',year(fecha))as folio, cast(fecha as char)as fechatext from salida where idsalida= ", idP.Value, " "), mySqlConnection)).ExecuteReader();
                             if (mySqlDataReader.HasRows)
                             {
                                 mySqlDataReader.Read();
 
                                 labelCurso.Text = "FOLIO " + mySqlDataReader["folio"].ToString();
-                                labelfecha.Text = mySqlDataReader["fechatext"].ToString();
+                                labelfecha.Text = mySqlDataReader["fechatext"].ToString();                           
                             }
-                            mySqlDataReader.Close();
+                            mySqlDataReader.Close();*/
 
+                            query = "UPDATE salida set folio=concat(LPAD(idsalida, 3, 0),'/',year(fecha)) where idsalida=@idP;";
+                            cmd = new MySqlCommand(query, mySqlConnection);
+                            cmd.Parameters.AddWithValue("@idP", idP.Value);
+                            cmd.ExecuteNonQuery();
 
                         }
-
 
                         mySqlCommand.Parameters.Clear();
                         mySqlCommand.CommandText = "update bien set idcentro=@idcentro, ubicacion=@ubicacion where idbien=@idbien;";
                         mySqlCommand.Parameters.AddWithValue("@idcentro", scentro.SelectedValue);
-                        mySqlCommand.Parameters.AddWithValue("@ubicacion", idUbicacion.Value);
+                        mySqlCommand.Parameters.AddWithValue("@ubicacion", idUbicacion.Value.Trim().ToUpper());
                         mySqlCommand.Parameters.AddWithValue("@idbien", idA.Value);                        
                         mySqlCommand.ExecuteNonQuery();
 
@@ -232,7 +233,7 @@ namespace elecion.inscripcion
                         mySqlCommand.CommandText = "insert into detallesalida(idsalida, idbien, ubicacion) values(@idsalida, @idbien, @ubicacion);";
                         mySqlCommand.Parameters.AddWithValue("@idsalida", idP.Value);
                         mySqlCommand.Parameters.AddWithValue("@idbien", idA.Value);
-                        mySqlCommand.Parameters.AddWithValue("@ubicacion", idUbicacion.Value);
+                        mySqlCommand.Parameters.AddWithValue("@ubicacion", idUbicacion.Value.Trim().ToUpper());
                         mySqlCommand.ExecuteNonQuery();
 
                         mySqlTransaction.Commit();
@@ -312,11 +313,17 @@ namespace elecion.inscripcion
             using (MySqlConnection mySqlConnection = new MySqlConnection(WebConfigurationManager.ConnectionStrings["DBconexion"].ConnectionString))
             {
 
-
+                MySqlTransaction mySqlTransaction = null;
                 try
                 {
 
                     mySqlConnection.Open();
+
+                    MySqlCommand mySqlCommand = mySqlConnection.CreateCommand();
+                    mySqlTransaction = mySqlConnection.BeginTransaction();
+                    mySqlCommand.Connection = mySqlConnection;
+                    mySqlCommand.Transaction = mySqlTransaction;
+
                     String query = "";
                     int lastInsertedId = 0;
 
@@ -340,7 +347,7 @@ namespace elecion.inscripcion
                     {
                         lastInsertedId = (int)cmd.LastInsertedId;
                         idP.Value = lastInsertedId.ToString();
-                        
+                        /*
                         MySqlDataReader mySqlDataReader = (new MySqlCommand(string.Concat("select concat(LPAD(idsalida, 3, 0),'/',year(fecha))as folio, cast(fecha as char)as fechatext from salida where idsalida= ", idP.Value, " "), mySqlConnection)).ExecuteReader();
                         if (mySqlDataReader.HasRows)
                         {
@@ -349,11 +356,17 @@ namespace elecion.inscripcion
                             labelCurso.Text = "FOLIO " + mySqlDataReader["folio"].ToString();
                             labelfecha.Text = mySqlDataReader["fechatext"].ToString();                           
                         }
-                        mySqlDataReader.Close();
+                        mySqlDataReader.Close();*/
 
+                        query = "UPDATE salida set folio=concat(LPAD(idsalida, 3, 0),'/',year(fecha)) where idsalida=@idP;";
+                        cmd = new MySqlCommand(query, mySqlConnection);
+                        cmd.Parameters.AddWithValue("@idP", idP.Value);
+                        cmd.ExecuteNonQuery();
 
                     }
 
+                    mySqlTransaction.Commit();
+                    listadoAlumnos(sender, e);
                     ScriptManager.RegisterClientScriptBlock(Page, typeof(string), "myScriptName", "cerrarLoading(); toastExito();", true);
 
 
@@ -362,6 +375,7 @@ namespace elecion.inscripcion
                 {
                     System.Diagnostics.Debug.WriteLine("error:" + ex.ToString());
                     Console.WriteLine("error:" + ex.ToString());
+                    mySqlTransaction.Rollback();
                 }
                 finally
                 {
@@ -369,7 +383,7 @@ namespace elecion.inscripcion
                 }
 
                 //ScriptManager.RegisterStartupScript(this, GetType(), "cerrar", "$('.modal-backdrop').remove();", true);
-                listadoAlumnos(sender, e);
+                
 
             }
 

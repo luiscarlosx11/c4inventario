@@ -159,6 +159,15 @@ namespace elecion.inscripcion
         protected global::System.Web.UI.WebControls.Button guardar;
 
         /// <summary>
+        /// Control Bseleccionar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Bseleccionar;
+
+        /// <summary>
         /// Control bvolver.
         /// </summary>
         /// <remarks>
@@ -535,15 +544,6 @@ namespace elecion.inscripcion
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divNoRegistrosAlumnos;
-
-        /// <summary>
-        /// Control Bseleccionar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Bseleccionar;
 
         /// <summary>
         /// Control bbiendescripcion.
