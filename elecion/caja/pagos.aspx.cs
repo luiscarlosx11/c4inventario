@@ -1921,12 +1921,12 @@ namespace elecion.ingresos
 
         protected void bimprimir_Click(object sender, EventArgs e)
         {
-            ReportLibrary.SolicitudAutorizacionCurso reporte = new ReportLibrary.SolicitudAutorizacionCurso();
+           /* ReportLibrary.SolicitudAutorizacionCurso reporte = new ReportLibrary.SolicitudAutorizacionCurso();
             reporte.ReportParameters["idsucursal"].Value = idS.Value;
             reporte.ReportParameters["idcurso"].Value = idP.Value;
            // ReportLibrary.FormatoEscolaridadMexico reporte = new ReportLibrary.FormatoEscolaridadMexico();
             
-            ExportToPDF(reporte,"SOLICITUD AUTORIZACION "+cve.Value);
+            ExportToPDF(reporte,"SOLICITUD AUTORIZACION "+cve.Value);*/
 
            // SaveReport(new ReportLibrary.SolicitudAutorizacionCurso(), @"C:\MyReport.pdf");
 

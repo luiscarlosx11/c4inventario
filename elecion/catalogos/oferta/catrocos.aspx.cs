@@ -1608,13 +1608,13 @@ namespace elecion.catalogos.oferta
 
         protected void bimprimir_Click(object sender, EventArgs e)
         {
-            ReportLibrary.SolicitudAutorizacionCurso reporte = new ReportLibrary.SolicitudAutorizacionCurso();
+           /* ReportLibrary.SolicitudAutorizacionCurso reporte = new ReportLibrary.SolicitudAutorizacionCurso();
             reporte.ReportParameters["idsucursal"].Value = idS.Value;
             reporte.ReportParameters["idcurso"].Value = idP.Value;
            // ReportLibrary.FormatoEscolaridadMexico reporte = new ReportLibrary.FormatoEscolaridadMexico();
             
             ExportToPDF(reporte);
-
+           */
            // SaveReport(new ReportLibrary.SolicitudAutorizacionCurso(), @"C:\MyReport.pdf");
 
 

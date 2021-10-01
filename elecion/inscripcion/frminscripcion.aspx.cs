@@ -50,14 +50,14 @@ namespace elecion.inscripcion
 
         protected void conteoRegistros(object sender, EventArgs e)
         {
-            using (MySqlConnection mySqlConnection = new MySqlConnection(WebConfigurationManager.ConnectionStrings["DBconexion"].ConnectionString))
+           /* using (MySqlConnection mySqlConnection = new MySqlConnection(WebConfigurationManager.ConnectionStrings["DBconexion"].ConnectionString))
             {
                 try
                 {
                     try
                     {
                         mySqlConnection.Open();
-                        MySqlDataReader mySqlDataReader = (new MySqlCommand(string.Concat("SELECT COUNT(al.idalumno) as total  from alumno al  left join solicitudinscripcion si on si.idalumno = al.idalumno  where si.idcurso = ", this.idP.Value, " "), mySqlConnection)).ExecuteReader();
+                        MySqlDataReader mySqlDataReader = (new MySqlCommand(string.Concat("SELECT COUNT(al.idalumno) as total  from alumno al  left join solicitudinscripcion si on si.idalumno = al.idalumno  where si.idcurso = ", idP.Value, " "), mySqlConnection)).ExecuteReader();
                         if (mySqlDataReader.HasRows)
                         {
                             mySqlDataReader.Read();
@@ -71,7 +71,7 @@ namespace elecion.inscripcion
                 {
                     mySqlConnection.Close();
                 }
-            }
+            }*/
         }
 
         protected void descargaArchivo(object sender, EventArgs e)
@@ -134,7 +134,7 @@ namespace elecion.inscripcion
 
         protected void editaRegistro(object sender, EventArgs e)
         {
-            this.Session["idP"] = this.idP.Value;
+            this.Session["idP"] = idP.Value;
             this.Session["idS"] = this.idS.Value;
             base.Response.Redirect("~/catalogos/directorio/frminstructor.aspx");
         }
@@ -163,9 +163,141 @@ namespace elecion.inscripcion
             
         }
 
-        protected void getAlumno(object sender, EventArgs e)
+        protected void getBien(object sender, EventArgs e)
         {
-            
+            using (MySqlConnection mySqlConnection = new MySqlConnection(WebConfigurationManager.ConnectionStrings["DBconexion"].ConnectionString))
+            {
+                MySqlTransaction mySqlTransaction = null;
+                string str = "";
+                string query = "";
+                try
+                {
+                    try
+                    {
+                        mySqlConnection.Open();
+                        MySqlCommand mySqlCommand = mySqlConnection.CreateCommand();
+                        mySqlTransaction = mySqlConnection.BeginTransaction();
+                        mySqlCommand.Connection = mySqlConnection;
+                        mySqlCommand.Transaction = mySqlTransaction;
+
+
+                        int lastInsertedId = 0;
+
+                        //Si el idmunicipio es mayor que cero se hace UPDATE
+                        if (Int32.Parse(idP.Value) > 0)
+                            query = "UPDATE salida set descripcion=@descripcion, usuario=@usuario, cargo=@cargo where idsalida=@idP;";
+                        else
+                            query = "INSERT INTO salida(fecha, descripcion, usuario, cargo) values(current_date, @descripcion, @usuario, @cargo);";
+
+                        MySqlCommand cmd = new MySqlCommand(query, mySqlConnection);
+
+
+                        cmd.Parameters.AddWithValue("@idP", idP.Value);
+                        cmd.Parameters.AddWithValue("@usuario", usuario.Text.Trim().ToUpper());
+                        cmd.Parameters.AddWithValue("@descripcion", descripcion.Text.Trim().ToUpper());
+                        cmd.Parameters.AddWithValue("@cargo", cargo.Text.Trim().ToUpper());
+
+                        cmd.ExecuteNonQuery();
+
+                        if (Int32.Parse(idP.Value) == 0)
+                        {
+                            lastInsertedId = (int)cmd.LastInsertedId;
+                            idP.Value = lastInsertedId.ToString();
+
+
+
+                            MySqlDataReader mySqlDataReader = (new MySqlCommand(string.Concat("select concat(LPAD(idsalida, 3, 0),'/',year(fecha))as folio, cast(fecha as char)as fechatext from salida where idsalida= ", idP.Value, " "), mySqlConnection)).ExecuteReader();
+                            if (mySqlDataReader.HasRows)
+                            {
+                                mySqlDataReader.Read();
+
+                                labelCurso.Text = "FOLIO " + mySqlDataReader["folio"].ToString();
+                                labelfecha.Text = mySqlDataReader["fechatext"].ToString();
+                            }
+                            mySqlDataReader.Close();
+
+
+                        }
+
+
+                        mySqlCommand.Parameters.Clear();
+                        mySqlCommand.CommandText = "update bien set idcentro=@idcentro, ubicacion=@ubicacion where idbien=@idbien;";
+                        mySqlCommand.Parameters.AddWithValue("@idcentro", scentro.SelectedValue);
+                        mySqlCommand.Parameters.AddWithValue("@ubicacion", idUbicacion.Value);
+                        mySqlCommand.Parameters.AddWithValue("@idbien", idA.Value);                        
+                        mySqlCommand.ExecuteNonQuery();
+
+
+                        mySqlCommand.Parameters.Clear();
+                        mySqlCommand.CommandText = "insert into detallesalida(idsalida, idbien, ubicacion) values(@idsalida, @idbien, @ubicacion);";
+                        mySqlCommand.Parameters.AddWithValue("@idsalida", idP.Value);
+                        mySqlCommand.Parameters.AddWithValue("@idbien", idA.Value);
+                        mySqlCommand.Parameters.AddWithValue("@ubicacion", idUbicacion.Value);
+                        mySqlCommand.ExecuteNonQuery();
+
+                        mySqlTransaction.Commit();
+                        this.listadoAlumnosBus(sender, e);
+                        this.listadoAlumnos(sender, e);
+                        ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading(); toastExito(); ", true);
+                    }
+                    catch (Exception exception1)
+                    {
+                        Exception exception = exception1;
+                        mySqlTransaction.Rollback();
+                        Console.WriteLine(string.Concat("error:", exception.ToString()));
+                    }
+                }
+                finally
+                {
+                    mySqlConnection.Close();
+                }
+            }
+        }
+
+
+        protected void eliminaBien(object sender, EventArgs e)
+        {
+            using (MySqlConnection mySqlConnection = new MySqlConnection(WebConfigurationManager.ConnectionStrings["DBconexion"].ConnectionString))
+            {
+                MySqlTransaction mySqlTransaction = null;
+                string str = "";
+                try
+                {
+                    try
+                    {
+                        mySqlConnection.Open();
+                        MySqlCommand mySqlCommand = mySqlConnection.CreateCommand();
+                        mySqlTransaction = mySqlConnection.BeginTransaction();
+                        mySqlCommand.Connection = mySqlConnection;
+                        mySqlCommand.Transaction = mySqlTransaction;
+                        mySqlCommand.Parameters.Clear();
+                        mySqlCommand.CommandText = "update bien set idcentro=0, ubicacion='' where idbien=@idbien;";
+                        mySqlCommand.Parameters.AddWithValue("@idbien", idA.Value);
+                        mySqlCommand.ExecuteNonQuery();
+
+
+                        mySqlCommand.Parameters.Clear();
+                        mySqlCommand.CommandText = "delete from detallesalida where idsalida=@idsalida and idbien=@idbien;";
+                        mySqlCommand.Parameters.AddWithValue("@idsalida", idP.Value);
+                        mySqlCommand.Parameters.AddWithValue("@idbien", idA.Value);
+                        mySqlCommand.ExecuteNonQuery();
+
+                        mySqlTransaction.Commit();
+                        this.listadoAlumnos(sender, e);
+                        ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading(); toastExito(); ", true);
+                    }
+                    catch (Exception exception1)
+                    {
+                        Exception exception = exception1;
+                        mySqlTransaction.Rollback();
+                        Console.WriteLine(string.Concat("error:", exception.ToString()));
+                    }
+                }
+                finally
+                {
+                    mySqlConnection.Close();
+                }
+            }
         }
 
         protected void getCalendario(object sender, EventArgs e)
@@ -175,7 +307,73 @@ namespace elecion.inscripcion
 
         protected void guardaEdita(object sender, EventArgs e)
         {
-            
+
+
+            using (MySqlConnection mySqlConnection = new MySqlConnection(WebConfigurationManager.ConnectionStrings["DBconexion"].ConnectionString))
+            {
+
+
+                try
+                {
+
+                    mySqlConnection.Open();
+                    String query = "";
+                    int lastInsertedId = 0;
+
+                    //Si el idmunicipio es mayor que cero se hace UPDATE
+                    if (Int32.Parse(idP.Value) > 0)
+                        query = "UPDATE salida set descripcion=@descripcion, usuario=@usuario, cargo=@cargo where idsalida=@idP;";
+                    else
+                        query = "INSERT INTO salida(fecha, descripcion, usuario, cargo) values(current_date, @descripcion, @usuario, @cargo);";
+
+                    MySqlCommand cmd = new MySqlCommand(query, mySqlConnection);
+
+
+                    cmd.Parameters.AddWithValue("@idP", idP.Value);
+                    cmd.Parameters.AddWithValue("@usuario", usuario.Text.Trim().ToUpper());
+                    cmd.Parameters.AddWithValue("@descripcion", descripcion.Text.Trim().ToUpper());
+                    cmd.Parameters.AddWithValue("@cargo", cargo.Text.Trim().ToUpper());
+                                            
+                    cmd.ExecuteNonQuery();
+
+                    if (Int32.Parse(idP.Value) == 0)
+                    {
+                        lastInsertedId = (int)cmd.LastInsertedId;
+                        idP.Value = lastInsertedId.ToString();
+                        
+                        MySqlDataReader mySqlDataReader = (new MySqlCommand(string.Concat("select concat(LPAD(idsalida, 3, 0),'/',year(fecha))as folio, cast(fecha as char)as fechatext from salida where idsalida= ", idP.Value, " "), mySqlConnection)).ExecuteReader();
+                        if (mySqlDataReader.HasRows)
+                        {
+                            mySqlDataReader.Read();
+
+                            labelCurso.Text = "FOLIO " + mySqlDataReader["folio"].ToString();
+                            labelfecha.Text = mySqlDataReader["fechatext"].ToString();                           
+                        }
+                        mySqlDataReader.Close();
+
+
+                    }
+
+                    ScriptManager.RegisterClientScriptBlock(Page, typeof(string), "myScriptName", "cerrarLoading(); toastExito();", true);
+
+
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("error:" + ex.ToString());
+                    Console.WriteLine("error:" + ex.ToString());
+                }
+                finally
+                {
+                    mySqlConnection.Close();
+                }
+
+                //ScriptManager.RegisterStartupScript(this, GetType(), "cerrar", "$('.modal-backdrop').remove();", true);
+                listadoAlumnos(sender, e);
+
+            }
+
+
         }
 
         protected void guardaEditaFechas(object sender, EventArgs e)
@@ -221,13 +419,20 @@ namespace elecion.inscripcion
             this.ExportToPDF(solicitudInscripcion, str);
         }
 
-        protected void imprimeSolicitudAut(object sender, EventArgs e)
+        protected void imprimeSalida(object sender, EventArgs e)
         {
-            SolicitudInscripcion solicitudInscripcion = new SolicitudInscripcion();
-            solicitudInscripcion.ReportParameters["idsolicitud"].Value = this.idI.Value;
-            solicitudInscripcion.ReportParameters["idalumno"].Value = this.idA.Value;
-            string str = string.Concat("Credencial ", this.idctr.Value);
-            this.ExportToPDF(solicitudInscripcion, str);
+            try
+            {
+
+                Session["idP"] = idP.Value;
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(string), "myScriptName", "window.open('../reportes/RVSalida.aspx','_blank'); ", true);
+                // ScriptManager.RegisterStartupScript(this, GetType(), "ScriptName", "window.open(../reportviewers/RVColectiva.aspx,'_blank');", true);
+
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("ERROR:" + ex.Message.Replace("\r\n", ""));
+            }
         }
 
         protected void insertaFechas(object sender, EventArgs e)
@@ -248,25 +453,25 @@ namespace elecion.inscripcion
         {
             try
             {
-                this.idA.Value = "0";
-                this.idI.Value = "0";
-                this.nocontrol.Text = "";
-                this.apaterno.Text = "";
-                this.amaterno.Text = "";
-                this.nombrealumno.Text = "";
-                this.curp.Text = "";
-                this.fechanacimiento.Text = "";
-                this.telefono.Text = "";
-                this.sexo.ClearSelection();
-                this.domicilio.Text = "";
-                this.colonia.Text = "";
-                this.cp.Text = "";
-               
+
+                labelCurso.Text = "FOLIO AUTOMÁTICO";
+                labelfecha.Text = "";
+                descripcion.Text = "";
+                usuario.Text = "";
+                cargo.Text = "";
+
+                //idP.Value = "0";
+
+                listadoAlumnos(sender, e);
+                gridAlumnos.Visible = true;
+                gridCursos.Visible = false;
+
+
             }
             catch (Exception exception)
             {
             }
-            ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading(); $('#tabgenerales').click(); $('#winscripcion').modal('show'); cargatags(); ", true);
+            ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading(); cargatags(); ", true);
         }
 
         protected void volverCursos(object sender, EventArgs e)
@@ -290,7 +495,7 @@ namespace elecion.inscripcion
                 using (MySqlConnection mySqlConnection = new MySqlConnection(WebConfigurationManager.ConnectionStrings["DBconexion"].ConnectionString))
                 {
                     mySqlConnection.Open();
-                    MySqlDataReader mySqlDataReader = (new MySqlCommand(string.Concat("select s.*, cast(s.fecha as char)as fechatext from salida s where s.idsalida= ", this.idP.Value, " "), mySqlConnection)).ExecuteReader();
+                    MySqlDataReader mySqlDataReader = (new MySqlCommand(string.Concat("select s.*, cast(s.fecha as char)as fechatext from salida s where s.idsalida= ", idP.Value, " "), mySqlConnection)).ExecuteReader();
                     if (mySqlDataReader.HasRows)
                     {
                         mySqlDataReader.Read();
@@ -299,18 +504,19 @@ namespace elecion.inscripcion
                         labelfecha.Text =  mySqlDataReader["fechatext"].ToString();
                         descripcion.Text = mySqlDataReader["descripcion"].ToString();
                         usuario.Text = mySqlDataReader["usuario"].ToString();
+                        cargo.Text = mySqlDataReader["cargo"].ToString();
                     }
                     mySqlDataReader.Close();
                 }
 
 
                 this.GValumnos.DataSourceID = this.DSalumnos.ID;
-                string str = string.Concat("select b.*, e.estado, c.centro, cast(b.fechaalta as char)as fechaaltatext, d.ubicacion as ubicacionsalida from detallesalida d left join bien b on d.idbien = b.idbien left join estado e on b.idestado = e.idestado  left join centro c on c.idcentro = b.idcentro  where d.idsalida= ", this.idP.Value, " ");
+                string str = string.Concat("select b.*, e.estado, c.centro, cast(b.fechaalta as char)as fechaaltatext, d.ubicacion as ubicacionsalida from detallesalida d left join bien b on d.idbien = b.idbien left join estado e on b.idestado = e.idestado  left join centro c on c.idcentro = b.idcentro  where d.idsalida= ", idP.Value, " ");
                 
                 str = string.Concat(str, " order by b.descripcion ");
                 this.DSalumnos.SelectCommand = str;
                 //this.lbcurso.Text = this.labelCurso.Value;
-                if (this.idP.Value != "0")
+                if (idP.Value != "0")
                 {
                     this.nuevo.Visible = true;
                     this.barrabus.Visible = true;
@@ -338,22 +544,28 @@ namespace elecion.inscripcion
             try
             {
                 this.GVlistaalumnos.DataSourceID = this.DSlistaalumnos.ID;
-                string str = string.Concat("select a.idalumno, a.nocontrol, concat(a.apaterno,' ',a.amaterno,' ',a.nombre)as ncompleto, a.sexo, a.fechanacimiento, ( select count(s.idalumno) from solicitudinscripcion s where s.idcurso = ", this.idP.Value, " and s.idalumno = a.idalumno ) as registrado from alumno a where true ");
-                if (this.bnombre.Text.Trim() != "")
+                string str = "select b.*, e.estado, c.centro, cast(b.fechaalta as char)as fechaaltatext from bien b left join estado e on b.idestado = e.idestado left join centro c on c.idcentro = b.idcentro where b.idcentro=0 and b.idbien not in(select d.idbien from detallesalida d where d.idsalida="+idP.Value+")  ";
+                if (!bbiendescripcion.Text.Equals(""))
                 {
-                    str = string.Concat(str, " and concat(a.apaterno,' ',a.amaterno,' ',a.nombre) LIKE '%", this.bnombre.Text.Trim().ToUpper(), "%' ");
+                    str = string.Concat(str, " and ( b.descripcion like '%"+ bbiendescripcion.Text.Trim().ToUpper() +"%' ");
+                    str = string.Concat(str, " or  b.noinventario like '%" + bbiendescripcion.Text.Trim().ToUpper() + "%' ");
+                    str = string.Concat(str, " or  b.noserie like '%" + bbiendescripcion.Text.Trim().ToUpper() + "%') ");
                 }
-                str = string.Concat(str, " order by a.apaterno, a.amaterno, a.nombre");
+
+                str = string.Concat(str, " order by b.noinventario ");
                 this.DSlistaalumnos.SelectCommand = str;
-                this.DSlistaalumnos.DataBind();
-                this.GVlistaalumnos.DataBind();
-                if (this.GVlistaalumnos.Rows.Count <= 0)
+                //this.DSlistaalumnos.DataBind();
+                //this.GVlistaalumnos.DataBind();
+
+                DataView dvAccess = (DataView)DSlistaalumnos.Select(DataSourceSelectArguments.Empty);
+
+                if (dvAccess != null && dvAccess.Count > 0)
                 {
-                    this.divResultados.Visible = true;
+                    this.divResultados.Visible = false;
                 }
                 else
                 {
-                    this.divResultados.Visible = false;
+                    this.divResultados.Visible = true;
                 }
 
                
@@ -372,10 +584,24 @@ namespace elecion.inscripcion
             {
                
                 this.lGeneral.DataSourceID = this.DsUsuarios.ID;
-                string query = "select s.*, cast(s.fecha as char) as fechatext, c.centro from salida s left join centro c on s.idcentro = c.idcentro ";
-               
+                string query = "select s.*, cast(s.fecha as char) as fechatext, c.centro from salida s left join centro c on s.idcentro = c.idcentro where s.idsalida>0 ";
+
+                if (!bfolio.Text.Trim().Equals(""))
+                    query += " and s.folio like '%"+ bfolio.Text.Trim().ToUpper() +"%' ";
 
 
+                if (!bdescripcion.Text.Trim().Equals(""))
+                    query += " and s.descripcion like '%" + bdescripcion.Text.Trim().ToUpper() + "%' ";
+
+
+                if (!brecibe.Text.Trim().Equals(""))
+                    query += " and s.usuario like '%" + brecibe.Text.Trim().ToUpper() + "%' ";
+
+
+                if (!bcentro.SelectedValue.Equals("-1"))
+                    query += " and s.idcentro =" + bcentro.SelectedValue + " ";
+
+                
                 query = string.Concat(query, " order by s.idsalida ");
                 this.DsUsuarios.SelectCommand = query;
 
@@ -404,15 +630,7 @@ namespace elecion.inscripcion
 
         protected void listadoDocumentacion(object sender, EventArgs e)
         {
-            try
-            {
-                this.GVdocumentacion.DataSourceID = this.DSdocumentacion.ID;
-                string str = string.Concat(new string[] { "select d.iddocumentacion, d.documentacion, ( select count(c.iddocumentacion) from cursodocumentacion c where c.idsolicitud = ", this.idI.Value, " and c.iddocumentacion = d.iddocumentacion )as entregado, (select movilidad from curso where idcurso=", this.idP.Value, ")as movilidad, (select enlinea from curso where idcurso=", this.idP.Value, ")as enlinea from documentacion d order by d.documentacion" });
-                this.DSdocumentacion.SelectCommand = str;
-            }
-            catch (Exception exception)
-            {
-            }
+           
         }
 
         protected void listadoFechas(object sender, EventArgs e)

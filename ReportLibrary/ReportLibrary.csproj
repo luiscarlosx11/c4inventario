@@ -69,6 +69,18 @@
     <Compile Include="Report1.Designer.cs">
       <DependentUpon>Report1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Report11.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report11.Designer.cs">
+      <DependentUpon>Report11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSalidaFotos.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportSalidaFotos.Designer.cs">
+      <DependentUpon>ReportSalidaFotos.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportSubObjetivos.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -225,11 +237,11 @@
     <Compile Include="ReportVentas.Designer.cs">
       <DependentUpon>ReportVentas.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportGeneral.cs">
+    <Compile Include="ReportSalida.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ReportGeneral.Designer.cs">
-      <DependentUpon>ReportGeneral.cs</DependentUpon>
+    <Compile Include="ReportSalida.Designer.cs">
+      <DependentUpon>ReportSalida.cs</DependentUpon>
     </Compile>
     <Compile Include="ReportSolicitudInscripcion.cs">
       <SubType>Component</SubType>
@@ -286,6 +298,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Report1.resx">
       <DependentUpon>Report1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report11.resx">
+      <DependentUpon>Report11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSalidaFotos.resx">
+      <DependentUpon>ReportSalidaFotos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSubObjetivos.resx">
       <DependentUpon>ReportSubObjetivos.cs</DependentUpon>
@@ -365,8 +383,8 @@
     <EmbeddedResource Include="ReportVentas.resx">
       <DependentUpon>ReportVentas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportGeneral.resx">
-      <DependentUpon>ReportGeneral.cs</DependentUpon>
+    <EmbeddedResource Include="ReportSalida.resx">
+      <DependentUpon>ReportSalida.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSolicitudInscripcion.resx">
       <DependentUpon>ReportSolicitudInscripcion.cs</DependentUpon>

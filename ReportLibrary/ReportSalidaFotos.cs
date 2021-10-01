@@ -10,9 +10,9 @@ namespace ReportLibrary
     /// <summary>
     /// Summary description for Report1.
     /// </summary>
-    public partial class SolicitudAutorizacionCurso : Telerik.Reporting.Report
+    public partial class SalidaFotos : Telerik.Reporting.Report
     {
-        public SolicitudAutorizacionCurso()
+        public SalidaFotos()
         {
             //
             // Required for telerik Reporting designer support

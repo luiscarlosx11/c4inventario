@@ -249,7 +249,7 @@
     <Content Include="reportes\RVMovDiarios.aspx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="reportes\RVGeneral.aspx">
+    <Content Include="reportes\RVSalida.aspx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="reportes\RVTicketCorte.aspx">
@@ -883,13 +883,13 @@
       <DependentUpon>RVMovDiarios.aspx</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="reportes\RVGeneral.aspx.cs">
-      <DependentUpon>RVGeneral.aspx</DependentUpon>
+    <Compile Include="reportes\RVSalida.aspx.cs">
+      <DependentUpon>RVSalida.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="reportes\RVGeneral.aspx.designer.cs">
-      <DependentUpon>RVGeneral.aspx</DependentUpon>
+    <Compile Include="reportes\RVSalida.aspx.designer.cs">
+      <DependentUpon>RVSalida.aspx</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="reportes\RVTicketCorte.aspx.cs">

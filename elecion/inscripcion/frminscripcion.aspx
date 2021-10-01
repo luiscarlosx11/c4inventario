@@ -32,178 +32,180 @@ body { padding-right: 0 !important }
     <asp:Button runat="server" ID="BimprimirSolicitud" OnClick="imprimeSolicitud" Style="display: none" UseSubmitBehavior="false"/>
     <asp:Button runat="server" ID="BimprimirCredencial" OnClick="imprimeCredencial" Style="display: none" UseSubmitBehavior="false"/>
                               
+   
     <asp:UpdatePanel runat="server" ID="UpdatePanel10" UpdateMode="Conditional">
-                    <ContentTemplate>
-                        
-                         <asp:HiddenField runat="server" ID="idP" Value="0" />
-                                                    <asp:HiddenField runat="server" ID="idA" Value="0"/>
-                                                    <asp:HiddenField runat="server" ID="idI" />
-                                                    <asp:HiddenField runat="server" ID="idOP" />
-                                                    <asp:HiddenField runat="server" ID="limite" Value="48" />
-                                                    <asp:HiddenField runat="server" ID="idS" />
-                                                    <asp:HiddenField runat="server" ID="idF" />
-                                                    <asp:HiddenField runat="server" ID="idctr" />
-                                                    
-                                                    <asp:HiddenField runat="server" ID="idDoc" />
-                        <asp:Button runat="server" ID="bbuscacursos" OnClick="listadoAlumnos" Style="display: none"  UseSubmitBehavior="false" />
-
-                        <asp:Button runat="server" ID="bvolver" OnClick="volverCursos" Style="display: none"  UseSubmitBehavior="false" />
-
-                        <asp:Button runat="server" ID="Bconsultar" OnClick="listadoClientes" Style="display: none" UseSubmitBehavior="false" />
-                        <asp:Button runat="server" ID="Bnuevo" OnClick="limpiarCampos" Style="display: none" UseSubmitBehavior="false" />
-                        <asp:Button runat="server" ID="BnuevoInscripcion" OnClick="limpiarCamposInscripcion" Style="display: none" UseSubmitBehavior="false" />
-                        <asp:Button runat="server" ID="Bcancelarcurso" OnClick="cancelaAlumno" Style="display: none" UseSubmitBehavior="false"/>
-                        <asp:Button runat="server" ID="Bmodificaalumno" OnClick="modificaAlumno" Style="display: none" UseSubmitBehavior="false"/>
-                        
-
-                        <asp:Button runat="server" ID="Button2" OnClick="nuevoRegistro" Style="display: none" UseSubmitBehavior="false" />
+        <ContentTemplate>
 
 
-                        <asp:Button runat="server" ID="bimprimir" OnClick="imprimeSolicitudAut" UseSubmitBehavior="false" Style="display: none" />
-                                                                    <asp:Button runat="server" ID="guardar" OnClick="guardaEdita" style="display:none" UseSubmitBehavior="false"/>
-                                                                    <asp:Button runat="server" ID="bautorizacion" OnClick="solicitaAutorizacion" style="display:none" UseSubmitBehavior="false"/>
-                                                                    <asp:Button runat="server" ID="Beditar" OnClick="editaRegistro" style="display:none" UseSubmitBehavior="false"/> 
+            <asp:HiddenField runat="server" ID="idA" Value="0" />
+            <asp:HiddenField runat="server" ID="idI" />
+            <asp:HiddenField runat="server" ID="idUbicacion" />
+            <asp:HiddenField runat="server" ID="idOP" />
+            <asp:HiddenField runat="server" ID="limite" Value="48" />
+            <asp:HiddenField runat="server" ID="idS" />
+            <asp:HiddenField runat="server" ID="idF" />
+            <asp:HiddenField runat="server" ID="idctr" />
 
-                                                                    <asp:Button runat="server" ID="bfechascurso" OnClick="generaFechasCurso" UseSubmitBehavior="false" Style="display: none" />
-                                                                    <asp:Button runat="server" ID="eliminarFechas" OnClick="borraFechas" Style="display: none" CausesValidation="false" UseSubmitBehavior="false" />
-                                                                    <asp:Button runat="server" ID="guardarFechas" OnClick="guardaEditaFechas" Style="display: none" CausesValidation="false" UseSubmitBehavior="false" />
-                                                                    <asp:Button runat="server" ID="Bfechas" OnClick="listadoFechas" Style="display: none" UseSubmitBehavior="false" />
+            <asp:HiddenField runat="server" ID="idDoc" />
+            <asp:HiddenField runat="server" ID="idP" />
+
+            <asp:Button runat="server" ID="bbuscacursos" OnClick="listadoAlumnos" Style="display: none" UseSubmitBehavior="false" />
+            <asp:Button runat="server" ID="guardar" OnClick="guardaEdita" Style="display: block" UseSubmitBehavior="false" />
 
 
-                       
-                        <span id="gridCursos" runat="server" visible="true" >
-                            <div class="content-header row">
-                                <div class="col-md-3">
-                                    <div class="media-left media-middle">
-                                        <i class="icon-pencil primary font-large-2 mr-1"></i>
-                                    </div>
-                                    <div class="media-body">
-                                        <h4 class="font-weight-bold">Salidas</h4>
-                                        <span class="font-small-3">
-                                            <asp:Label runat="server" ID="labelConteo">0</asp:Label>
-                                            registro(s) encontrado(s)</span>
-                                    </div>
+            <asp:Button runat="server" ID="bvolver" OnClick="volverCursos" Style="display: none" UseSubmitBehavior="false" />
+            <asp:Button runat="server" ID="Bconsultar" OnClick="listadoClientes" Style="display: none" UseSubmitBehavior="false" />
+            <asp:Button runat="server" ID="Bnuevo" OnClick="limpiarCampos" Style="display: none" UseSubmitBehavior="false" />
+            <asp:Button runat="server" ID="BnuevoInscripcion" OnClick="limpiarCamposInscripcion" Style="display: none" UseSubmitBehavior="false" />
+            <asp:Button runat="server" ID="Bcancelarcurso" OnClick="cancelaAlumno" Style="display: none" UseSubmitBehavior="false" />
+            <asp:Button runat="server" ID="Bmodificaalumno" OnClick="modificaAlumno" Style="display: none" UseSubmitBehavior="false" />
+            
+            <asp:Button runat="server" ID="bimprimir" OnClick="imprimeSalida" UseSubmitBehavior="false" Style="display: none" />           
+            <asp:Button runat="server" ID="bautorizacion" OnClick="solicitaAutorizacion" Style="display: none" UseSubmitBehavior="false" />
+            <asp:Button runat="server" ID="Beditar" OnClick="editaRegistro" Style="display: none" UseSubmitBehavior="false" />
+            <asp:Button runat="server" ID="bfechascurso" OnClick="generaFechasCurso" UseSubmitBehavior="false" Style="display: none" />
+            <asp:Button runat="server" ID="eliminarFechas" OnClick="borraFechas" Style="display: none" CausesValidation="false" UseSubmitBehavior="false" />
+            <asp:Button runat="server" ID="guardarFechas" OnClick="guardaEditaFechas" Style="display: none" CausesValidation="false" UseSubmitBehavior="false" />
+            <asp:Button runat="server" ID="Bfechas" OnClick="listadoFechas" Style="display: none" UseSubmitBehavior="false" />
 
+
+
+            <span id="gridCursos" runat="server" visible="true">
+                <div class="content-header row">
+                    <div class="col-md-3">
+                        <div class="media-left media-middle">
+                            <i class="icon-pencil primary font-large-2 mr-1"></i>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="font-weight-bold">Salidas</h4>
+                            <span class="font-small-3">
+                                <asp:Label runat="server" ID="labelConteo">0</asp:Label>
+                                registro(s) encontrado(s)</span>
+                        </div>
+
+                    </div>
+                    <div class="col-md-9 float-md-right">
+
+                        <span class="pull-right">
+                            <label class="text-bold-600 font-small-3"></label>
+                            <button type="button" id="nuevo" onclick="nuevaSalida()" class="btn btn-icon btn-primary mr-1 text-bold-700">
+                                Nueva salida 
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <br />
+                <div class="row" id="header-styling">
+                    <div class="col-md-12">
+
+
+                        <div class="media">
+
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label class="text-bold-600 font-small-3">Folio</label>
+                                    <asp:TextBox ID="bfolio" CssClass="form-control text-uppercase" placeholder="Búsqueda por folio..." name="bname" runat="server" AutoPostBack="false" onChange="consultaPrincipal()"></asp:TextBox>
                                 </div>
-                                <div class="col-md-9 float-md-right">
-                               
-                               <span class="pull-right">
-                                   <label class="text-bold-600 font-small-3"></label>
-                                   <button type="button" id="nuevo" onclick="nuevoRegistro();" class="btn btn-icon btn-primary mr-1 text-bold-700" data-toggle="modal">
-                                       Nueva salida 
-                                   </button>
-                               </span>
-                           </div>
-                             </div> <br />
-                            <div class="row" id="header-styling">
-                                <div class="col-md-12">
+                            </div>
 
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="text-bold-600 font-small-3">Descripción</label>
+                                    <asp:TextBox ID="bdescripcion" CssClass="form-control text-uppercase" placeholder="Búsqueda por descripción..." name="bname" runat="server" AutoPostBack="false" onChange="consultaPrincipal()"></asp:TextBox>
+                                </div>
+                            </div>
 
-                                    <div class="media">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="text-bold-600 font-small-3">Recibe</label>
+                                    <asp:TextBox ID="brecibe" CssClass="form-control text-uppercase" placeholder="Búsqueda por persona que recibe..." name="bname" runat="server" AutoPostBack="false" onChange="consultaPrincipal()"></asp:TextBox>
+                                </div>
+                            </div>
 
-                                        <div class="col-md-2">
-                                            <div class="form-group">
-                                                <label class="text-bold-600 font-small-3">Folio</label>
-                                                <asp:TextBox ID="bname" CssClass="form-control text-uppercase" placeholder="Búsqueda por folio..." name="bname" runat="server" AutoPostBack="false" onChange="consultaPrincipal()"></asp:TextBox>
-                                            </div>
-                                        </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="text-bold-600 font-small-3">Centro</label>
+                                    <asp:DropDownList runat="server" ID="bcentro" CssClass="select2 form-control" DataSourceID="DSBuscentro" DataTextField="centro" DataValueField="idcentro" AppendDataBoundItems="true" onChange="consultaPrincipal()">
+                                        <asp:ListItem Value="-1" Text="SELECCIONE UN CENTRO"></asp:ListItem>
+                                    </asp:DropDownList>
+                                    <asp:SqlDataSource ID="DSBuscentro" runat="server" ProviderName="MySql.Data.MySqlClient" ConnectionString="<%$ ConnectionStrings:DBconexion %>" SelectCommand="SELECT idcentro, centro FROM centro ORDER BY idcentro"></asp:SqlDataSource>
+                                </div>
+                            </div>
 
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label class="text-bold-600 font-small-3">Descripción</label>
-                                                <asp:TextBox ID="bdescripcion" CssClass="form-control text-uppercase" placeholder="Búsqueda por descripción..." name="bname" runat="server" AutoPostBack="false" onChange="consultaPrincipal()"></asp:TextBox>
-                                            </div>
-                                        </div>
+                        </div>
 
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label class="text-bold-600 font-small-3">Usuario</label>
-                                                <asp:TextBox ID="TextBox1" CssClass="form-control text-uppercase" placeholder="Búsqueda por usuario..." name="bname" runat="server" AutoPostBack="false" onChange="consultaPrincipal()"></asp:TextBox>
-                                            </div>
-                                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="">
 
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label class="text-bold-600 font-small-3">Centro</label>
-                                                <asp:DropDownList runat="server" ID="bcentro" CssClass="select2 form-control" DataSourceID="DSBuscentro" DataTextField="centro" DataValueField="idcentro" AppendDataBoundItems="true" onChange="consultaPrincipal()">
-                                                    <asp:ListItem Value="0" Text="SELECCIONE UN CENTRO"></asp:ListItem>
-                                                </asp:DropDownList>
-                                                <asp:SqlDataSource ID="DSBuscentro" runat="server" ProviderName="MySql.Data.MySqlClient" ConnectionString="<%$ ConnectionStrings:DBconexion %>" SelectCommand="SELECT idcentro, centro FROM centro ORDER BY idcentro"></asp:SqlDataSource>
-                                            </div>
-                                        </div>
-                                                                                                                     
-                                    </div>
+                                    <div class="card-body collapse in">
 
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="">
+                                        <div class="row">
 
-                                                <div class="card-body collapse in">
+                                            <div class="card-block">
+                                                <div style="overflow-x: auto; width: 100%; background-color: white">
+                                                    <asp:GridView runat="server" ID="lGeneral" PageSize="50" AllowPaging="true" AllowSorting="true" CssClass="table table-striped lGeneral"
+                                                        AutoGenerateColumns="False" DataSourceID="DsUsuarios" EnableSortingAndPagingCallbacks="true"
+                                                        OnPageIndexChanged="listadoClientes" GridLines="Horizontal" BorderWidth="0" RowStyle-CssClass="rowHover" ClientIDMode="Static">
+                                                        <SortedAscendingHeaderStyle CssClass="ascending rendila-color" ForeColor="White" />
+                                                        <SortedDescendingHeaderStyle CssClass="descending rendila-color" ForeColor="White" />
+                                                        <Columns>
 
-                                                    <div class="row">
+                                                            <asp:TemplateField HeaderText="Generales" HeaderStyle-CssClass="primary">
+                                                                <ItemTemplate>
+                                                                    <h7 class="font-weight-bold"><%# "FOLIO "+Eval("folio")%></h7>
+                                                                    <br />
+                                                                    <h7 class="font-small-3 font-italic text-bold-600"><%# Eval("descripcion")%></h7>
+                                                                    <br />
+                                                                    <h7 class="text-bold-400 font-small-2"> <%# Eval("fechatext")%></h7>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
 
-                                                        <div class="card-block">
-                                                            <div style="overflow-x: auto; width: 100%; background-color: white">
-                                                                <asp:GridView runat="server" ID="lGeneral" PageSize="50" AllowPaging="true" AllowSorting="true" CssClass="table table-striped lGeneral"
-                                                                    AutoGenerateColumns="False" DataSourceID="DsUsuarios" EnableSortingAndPagingCallbacks="true"
-                                                                    OnPageIndexChanged="listadoClientes" GridLines="Horizontal" BorderWidth="0" RowStyle-CssClass="rowHover" ClientIDMode="Static">
-                                                                    <SortedAscendingHeaderStyle CssClass="ascending rendila-color" ForeColor="White" />
-                                                                    <SortedDescendingHeaderStyle CssClass="descending rendila-color" ForeColor="White" />
-                                                                    <Columns>
+                                                            <asp:TemplateField HeaderText="Recibe" HeaderStyle-CssClass="primary" ItemStyle-Width="300px">
+                                                                <ItemTemplate>
+                                                                    <h7 class="font-weight-bold"><%# Eval("cargo")%></h7>
+                                                                    <br />
+                                                                    <h7 class="font-small-3 font-italic text-bold-600"><%# Eval("usuario")%></h7>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
 
-                                                                        <asp:TemplateField HeaderText="Generales" HeaderStyle-CssClass="primary">
-                                                                            <ItemTemplate>
-                                                                                <h7 class="font-weight-bold"><%# "FOLIO "+Eval("folio")%></h7><br />
-                                                                                <h7 class="font-small-3 font-italic text-bold-600"><%# Eval("descripcion")%></h7><br />
-                                                                                <h7 class="text-bold-400 font-small-2"> <%# Eval("fechatext")%></h7>
-                                                                            </ItemTemplate>
-                                                                        </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Acciones" ItemStyle-Width="180px" HeaderStyle-CssClass="centrarCelda primary" ItemStyle-CssClass="centrarCelda">
+                                                                <ItemTemplate>
+                                                                    <button type="button" class="btn btn-icon btn-warning mr-1 btn-sm tooltips" onclick="buscacursos(<%# Eval("idsalida") %>)" value="" data-toggle="tooltip" data-original-title="Ver Detalle"><i class="ft-edit"></i></button>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                        </Columns>
 
-                                                                        <asp:TemplateField HeaderText="Destino" HeaderStyle-CssClass="primary" ItemStyle-Width="300px">
-                                                                            <ItemTemplate>
-                                                                                <h7 class="font-weight-bold"><%# Eval("centro")  %></h7>
-                                                                                <br />
-                                                                                <h7 class="text-bold-400 font-small-2"> <%# Eval("usuario")%></h7>
-                                                                            </ItemTemplate>
-                                                                        </asp:TemplateField>
+                                                    </asp:GridView>
 
-                                                                        <asp:TemplateField HeaderText="Acciones" ItemStyle-Width="180px" HeaderStyle-CssClass="centrarCelda primary" ItemStyle-CssClass="centrarCelda">
-                                                                            <ItemTemplate>
-                                                                                <button type="button" class="btn btn-icon btn-warning mr-1 btn-sm tooltips" onclick="buscacursos(<%# Eval("idsalida") %>)" value="" data-toggle="tooltip" data-original-title="Ver Detalle"><i class="ft-edit"></i></button>
-                                                                            </ItemTemplate>
-                                                                        </asp:TemplateField>
-                                                                    </Columns>
-
-                                                                </asp:GridView>
-
-                                                                <asp:SqlDataSource ID="DsUsuarios" ProviderName="MySql.Data.MySqlClient" runat="server" ConnectionString="<%$ ConnectionStrings:DBconexion %>"></asp:SqlDataSource>
-
-                                                            </div>
-
-                                                            <div id="divNoRegistros" runat="server" visible="false" class="centrarCelda">
-                                                                <div class="col-md-12">
-                                                                    <div class="row align-items-center justify-content-center" style="padding-top: 100px">
-                                                                        <span class="h2 text-center">NO HAY REGISTROS QUE MOSTRAR</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
+                                                    <asp:SqlDataSource ID="DsUsuarios" ProviderName="MySql.Data.MySqlClient" runat="server" ConnectionString="<%$ ConnectionStrings:DBconexion %>"></asp:SqlDataSource>
 
                                                 </div>
 
+                                                <div id="divNoRegistros" runat="server" visible="false" class="centrarCelda">
+                                                    <div class="col-md-12">
+                                                        <div class="row align-items-center justify-content-center" style="padding-top: 100px">
+                                                            <span class="h2 text-center">NO HAY REGISTROS QUE MOSTRAR</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
+
                                         </div>
+
                                     </div>
+
                                 </div>
-
-
                             </div>
-                        </span>
-                                                 
-                    </ContentTemplate>
-                </asp:UpdatePanel>
+                        </div>
+                    </div>
+
+
+                </div>
+            </span>
+
+        </ContentTemplate>
+    </asp:UpdatePanel>
                
     <asp:UpdatePanel runat="server" ID="pU">
         <ContentTemplate>
@@ -228,13 +230,16 @@ body { padding-right: 0 !important }
                                     <button type="button" id="Button3" onclick="volveracursos()" class="btn btn-icon btn-danger mr-1 text-bold-700" data-toggle="modal" runat="server">
                                         Volver a Salidas
                                     </button>
-                                    <button type="button" id="Button4" onclick="volveracursos()" class="btn btn-icon btn-cyan mr-1 text-bold-700" data-toggle="modal" runat="server">
-                                        Guardar
-                                    </button>
+                                    
                                     <label class="text-bold-600 font-small-3"></label>
-                                    <button type="button" id="nuevo" onclick="abrirModal(0, 0);" class="btn btn-icon btn-primary mr-1 text-bold-700" data-toggle="modal" runat="server">
+                                    <button type="button" id="nuevo" onclick="abrirModalAlumnos();" class="btn btn-icon btn-primary mr-1 text-bold-700" data-toggle="modal" runat="server">
                                         Añadir bienes
                                     </button>
+                                    <br /><br />
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="">
+                                        <button type="button" class="btn btn-secondary" onclick="guardarEditar()" ><i class="fa fa-save"></i> Guardar</button>                                        
+                                        <button type="button" class="btn btn-secondary" onclick="imprimirSalida()"><i class="fa fa-print"></i> Imprimir</button>                                        
+                                    </div>
                                 </span>
                             </div>
                 </div>
@@ -242,20 +247,36 @@ body { padding-right: 0 !important }
                     <div class="col-md-12">
                         <div class="media">
                             <br />
-                            <div class="col-md-8">
+                            <div class="col-md-3">
                                 <div class="form-group" id="barrabus" runat="server">
                                     <label class="text-bold-600 font-small-3">Descripción</label>
-                                    <asp:TextBox ID="descripcion" CssClass="form-control text-uppercase" MaxLength="60" placeholder="Ingrese una descripción para la salida" name="busnom" runat="server" onChange="consultaAlumnos()"></asp:TextBox>
+                                    <asp:TextBox ID="descripcion" CssClass="form-control text-uppercase" MaxLength="60" placeholder="Ingrese una descripción para la salida" name="busnom" runat="server" ></asp:TextBox>
                                     
                                 </div>
                             </div> 
-                            <div class="col-md-4">
-                                <div class="form-group" id="Div1" runat="server">
-                                    <label class="text-bold-600 font-small-3">Recibe</label>
-                                    <asp:TextBox ID="usuario" CssClass="form-control text-uppercase" MaxLength="60" placeholder="Ingrese el nombre de la persona que recibe" name="busnom" runat="server" onChange="consultaAlumnos()"></asp:TextBox>
+                            <div class="col-md-3">
+                                <div class="form-group" id="Div2" runat="server">
+                                    <label class="text-bold-600 font-small-3">Cargo</label>
+                                    <asp:TextBox ID="cargo" CssClass="form-control text-uppercase" MaxLength="60" placeholder="Ingrese el cargo de quien recibe" name="busnom" runat="server" ></asp:TextBox>
                                     
                                 </div>
                             </div>
+                            <div class="col-md-3">
+                                <div class="form-group" id="Div1" runat="server">
+                                    <label class="text-bold-600 font-small-3">Recibe</label>
+                                    <asp:TextBox ID="usuario" CssClass="form-control text-uppercase" MaxLength="60" placeholder="Ingrese el nombre de la persona que recibe" name="busnom" runat="server" ></asp:TextBox>
+                                    
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label class="text-bold-600 font-small-3">Centro</label>
+                                                <asp:DropDownList runat="server" ID="scentro" CssClass="select2 form-control" DataSourceID="DSscentro" DataTextField="centro" DataValueField="idcentro">                                                   
+                                                </asp:DropDownList>
+                                                <asp:SqlDataSource ID="DSscentro" runat="server" ProviderName="MySql.Data.MySqlClient" ConnectionString="<%$ ConnectionStrings:DBconexion %>" SelectCommand="SELECT idcentro, centro FROM centro where idcentro>0 ORDER BY idcentro"></asp:SqlDataSource>
+                                            </div>
+                                        </div>
                         </div>
 
                         <div class="row">
@@ -269,45 +290,33 @@ body { padding-right: 0 !important }
                                             <div class="card-block">
                                                 <div style="overflow-x: auto; width: 100%; background-color: white">
                                                     
-                                                     <asp:Button runat="server" ID="bsolicitud" OnClick="recuperaSolicitud" Style="display: none" CausesValidation="false"  UseSubmitBehavior="false" />
+                                                     <asp:Button runat="server" ID="bsolicitud" OnClick="eliminaBien" Style="display: none" CausesValidation="false"  UseSubmitBehavior="false" />
 
                                                     <div style="overflow-x: auto; width: 100%">
-                                                        <asp:GridView runat="server" ID="GValumnos" PageSize="50" AllowPaging="true" AllowSorting="false" CssClass="table table-striped table-bordered zero-configuration"
-                                                            AutoGenerateColumns="False" DataSourceID="DSalumnos" EnableSortingAndPagingCallbacks="true" OnDataBinding="conteoRegistros"
-                                                            AlternatingRowStyle-BackColor="#F5F7FA" OnPageIndexChanged="listadoAlumnos">
+                                                        <asp:GridView runat="server" ID="GValumnos" PageSize="50" AllowPaging="true" AllowSorting="false" CssClass="table table-striped lGeneral"
+                                                            AutoGenerateColumns="False" DataSourceID="DSalumnos" OnDataBinding="conteoRegistros" 
+                                                           OnPageIndexChanged="listadoAlumnos" GridLines="Horizontal" BorderWidth="0" RowStyle-CssClass="rowHover" ClientIDMode="Static">
 
                                                             <Columns>
-                                                               <asp:TemplateField HeaderText="Generales" HeaderStyle-CssClass="primary">
-                                                    <ItemTemplate>
-
-                                                        <h7 class="font-weight-bold"><%# Eval("noinventario")%></h7><br />
-                                                        <h7 class="font-small-3 font-italic text-bold-600"><%# " "+Eval("descripcion")%></h7>
-                                                        <br />
-                                                        <h7 class="text-bold-400 font-small-2"> <%# " MARCA "+Eval("marca")+ ", MODELO "+Eval("modelo")%></h7>
-                                                        <br />
-                                                        <h7 class="text-bold-400 font-small-2"><%# " NO SERIE. "+Eval("noserie") +", COSTO $"+ Eval("costo")+" "%></h7>
-                                                        
-
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-
-                                                <asp:TemplateField HeaderText="Ubicación" HeaderStyle-CssClass="primary" ItemStyle-Width="300px">
-                                                    <ItemTemplate>
-
-                                                                                                           
-                                                        <h7 class="font-weight-bold"><%# Eval("ubicacionsalida") %></h7>
-                                                        
-
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-
-                                                                <asp:TemplateField HeaderText="Acciones" ItemStyle-Width="180px" ItemStyle-CssClass="centrarCelda primary" HeaderStyle-CssClass="centrarCelda">
+                                                                <asp:TemplateField HeaderText="Generales" HeaderStyle-CssClass="primary">
                                                                     <ItemTemplate>
+                                                                        <h7 class="font-weight-bold"><%# Eval("noinventario")%></h7>
+                                                                        <br />
+                                                                        <h7 class="font-small-3 font-italic text-bold-600"><%# " "+Eval("descripcion")%></h7>
+                                                                        <br />
+                                                                        <h7 class="text-bold-400 font-small-2"> <%# " MARCA "+Eval("marca")+ ", MODELO "+Eval("modelo")+ ", NO SERIE. "+Eval("noserie") %></h7>
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
 
-                                                                        <button type="button" class="btn btn-icon btn-warning mr-1 btn-sm tooltips" onclick="abrirModal(<%# Eval("idbien") %>)" value="" data-toggle="tooltip" data-original-title="Ver detalles"><i class="ft-edit"></i></button>
-                                                                        <button type="button" class="btn btn-icon btn-danger mr-1 btn-sm tooltips" onclick="abrirModal(<%# Eval("idbien") %>)" value="" data-toggle="tooltip" data-original-title="Eliminar"><i class="ft-edit"></i></button>                                                       
+                                                                <asp:TemplateField HeaderText="Ubicación" HeaderStyle-CssClass="primary" ItemStyle-Width="300px">
+                                                                    <ItemTemplate>
+                                                                        <h7 class="font-weight-bold"><%# Eval("ubicacionsalida") %></h7>
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
 
-
+                                                                <asp:TemplateField HeaderText="Acciones" ItemStyle-Width="80px" ItemStyle-CssClass="centrarCelda primary" HeaderStyle-CssClass="centrarCelda primary">
+                                                                    <ItemTemplate>                                                                        
+                                                                        <button type="button" class="btn btn-icon btn-pure btn-sm mr-1 danger tooltips" onclick="borraBien(<%# Eval("idbien") %>)" value="" data-toggle="tooltip" data-original-title="Eliminar"><i class="fa fa-trash"></i></button>
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
                                                             </Columns>
@@ -348,542 +357,7 @@ body { padding-right: 0 !important }
 
             </ContentTemplate>
         </asp:UpdatePanel>
-
-
-    
-	
-
-     <div class="modal fade text-xs-left" id="winscripcion" role="dialog" aria-labelledby="myModalLabel35" aria-hidden="true">
-         
-
-        <div class="modal-dialog modal-lg ps-scrollbar-y" role="document">
-            <div class="modal-content">
-                <div class="modal-header bg-primary white">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h5 class="modal-title">INSCRIPCIÓN</h5>
-                </div>
-
-                <asp:HiddenField runat="server" ID="HiddenField1" />
-
-                <div class="modal-body">
-                    <asp:Button runat="server" ID="botonDescarga" OnClick="descargaArchivo" Style="display: none" UseSubmitBehavior="false"/>
-                    <ul class="nav nav-tabs nav-top-border no-hover-bg">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="tabgenerales" data-toggle="tab" href="#generales" aria-controls="tabgenerales" aria-expanded="true"><i class="fa fa-folder"></i>Personales</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="tabadicionales" data-toggle="tab" href="#adicionales" aria-controls="tabadicionales" aria-expanded="true"><i class="fa fa-folder"></i>Adicionales</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="tabcostos" data-toggle="tab" href="#costos" aria-controls="tabcostos" aria-expanded="false"><i class="fa fa-check-square-o"></i>Generales</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="tabhorario" data-toggle="tab" href="#horario" aria-controls="tabhorario" aria-expanded="false"><i class="fa fa-calendar"></i>Capacitación</a>
-                        </li>
-
-                    </ul>
-                    <div class="tab-content px-1 pt-1">
-                        
-                        
-                        <div role="tabpanel" class="tab-pane fade active in" id="generales" aria-labelledby="tabgenerales" aria-expanded="true">
-
-
-                            <asp:UpdatePanel runat="server" ID="UpdatePanel5">
-                                <ContentTemplate>
-                                    <asp:Button runat="server" ID="bcursoinscripcion" Style="display: none" UseSubmitBehavior="false" />
-                                   
-                                    <asp:Button runat="server" ID="bguardarIns" OnClick="guardaEditaIns" Style="display: none" UseSubmitBehavior="false" />
-
-                                
-                            <div class="row">
-
-                                <div class="col-md-12">
-
-                                    <div class="row">
-                                        <div class="col-md-3">
-
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <asp:Label ID="eti" runat="server"></asp:Label>
-                                                        <asp:Image ID="fotopa" runat="server" Height="280" Width="250" CssClass="img-fluid tooltips" onClick="$('#botonpic').click();" Style="cursor: pointer; border: solid; border-color: lightgray; border-width: thin" data-toggle="tooltip" data-original-title="Click para cambiar foto" />
-                                                        <asp:HiddenField ID="hpicture" runat="server" />
-                                                        <asp:FileUpload ID="Bfoto" runat="server" accept="image/*" onchange="showpreview(this);" class="ocultar"></asp:FileUpload>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12 centrarCelda">
-
-
-                                                    <button class="btn btn-primary ocultar" onclick="$('#<%= Bfoto.ClientID %>').click();" type="button" id="botonpic">
-                                                        <i class="fa fa-camera"></i>Foto
-                                                    </button>
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                        <div class="col-md-9">
-
-                                            <div class="row">
-
-                                                <div class="col-md-8">
-                                                    <div class="form-group">
-                                                        <label class="text-bold-600">Núm. de Control</label>
-                                                        <asp:TextBox ID="nocontrol" CssClass="form-control text-uppercase" placeholder="NO. DE CONTROL" name="nocontrol" runat="server"></asp:TextBox>
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3"><br /><br />
-                                                    <div class="form-group align-bottom centrarCelda">
-                                                        <label class="text-bold-600">&nbsp;</label>
-                                                        <button class="btn btn-primary" onclick="abrirModalAlumnos()" type="button" id="BBbuscarcliente" runat="server">
-                                                            <i class="fa fa-search"></i>Buscar
-                                                        </button>
-                                                    </div>
-                                                </div>
-
-
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label class="text-bold-600">Primer Apellido</label>
-                                                        <asp:TextBox ID="apaterno" CssClass="form-control text-uppercase" placeholder="APELLIDO PATERNO" name="apaterno" runat="server"></asp:TextBox>
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label class="text-bold-600">Segundo Apellido</label>
-                                                        <asp:TextBox ID="amaterno" CssClass="form-control text-uppercase" placeholder="APELLIDO MATERNO" name="amaterno" runat="server"></asp:TextBox>
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label class="text-bold-600">Nombre(s)</label>
-                                                        <asp:TextBox ID="nombrealumno" CssClass="form-control text-uppercase" placeholder="NOMBRE" name="nombrealumno" runat="server"></asp:TextBox>
-
-                                                    </div>
-                                                </div>
-
-
-                                            </div>
-
-
-
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label class="text-bold-600">Sexo</label><br />
-
-                                                        <asp:DropDownList ID="sexo" runat="server" CssClass="form-control select2">
-                                                            <asp:ListItem Selected="True" Value="H">HOMBRE</asp:ListItem>
-                                                            <asp:ListItem Value="M">MUJER</asp:ListItem>
-                                                        </asp:DropDownList>
-                                                    </div>
-
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label class="text-bold-600">Curp</label>
-                                                        <asp:TextBox ID="curp" CssClass="form-control text-uppercase" placeholder="CURP" name="curp" runat="server"></asp:TextBox>
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label class="text-bold-600">Fecha Nacimiento</label>
-                                                        <asp:TextBox ID="fechanacimiento" CssClass="form-control date-inputmask text-uppercase" placeholder="Fecha Nacimiento" name="fechanacimiento" runat="server"></asp:TextBox>
-
-                                                    </div>
-                                                </div>
-                                                
-
-
-                                            </div>
-                                            
-
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-md-12">
-
-                                                <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label class="text-bold-600">Teléfono</label>
-                                                        <asp:TextBox ID="telefono" CssClass="form-control text-uppercase" placeholder="TELEFONO" name="telefono" runat="server"></asp:TextBox>
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-8">
-                                                    <div class="form-group">
-                                                        <label class="text-bold-600">Email</label>
-                                                        <asp:TextBox ID="email" CssClass="form-control" placeholder="CORREO ELECTRÓNICO" name="email" runat="server"></asp:TextBox>
-
-                                                    </div>
-                                                </div>
-                                                     </div>
-                                                </div>
-
-                                            </div>
-
-
-                                        <div class="row">
-                                            <div class="col-md-12">
-
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label class="text-bold-600">Domicilio</label>
-                                                            <asp:TextBox ID="domicilio" CssClass="form-control text-uppercase" placeholder="DOMICILIO" name="domicilio" runat="server"></asp:TextBox>
-
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <label class="text-bold-600">Colonia o Localidad</label>
-                                                            <asp:TextBox ID="colonia" CssClass="form-control text-uppercase" placeholder="COLONIA" name="colonia" runat="server"></asp:TextBox>
-
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <div class="form-group">
-                                                            <label class="text-bold-600">CP</label>
-                                                            <asp:TextBox ID="cp" CssClass="form-control text-uppercase" placeholder="CP" name="cp" runat="server"></asp:TextBox>
-
-                                                        </div>
-                                                    </div>
-
-
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-
-                                        
-
-                                       
-
-
-                                    </div>
-
-                                </div>
-
-
-                            </div>
-                                    </ContentTemplate>
-
-                            </asp:UpdatePanel>
-
-
-                        </div>
-
-                        <div role="tabpanel" class="tab-pane fade" id="adicionales" aria-labelledby="tabadicionales" aria-expanded="true">
-
-
-                            <asp:UpdatePanel runat="server" ID="UpdatePanel12">
-                                <ContentTemplate>
-                                     
-
-
-                                        <div class="row">
-
-                                            
-
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label class="text-bold-600">Jefa de Familia</label><br />
-
-                                                    <asp:DropDownList ID="jefafamilia" runat="server" CssClass="form-control select2">
-                                                        <asp:ListItem Value="0" Selected="True">NO</asp:ListItem>
-                                                        <asp:ListItem Value="1">SI</asp:ListItem>
-
-                                                    </asp:DropDownList>
-                                                </div>
-
-                                            </div>
-
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label class="text-bold-600">Grupo Indígena</label><br />
-
-                                                    <asp:DropDownList ID="indigena" runat="server" CssClass="form-control select2">
-                                                        <asp:ListItem Value="0" Selected="True">NO</asp:ListItem>
-                                                        <asp:ListItem Value="1">SI</asp:ListItem>
-
-                                                    </asp:DropDownList>
-                                                </div>
-
-                                            </div>
-
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label class="text-bold-600">Condición de Calle</label><br />
-
-                                                    <asp:DropDownList ID="condicioncalle" runat="server" CssClass="form-control select2">
-                                                        <asp:ListItem Value="0" Selected="True">NO</asp:ListItem>
-                                                        <asp:ListItem Value="1">SI</asp:ListItem>
-
-                                                    </asp:DropDownList>
-                                                </div>
-
-                                            </div>
-
-
-
-
-                                        </div>
-
-                                        <asp:UpdatePanel runat="server" ID="UpdatePanel11">
-                                                        <ContentTemplate>
-                                                            
-
-                                        <div class="row">
-
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label class="text-bold-600">Apoyo Económico</label><br />
-
-                                                    <asp:DropDownList ID="apoyo" runat="server" CssClass="form-control select2" AutoPostBack="true" OnSelectedIndexChanged="becado_CheckedChanged">
-                                                        <asp:ListItem Value="0" Selected="True">NO</asp:ListItem>
-                                                        <asp:ListItem Value="1">SI</asp:ListItem>
-
-                                                    </asp:DropDownList>
-                                                </div>
-
-                                            </div>
-
-                                            
-
-
-                                        </div>
-
-                                                            </ContentTemplate>
-
-                                                    </asp:UpdatePanel>
-
-                                </ContentTemplate>
-                            </asp:UpdatePanel>
-                        </div>
-                    
-                        <div role="tabpanel" class="tab-pane fade " id="costos" aria-labelledby="tabcostos" aria-expanded="true">
-                            <asp:UpdatePanel runat="server" ID="UpdatePanel7">
-                                <ContentTemplate>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            
-                                                        <div class="row">
-
-
-                                                            <asp:UpdatePanel runat="server" ID="UpdatePanel8">
-                                                                <ContentTemplate>
-                                                                   
-                                                                   
-                                                                </ContentTemplate>
-                                                            </asp:UpdatePanel>
-
-                                                        </div>
-
-
-                                                        <div class="row">
-
-
-                                                        </div>
-                                                        <div class="row">
-
-
-
-                                                            <div class="col-md-7">
-
-                                                                <label class="text-bold-600">Documentación Entregada</label><br />
-                                                                <div class="col-md-12">
-                                                                    <div class="form-group">
-                                                                        <asp:HiddenField runat="server" ID="tagsdoc" />
-                                                                        <asp:GridView runat="server" ID="GVdocumentacion" PageSize="25" AllowPaging="true" AllowSorting="true" CssClass="table table-striped table-bordered zero-configuration"
-                                                                            AutoGenerateColumns="False" DataSourceID="DSdocumentacion"
-                                                                            AlternatingRowStyle-BackColor="#F5F7FA">
-                                                                            <SortedAscendingHeaderStyle CssClass="ascending rendila-color" ForeColor="White" />
-                                                                            <SortedDescendingHeaderStyle CssClass="descending rendila-color" ForeColor="White" />
-                                                                            <Columns>
-
-                                                                                <asp:TemplateField HeaderText="" ItemStyle-Width="10px" ItemStyle-HorizontalAlign="Center" ItemStyle-CssClass="font-small-2">
-                                                                                    <ItemTemplate>
-
-                                                                                        <input id="doc<%#"_"+Eval("iddocumentacion")%>" type="checkbox" class="cks" value="<%# Container.DataItemIndex%>" <%# Eval("entregado").ToString().Equals("1")?"checked":"" %>>
-                                                                                    </ItemTemplate>
-                                                                                </asp:TemplateField>
-                                                                                <asp:BoundField DataField="documentacion" HeaderText="Documentacion" SortExpression="documentacion" ItemStyle-Width="400px" ItemStyle-CssClass="font-small-2" />
-                                                                                <asp:TemplateField HeaderText="Archivo"  ItemStyle-HorizontalAlign="Center" ItemStyle-CssClass="font-small-2">
-                                                                                    <ItemTemplate>
-                                                                                        
-                                                                                        <button class="btn btn-primary btn-sm tooltips <%#Eval("iddocumentacion").ToString().Equals("4")||Eval("iddocumentacion").ToString().Equals("7")||(Eval("movilidad").ToString().Equals("0") && Eval("enlinea").ToString().Equals("0"))?"ocultar":""%>" onclick="descargarArchivo(<%#Eval("iddocumentacion")%>)" type="button" data-backdrop="false" data-toggle="tooltip" data-original-title="Descargar">
-                                                                                            <i class="fa fa-download"></i>
-                                                                                        </button>
-                                                                                    </ItemTemplate>
-                                                                                </asp:TemplateField>
-
-                                                                            </Columns>
-
-                                                                        </asp:GridView>
-
-                                                                        <asp:SqlDataSource ID="DSdocumentacion" ProviderName="MySql.Data.MySqlClient" runat="server" ConnectionString="<%$ ConnectionStrings:DBconexion %>" SelectCommand=""></asp:SqlDataSource>
-
-
-                                                                    </div>
-                                                                </div>
-                                                                <br />
-
-                                                            </div>
-
-                                                            <div class="col-md-5">
-
-                                                                
-                                                                <div class="col-md-12">
-                                                                    <div class="form-group">
-
-                                                                        <div class="col-md-12">
-                                                                            <div class="form-group">
-
-                                                                                <label class="text-bold-600">Empresa donde trabaja</label>
-                                                                                <asp:TextBox ID="empresa" CssClass="form-control text-uppercase" placeholder="EMPRESA" name="empresa" runat="server"></asp:TextBox>
-
-
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div class="col-md-12">
-                                                                            <div class="form-group">
-
-                                                                                <label class="text-bold-600">Puesto</label>
-                                                                                <asp:TextBox ID="puesto" CssClass="form-control text-uppercase" placeholder="PUESTO" name="empresa" runat="server"></asp:TextBox>
-
-
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div class="col-md-12">
-                                                                            <div class="form-group">
-
-                                                                                <label class="text-bold-600">Antiguedad</label>
-                                                                                <asp:TextBox ID="antiguedad" CssClass="form-control text-uppercase" placeholder="ANTIGUEDAD" name="antiguedad" runat="server"></asp:TextBox>
-
-
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div class="col-md-12">
-                                                                            <div class="form-group">
-
-                                                                                <label class="text-bold-600">Dirección</label>
-                                                                                <asp:TextBox ID="domicilioempresa" CssClass="form-control text-uppercase" placeholder="DOMICILIO" name="domicilioempresa" runat="server"></asp:TextBox>
-
-
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div class="col-md-12">
-                                                                            <div class="form-group">
-
-                                                                                <label class="text-bold-600">Teléfono</label>
-                                                                                <asp:TextBox ID="telefonoempresa" CssClass="form-control text-uppercase" placeholder="TELÉFONO" name="telefonoempresa" runat="server"></asp:TextBox>
-
-
-                                                                            </div>
-                                                                        </div>
-
-
-                                                                    </div>
-                                                                </div>
-                                                                <br />
-
-                                                            </div>
-
-                                                        </div>
-
-                                                        <div class="row">
-
-                                                            <div class="col-md-12">
-
-                                                                <label class="text-bold-600">A extranjeros anexar</label><br />
-                                                                <div class="col-md-12">
-                                                                    <div class="form-group">
-
-                                                                        <div class="col-md-12">
-                                                                            <div class="form-group">
-
-                                                                                <div class="skin skin-flat">
-                                                                                    <asp:CheckBox runat="server" ID="calidadmig" />
-                                                                                    Comprobante de Calidad Migratoria con la que se encuentra en Territorio Nacional
-                                                                                </div>
-
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <br />
-
-                                                            </div>
-
-                                                        </div>
-
-                                        </div>
-                                    </div>
-
-                                </ContentTemplate>
-                            </asp:UpdatePanel>
-                        </div>
-
-                        <div class="tab-pane fade" id="horario" role="tabpanel" aria-labelledby="tabhorario" aria-expanded="false">
-                            <asp:UpdatePanel runat="server" ID="UpdatePanel9">
-                                <ContentTemplate>
-                                    <div class="row">
-                                        <div class="col-md-12">                                            
-
-                                                        <div class="row">
-
-
-                                                          
-                                                        </div>
-
-                                                       
-
-                                        </div>
-                                    </div>
-                                </ContentTemplate>
-                            </asp:UpdatePanel>
-                        </div>
-
-
-                    </div>
-                </div>
-
-                <div class="modal-footer">
-                   
-
-                    <button class="btn btn-primary" onclick="validaIns()" type="button" data-backdrop="false">
-                        <i class="fa fa-check-square-o"></i>Guardar
-                    </button>
-
-                    <button type="button" class="btn btn-danger mr-1" data-dismiss="modal" id="cerrarModalIns">
-                        <i class="ft-x"></i>Cerrar
-                    </button>
-                </div>
-            </div>
-        </div>
-
-
-    </div>
-
-
+  
     <div class="modal fade" id="walumnos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel35" aria-hidden="true">
 
                 <div class="modal-dialog modal-lg" role="document">
@@ -892,7 +366,7 @@ body { padding-right: 0 !important }
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <h3 class="modal-title" id="myModalLabel35">Consulta de Alumnos</h3>
+                            <h3 class="modal-title" id="myModalLabel35">Listado de bienes</h3>
                         </div>
 
 
@@ -900,49 +374,47 @@ body { padding-right: 0 !important }
                             <asp:UpdatePanel runat="server">
                                 <ContentTemplate>
 
-                                    <asp:Button runat="server" ID="Bseleccionar" OnClick="getAlumno" Style="display: none" UseSubmitBehavior="false"/>
+                                    <asp:Button runat="server" ID="Bseleccionar" OnClick="getBien" Style="display: none" UseSubmitBehavior="false"/>
                                     <div class="row">
-
-
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label for="cliente" class="text-bold-600">Nombre</label>
-                                                <asp:TextBox ID="bnombre" CssClass="form-control text-uppercase" placeholder="Nombre" name="nombre" runat="server" OnTextChanged="listadoAlumnosBus" AutoPostBack="true">
+                                                <label for="cliente" class="text-bold-600">Consulta</label>
+                                                <asp:TextBox ID="bbiendescripcion" CssClass="form-control text-uppercase" placeholder="Búsqueda por no. inventario, no. de serie, descripción..." name="nombre" runat="server" OnTextChanged="listadoAlumnosBus" AutoPostBack="true">
 
                                                 </asp:TextBox>
                                             </div>
                                         </div>
                                     </div>
-
-
                                     
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div style="overflow-x: auto; width: 100%">
-                                                <asp:GridView runat="server" ID="GVlistaalumnos" PageSize="10" AllowPaging="true" AllowSorting="true" CssClass="table table-striped table-bordered base-style"
-                                                    AutoGenerateColumns="False" DataSourceID="DSlistaalumnos" DataKeyNames="idalumno"
-                                                    AlternatingRowStyle-BackColor="#F5F7FA"  OnPageIndexChanged="listadoAlumnosBus">
-                                                    <SortedAscendingHeaderStyle CssClass="ascending rendila-color" ForeColor="White" />
-                                                    <SortedDescendingHeaderStyle CssClass="descending rendila-color" ForeColor="White" />
-                                                    <Columns>
-                                                        <asp:TemplateField HeaderText="No." ItemStyle-Width="20px" ItemStyle-HorizontalAlign="Center">
+                                                <asp:GridView runat="server" ID="GVlistaalumnos" PageSize="8" AllowPaging="true" AllowSorting="true" CssClass="table table-striped lGeneral"
+                                                    AutoGenerateColumns="False" DataSourceID="DSlistaalumnos" DataKeyNames="idbien" GridLines="Horizontal" BorderWidth="0" RowStyle-CssClass="rowHover" ClientIDMode="Static"
+                                                     OnPageIndexChanged="listadoAlumnosBus">                                                    
+                                                    <Columns>                                                       
+                                                        <asp:TemplateField HeaderText="Generales" HeaderStyle-CssClass="primary">
                                                             <ItemTemplate>
-                                                                <%# Container.DataItemIndex + 1 %>
+                                                                <h7 class="font-weight-bold"><%# Eval("noinventario")%></h7>
+                                                                <br />
+                                                                <h7 class="font-small-3 font-italic text-bold-600"><%# " "+Eval("descripcion")%></h7>
+                                                                <br />
+                                                                <h7 class="text-bold-400 font-small-2"> <%# " MARCA "+Eval("marca")+ ", MODELO "+Eval("modelo")%></h7>
+                                                                <br />
+                                                                <h7 class="text-bold-400 font-small-2"><%# " NO SERIE. "+Eval("noserie") +", COSTO $"+ Eval("costo")+" "%></h7>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
-                                                        <asp:BoundField DataField="nocontrol" HeaderText="No. Control" SortExpression="nocontrol" />
-
-                                                        <asp:BoundField DataField="ncompleto" HeaderText="Nombre" SortExpression="ncompleto" />
-
+                                                        <asp:TemplateField ItemStyle-Width="300px" HeaderText="Ubicación" HeaderStyle-CssClass="primary">
+                                                            <ItemTemplate>
+                                                                <input type="text" id="<%# "bien_"+Eval("idbien")%>" class="form-control  text-uppercase">
+                                                                
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="Seleccionar" ItemStyle-Width="80px" ItemStyle-CssClass="centrarCelda " HeaderStyle-CssClass="centrarCelda">
                                                             <ItemTemplate>
-                                                                
-                                                                <button type="button" id="" onclick="seleccionar(<%# Eval("idalumno")%>)" class="btn btn-icon btn-success mr-1 <%# Eval("registrado").ToString().Equals("1")?"ocultar":""%>" data-toggle="tooltip" data-original-title="Seleccionar" >
-                                                                    <i class="ft-edit"></i>
+                                                                <button type="button" onclick="seleccionar(<%# Eval("idbien")%>)" class="btn btn-icon btn-pure btn-sm mr-1 primary tooltips" data-toggle="tooltip" data-original-title="Seleccionar">
+                                                                    <i class="fa fa-hand-pointer-o"></i>
                                                                 </button>
-
-                                                                 
-
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                     </Columns>
@@ -954,15 +426,12 @@ body { padding-right: 0 !important }
                                                 <asp:SqlDataSource ID="DSlistaalumnos" ProviderName="MySql.Data.MySqlClient" runat="server" ConnectionString="<%$ ConnectionStrings:DBconexion %>"></asp:SqlDataSource>
                                             </div>
                                         </div>
-
-                                         <div id="divResultados" runat="server" visible="false">
-                                            
-                                                                                   
-                                            <label class="col-md-6 label-control" >No se encontraron registros, desea realizar un registro manual?</label>
-                                            <button type="button" class="btn btn-danger" onclick="registroManual()">
-                                                        <i class="fa fa-check-square-o"></i>Registro Manual
-                                             </button>  
-
+                                         <div id="divResultados" runat="server" visible="false" class="centrarCelda">                                                                                                                               
+                                             <div class="col-md-12">
+                                                 <div class="row align-items-center justify-content-center" style="padding-top: 20px">
+                                                     <span class="h2 text-center">NO HAY REGISTROS QUE MOSTRAR</span>
+                                                 </div>
+                                             </div>
                                         </div>
                                     </div>
                                     
@@ -970,19 +439,12 @@ body { padding-right: 0 !important }
                             </asp:UpdatePanel>
                         </div>
 
-
-
-
                         <div class="modal-footer">
                             <asp:Button runat="server" ID="Button1" Style="display: none" CausesValidation="false" UseSubmitBehavior="false"/>
                             <asp:Button runat="server" ID="borrar" Style="display: none" UseSubmitBehavior="false"/>
-
                         </div>
                     </div>
-
-
                 </div>
-
             </div>
             
 
@@ -1161,21 +623,7 @@ body { padding-right: 0 !important }
         var initialLangCode = 'es';
         var dataEvent;                               
                 
-        $('#fc-basic-views').fullCalendar({
-            header: {
-                left: 'prev,next today',
-                center: 'title',
-                right: ''
-            },
-            defaultDate: '2017-09-11',
-            lang: initialLangCode,
-            navLinks: false, // can click day/week names to navigate views
-            editable: true,
-            eventLimit: true,
-            height: 500
-
-        });
-
+       
 
         function showpreview(input) {
 
@@ -1195,7 +643,7 @@ body { padding-right: 0 !important }
         $('#walumnos').on('shown.bs.modal', function () {
             //alert($("*[id$='idF']").val());
             
-                $("*[id$='bnombre]").focus();
+                $("*[id$='bbiendescripcion]").focus();
 
         })
 
@@ -1234,7 +682,7 @@ body { padding-right: 0 !important }
         function abrirModalAlumnos() {            
             //$(".modal-backdrop").remove();
             //$("#bootstrap").modal('hide');
-            $("*[id$='bnombre']").focus();
+            $("*[id$='bbiendescripcion']").focus();
             $("#divResultados").hide();
             $("#walumnos").modal('show');
             //$("#wfoto").modal('show');
@@ -1426,7 +874,7 @@ body { padding-right: 0 !important }
             //$('#bootstrap').modal('hide');
             mostrarLoading();
             
-            $('#<%= bguardarIns.ClientID %>').click();
+            
                        
                                            
         }
@@ -1534,66 +982,35 @@ body { padding-right: 0 !important }
         }
 
 
-         function validaFechas() {
-       
-            
-            var fagenda = $("*[id$='fagenda']").val(); 
-             
-            var horaini = $("*[id$='horanini']").val();                        
-            var horafin = $("*[id$='horanfin']").val(); 
-           
-            
+        function guardarEditar() {
+
+            var usuario = $("*[id$='usuario']").val();
+            var cargo = $("*[id$='cargo']").val();
+            var descripcion = $("*[id$='descripcion']").val();
+
             walert = 1;
+            if (descripcion == '') {
+                alerta('Atención', 'Ingrese una descripción para la salida', 'warning', $("*[id$='descripcion']"));
+                return false;
+            }
+            if (cargo == '') {
+                alerta('Atención', 'Ingrese el cargo de la persona que recibe', 'warning', $("*[id$='cargo']"));
+                return false;
+            }
+            if (usuario == '') {
+                alerta('Atención', 'Ingrese el nombre de la persona que recibe', 'warning', $("*[id$='usuario']"));
+                return false;
+            }
+
             
 
-            if (fagenda == '') {
-                alerta('Atención', 'Ingrese la fecha de término del curso', 'warning', $("*[id$='fechafin']"));
-                return false;
-            }
-                       
-           
-
-            if (horaini == '') {
-                alerta('Atención', 'Ingrese el horario (hora de inicio) del curso', 'warning', $("*[id$='horanini']"));
-                return false;
-            }
-
-
-            if (horafin == '') {
-                alerta('Atención', 'Ingrese el horario (hora de término) del curso', 'warning', $("*[id$='horanfin']"));
-                return false;
-            }
-
-
-                              
             walert = 0;
-            //$('#wfechas').modal('hide');
-            mostrarLoading();
-            
-            $('#<%= guardarFechas.ClientID %>').click();
-                       
-                                           
+
+            mostrarLoading();            
+            $('#<%= guardar.ClientID %>').click();                                                                  
         }
 
-        function eliminaFechas() {
-
-
-            swal({
-                title: "Se realizará la enajenación sobre esta boleta, ¿Desea continuar?",
-                text: "",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: '#DD6B55',
-                confirmButtonText: 'Si',
-                cancelButtonText: "No"
-            }).then((result) => {
-                if (result.value) {
-                    mostrarLoading();
-                    $('#<%= eliminarFechas.ClientID %>').click();
-                  }
-                }) 
-         
-        }
+        
 
 
         function calendario() {
@@ -1615,99 +1032,44 @@ body { padding-right: 0 !important }
         }
 
 
-        function seleccionar(idalumno) {
-            
+        function seleccionar(idbien) {
+
+            var ubicacion = $("#bien_" + idbien).val();
+            if (ubicacion == '') {
+                alerta('Atención', 'Ingrese la ubicación o destino del bien', 'warning', $("#bien_" + idbien));
+                return false;
+            }
+
             mostrarLoading();
-            $("*[id$='idA']").val(idalumno);
-            //$("#bootstrap").modal('show');
-           
+            $("*[id$='idA']").val(idbien);
+            $("*[id$='idUbicacion']").val(ubicacion);
+
             $('#<%= Bseleccionar.ClientID %>').click();
-            
-                        
+                                    
         }
 
-        function abrirModal(idsolicitud, idalumno) {
-          
-            mostrarLoading();
-            $("*[id$='hpicture']").val('');
-            $("*[id$='fotopa']").attr('src','');
-            $("*[id$='idI']").val(idsolicitud);
-            $("*[id$='idA']").val(idalumno);
-           
-           
-            $('#<%= bsolicitud.ClientID %>').click();
-            
-                        
+        function borraBien(idbien) { 
+
+            swal({
+                title: "Se eliminará el bien de la salida, ¿Desea continuar?",
+                text: "",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: '#DD6B55',
+                confirmButtonText: 'Si',
+                cancelButtonText: "No"
+            }).then((result) => {
+                if (result.value) {
+                    mostrarLoading();
+                    $("*[id$='idA']").val(idbien);
+                    $('#<%= bsolicitud.ClientID %>').click();
+                }
+            }) 
+                                                
         }
 		
-		function abrirModalInscripcion(idcurso, idsucursal) {
-            
-            mostrarLoading();
-            $("*[id$='hpicture']").val('');
-            $("*[id$='fotopa']").attr('src','');
-            $("*[id$='idP']").val(idcurso);
-            $("*[id$='idS']").val(idsucursal);
-           
-             
-            //$("#bootstrap").modal('show');
-           
-            $('#<%= BnuevoInscripcion.ClientID %>').click();
-            
-                        
-        }
-
-        function abrirModalFechas() {
-
-            //$("*[id$='fagenda']").focus();
-            $("*[id$='idF']").val(0);
-            $("*[id$='horanini']").val($("*[id$='horaini']").val());
-            $("*[id$='horanfin']").val($("*[id$='horafin']").val());
-            $("#bguardaFecha").show();
-            $("#bborraFecha").hide();
-            //$("#divResultados").hide(); 
-
-            $("*[id$='fagenda']").removeAttr('disabled');
-            $("*[id$='horanini']").removeAttr('disabled');
-            $("*[id$='horanfin']").removeAttr('disabled');
-            
-            $("#wfechas").modal('show');
-        }
-
-        function abrirModal2(idinstructor, idsucursal, idespecialidad, profesion, idescolaridad, rfc, curp, fechanacimiento, domicilio, localidad, email, telefono, celular, observaciones, activo, nombre) {
-
-            
-            $("*[id$='idP']").val(idinstructor);
-
-            if(idsucursal>0)
-                $("*[id$='idS']").val(idsucursal);
-
-            $("*[id$='nombre']").val(nombre);
-
-            $("*[id$='especialidad']").val(idespecialidad);
-            $("*[id$='especialidad']").change();
-            $("*[id$='profesion']").val(profesion);
-            $("*[id$='escolaridad']").val(idescolaridad);
-            $("*[id$='escolaridad']").change();
-            $("*[id$='rfc']").val(rfc);
-            $("*[id$='curp']").val(curp);            
-            $("*[id$='fechanacimiento']").val(fechanacimiento);
-            $("*[id$='domicilio']").val(domicilio);
-            $("*[id$='localidad']").val(localidad);
-            $("*[id$='telefono']").val(telefono);
-            $("*[id$='email']").val(email);
-            $("*[id$='adicional']").val(celular);
-
-            $("*[id$='observaciones']").val(observaciones);
-            // $("*[id$='tiposucursal']").change();
-
-            if (activo == 1)
-                $("*[id$='activo']").iCheck('check');
-            else
-                $("*[id$='activo']").iCheck('uncheck');
-
-            $("#bootstrap").modal('show');
-        }
-
+		
+       
         function editarRegistro(id, ids) {
             
             mostrarLoading();
@@ -1716,7 +1078,7 @@ body { padding-right: 0 !important }
            $('#<%= Beditar.ClientID %>').click();
         }
 
-        function nuevoRegistro() {
+        function nuevaSalida() {
             mostrarLoading();
             $("*[id$='idP']").val(0);
             $("*[id$='idA']").val(0);
@@ -1725,147 +1087,6 @@ body { padding-right: 0 !important }
             $('#<%= BnuevoInscripcion.ClientID %>').click();
         }
 
-        $('#bootstrap').on('shown.bs.modal', function () {
-            $("#fc-basic-views").fullCalendar('render');
-        });        
-
-
-        function ver() {            
-            $("*[id$='hdias']").val($("#algo").val());           
-        }
-
-        function dar() {            
-            var valores = $("*[id$='hdias']").val();           
-            var arreglo = valores.split(","); 
-            $('#algo').val(arreglo);
-            $('#algo').trigger('change');         
-        }
-
-        
-
-
-        function cargatagsInv() {
-           
-            $("*[id$='tagsdiscap']").val($("*[id$='xxdiscapacidad']").val()); 
-            $("*[id$='tagsmot']").val($("*[id$='motivo']").val());  
-            $("*[id$='tagsmed']").val($("*[id$='medio']").val());
-           
-
-
-        }
-
-        function registroManual() {
-            $("#walumnos").modal('hide');
-            $("*[id$='nocontrol']").focus();
-        }
-
-        function imprimirSolicitudAut() {
-            mostrarLoading();
-            $('#<%= bimprimir.ClientID %>').click();
-            cerrarLoading();
-        }
-
-        function imprimirSolicitud(idsolicitud, idalumno, nocontrol) {
-
-            mostrarLoading();
-            $("*[id$='idI']").val(idsolicitud);
-            $("*[id$='idA']").val(idalumno);
-            $("*[id$='idctr']").val(nocontrol);
-           
-            $('#<%= BimprimirSolicitud.ClientID %>').click();
-            cerrarLoading();
-        }
-
-        function imprimirCredencial(idsolicitud, idalumno, nocontrol) {
-
-            mostrarLoading();
-            $("*[id$='idI']").val(idsolicitud);
-            $("*[id$='idA']").val(idalumno);
-            $("*[id$='idctr']").val(nocontrol);
-           
-            $('#<%= BimprimirCredencial.ClientID %>').click();
-            cerrarLoading();
-        }
-
-        
-
-
-        function conteoIds() {
-            var ids = "";            
-            var aux = "";
-            var res = "";
-            $('.cks').each(function (id) {
-                
-                if ($(this).closest("input").attr('checked')) {
-                     aux = this.id;
-                     res = aux.split("_");
-                     ids += res[1]+  ",";                                        
-                }
-                               
-            });         
-
-                $("*[id$='tagsdoc']").val(ids);
-        }
-
-
-        function abrirModalCancelacion(idsolicitud, idalumno) {
-
-             $("*[id$='idI']").val(idsolicitud);
-             $("*[id$='idA']").val(idalumno);
-             $("*[id$='motcancelacion']").val('');
-             $("#wcancelar").modal('show');
-
-         
-        }
-
-        function abrirModalModificacion(idsolicitud, idalumno) {
-
-            $("*[id$='idI']").val(idsolicitud);
-            $("*[id$='idA']").val(idalumno);
-            $("*[id$='modobserv']").val('');
-            $("#wmodificar").modal('show');
-
-
-        }
-
-
-        function cancelarCurso() {
-            swal({
-                title: "Se eliminará a este alumno del curso, ¿Desea continuar?",
-                text: "",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: '#DD6B55',
-                confirmButtonText: 'Si',
-                cancelButtonText: "No"
-            }).then((result) => {
-                if (result.value) {
-                    mostrarLoading();
-                     $('#<%= Bcancelarcurso.ClientID %>').click();
-                   
-                  }
-                }) 
-         
-        }
-
-        function modificaAlumno() {
-            swal({
-                title: "Se modificará el estatus de este alumno en el curso, ¿Desea continuar?",
-                text: "",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: '#DD6B55',
-                confirmButtonText: 'Si',
-                cancelButtonText: "No"
-            }).then((result) => {
-                if (result.value) {
-                    mostrarLoading();
-                    $('#<%= Bmodificaalumno.ClientID %>').click();
-
-                }
-            })
-
-        }
 
         function consultaPrincipal(op) {
             mostrarLoading();
@@ -1877,7 +1098,8 @@ body { padding-right: 0 !important }
 
             $('#<%= Bconsultar.ClientID %>').click();
              cerrarLoading();
-         }
+        }
+
 
          function consultaAlumnos() {
             mostrarLoading();
@@ -1885,38 +1107,7 @@ body { padding-right: 0 !important }
             cerrarLoading();
         }
 
-        function descargarArchivo(iddocumentacion) {            
-            
-            $("*[id$='idDoc']").val(iddocumentacion);
-            $('#<%= botonDescarga.ClientID %>').click();
-                                    
-        }
-
-
-        function cargatags() {
-
-            var discap = $("*[id$='tagsdiscap']").val();
-            var arreglo = discap.split(",");
-            $("*[id$='discapacidad']").val(arreglo);
-            $("*[id$='discapacidad']").trigger('change');
-
-
-            var motivos = $("*[id$='tagsmot']").val();
-            var arreglo2 = motivos.split(",");
-            $("*[id$='motivo']").val(arreglo2);
-            $("*[id$='motivo']").trigger('change');
-
-
-            var discapm = $("*[id$='tagsmed']").val();
-            var arreglo3 = discapm.split(",");
-
-            $("*[id$='medio']").val(arreglo3);
-            $("*[id$='medio']").trigger('change');
-
-
-
-        }
-
+       
 
              
     </script>
@@ -1971,7 +1162,7 @@ body { padding-right: 0 !important }
                 walert = 0;
                 fecha = $("*[id$='fechaini']").val();                
                 $('#walumnos').on('shown.bs.modal', function () {
-                    $("*[id$='bnombre']").focus();
+                    $("*[id$='bbiendescripcion']").focus();
                 });
 
             
@@ -1992,71 +1183,7 @@ body { padding-right: 0 !important }
      
 
           
-            //$("#algo").on("select2:select", function (e) { $("#algo").select2('close'); });
-            $("#algo").on("select2:select", function (e) { $("*[id$='hdias']").val($("#algo").val()); calendario();  });
-            $("#algo").on("select2:unselect", function (e) { $("*[id$='hdias']").val($("#algo").val()); ; calendario(); var self = $(this);
-            setTimeout(function() {
-                self.select2('close');
-                }, 0);
-            });
-
-            $('#algo').on('select2:opening select2:closing', function( event ) {
-                var $searchfield = $(this).parent().find('.select2-search__field');
-                $searchfield.prop('disabled', true);
-            });
-
-
-
-            $("*[id$='xxdiscapacidad']").on("select2:select", function (e) { cargatagsInv(); });
-            $("*[id$='xxdiscapacidad']").on("select2:unselect", function (e) { cargatagsInv(); var self = $(this);
-            setTimeout(function() {
-                self.select2('close');
-                }, 0);
-            });
-
-            $("*[id$='xxdiscapacidad']").on('select2:opening select2:closing', function( event ) {
-                var $searchfield = $(this).parent().find('.select2-search__field');
-                $searchfield.prop('disabled', true);
-            });
-
-
-            $("*[id$='medio']").on("select2:select", function (e) { cargatagsInv(); });
-            $("*[id$='medio']").on("select2:unselect", function (e) { cargatagsInv(); var self = $(this);
-            setTimeout(function() {
-                self.select2('close');
-                }, 0);
-            });
-
-            $("*[id$='medio']").on('select2:opening select2:closing', function( event ) {
-                var $searchfield = $(this).parent().find('.select2-search__field');
-                $searchfield.prop('disabled', true);
-            });
-
-
-
-            $("*[id$='motivo']").on("select2:select", function (e) { cargatagsInv(); });
-            $("*[id$='motivo']").on("select2:unselect", function (e) { cargatagsInv(); var self = $(this);
-            setTimeout(function() {
-                self.select2('close');
-                }, 0);
-            });
-
-            $("*[id$='motivo']").on('select2:opening select2:closing', function( event ) {
-                var $searchfield = $(this).parent().find('.select2-search__field');
-                $searchfield.prop('disabled', true);
-            });
-
-
-            $('.cks').on('ifChecked', function (event) {
-                 $(this).closest("input").attr('checked', true);
-                conteoIds();               
-
-            });
-
-            $('.cks').on('ifUnchecked', function (event) {  
-                 $(this).closest("input").attr('checked', false);
-                        conteoIds();                       
-                });
+           
 
             // init Tagify script on the above inputs
            
@@ -2072,75 +1199,6 @@ body { padding-right: 0 !important }
                         }
                     }
                 });
-
-            //Phone mask
-                $('.phone-inputmask').inputmask("(999) 999-9999");
-
-                $('.email-inputmask').inputmask({
-                    mask: "*{1,20}[.*{1,20}][.*{1,20}][.*{1,20}]@*{1,20}[*{2,6}][*{1,2}].*{1,}[.*{2,6}][.*{1,2}]",
-                    greedy: false,
-                    onBeforePaste: function (pastedValue, opts) {
-                        pastedValue = pastedValue.toLowerCase();
-                        return pastedValue.replace("mailto:", "");
-                    },
-                    definitions: {
-                        '*': {
-                            validator: "[0-9A-Za-z!#$%&'*+/=?^_`{|}~/-]",
-                            cardinality: 1,
-                            casing: "lower"
-                        }
-                    }
-                });
-
-            // Date dd/mm/yyyy
-            $('.date-inputmask').inputmask("yyyy-mm-dd", { "placeholder": "aaaa-mm-dd" });
-
-
-                $('.pickadate').pickadate({
-                    format: 'yyyy-mm-dd',
-                    formatSubmit: 'yyyy-mm-dd',
-                    monthsFull: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-                    weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mier', 'Jue', 'Vie', 'Sab'],                   
-                    today: 'Hoy',
-                    minDate: '',
-                    maxDate: '',
-                    clear: 'Limpiar',
-                    
-
-                });
-
-
-            $("*[id$='horaini']").pickatime({
-                format: ' HH:i ',
-                formatLabel: 'HH:i ',
-                clear: '',
-                onSet: function (context) {
-                    calendario();
-                }
-            });
-
-            $("*[id$='horafin']").pickatime({
-                format: ' HH:i ',
-                formatLabel: 'HH:i ',
-                clear: '',
-                onSet: function (context) {
-                    calendario();
-                }
-            });
-
-
-            $("*[id$='horanini']").pickatime({
-                format: ' HH:i ',
-                formatLabel: 'HH:i ',
-                clear: '',
-            });
-
-            $("*[id$='horanfin']").pickatime({
-                format: ' HH:i ',
-                formatLabel: 'HH:i ',
-                clear: '',
-            });
-
 
             
         }

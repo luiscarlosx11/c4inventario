@@ -144,8 +144,7 @@ body { padding-right: 0 !important }
                                         <asp:GridView runat="server" ID="lGeneral" PageSize="50" AllowPaging="true" AllowSorting="true" CssClass="table table-striped lGeneral"
                                             AutoGenerateColumns="False" DataSourceID="DsUsuarios" EnableSortingAndPagingCallbacks="true"
                                               OnPageIndexChanged="listadoClientes" GridLines="Horizontal" BorderWidth="0" RowStyle-CssClass="rowHover" ClientIDMode="Static">
-                                            <SortedAscendingHeaderStyle CssClass="ascending rendila-color" ForeColor="White" />
-                                            <SortedDescendingHeaderStyle CssClass="descending rendila-color" ForeColor="White" />
+                                            
                                             <Columns>
                                                
 
@@ -267,81 +266,85 @@ body { padding-right: 0 !important }
                     <div class="tab-content px-1 pt-1">
                         <div role="tabpanel" class="tab-pane fade active in" id="generales" aria-labelledby="tabgenerales" aria-expanded="true">
 
-                             <asp:UpdatePanel runat="server">
-                                                                <ContentTemplate>
-                                                                    
-                                                                    <asp:Button runat="server" ID="guardar" OnClick="guardaEdita" style="display:none" UseSubmitBehavior="false"/>
-                                                                    <asp:Button runat="server" ID="bautorizacion" OnClick="solicitaAutorizacion" style="display:none" UseSubmitBehavior="false"/>                                                                    
-                                                                    
-                                                                    <asp:Button runat="server" ID="Brecuperabien" OnClick="recuperaBien" Style="display: none" UseSubmitBehavior="false" />
+                            <asp:UpdatePanel runat="server">
+                                <ContentTemplate>
 
-                                                                </ContentTemplate>
-                                                            </asp:UpdatePanel>
+                                    <asp:Button runat="server" ID="guardar" OnClick="guardaEdita" Style="display: none" UseSubmitBehavior="false" />
+                                    <asp:Button runat="server" ID="bautorizacion" OnClick="solicitaAutorizacion" Style="display: none" UseSubmitBehavior="false" />
+
+                                    <asp:Button runat="server" ID="Brecuperabien" OnClick="recuperaBien" Style="display: none" UseSubmitBehavior="false" />
+
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
 
                             <asp:UpdatePanel runat="server" ID="UpdatePanel2">
                                 <ContentTemplate>
                                     <div class="row" id="tbgenerales">
                                         <div class="col-md-12">
                                             <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="text-bold-600">Centro</label>
-                                                        <asp:DropDownList runat="server" ID="centro" CssClass="select2 form-control" DataSourceID="DScentro" DataTextField="centro" DataValueField="idcentro" Style="width: 100%">
-                                                        </asp:DropDownList>
-                                                        <asp:SqlDataSource ID="DSCentro" runat="server" ProviderName="MySql.Data.MySqlClient" ConnectionString="<%$ ConnectionStrings:DBconexion %>" SelectCommand="SELECT idcentro, centro FROM centro ORDER BY idcentro"></asp:SqlDataSource>
-                                                    </div>
-                                                </div>
                                                 <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label class="text-bold-600">Estatus</label><br />
-                                                        <span class="tag bg-success"><span class="h4 text-bold-700" >LOCALIZADO</span></span>
+
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <asp:Label ID="eti" runat="server"></asp:Label>
+                                                                <asp:Image ID="fotopa" runat="server" Height="280" Width="300" CssClass="img-fluid tooltips" onClick="$('#botonpic').click();" Style="cursor: pointer; border: solid; border-color: lightgray; border-width: thin" data-toggle="tooltip" data-original-title="Click para cambiar foto" />
+                                                                <asp:HiddenField ID="hpicture" runat="server" />
+                                                                <asp:FileUpload ID="Bfoto" runat="server" accept="image/*" onchange="showpreview(this);" class="ocultar"></asp:FileUpload>
+
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="text-bold-600">No. inventario</label>
-                                                        <asp:TextBox ID="noinventario" CssClass="form-control text-uppercase" placeholder="inventario" runat="server"></asp:TextBox>
+                                                    <div class="row">
+                                                        <div class="col-md-12 centrarCelda">
+                                                            <button class="btn btn-primary ocultar" onclick="$('#<%= Bfoto.ClientID %>').click();" type="button" id="botonpic">
+                                                                <i class="fa fa-camera"></i>Foto
+                                                            </button>
+                                                        </div>
                                                     </div>
+
                                                 </div>
-                                                 <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label class="text-bold-600">Adscripción</label>
-                                                        <asp:TextBox ID="adscripcion" CssClass="form-control text-uppercase" placeholder="adscripción" runat="server" disabled></asp:TextBox>
+                                                <div class="col-md-9">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="text-bold-600">Centro</label>
+                                                                <asp:DropDownList runat="server" ID="centro" CssClass="select2 form-control" DataSourceID="DScentro" DataTextField="centro" DataValueField="idcentro" Style="width: 100%">
+                                                                </asp:DropDownList>
+                                                                <asp:SqlDataSource ID="DSCentro" runat="server" ProviderName="MySql.Data.MySqlClient" ConnectionString="<%$ ConnectionStrings:DBconexion %>" SelectCommand="SELECT idcentro, centro FROM centro ORDER BY idcentro"></asp:SqlDataSource>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label class="text-bold-600">Estatus</label><br />
+                                                                <span class="tag bg-success"><span class="h4 text-bold-700">LOCALIZADO</span></span>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
 
-                                                 <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label class="text-bold-600">Fecha alta</label>
-                                                        <asp:TextBox ID="fechaalta" CssClass="form-control text-uppercase" placeholder="fecha alta" runat="server"></asp:TextBox>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label class="text-bold-600">No. inventario</label>
+                                                                <asp:TextBox ID="noinventario" CssClass="form-control text-uppercase" placeholder="inventario" runat="server"></asp:TextBox>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label class="text-bold-600">Adscripción</label>
+                                                                <asp:TextBox ID="adscripcion" CssClass="form-control text-uppercase" placeholder="adscripción" runat="server" disabled></asp:TextBox>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label class="text-bold-600">Fecha alta</label>
+                                                                <asp:TextBox ID="fechaalta" CssClass="form-control text-uppercase" placeholder="fecha alta" runat="server"></asp:TextBox>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
 
-                                                
-                                                 
-
-                                                
-
-                                               
-                                            </div>
-
-
-                                           
-
-
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label class="text-bold-600">Descripción</label>
-                                                        <asp:TextBox ID="descripcion" CssClass="form-control text-uppercase" placeholder="descripción" runat="server" TextMode="MultiLine" Rows="5"></asp:TextBox>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="row">
+                                                    <div class="row">
 
                                                 <div class="col-md-3">
                                                     <div class="form-group">
@@ -356,14 +359,14 @@ body { padding-right: 0 !important }
                                                         <asp:TextBox ID="modelo" CssClass="form-control text-uppercase" placeholder="modelo" runat="server"></asp:TextBox>
                                                     </div>
                                                 </div>
-                                                 <div class="col-md-3">
+                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label class="text-bold-600">No. serie</label>
                                                         <asp:TextBox ID="noserie" CssClass="form-control text-uppercase" placeholder="noserie" runat="server"></asp:TextBox>
                                                     </div>
                                                 </div>
 
-                                                <div class="col-md-3">
+                                                <div class="col-md-2">
                                                     <div class="form-group">
                                                         <label class="text-bold-600">Costo</label>
                                                         <asp:TextBox ID="costo" CssClass="form-control text-uppercase" placeholder="costo" runat="server" disabled></asp:TextBox>
@@ -372,6 +375,21 @@ body { padding-right: 0 !important }
 
                                             </div>
 
+                                                </div>
+                                            </div>
+                                           
+                                           
+                                           <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="text-bold-600">Descripción</label>
+                                                        <asp:TextBox ID="descripcion" CssClass="form-control text-uppercase" placeholder="descripción" runat="server" TextMode="MultiLine" Rows="5"></asp:TextBox>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            
 
 
                                            <div class="row">
@@ -810,6 +828,20 @@ body { padding-right: 0 !important }
         var initialLangCode = 'es';
         var dataEvent;
 
+        function showpreview(input) {
+
+            if (input.files && input.files[0]) {
+
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    // $('#fotop').attr('src', e.target.result);
+                    $("*[id$='fotopa']").attr('src', e.target.result);
+                    $("*[id$='hpicture']").val(e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+
+        }
        
                 
         $('#fc-basic-views').fullCalendar({
@@ -852,117 +884,7 @@ body { padding-right: 0 !important }
 
         function valida() {
 
-            var clave = $("*[id$='clave']").val();
-            var nombre = $("*[id$='nombre']").val();
-            var fechaini = $("*[id$='fechaini']").val();
-            var fechafin = $("*[id$='fechafin']").val(); 
-            var dias = $("*[id$='dias']").val(); 
-            var horaini = $("*[id$='horaini']").val();                        
-            var horafin = $("*[id$='horafin']").val(); 
-            var horas = $("*[id$='horas']").val(); 
-            var diascurso = $("*[id$='hdias']").val();
-
-            var costomodulo = $("*[id$='costomodulo']").val(); 
-            var costoalumno = $("*[id$='costoalumno']").val(); 
-            var pagohora = $("*[id$='pagohora']").val();
-
-            var instalacion = $("*[id$='instalacion']").val();
-            var instalacionext = $("*[id$='instalacionext']").val();
-            var instalaciondomext = $("*[id$='instalaciondomext']").val();
-            var alumnosminimo = $("*[id$='alumnosminimo']").val();
-            var alumnosmaximo = $("*[id$='alumnosmaximo']").val();
-            var fechalimite = $("*[id$='fechalimite']").val();
-            
-            walert = 1;
-
-            if (clave == '') {                
-                alerta('Atención', 'Ingrese la clave del curso', 'warning', $("*[id$='clave']"));
-                return false;                
-            }
-
-            if (nombre == '') {                
-                alerta('Atención', 'Ingrese el nombre del curso', 'warning', $("*[id$='nombre']"));
-                return false;                
-            }
-
-            
-            if (alumnosminimo == '' || alumnosminimo == '0') {                
-                alerta('Atención', 'Ingrese la cantidad mínima necesaria de alumnos inscritos', 'warning', $("*[id$='alumnosminimo']"));
-                return false;                
-            }
-
-            if (alumnosmaximo == '' || alumnosmaximo == '0') {
-                alerta('Atención', 'Ingrese la cantidad máxima de alumnos inscritos', 'warning', $("*[id$='alumnosmaximo']"));
-                return false;
-            }
-
-            if (instalacion == '9999' && instalacionext == '') {                
-                alerta('Atención', 'Ingrese el nombre de la instalación extramuros', 'warning', $("*[id$='instalacionext']"));
-                return false;                
-            }
-
-            if (instalacion == '9999' && instalaciondomext == '') {                
-                alerta('Atención', 'Ingrese la dirección de la instalación extramuros', 'warning', $("*[id$='instalaciondomext']"));
-                return false;                
-            }
-            /*
-            if (costomodulo == '' || costomodulo == '0') {                
-                alerta('Atención', 'Ingrese el costo por módulo del curso', 'warning', $("*[id$='costomodulo']"));
-                return false;                
-            }
-
-            if (costoalumno == '' || costoalumno == '0') {                
-                alerta('Atención', 'Ingrese el costo por alumno del curso', 'warning', $("*[id$='costoalumno']"));
-                return false;                
-            }
-            */
-            if (pagohora == '' || pagohora == '0') {                
-                alerta('Atención', 'Ingrese el pago por hora del curso', 'warning', $("*[id$='pagohora']"));
-                return false;                
-            }
-            
-            /*if (fechalimite == '') {
-                alerta('Atención', 'Ingrese la fecha límite de inscripción al curso', 'warning', $("*[id$='fechalimite']"));
-                return false;
-            }*/
-
-            if (fechaini == '') {
-                alerta('Atención', 'Ingrese la fecha de inicio del curso', 'warning', $("*[id$='fechaini']"));
-                return false;
-            }
-
-            if (fechafin == '') {
-                alerta('Atención', 'Ingrese la fecha de término del curso', 'warning', $("*[id$='fechafin']"));
-                return false;
-            }
-                       
-            if (dias == '' || dias=='0') {
-                alerta('Atención', 'Ingrese la duración en días del curso', 'warning', $("*[id$='dias']"));
-                return false;
-            }
-
-            if (horaini == '') {
-                alerta('Atención', 'Ingrese el horario (hora de inicio) del curso', 'warning', $("*[id$='horaini']"));
-                return false;
-            }
-
-
-            if (horafin == '') {
-                alerta('Atención', 'Ingrese el horario (hora de término) del curso', 'warning', $("*[id$='horafin']"));
-                return false;
-            }
-
-            if (diascurso == '') {
-                alerta('Atención', 'Indique los días de la semana en los cuales se impartirá el curso', 'warning', $("*[id$='hdias']"));
-                return false;
-            }
-
-
-            if (horas == '' || horas =='0') {
-                alerta('Atención', 'No se han generado fechas válidas de impartición del curso, revise las fechas y horarios establecidos', 'warning', $("*[id$='horas']"));
-                return false;
-            }
-
+           
                               
             walert = 0;
             //$('#bootstrap').modal('hide');

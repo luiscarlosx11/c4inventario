@@ -28,10 +28,10 @@ namespace elecion.catalogos.oferta
 
         protected void bimprimir_Click(object sender, EventArgs e)
         {
-            SolicitudAutorizacionCurso reporte = new SolicitudAutorizacionCurso();
+            /*SolicitudAutorizacionCurso reporte = new SolicitudAutorizacionCurso();
             reporte.ReportParameters["idsucursal"].Value = this.idS.Value;
             reporte.ReportParameters["idcurso"].Value = this.idP.Value;
-            this.ExportToPDF(reporte, string.Concat("SOLICITUD AUTORIZACION ", this.cve.Value));
+            this.ExportToPDF(reporte, string.Concat("SOLICITUD AUTORIZACION ", this.cve.Value));*/
         }
 
         protected void borraFechas(object sender, EventArgs e)
@@ -184,63 +184,92 @@ namespace elecion.catalogos.oferta
 
         protected void guardaEdita(object sender, EventArgs e)
         {
-            int esmovilidad;
-            int esenlinea;
-            
-            using (MySqlConnection con = new MySqlConnection(WebConfigurationManager.ConnectionStrings["DBconexion"].ConnectionString))
+            int existe = 0;
+
+            using (MySqlConnection mySqlConnection = new MySqlConnection(WebConfigurationManager.ConnectionStrings["DBconexion"].ConnectionString))
             {
-                MySqlTransaction transaction = null;
-                int idcurso = 0;
+                MySqlTransaction mySqlTransaction = null;
+                string str = "";
+                int lastInsertedId = 0;
+                int num = 0;
+                if (this.idP.Value.Equals(""))
+                {
+                    this.idP.Value = "0";
+                }
                 try
                 {
                     try
                     {
-                        con.Open();
-                        MySqlCommand cmd = con.CreateCommand();
-                        transaction = con.BeginTransaction();
-                        cmd.Connection = con;
-                        cmd.Transaction = transaction;
-                        if (Convert.ToInt32(this.idP.Value) != 0)
+                        mySqlConnection.Open();
+                        MySqlCommand mySqlCommand = mySqlConnection.CreateCommand();
+                        mySqlTransaction = mySqlConnection.BeginTransaction();
+                        mySqlCommand.Connection = mySqlConnection;
+                        mySqlCommand.Transaction = mySqlTransaction;
+
+                        mySqlCommand.Parameters.Clear();
+                        mySqlCommand.CommandText = string.Concat("SELECT count(idbien)as existe FROM bien where noinventario=@noinventario and idbien not in(", this.idP.Value, ");");
+                        mySqlCommand.Parameters.AddWithValue("@noinventario", this.noinventario.Text.ToUpper().Trim());
+                        existe = Convert.ToInt32(mySqlCommand.ExecuteScalar());
+
+                        if (existe == 0)
                         {
-                            cmd.Parameters.Clear();
-                            cmd.CommandText = string.Concat("update curso set clave=@clave, nombre=@nombre, idcicloescolar=(select idcicloescolar from cicloescolar where @fechaini between fechaini and fechafin), idtipocurso=@idtipocurso, idarea=@idarea, idespecialidad=@idespecialidad, idinstructor=@idinstructor, idinstalacion=@idinstalacion, fechaini=@fechaini, fechafin=@fechafin, dias=@dias, horaini=@horaini, horafin=@horafin, horas=@horas,  costomodulo=@costomodulo, costo=@costo, pagohora=@pagohora, observaciones=@observaciones, diascurso=@diascurso, idtipooferta=@idtipooferta, instalacionext=@instalacionext, alumnosminimo=@alumnosminimo, alumnosmaximo=@alumnosmaximo, fechalimite=@fechalimite, instalaciondomext=@instalaciondomext, idcursoregular= @idcursoregular, movilidad=@movilidad, enlinea=@enlinea ", "where idcurso=@idcurso;");
-                            cmd.Parameters.AddWithValue("@idcurso", this.idP.Value);
-                            //cmd.Parameters.AddWithValue("@idcicloescolar", 1);
+                            //
+
+                            if (Convert.ToInt32(this.idP.Value) != 0)
+                            {
+                                mySqlCommand.Parameters.Clear();
+                                str = "update bien set noinventario=@noinventario ";
+                                string[] strArrays = this.hpicture.Value.Split(new char[] { ',' });
+                                if ((int)strArrays.Length > 1)
+                                {
+                                    str = string.Concat(str, ", foto=@imagen ");
+                                }
+                                str = string.Concat(str, "where idbien = @idbien; ");
+                                mySqlCommand.CommandText = str;
+                                mySqlCommand.Parameters.AddWithValue("@idbien", this.idP.Value);
+                                mySqlCommand.Parameters.AddWithValue("@noinventario", noinventario.Text.Trim().ToUpper());
+
+                                if ((int)strArrays.Length > 1)
+                                {
+                                    mySqlCommand.Parameters.Add("@imagen", MySqlDbType.MediumBlob);
+                                    byte[] numArray = Convert.FromBase64String(strArrays[1]);
+                                    mySqlCommand.Parameters["@imagen"].Value = numArray;
+                                }
+                                mySqlCommand.ExecuteNonQuery();
+                            }
+                            else
+                            {
+                               
+                            }
+                            
                            
-                            cmd.ExecuteNonQuery();
+                            mySqlTransaction.Commit();
+                            this.listadoClientes(sender, e);
+                            ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading(); toastExito(); $('#winscripcion').modal('hide'); ", true);
+
                         }
                         else
                         {
-                            cmd.Parameters.Clear();
-                            cmd.CommandText = "insert into curso(idsucursal, idcicloescolar, clave, nombre, idtipocurso, idarea, idespecialidad, idinstructor, idinstalacion, fechaini, fechafin, dias, horaini, horafin, horas, costomodulo, costo, pagohora, observaciones, estatus, pagado, diascurso, idtipooferta, instalacionext, alumnosminimo, alumnosmaximo, fechalimite, instalaciondomext, solicita, autoriza, idcursoregular, tipo, movilidad, enlinea, idoferta) values(@idsucursal, (select idcicloescolar from cicloescolar where @fechaini between fechaini and fechafin), @clave, @nombre, @idtipocurso, @idarea, @idespecialidad, @idinstructor, @idinstalacion, @fechaini, @fechafin, @dias, @horaini, @horafin, @horas, @costomodulo, @costo, @pagohora, @observaciones, 'EN CAPTURA', 0, @diascurso, @idtipooferta, @instalacionext, @alumnosminimo, @alumnosmaximo, @fechalimite, @instalaciondomext, (select encargado from sucursal where idsucursal=@idsucursal), 'PROF. GERSOM PÉREZ RAMÍREZ', @idcursoregular, 'C', @movilidad, @enlinea, (select idofertaeducativa from ofertaeducativa where vigente=1)); ";
-                          
-                            cmd.ExecuteNonQuery();
-                            idcurso = (int)cmd.LastInsertedId;
-                            this.idP.Value = idcurso.ToString();
-                            cmd.Parameters.Clear();
-                            cmd.CommandText = "insert into historialcurso(idcurso, idusuario, fecha, hora, observacion) values(@idcurso, @idusuario, curdate(), curtime(), @observacion); ";
-                            cmd.Parameters.AddWithValue("@idcurso", this.idP.Value);
-                            cmd.Parameters.AddWithValue("@idusuario", this.idusuario);
-                            cmd.Parameters.AddWithValue("@observacion", "DADO DE ALTA");
-                            cmd.ExecuteNonQuery();
-                            this.listadoHistorial(sender, e);
+                            ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading(); alerta('Atención','El no de inventario ingresado ya ha sido asignado previamente a otro bien, intente con otro','error',null); ", true);
                         }
-                        transaction.Commit();
-                        this.listadoClientes(sender, e);
-                        ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading(); toastExito(); $('#bootstrap').modal('hide');", true);
+
+
+
+
                     }
-                    catch (Exception exception)
+                    catch (Exception exception1)
                     {
-                        Exception ex = exception;
-                        transaction.Rollback();
-                        Console.WriteLine(string.Concat("error:", ex.ToString()));
+                        Exception exception = exception1;
+                        mySqlTransaction.Rollback();
+                        Console.WriteLine(string.Concat("error:", exception.ToString()));
                     }
                 }
                 finally
                 {
-                    con.Close();
+                    mySqlConnection.Close();
                 }
             }
+
         }
 
       
@@ -442,6 +471,7 @@ namespace elecion.catalogos.oferta
         {
             string json = "";
             string bloqueo = "";
+            this.fotopa.ImageUrl = "";
             try
             {
                 using (MySqlConnection con = new MySqlConnection(WebConfigurationManager.ConnectionStrings["DBconexion"].ConnectionString))
@@ -464,7 +494,17 @@ namespace elecion.catalogos.oferta
                         this.responsable.Text = rdr["responsable"].ToString();
                         this.usuario.Text = rdr["usuario"].ToString();
                         this.ubicacion.Text = rdr["ubicacion"].ToString();
-                       
+
+                        if (rdr["foto"].GetType() != typeof(DBNull))
+                        {
+                            byte[] item = (byte[])rdr["foto"];
+                            if (item != null)
+                            {
+                                this.fotopa.ImageUrl = string.Concat("data:image/jpeg;base64,", Convert.ToBase64String(item));
+                                this.fotopa.DataBind();
+                            }
+                        }
+
 
                     }
                    
