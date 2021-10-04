@@ -86,7 +86,7 @@ body { padding-right: 0 !important }
                            <div class="col-md-2">
                                <div class="form-group">      
                                    <label class="text-bold-600 font-small-3">No. inventario</label>
-                                   <asp:TextBox ID="bname" CssClass="form-control text-uppercase" placeholder="Búsqueda por número inventario..." name="bname" runat="server" AutoPostBack="false" onChange="consultaPrincipal()"></asp:TextBox>
+                                   <asp:TextBox ID="bnoinventario" CssClass="form-control text-uppercase" placeholder="Búsqueda por número inventario..." name="bname" runat="server" AutoPostBack="false" onChange="consultaPrincipal()"></asp:TextBox>
                                </div>
                            </div>
 
@@ -100,7 +100,7 @@ body { padding-right: 0 !important }
                            <div class="col-md-2">
                                <div class="form-group">      
                                    <label class="text-bold-600 font-small-3">Marca - Modelo - No. serie</label>
-                                   <asp:TextBox ID="TextBox1" CssClass="form-control text-uppercase" placeholder="Búsqueda por marca, modelo o número de serie..." name="bname" runat="server" AutoPostBack="false" onChange="consultaPrincipal()"></asp:TextBox>
+                                   <asp:TextBox ID="bmarca" CssClass="form-control text-uppercase" placeholder="Búsqueda por marca, modelo o número de serie..." name="bname" runat="server" AutoPostBack="false" onChange="consultaPrincipal()"></asp:TextBox>
                                </div>
                            </div>
 
@@ -109,7 +109,7 @@ body { padding-right: 0 !important }
                                <div class="form-group">
                                    <label class="text-bold-600 font-small-3">Centro</label>
                                    <asp:DropDownList runat="server" ID="bcentro" CssClass="select2 form-control" DataSourceID="DSBuscentro" DataTextField="centro" DataValueField="idcentro" AppendDataBoundItems="true" onChange="consultaPrincipal()">
-                                       <asp:ListItem Value="0" Text="SELECCIONE UN CENTRO"></asp:ListItem>
+                                       <asp:ListItem Value="-1" Text="SELECCIONE UN CENTRO"></asp:ListItem>
                                    </asp:DropDownList>
                                    <asp:SqlDataSource ID="DSBuscentro" runat="server" ProviderName="MySql.Data.MySqlClient" ConnectionString="<%$ ConnectionStrings:DBconexion %>" SelectCommand="SELECT idcentro, centro FROM centro ORDER BY idcentro"></asp:SqlDataSource>
                                </div>
@@ -118,7 +118,7 @@ body { padding-right: 0 !important }
                            <div class="col-md-2" id="busplantel" runat="server">
                                <div class="form-group">
                                    <label class="text-bold-600 font-small-3">Estado</label>
-                                   <asp:DropDownList runat="server" ID="bplantel" CssClass="select2 form-control" DataSourceID="DSplantel" DataTextField="estado" DataValueField="idestado" AppendDataBoundItems="true" onChange="consultaPrincipal()">
+                                   <asp:DropDownList runat="server" ID="bestado" CssClass="select2 form-control" DataSourceID="DSplantel" DataTextField="estado" DataValueField="idestado" AppendDataBoundItems="true" onChange="consultaPrincipal()">
                                        <asp:ListItem Value="0" Text="SELECCIONE UN ESTADO"></asp:ListItem>
                                    </asp:DropDownList>
                                    <asp:SqlDataSource ID="DSplantel" runat="server" ProviderName="MySql.Data.MySqlClient" ConnectionString="<%$ ConnectionStrings:DBconexion %>" SelectCommand="SELECT idestado, estado FROM estado ORDER BY idestado"></asp:SqlDataSource>
@@ -405,7 +405,7 @@ body { padding-right: 0 !important }
                                                  <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="text-bold-600">Usuario</label>
-                                                        <asp:TextBox ID="usuario" CssClass="form-control text-uppercase" placeholder="usuario" runat="server" disabled></asp:TextBox>
+                                                        <asp:TextBox ID="usuario" CssClass="form-control text-uppercase" placeholder="usuario" runat="server" ></asp:TextBox>
                                                     </div>
                                                 </div>
 
@@ -417,7 +417,7 @@ body { padding-right: 0 !important }
                                                   <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label class="text-bold-600">Ubicación física</label>
-                                                        <asp:TextBox ID="ubicacion" CssClass="form-control text-uppercase" placeholder="ubicacion" runat="server" disabled></asp:TextBox>
+                                                        <asp:TextBox ID="ubicacion" CssClass="form-control text-uppercase" placeholder="ubicacion" runat="server" ></asp:TextBox>
                                                     </div>
                                                 </div>
                                                  </div>
@@ -821,7 +821,7 @@ body { padding-right: 0 !important }
     <script>
         //$(document).prop('title', 'PLACEL - Promovidos');
         $(".nav-item>ul>li.active").removeClass("active");
-        $("#catcursos").addClass("active");
+        $("#catinventario").addClass("active");
         var walert = 0;
         var fecha = '';
         

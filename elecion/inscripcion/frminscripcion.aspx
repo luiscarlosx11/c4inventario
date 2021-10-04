@@ -153,19 +153,17 @@ body { padding-right: 0 !important }
 
                                                             <asp:TemplateField HeaderText="Generales" HeaderStyle-CssClass="primary">
                                                                 <ItemTemplate>
-                                                                    <h7 class="font-weight-bold"><%# "FOLIO "+Eval("folio")%></h7>
-                                                                    <br />
-                                                                    <h7 class="font-small-3 font-italic text-bold-600"><%# Eval("descripcion")%></h7>
-                                                                    <br />
+                                                                    <h7 class="font-weight-bold"><%# "FOLIO "+Eval("folio")%></h7><br />
+                                                                    <h7 class="font-small-3 font-italic text-bold-600"><%# Eval("descripcion")%></h7> <br />
                                                                     <h7 class="text-bold-400 font-small-2"> <%# Eval("fechatext")%></h7>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
 
                                                             <asp:TemplateField HeaderText="Recibe" HeaderStyle-CssClass="primary" ItemStyle-Width="300px">
                                                                 <ItemTemplate>
-                                                                    <h7 class="font-weight-bold"><%# Eval("cargo")%></h7>
-                                                                    <br />
-                                                                    <h7 class="font-small-3 font-italic text-bold-600"><%# Eval("usuario")%></h7>
+                                                                    <h7 class="font-weight-bold"><%# Eval("cargo")%></h7><br />
+                                                                    <h7 class="font-small-3 font-italic text-bold-600"><%# Eval("usuario")%></h7><br />
+                                                                    <h7 class="text-bold-400 font-small-2"> <%# Eval("centro")%></h7>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
 
@@ -615,7 +613,7 @@ body { padding-right: 0 !important }
     <script>
         //$(document).prop('title', 'PLACEL - Promovidos');
         $(".nav-item>ul>li.active").removeClass("active");
-        $("#frminscripcion").addClass("active");
+        $("#catsalidas").addClass("active");
         var walert = 0;
         var fecha = '';
         
@@ -1103,6 +1101,12 @@ body { padding-right: 0 !important }
          function consultaAlumnos() {
             mostrarLoading();
             $('#<%= bbuscacursos.ClientID %>').click();
+            cerrarLoading();
+        }
+
+        function imprimirSalida() {
+            mostrarLoading();
+            $('#<%= bimprimir.ClientID %>').click();
             cerrarLoading();
         }
 

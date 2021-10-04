@@ -168,13 +168,13 @@ namespace elecion.catalogos.oferta
         protected global::System.Web.UI.WebControls.Button Bnuevo;
 
         /// <summary>
-        /// Control bname.
+        /// Control bnoinventario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox bname;
+        protected global::System.Web.UI.WebControls.TextBox bnoinventario;
 
         /// <summary>
         /// Control bdescripcion.
@@ -186,13 +186,13 @@ namespace elecion.catalogos.oferta
         protected global::System.Web.UI.WebControls.TextBox bdescripcion;
 
         /// <summary>
-        /// Control TextBox1.
+        /// Control bmarca.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox bmarca;
 
         /// <summary>
         /// Control bcentro.
@@ -222,13 +222,13 @@ namespace elecion.catalogos.oferta
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl busplantel;
 
         /// <summary>
-        /// Control bplantel.
+        /// Control bestado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList bplantel;
+        protected global::System.Web.UI.WebControls.DropDownList bestado;
 
         /// <summary>
         /// Control DSplantel.

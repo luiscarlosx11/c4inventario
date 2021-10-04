@@ -83,7 +83,7 @@ namespace elecion.catalogos.oferta
 
         protected void conteoRegistros(object sender, EventArgs e)
         {
-            using (MySqlConnection con2 = new MySqlConnection(WebConfigurationManager.ConnectionStrings["DBconexion"].ConnectionString))
+           /* using (MySqlConnection con2 = new MySqlConnection(WebConfigurationManager.ConnectionStrings["DBconexion"].ConnectionString))
             {
                 try
                 {
@@ -118,7 +118,7 @@ namespace elecion.catalogos.oferta
                 {
                     con2.Close();
                 }
-            }
+            }*/
         }
 
         
@@ -245,7 +245,7 @@ namespace elecion.catalogos.oferta
                            
                             mySqlTransaction.Commit();
                             this.listadoClientes(sender, e);
-                            ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading(); toastExito(); $('#winscripcion').modal('hide'); ", true);
+                            ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading(); toastExito(); $('#bootstrap').modal('hide'); ", true);
 
                         }
                         else
@@ -433,13 +433,34 @@ namespace elecion.catalogos.oferta
                 
 
                 this.lGeneral.DataSourceID = this.DsUsuarios.ID;
-                string query = "select b.*, e.estado, c.centro, cast(b.fechaalta as char)as fechaaltatext from bien b left join estado e on b.idestado = e.idestado left join centro c on c.idcentro = b.idcentro ";
-                if (this.bname.Text.Trim() != "")
+                string query = "select b.*, e.estado, c.centro, cast(b.fechaalta as char)as fechaaltatext from bien b left join estado e on b.idestado = e.idestado left join centro c on c.idcentro = b.idcentro where b.idbien>0  ";
+                
+
+                if (!bnoinventario.Text.Trim().Equals(""))
+                    query += " and b.noinventario like '%" + bnoinventario.Text.Trim().ToUpper() + "%' ";
+
+
+                if (!bdescripcion.Text.Trim().Equals(""))
+                    query += " and b.descripcion like '%" + bdescripcion.Text.Trim().ToUpper() + "%' ";
+
+
+                if (!bmarca.Text.Trim().Equals(""))
                 {
-                    query = string.Concat(new string[] { query, " and (c.nombre LIKE '%", this.bname.Text.Trim().ToUpper(), "%' or c.clave LIKE '%", this.bname.Text.Trim().ToUpper(), "%') " });
+                    query += " and (b.marca like '%" + bmarca.Text.Trim().ToUpper() + "%' ";
+                    query += " or b.modelo like '%" + bmarca.Text.Trim().ToUpper() + "%' ";
+                    query += " or b.noserie like '%" + bmarca.Text.Trim().ToUpper() + "%') ";
                 }
-               
-               
+                    
+
+
+                if (!bcentro.SelectedValue.Equals("-1"))
+                    query += " and b.idcentro =" + bcentro.SelectedValue + " ";
+
+
+                if (!bestado.SelectedValue.Equals("0"))
+                    query += " and b.idestado =" + bestado.SelectedValue + " ";
+
+
 
                 query = string.Concat(query, " order by b.noinventario ");
                 this.DsUsuarios.SelectCommand = query;

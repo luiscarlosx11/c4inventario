@@ -175,27 +175,28 @@ namespace elecion.inscripcion
                     try
                     {
                         mySqlConnection.Open();
-                        MySqlCommand mySqlCommand = mySqlConnection.CreateCommand();
+                        MySqlCommand cmd = mySqlConnection.CreateCommand();
                         mySqlTransaction = mySqlConnection.BeginTransaction();
-                        mySqlCommand.Connection = mySqlConnection;
-                        mySqlCommand.Transaction = mySqlTransaction;
+                        cmd.Connection = mySqlConnection;
+                        cmd.Transaction = mySqlTransaction;
 
 
                         int lastInsertedId = 0;
 
                         //Si el idmunicipio es mayor que cero se hace UPDATE
                         if (Int32.Parse(idP.Value) > 0)
-                            query = "UPDATE salida set descripcion=@descripcion, usuario=@usuario, cargo=@cargo where idsalida=@idP;";
+                            query = "UPDATE salida set descripcion=@descripcion, usuario=@usuario, cargo=@cargo, idcentro=@idcentro where idsalida=@idP;";
                         else
-                            query = "INSERT INTO salida(fecha, descripcion, usuario, cargo) values(current_date, @descripcion, @usuario, @cargo);";
+                            query = "INSERT INTO salida(fecha, descripcion, usuario, cargo, idcentro) values(current_date, @descripcion, @usuario, @cargo, @idcentro);";
 
-                        MySqlCommand cmd = new MySqlCommand(query, mySqlConnection);
+                         cmd = new MySqlCommand(query, mySqlConnection);
 
 
                         cmd.Parameters.AddWithValue("@idP", idP.Value);
                         cmd.Parameters.AddWithValue("@usuario", usuario.Text.Trim().ToUpper());
                         cmd.Parameters.AddWithValue("@descripcion", descripcion.Text.Trim().ToUpper());
                         cmd.Parameters.AddWithValue("@cargo", cargo.Text.Trim().ToUpper());
+                        cmd.Parameters.AddWithValue("@idcentro", scentro.SelectedValue);
 
                         cmd.ExecuteNonQuery();
 
@@ -221,20 +222,27 @@ namespace elecion.inscripcion
 
                         }
 
-                        mySqlCommand.Parameters.Clear();
-                        mySqlCommand.CommandText = "update bien set idcentro=@idcentro, ubicacion=@ubicacion where idbien=@idbien;";
-                        mySqlCommand.Parameters.AddWithValue("@idcentro", scentro.SelectedValue);
-                        mySqlCommand.Parameters.AddWithValue("@ubicacion", idUbicacion.Value.Trim().ToUpper());
-                        mySqlCommand.Parameters.AddWithValue("@idbien", idA.Value);                        
-                        mySqlCommand.ExecuteNonQuery();
+                        cmd.Parameters.Clear();
+                        cmd.CommandText = "update bien set idcentro=@idcentro, ubicacion=@ubicacion, usuario=@usuario where idbien=@idbien;";
+                        cmd.Parameters.AddWithValue("@idcentro", scentro.SelectedValue);
+                        cmd.Parameters.AddWithValue("@ubicacion", idUbicacion.Value.Trim().ToUpper());
+                        cmd.Parameters.AddWithValue("@usuario", usuario.Text.Trim().ToUpper());
+                        cmd.Parameters.AddWithValue("@idbien", idA.Value);
+                        cmd.ExecuteNonQuery();
 
+                        cmd.Parameters.Clear();
+                        cmd.CommandText = "insert into detallesalida(idsalida, idbien, ubicacion) values(@idsalida, @idbien, @ubicacion);";
+                        cmd.Parameters.AddWithValue("@idsalida", idP.Value);
+                        cmd.Parameters.AddWithValue("@idbien", idA.Value);
+                        cmd.Parameters.AddWithValue("@ubicacion", idUbicacion.Value.Trim().ToUpper());
+                        cmd.ExecuteNonQuery();
 
-                        mySqlCommand.Parameters.Clear();
-                        mySqlCommand.CommandText = "insert into detallesalida(idsalida, idbien, ubicacion) values(@idsalida, @idbien, @ubicacion);";
-                        mySqlCommand.Parameters.AddWithValue("@idsalida", idP.Value);
-                        mySqlCommand.Parameters.AddWithValue("@idbien", idA.Value);
-                        mySqlCommand.Parameters.AddWithValue("@ubicacion", idUbicacion.Value.Trim().ToUpper());
-                        mySqlCommand.ExecuteNonQuery();
+                        cmd.Parameters.Clear();
+                        cmd.CommandText = "insert into historialbien(idsalida, idbien, descripcion, fecha) values(@idsalida, @idbien, concat('SALIDA DE ALMACÉN ', (select concat(LPAD(idsalida, 3, 0),'/',year(fecha)) from salida where idsalida="+idP.Value+")) , current_date);";
+                        cmd.Parameters.AddWithValue("@idsalida", idP.Value);
+                        cmd.Parameters.AddWithValue("@idbien", idA.Value);                        
+                        cmd.ExecuteNonQuery();
+
 
                         mySqlTransaction.Commit();
                         this.listadoAlumnosBus(sender, e);
@@ -272,13 +280,19 @@ namespace elecion.inscripcion
                         mySqlCommand.Connection = mySqlConnection;
                         mySqlCommand.Transaction = mySqlTransaction;
                         mySqlCommand.Parameters.Clear();
-                        mySqlCommand.CommandText = "update bien set idcentro=0, ubicacion='' where idbien=@idbien;";
+                        mySqlCommand.CommandText = "update bien set idcentro=0, ubicacion='', usuario='' where idbien=@idbien;";
                         mySqlCommand.Parameters.AddWithValue("@idbien", idA.Value);
                         mySqlCommand.ExecuteNonQuery();
 
 
                         mySqlCommand.Parameters.Clear();
                         mySqlCommand.CommandText = "delete from detallesalida where idsalida=@idsalida and idbien=@idbien;";
+                        mySqlCommand.Parameters.AddWithValue("@idsalida", idP.Value);
+                        mySqlCommand.Parameters.AddWithValue("@idbien", idA.Value);
+                        mySqlCommand.ExecuteNonQuery();
+
+                        mySqlCommand.Parameters.Clear();
+                        mySqlCommand.CommandText = "insert into historialbien(idsalida, idbien, descripcion, fecha) values(@idsalida, @idbien, 'ELIMINADO DE SALIDA DE ALMACÉN " + labelCurso.Text + "', current_date);";
                         mySqlCommand.Parameters.AddWithValue("@idsalida", idP.Value);
                         mySqlCommand.Parameters.AddWithValue("@idbien", idA.Value);
                         mySqlCommand.ExecuteNonQuery();
@@ -319,29 +333,41 @@ namespace elecion.inscripcion
 
                     mySqlConnection.Open();
 
-                    MySqlCommand mySqlCommand = mySqlConnection.CreateCommand();
+                    MySqlCommand cmd = mySqlConnection.CreateCommand();
                     mySqlTransaction = mySqlConnection.BeginTransaction();
-                    mySqlCommand.Connection = mySqlConnection;
-                    mySqlCommand.Transaction = mySqlTransaction;
+                    cmd.Connection = mySqlConnection;
+                    cmd.Transaction = mySqlTransaction;
 
                     String query = "";
                     int lastInsertedId = 0;
 
                     //Si el idmunicipio es mayor que cero se hace UPDATE
                     if (Int32.Parse(idP.Value) > 0)
-                        query = "UPDATE salida set descripcion=@descripcion, usuario=@usuario, cargo=@cargo where idsalida=@idP;";
+                        query = "UPDATE salida set descripcion=@descripcion, usuario=@usuario, cargo=@cargo, idcentro=@idcentro where idsalida=@idP;";
                     else
-                        query = "INSERT INTO salida(fecha, descripcion, usuario, cargo) values(current_date, @descripcion, @usuario, @cargo);";
+                        query = "INSERT INTO salida(fecha, descripcion, usuario, cargo, idcentro) values(current_date, @descripcion, @usuario, @cargo, @idcentro);";
 
-                    MySqlCommand cmd = new MySqlCommand(query, mySqlConnection);
+                     cmd = new MySqlCommand(query, mySqlConnection);
 
 
                     cmd.Parameters.AddWithValue("@idP", idP.Value);
                     cmd.Parameters.AddWithValue("@usuario", usuario.Text.Trim().ToUpper());
                     cmd.Parameters.AddWithValue("@descripcion", descripcion.Text.Trim().ToUpper());
                     cmd.Parameters.AddWithValue("@cargo", cargo.Text.Trim().ToUpper());
-                                            
+                    cmd.Parameters.AddWithValue("@idcentro", scentro.SelectedValue);
+
+
                     cmd.ExecuteNonQuery();
+
+
+                    cmd.Parameters.Clear();
+                    cmd.CommandText = "update bien set idcentro=@idcentro, ubicacion=@ubicacion, usuario=@usuario where idbien in (select idbien from detallesalida where idsalida=@idP);";
+                    cmd.Parameters.AddWithValue("@idP", idP.Value);
+                    cmd.Parameters.AddWithValue("@idcentro", scentro.SelectedValue);
+                    cmd.Parameters.AddWithValue("@ubicacion", idUbicacion.Value.Trim().ToUpper());
+                    cmd.Parameters.AddWithValue("@usuario", usuario.Text.Trim().ToUpper());
+                    cmd.ExecuteNonQuery();
+
 
                     if (Int32.Parse(idP.Value) == 0)
                     {
@@ -480,12 +506,14 @@ namespace elecion.inscripcion
                 gridAlumnos.Visible = true;
                 gridCursos.Visible = false;
 
+                descripcion.Focus();
+
 
             }
             catch (Exception exception)
             {
             }
-            ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading(); cargatags(); ", true);
+            ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading();  ", true);
         }
 
         protected void volverCursos(object sender, EventArgs e)
@@ -545,6 +573,7 @@ namespace elecion.inscripcion
 
                 gridAlumnos.Visible = true;
                 gridCursos.Visible = false;
+                descripcion.Focus();
 
                 ScriptManager.RegisterClientScriptBlock(this.Page, typeof(string), "myScriptName", "cerrarLoading();", true);
            }
@@ -616,7 +645,7 @@ namespace elecion.inscripcion
                     query += " and s.idcentro =" + bcentro.SelectedValue + " ";
 
                 
-                query = string.Concat(query, " order by s.idsalida ");
+                query = string.Concat(query, " order by s.idsalida desc ");
                 this.DsUsuarios.SelectCommand = query;
 
                 DataView dvAccess = (DataView)DsUsuarios.Select(DataSourceSelectArguments.Empty);
@@ -652,7 +681,7 @@ namespace elecion.inscripcion
             try
             {
                 this.listadoDocumentacion(sender, e);
-                ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading();  $('#winscripcion').modal('show'); cargatags(); ", true);
+                ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading();  $('#winscripcion').modal('show'); ", true);
             }
             catch (Exception exception)
             {

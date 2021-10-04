@@ -368,7 +368,7 @@
               
                 
 
-                <li class="navigation-header" id="capacitacion"  runat="server"><span>Almacén</span><i data-toggle="tooltip" data-placement="right" data-original-title="Capacitación" class=" ft-minus"></i>
+                <li class="navigation-header" id="capacitacion"  runat="server"><span>Almacén</span><i data-toggle="tooltip" data-placement="right" data-original-title="Almacén" class=" ft-minus"></i>
                 </li>
                         
 						<li class="nav-item" id="oferta" runat="server"><a href="index.html"><i class="ft-tag"></i><span data-i18n="" class="menu-title">Gestión</span>
@@ -376,7 +376,7 @@
                             <ul class="menu-content">              
                                <!-- <li id="catconfig"><a href="#" class="menu-item">Ciclo Escolar</a>
                                 </li>  -->                              
-                                <li id="catofertas"><a href="/catalogos/oferta/catinventario.aspx" onclick="mostrarLoading()" class="menu-item">Inventario</a>
+                                <li id="catinventario"><a href="/catalogos/oferta/catinventario.aspx" onclick="mostrarLoading()" class="menu-item">Inventario</a>
                                 </li>
 
                                 <li id="catentradas"><a href="/catalogos/oferta/catinventario.aspx" onclick="mostrarLoading()" class="menu-item">Entradas</a>
