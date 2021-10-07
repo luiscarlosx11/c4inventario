@@ -19,12 +19,9 @@ namespace elecion.catalogos.oferta
 {
     public partial class catinventario : System.Web.UI.Page
     {
-        private int idsucursal;
-        private int idusuario;
-        int idtipousuario;
-        string roles;
-
         
+        private int idusuario;
+       
 
         protected void bimprimir_Click(object sender, EventArgs e)
         {
@@ -208,7 +205,7 @@ namespace elecion.catalogos.oferta
 
                         mySqlCommand.Parameters.Clear();
                         mySqlCommand.CommandText = string.Concat("SELECT count(idbien)as existe FROM bien where noinventario=@noinventario and idbien not in(", this.idP.Value, ");");
-                        mySqlCommand.Parameters.AddWithValue("@noinventario", this.noinventario.Text.ToUpper().Trim());
+                        mySqlCommand.Parameters.AddWithValue("@noinventario", this.numinventario.Text.ToUpper().Trim());
                         existe = Convert.ToInt32(mySqlCommand.ExecuteScalar());
 
                         if (existe == 0)
@@ -218,7 +215,7 @@ namespace elecion.catalogos.oferta
                             if (Convert.ToInt32(this.idP.Value) != 0)
                             {
                                 mySqlCommand.Parameters.Clear();
-                                str = "update bien set noinventario=@noinventario ";
+                                str = "update bien set noinventario=@noinventario, idestado=@idestado, idcentro=@idcentro, fechaalta=@fechaalta, marca=@marca, modelo=@modelo, noserie=@noserie, descripcion=@descripcion, usuario=@usuario, ubicacion=@ubicacion  ";
                                 string[] strArrays = this.hpicture.Value.Split(new char[] { ',' });
                                 if ((int)strArrays.Length > 1)
                                 {
@@ -227,7 +224,16 @@ namespace elecion.catalogos.oferta
                                 str = string.Concat(str, "where idbien = @idbien; ");
                                 mySqlCommand.CommandText = str;
                                 mySqlCommand.Parameters.AddWithValue("@idbien", this.idP.Value);
-                                mySqlCommand.Parameters.AddWithValue("@noinventario", noinventario.Text.Trim().ToUpper());
+                                mySqlCommand.Parameters.AddWithValue("@idcentro", centro.SelectedValue);
+                                mySqlCommand.Parameters.AddWithValue("@idestado", estado.SelectedValue);
+                                mySqlCommand.Parameters.AddWithValue("@noinventario", numinventario.Text.Trim().ToUpper());
+                                mySqlCommand.Parameters.AddWithValue("@fechaalta", fechaalta.Text.Trim().ToUpper());
+                                mySqlCommand.Parameters.AddWithValue("@marca", marca.Text.Trim().ToUpper());
+                                mySqlCommand.Parameters.AddWithValue("@modelo", modelo.Text.Trim().ToUpper());
+                                mySqlCommand.Parameters.AddWithValue("@noserie", noserie.Text.Trim().ToUpper());
+                                mySqlCommand.Parameters.AddWithValue("@descripcion", descripcion.Text.Trim().ToUpper());
+                                mySqlCommand.Parameters.AddWithValue("@usuario", usuario.Text.Trim().ToUpper());
+                                mySqlCommand.Parameters.AddWithValue("@ubicacion", ubicacion.Text.Trim().ToUpper());
 
                                 if ((int)strArrays.Length > 1)
                                 {
@@ -236,10 +242,87 @@ namespace elecion.catalogos.oferta
                                     mySqlCommand.Parameters["@imagen"].Value = numArray;
                                 }
                                 mySqlCommand.ExecuteNonQuery();
-                            }
-                            else
-                            {
-                               
+
+                                //SI HAY CAMBIO DE CENTRO
+                                if (this.idcentroant.Value != centro.SelectedValue)
+                                {
+                                    //SI CAMBIAN EL ESTADO
+                                    if(idestadoant.Value != estado.SelectedValue)
+                                    {
+
+                                        mySqlCommand.Parameters.Clear();
+                                        mySqlCommand.CommandText = "insert into historialbien(idbien, descripcion, fecha) values(@idbien, 'CAMBIO DE UBICACIÓN *** " + centro.SelectedItem.Text + ", RESPONSABLE: " + usuario.Text.Trim().ToUpper() + ", UBICACIÓN:" + ubicacion.Text.Trim().ToUpper() + ", ESTADO:"+estado.SelectedItem.Text+"' , current_date);";
+                                        mySqlCommand.Parameters.AddWithValue("@idbien", idP.Value);
+                                        mySqlCommand.ExecuteNonQuery();
+                                    }
+                                    else
+                                    {
+                                        mySqlCommand.Parameters.Clear();
+                                        mySqlCommand.CommandText = "insert into historialbien(idbien, descripcion, fecha) values(@idbien, 'CAMBIO DE UBICACIÓN *** " + centro.SelectedItem.Text + ", RESPONSABLE: " + usuario.Text.Trim().ToUpper() + ", UBICACIÓN:" + ubicacion.Text.Trim().ToUpper() + "' , current_date);";
+                                        mySqlCommand.Parameters.AddWithValue("@idbien", idP.Value);
+                                        mySqlCommand.ExecuteNonQuery();
+                                    }
+
+                                }
+                                else
+                                {
+
+                                    
+
+
+                                    //SI HAY CAMBIO DE RESPONSABLE
+                                    if (!usuarioant.Value.Equals(usuario.Text.Trim().ToUpper()) || !ubicacionant.Value.Equals(ubicacion.Text.Trim().ToUpper()))
+                                    {
+
+
+                                        //SI CAMBIAN EL ESTADO
+                                        if (idestadoant.Value != estado.SelectedValue)
+                                        {
+
+                                            mySqlCommand.Parameters.Clear();
+                                            mySqlCommand.CommandText = "insert into historialbien(idbien, descripcion, fecha) values(@idbien, 'CAMBIO DE UBICACIÓN *** " + centro.SelectedItem.Text + ", RESPONSABLE: " + usuario.Text.Trim().ToUpper() + ", UBICACIÓN:" + ubicacion.Text.Trim().ToUpper() + ", ESTADO:" + estado.SelectedItem.Text + "' , current_date);";
+                                            mySqlCommand.Parameters.AddWithValue("@idbien", idP.Value);
+                                            mySqlCommand.ExecuteNonQuery();
+                                        }
+                                        else
+                                        {
+                                            mySqlCommand.Parameters.Clear();
+                                            mySqlCommand.CommandText = "insert into historialbien(idbien, descripcion, fecha) values(@idbien, 'CAMBIO DE UBICACIÓN *** " + centro.SelectedItem.Text + ", RESPONSABLE: " + usuario.Text.Trim().ToUpper() + ", UBICACIÓN:" + ubicacion.Text.Trim().ToUpper() + "' , current_date);";
+                                            mySqlCommand.Parameters.AddWithValue("@idbien", idP.Value);
+                                            mySqlCommand.ExecuteNonQuery();
+                                        }
+
+                                       
+
+                                    }
+                                    else                      
+                                    {
+
+                                        //SI CAMBIAN EL ESTADO
+                                        if (idestadoant.Value != estado.SelectedValue)
+                                        {
+
+                                            mySqlCommand.Parameters.Clear();
+                                            mySqlCommand.CommandText = "insert into historialbien(idbien, descripcion, fecha) values(@idbien, 'CAMBIO DE ESTADO *** ESTADO:" + estado.SelectedItem.Text + "' , current_date);";
+                                            mySqlCommand.Parameters.AddWithValue("@idbien", idP.Value);
+                                            mySqlCommand.ExecuteNonQuery();
+                                        }
+                                        else
+                                        {
+                                            mySqlCommand.Parameters.Clear();
+                                            mySqlCommand.CommandText = "insert into historialbien(idbien, descripcion, fecha) values(@idbien, 'EDICIÓN DE DATOS' , current_date);";
+                                            mySqlCommand.Parameters.AddWithValue("@idbien", idP.Value);
+                                            mySqlCommand.ExecuteNonQuery();
+                                        }
+
+                                    }
+
+
+                                }
+
+
+
+
                             }
                             
                            
@@ -387,7 +470,7 @@ namespace elecion.catalogos.oferta
             
            this.idP.Value = "0";
                 
-           this.noinventario.Text = "";
+           this.numinventario.Text = "";
            this.adscripcion.Text = "";
            this.fechaalta.Text = "";
            this.descripcion.Text = "";
@@ -440,25 +523,25 @@ namespace elecion.catalogos.oferta
                     query += " and b.noinventario like '%" + bnoinventario.Text.Trim().ToUpper() + "%' ";
 
 
-                if (!bdescripcion.Text.Trim().Equals(""))
-                    query += " and b.descripcion like '%" + bdescripcion.Text.Trim().ToUpper() + "%' ";
+                if (!busdescrip.Text.Trim().Equals(""))
+                    query += " and b.descripcion like '%" + busdescrip.Text.Trim().ToUpper() + "%' ";
 
 
-                if (!bmarca.Text.Trim().Equals(""))
+                if (!busmarc.Text.Trim().Equals(""))
                 {
-                    query += " and (b.marca like '%" + bmarca.Text.Trim().ToUpper() + "%' ";
-                    query += " or b.modelo like '%" + bmarca.Text.Trim().ToUpper() + "%' ";
-                    query += " or b.noserie like '%" + bmarca.Text.Trim().ToUpper() + "%') ";
+                    query += " and (b.marca like '%" + busmarc.Text.Trim().ToUpper() + "%' ";
+                    query += " or b.modelo like '%" + busmarc.Text.Trim().ToUpper() + "%' ";
+                    query += " or b.noserie like '%" + busmarc.Text.Trim().ToUpper() + "%') ";
                 }
                     
 
 
-                if (!bcentro.SelectedValue.Equals("-1"))
-                    query += " and b.idcentro =" + bcentro.SelectedValue + " ";
+                if (!buscent.SelectedValue.Equals("-1"))
+                    query += " and b.idcentro =" + buscent.SelectedValue + " ";
 
 
-                if (!bestado.SelectedValue.Equals("0"))
-                    query += " and b.idestado =" + bestado.SelectedValue + " ";
+                if (!busestad.SelectedValue.Equals("0"))
+                    query += " and b.idestado =" + busestad.SelectedValue + " ";
 
 
 
@@ -504,7 +587,7 @@ namespace elecion.catalogos.oferta
                         rdr.Read();
 
 
-                        this.noinventario.Text = rdr["noinventario"].ToString();
+                        this.numinventario.Text = rdr["noinventario"].ToString();
                         this.adscripcion.Text = rdr["adscripcion"].ToString();
                         this.fechaalta.Text = rdr["fechaaltatext"].ToString();
                         this.descripcion.Text = rdr["descripcion"].ToString();
@@ -515,6 +598,17 @@ namespace elecion.catalogos.oferta
                         this.responsable.Text = rdr["responsable"].ToString();
                         this.usuario.Text = rdr["usuario"].ToString();
                         this.ubicacion.Text = rdr["ubicacion"].ToString();
+
+                        centro.SelectedValue = rdr["idcentro"].ToString();
+                        estado.SelectedValue = rdr["idestado"].ToString();
+
+                        usuarioant.Value = rdr["usuario"].ToString(); ;
+                        ubicacionant.Value = rdr["ubicacion"].ToString();
+
+                        idcentroant.Value = rdr["idcentro"].ToString(); 
+                        idestadoant.Value = rdr["idestado"].ToString();
+
+
 
                         if (rdr["foto"].GetType() != typeof(DBNull))
                         {

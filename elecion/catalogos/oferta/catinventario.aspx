@@ -61,6 +61,12 @@ body { padding-right: 0 !important }
                                <asp:HiddenField runat="server" ID="cve" />
                                <asp:HiddenField runat="server" ID="idOE" />
 
+                            <asp:HiddenField runat="server" ID="idestadoant" />
+                            <asp:HiddenField runat="server" ID="idcentroant" />
+                            <asp:HiddenField runat="server" ID="usuarioant" />
+                            <asp:HiddenField runat="server" ID="ubicacionant" />
+
+
 
                                <asp:Button runat="server" ID="Bconsultar" OnClick="listadoClientes" Style="display: none" UseSubmitBehavior="false" />
                                <asp:Button runat="server" ID="Bcancelarcurso" OnClick="cancelaCurso" Style="display: none" UseSubmitBehavior="false" />
@@ -93,14 +99,14 @@ body { padding-right: 0 !important }
                             <div class="col-md-4">
                                <div class="form-group">      
                                    <label class="text-bold-600 font-small-3">Descripción</label>
-                                   <asp:TextBox ID="bdescripcion" CssClass="form-control text-uppercase" placeholder="Búsqueda por descripción..." name="bname" runat="server" AutoPostBack="false" onChange="consultaPrincipal()"></asp:TextBox>
+                                   <asp:TextBox ID="busdescrip" CssClass="form-control text-uppercase" placeholder="Búsqueda por descripción..." name="bname" runat="server" AutoPostBack="false" onChange="consultaPrincipal()"></asp:TextBox>
                                </div>
                            </div>
 
                            <div class="col-md-2">
                                <div class="form-group">      
                                    <label class="text-bold-600 font-small-3">Marca - Modelo - No. serie</label>
-                                   <asp:TextBox ID="bmarca" CssClass="form-control text-uppercase" placeholder="Búsqueda por marca, modelo o número de serie..." name="bname" runat="server" AutoPostBack="false" onChange="consultaPrincipal()"></asp:TextBox>
+                                   <asp:TextBox ID="busmarc" CssClass="form-control text-uppercase" placeholder="Búsqueda por marca, modelo o número de serie..." name="bname" runat="server" AutoPostBack="false" onChange="consultaPrincipal()"></asp:TextBox>
                                </div>
                            </div>
 
@@ -108,7 +114,7 @@ body { padding-right: 0 !important }
                            <div class="col-md-2" runat="server">
                                <div class="form-group">
                                    <label class="text-bold-600 font-small-3">Centro</label>
-                                   <asp:DropDownList runat="server" ID="bcentro" CssClass="select2 form-control" DataSourceID="DSBuscentro" DataTextField="centro" DataValueField="idcentro" AppendDataBoundItems="true" onChange="consultaPrincipal()">
+                                   <asp:DropDownList runat="server" ID="buscent" CssClass="select2 form-control" DataSourceID="DSBuscentro" DataTextField="centro" DataValueField="idcentro" AppendDataBoundItems="true" onChange="consultaPrincipal()">
                                        <asp:ListItem Value="-1" Text="SELECCIONE UN CENTRO"></asp:ListItem>
                                    </asp:DropDownList>
                                    <asp:SqlDataSource ID="DSBuscentro" runat="server" ProviderName="MySql.Data.MySqlClient" ConnectionString="<%$ ConnectionStrings:DBconexion %>" SelectCommand="SELECT idcentro, centro FROM centro ORDER BY idcentro"></asp:SqlDataSource>
@@ -118,7 +124,7 @@ body { padding-right: 0 !important }
                            <div class="col-md-2" id="busplantel" runat="server">
                                <div class="form-group">
                                    <label class="text-bold-600 font-small-3">Estado</label>
-                                   <asp:DropDownList runat="server" ID="bestado" CssClass="select2 form-control" DataSourceID="DSplantel" DataTextField="estado" DataValueField="idestado" AppendDataBoundItems="true" onChange="consultaPrincipal()">
+                                   <asp:DropDownList runat="server" ID="busestad" CssClass="select2 form-control" DataSourceID="DSplantel" DataTextField="estado" DataValueField="idestado" AppendDataBoundItems="true" onChange="consultaPrincipal()">
                                        <asp:ListItem Value="0" Text="SELECCIONE UN ESTADO"></asp:ListItem>
                                    </asp:DropDownList>
                                    <asp:SqlDataSource ID="DSplantel" runat="server" ProviderName="MySql.Data.MySqlClient" ConnectionString="<%$ ConnectionStrings:DBconexion %>" SelectCommand="SELECT idestado, estado FROM estado ORDER BY idestado"></asp:SqlDataSource>
@@ -154,11 +160,8 @@ body { padding-right: 0 !important }
                                                         <h7 class="font-weight-bold"><%# Eval("noinventario")%></h7><br />
                                                         <h7 class="font-small-3 font-italic text-bold-600"><%# " "+Eval("descripcion")%></h7>
                                                         <br />
-                                                        <h7 class="text-bold-400 font-small-2"> <%# " MARCA "+Eval("marca")+ ", MODELO "+Eval("modelo")%></h7>
-                                                        <br />
-                                                        <h7 class="text-bold-400 font-small-2"><%# " NO SERIE. "+Eval("noserie") +", COSTO $"+ Eval("costo")+" "%></h7>
+                                                        <h7 class="text-bold-400 font-small-2"> <%# " MARCA "+Eval("marca")+ ", MODELO "+Eval("modelo")+ ", NO SERIE. "+Eval("noserie")%></h7>
                                                         
-
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
 
@@ -316,8 +319,10 @@ body { padding-right: 0 !important }
                                                         </div>
                                                         <div class="col-md-3">
                                                             <div class="form-group">
-                                                                <label class="text-bold-600">Estatus</label><br />
-                                                                <span class="tag bg-success"><span class="h4 text-bold-700">LOCALIZADO</span></span>
+                                                                <label class="text-bold-600">Estado</label>
+                                                                <asp:DropDownList runat="server" ID="estado" CssClass="select2 form-control" DataSourceID="DSestado" DataTextField="estado" DataValueField="idestado" Style="width: 100%">                                                                    
+                                                                </asp:DropDownList>
+                                                                <asp:SqlDataSource ID="DSestado" runat="server" ProviderName="MySql.Data.MySqlClient" ConnectionString="<%$ ConnectionStrings:DBconexion %>" SelectCommand="SELECT idestado, estado FROM estado ORDER BY idestado"></asp:SqlDataSource>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -326,7 +331,7 @@ body { padding-right: 0 !important }
                                                         <div class="col-md-4">
                                                             <div class="form-group">
                                                                 <label class="text-bold-600">No. inventario</label>
-                                                                <asp:TextBox ID="noinventario" CssClass="form-control text-uppercase" placeholder="inventario" runat="server"></asp:TextBox>
+                                                                <asp:TextBox ID="numinventario" CssClass="form-control text-uppercase" placeholder="inventario" runat="server"></asp:TextBox>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-4">
@@ -339,7 +344,7 @@ body { padding-right: 0 !important }
                                                         <div class="col-md-4">
                                                             <div class="form-group">
                                                                 <label class="text-bold-600">Fecha alta</label>
-                                                                <asp:TextBox ID="fechaalta" CssClass="form-control text-uppercase" placeholder="fecha alta" runat="server"></asp:TextBox>
+                                                                <asp:TextBox ID="fechaalta" CssClass="form-control date-inputmask text-uppercase" placeholder="fecha alta" runat="server"></asp:TextBox>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -397,7 +402,7 @@ body { padding-right: 0 !important }
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="text-bold-600">Responsable</label>
-                                                        <asp:TextBox ID="responsable" CssClass="form-control text-uppercase" placeholder="responsable" runat="server"></asp:TextBox>
+                                                        <asp:TextBox ID="responsable" CssClass="form-control text-uppercase" placeholder="responsable" runat="server" disabled></asp:TextBox>
                                                     </div>
                                                 </div>
 
@@ -793,7 +798,9 @@ body { padding-right: 0 !important }
 
 <asp:Content ID="Content4" ContentPlaceHolderID="JavaScript" runat="server">
     
-    <script src="/app-assets/vendors/js/forms/select/select2.full.min.js" type="text/javascript"></script>
+
+
+     <script src="/app-assets/vendors/js/forms/select/select2.full.min.js" type="text/javascript"></script>
     <script src="/app-assets/vendors/js/forms/spinner/jquery.bootstrap-touchspin.js" type="text/javascript"></script>
     <script src="/app-assets/vendors/js/forms/validation/jqBootstrapValidation.js" type="text/javascript"></script>
     <script src="/app-assets/vendors/js/forms/extended/inputmask/jquery.inputmask.bundle.min.js" type="text/javascript"></script>
@@ -827,6 +834,9 @@ body { padding-right: 0 !important }
         
         var initialLangCode = 'es';
         var dataEvent;
+
+        // Date dd/mm/yyyy
+        
 
         function showpreview(input) {
 
@@ -883,16 +893,75 @@ body { padding-right: 0 !important }
         }
 
         function valida() {
+            var noinventario = $("[id$='numinventario']").val();
+            var fechaalta = $("[id$='fechaalta']").val();            
+            var marca = $("[id$='marca']").val();
+            var modelo = $("[id$='modelo']").val();
+            var noserie = $("[id$='noserie']").val();
+            var descripcion = $("[id$='descripcion']").val();
+            var usuario = $("[id$='usuario']").val();
+            var ubicacion = $("[id$='ubicacion']").val();
+            var estado = $("[id$='estado']").val();
+            walert = 1;
 
-           
-                              
-            walert = 0;
-            //$('#bootstrap').modal('hide');
-            mostrarLoading();
+         
             
+            if (noinventario == '') {
+                alerta('Atención', 'Ingrese el número de inventario del bien', 'warning', $("[id$='noinventario']"));
+                return false;
+            }
+
+            if (!isValidDate(fechaalta)) {
+                alerta('Atención', 'Ingrese una fecha válida', 'warning', $("[id$='fechaalta']"));
+                return false;
+            }
+
+
+            if (fechaalta == '') {
+                alerta('Atención', 'Ingrese la fecha de alta del bien', 'warning', $("[id$='fechaalta']"));
+                return false;
+            }
+
+
+            if (marca == '') {
+                alerta('Atención', 'Ingrese la marca del bien', 'warning', $("[id$='marca']"));
+                return false;
+            }
+
+            if (modelo == '') {
+                alerta('Atención', 'Ingrese el modelo del bien', 'warning', $("[id$='modelo']"));
+                return false;
+            }
+
+            if (noserie == '') {
+                alerta('Atención', 'Ingrese el número de serie del bien', 'warning', $("[id$='noserie']"));
+                return false;
+            }
+
+            if (descripcion == '') {
+                alerta('Atención', 'Ingrese la descripción del bien', 'warning', $("[id$='descripcion']"));
+                return false;
+            }
+
+            if (estado != '2') {
+
+                if (usuario == '') {
+                    alerta('Atención', 'Ingrese el usuario del bien', 'warning', $("[id$='usuario']"));
+                    return false;
+                }
+
+                if (ubicacion == '') {
+                    alerta('Atención', 'Ingrese la ubicación del bien', 'warning', $("[id$='ubicacion']"));
+                    return false;
+                }
+
+            }
+
+            
+            walert = 0;
+            mostrarLoading();            
             $('#<%= guardar.ClientID %>').click();
-                       
-                                           
+                                                                  
         }
 
 
@@ -1253,55 +1322,36 @@ body { padding-right: 0 !important }
 
                // $("*[id$='cp']").ForceNumericOnly(); 
                // $("*[id$='seccion']").ForceNumericOnly();
-                loadJS("/app-assets/js/scripts/forms/select/form-select2.js");
-                loadJS("/app-assets/vendors/js/forms/extended/inputmask/jquery.inputmask.bundle.min.js");
-                loadJS("/app-assets/js/scripts/forms/validation/form-validation.js");
-                
+            loadJS("/app-assets/js/scripts/forms/select/form-select2.js");
+            loadJS("/app-assets/vendors/js/forms/extended/inputmask/jquery.inputmask.bundle.min.js");
+            loadJS("/app-assets/js/scripts/forms/validation/form-validation.js");
 
-                loadJS("/app-assets/vendors/js/forms/icheck/icheck.min.js");
-                loadJS("/app-assets/js/scripts/forms/checkbox-radio.js");
 
-                loadJS("/app-assets/vendors/js/pickers/dateTime/moment-with-locales.min.js");
-                loadJS("/app-assets/vendors/js/pickers/dateTime/bootstrap-datetimepicker.min.js");
-                loadJS("/app-assets/vendors/js/pickers/pickadate/picker.js");
-                loadJS("/app-assets/vendors/js/pickers/pickadate/picker.date.js");
-                loadJS("/app-assets/vendors/js/pickers/pickadate/picker.time.js");
-                loadJS("/app-assets/vendors/js/forms/icheck/icheck.min.js");
-                loadJS("/app-assets/js/scripts/forms/checkbox-radio.js");
-            
-                loadJS("/app-assets/vendors/js/extensions/moment.min.js");
-                loadJS("/app-assets/vendors/js/extensions/fullcalendar.min.js");
-                loadJS("/app-assets/vendors/js/extensions/lang-all.js");
+            loadJS("/app-assets/vendors/js/forms/icheck/icheck.min.js");
+            loadJS("/app-assets/js/scripts/forms/checkbox-radio.js");
 
-                loadJS("/app-assets/vendors/js/extensions/locale-all.js");
-                loadJS("/app-assets/js/scripts/forms/extended/form-inputmask.min.js");
-                
-                loadJS("/app-assets/js/scripts/pages/dashboard-analytics.js");
+            loadJS("/app-assets/vendors/js/pickers/dateTime/moment-with-locales.min.js");
+            loadJS("/app-assets/vendors/js/pickers/dateTime/bootstrap-datetimepicker.min.js");
+            loadJS("/app-assets/vendors/js/pickers/pickadate/picker.js");
+            loadJS("/app-assets/vendors/js/pickers/pickadate/picker.date.js");
+            loadJS("/app-assets/vendors/js/pickers/pickadate/picker.time.js");
+            loadJS("/app-assets/vendors/js/forms/icheck/icheck.min.js");
+            loadJS("/app-assets/js/scripts/forms/checkbox-radio.js");
+
+            loadJS("/app-assets/vendors/js/extensions/moment.min.js");
+            loadJS("/app-assets/vendors/js/extensions/fullcalendar.min.js");
+            loadJS("/app-assets/vendors/js/extensions/lang-all.js");
+
+            loadJS("/app-assets/vendors/js/extensions/locale-all.js");
+            loadJS("/app-assets/js/scripts/ui/scrollable.js");
                      
-            walert = 0;            
-            fecha = $("*[id$='fechaini']").val();                               
-            $('#bootstrap').on('shown.bs.modal', function () {
-                    $("*[id$='clave']").focus();
-            });
-
+           
 
              $(document).ready(function () {
                 $('.tooltips').tooltip();
             });
 
-            //$("#algo").on("select2:select", function (e) { $("#algo").select2('close'); });
-            $("#algo").on("select2:select", function (e) { $("*[id$='hdias']").val($("#algo").val()); calendario();  });
-            $("#algo").on("select2:unselect", function (e) { $("*[id$='hdias']").val($("#algo").val()); ; calendario(); var self = $(this);
-            setTimeout(function() {
-                self.select2('close');
-                }, 0);
-            });
-
-            $('#algo').on('select2:opening select2:closing', function( event ) {
-                var $searchfield = $(this).parent().find('.select2-search__field');
-                $searchfield.prop('disabled', true);
-            });
-                   
+           
             // init Tagify script on the above inputs
            
                 $('#bootstrap').on('keypress', function (e) {
@@ -1317,153 +1367,13 @@ body { padding-right: 0 !important }
                     }
                 });
 
-            //Phone mask
-                $('.phone-inputmask').inputmask("(999) 999-9999");
-
-                $('.email-inputmask').inputmask({
-                    mask: "*{1,20}[.*{1,20}][.*{1,20}][.*{1,20}]@*{1,20}[*{2,6}][*{1,2}].*{1,}[.*{2,6}][.*{1,2}]",
-                    greedy: false,
-                    onBeforePaste: function (pastedValue, opts) {
-                        pastedValue = pastedValue.toLowerCase();
-                        return pastedValue.replace("mailto:", "");
-                    },
-                    definitions: {
-                        '*': {
-                            validator: "[0-9A-Za-z!#$%&'*+/=?^_`{|}~/-]",
-                            cardinality: 1,
-                            casing: "lower"
-                        }
-                    }
-                });
+            
 
             // Date dd/mm/yyyy
             $('.date-inputmask').inputmask("yyyy-mm-dd", { "placeholder": "aaaa-mm-dd" });
 
 
-                $('.pickadate').pickadate({
-                    format: 'yyyy-mm-dd',
-                    formatSubmit: 'yyyy-mm-dd',
-                    monthsFull: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-                    weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mier', 'Jue', 'Vie', 'Sab'],                   
-                    today: 'Hoy',
-                    minDate: '',
-                    maxDate: '',
-                    clear: 'Limpiar',
-                    
-
-                });
-
-            
-                $("*[id$='horaini']").pickatime({
-                    format: ' HH:i ',
-                    formatLabel: 'HH:i ',
-                    clear: '',
-                    onSet: function (context) {
-                        calendario();
-                      }
-                });
-
-                $("*[id$='horafin']").pickatime({
-                    format: ' HH:i ',
-                    formatLabel: 'HH:i ',
-                    clear: '',
-                    onSet: function (context) {
-                        calendario();
-                      }
-            });
-
-
-                $("*[id$='horanini']").pickatime({
-                    format: ' HH:i ',
-                    formatLabel: 'HH:i ',
-                    clear: '',
-                });
-
-                $("*[id$='horanfin']").pickatime({
-                    format: ' HH:i ',
-                    formatLabel: 'HH:i ',
-                    clear: '',
-                });
-
-
-                $('#fc-basic-views').fullCalendar({
-                    header: {
-                        left: 'prev,next today',
-                        center: 'title',
-                        right:''
-                    },
-                    eventRender: function (eventObj, $el) {
-                        $el.popover({
-                            title: 'Horario',
-                            content: eventObj.description,
-                            trigger: 'hover',
-                            placement: 'top',
-                            container: 'body'
-                        });
-                    },
-                    defaultDate: fecha!=''?fecha:'2020-01-01',
-                    defaultView: 'month',
-                    duration: { days: 15 },
-                    locale: 'es',
-                    events: dataEvent,                   
-                    eventClick: function(event) {
-                        
-                        if (event.id >= 0) {
-
-                            if ($("*[id$='fechaini']").is(':enabled')) {
-                                $("*[id$='idF']").val(event.id);
-                                $("*[id$='fagenda']").val(event.fecha);
-                                $("*[id$='horanini']").val(event.horaini);
-                                $("*[id$='horanfin']").val(event.horafin);
-
-                                $("#wfechas").modal('show');
-                            }
-                            
-                        } else {
-                            
-                            if ($("*[id$='fechaini']").is(':enabled')) {
-                                
-                                $("*[id$='idF']").val(0);
-                                $("*[id$='finhabil']").val(event.fecha);
-                                $("#winhabiles").modal('show');
-                            }
-                                
-                        }
-                       
-                    },
-                    navLinks: false, // can click day/week names to navigate views
-                    editable: true,
-                    
-                    height: 500
-                });
-
-            
-            if (fecha == '') {
-                $('#fc-basic-views').fullCalendar('today');                
-            }
-            
-            
-            $("*[id$='dias']").attr('disabled', true);
-            $("*[id$='horas']").attr('disabled', true);
-
-            $('.cksmovilidad').on('ifChecked', function (event) {  
-                $("#accesoenlinea").hide();
-                $('.cksenlinea').iCheck('uncheck');  
-                
-            });
-
-            $('.cksenlinea').on('ifChecked', function (event) {  
-                $("#accesoenlinea").show();
-                $('.cksmovilidad').iCheck('uncheck');  
-                                              
-            });
-
-            $('.cksenlinea').on('ifUnchecked', function (event) {
-                $("#accesoenlinea").hide();
-                                   
-            });
-
-           
+               
 
         }
      </script>

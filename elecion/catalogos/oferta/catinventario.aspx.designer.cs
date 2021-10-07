@@ -123,6 +123,42 @@ namespace elecion.catalogos.oferta
         protected global::System.Web.UI.WebControls.HiddenField idOE;
 
         /// <summary>
+        /// Control idestadoant.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField idestadoant;
+
+        /// <summary>
+        /// Control idcentroant.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField idcentroant;
+
+        /// <summary>
+        /// Control usuarioant.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField usuarioant;
+
+        /// <summary>
+        /// Control ubicacionant.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField ubicacionant;
+
+        /// <summary>
         /// Control Bconsultar.
         /// </summary>
         /// <remarks>
@@ -177,31 +213,31 @@ namespace elecion.catalogos.oferta
         protected global::System.Web.UI.WebControls.TextBox bnoinventario;
 
         /// <summary>
-        /// Control bdescripcion.
+        /// Control busdescrip.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox bdescripcion;
+        protected global::System.Web.UI.WebControls.TextBox busdescrip;
 
         /// <summary>
-        /// Control bmarca.
+        /// Control busmarc.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox bmarca;
+        protected global::System.Web.UI.WebControls.TextBox busmarc;
 
         /// <summary>
-        /// Control bcentro.
+        /// Control buscent.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList bcentro;
+        protected global::System.Web.UI.WebControls.DropDownList buscent;
 
         /// <summary>
         /// Control DSBuscentro.
@@ -222,13 +258,13 @@ namespace elecion.catalogos.oferta
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl busplantel;
 
         /// <summary>
-        /// Control bestado.
+        /// Control busestad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList bestado;
+        protected global::System.Web.UI.WebControls.DropDownList busestad;
 
         /// <summary>
         /// Control DSplantel.
@@ -366,13 +402,31 @@ namespace elecion.catalogos.oferta
         protected global::System.Web.UI.WebControls.SqlDataSource DSCentro;
 
         /// <summary>
-        /// Control noinventario.
+        /// Control estado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox noinventario;
+        protected global::System.Web.UI.WebControls.DropDownList estado;
+
+        /// <summary>
+        /// Control DSestado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource DSestado;
+
+        /// <summary>
+        /// Control numinventario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox numinventario;
 
         /// <summary>
         /// Control adscripcion.
