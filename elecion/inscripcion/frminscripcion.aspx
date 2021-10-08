@@ -169,7 +169,7 @@ body { padding-right: 0 !important }
 
                                                             <asp:TemplateField HeaderText="Acciones" ItemStyle-Width="180px" HeaderStyle-CssClass="centrarCelda primary" ItemStyle-CssClass="centrarCelda">
                                                                 <ItemTemplate>
-                                                                    <button type="button" class="btn btn-icon btn-warning mr-1 btn-sm tooltips" onclick="buscacursos(<%# Eval("idsalida") %>)" value="" data-toggle="tooltip" data-original-title="Ver Detalle"><i class="ft-edit"></i></button>
+                                                                    <button type="button" class="btn btn-icon btn-warning mr-1 btn-sm tooltips" onclick="buscacursos(<%# Eval("idsalida") %>)" value="" data-toggle="tooltip" data-original-title="Ver Detalle"><i class="fa fa-pencil"></i></button>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
                                                         </Columns>
@@ -314,7 +314,7 @@ body { padding-right: 0 !important }
 
                                                                 <asp:TemplateField HeaderText="Acciones" ItemStyle-Width="80px" ItemStyle-CssClass="centrarCelda primary" HeaderStyle-CssClass="centrarCelda primary">
                                                                     <ItemTemplate>                                                                        
-                                                                        <button type="button" class="btn btn-icon btn-pure btn-sm mr-1 danger tooltips" onclick="borraBien(<%# Eval("idbien") %>)" value="" data-toggle="tooltip" data-original-title="Eliminar"><i class="fa fa-trash"></i></button>
+                                                                        <button type="button" class="btn btn-icon btn-sm mr-1 btn-danger tooltips" onclick="borraBien(<%# Eval("idbien") %>)" value="" data-toggle="tooltip" data-original-title="Eliminar"><i class="fa fa-trash"></i></button>
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
                                                             </Columns>
@@ -409,7 +409,7 @@ body { padding-right: 0 !important }
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="Seleccionar" ItemStyle-Width="80px" ItemStyle-CssClass="centrarCelda " HeaderStyle-CssClass="centrarCelda">
                                                             <ItemTemplate>
-                                                                <button type="button" onclick="seleccionar(<%# Eval("idbien")%>)" class="btn btn-icon btn-pure btn-sm mr-1 primary tooltips" data-toggle="tooltip" data-original-title="Seleccionar">
+                                                                <button type="button" onclick="seleccionar(<%# Eval("idbien")%>)" class="btn btn-icon btn-primary mr-1 btn-sm tooltips" data-toggle="tooltip" data-original-title="Seleccionar">
                                                                     <i class="fa fa-hand-pointer-o"></i>
                                                                 </button>
                                                             </ItemTemplate>

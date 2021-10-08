@@ -238,7 +238,7 @@ namespace elecion.inscripcion
                         cmd.ExecuteNonQuery();
 
                         cmd.Parameters.Clear();
-                        cmd.CommandText = "insert into historialbien(idsalida, idbien, descripcion, fecha) values(@idsalida, @idbien, concat('SALIDA DE ALMACÉN ', (select concat(LPAD(idsalida, 3, 0),'/',year(fecha)) from salida where idsalida="+idP.Value+")) , current_date);";
+                        cmd.CommandText = "insert into historialbien(idtipomovimiento, idsalida, idbien, descripcion, fecha) values(2,@idsalida, @idbien, concat('SALIDA DE ALMACÉN ', (select concat(LPAD(idsalida, 3, 0),'/',year(fecha)) from salida where idsalida="+idP.Value+")) , current_date);";
                         cmd.Parameters.AddWithValue("@idsalida", idP.Value);
                         cmd.Parameters.AddWithValue("@idbien", idA.Value);                        
                         cmd.ExecuteNonQuery();
@@ -292,7 +292,7 @@ namespace elecion.inscripcion
                         mySqlCommand.ExecuteNonQuery();
 
                         mySqlCommand.Parameters.Clear();
-                        mySqlCommand.CommandText = "insert into historialbien(idsalida, idbien, descripcion, fecha) values(@idsalida, @idbien, 'ELIMINADO DE SALIDA DE ALMACÉN " + labelCurso.Text + "', current_date);";
+                        mySqlCommand.CommandText = "insert into historialbien(idtipomovimiento, idsalida, idbien, descripcion, fecha) values(2,@idsalida, @idbien, 'ELIMINADO DE SALIDA DE ALMACÉN " + labelCurso.Text + "', current_date);";
                         mySqlCommand.Parameters.AddWithValue("@idsalida", idP.Value);
                         mySqlCommand.Parameters.AddWithValue("@idbien", idA.Value);
                         mySqlCommand.ExecuteNonQuery();

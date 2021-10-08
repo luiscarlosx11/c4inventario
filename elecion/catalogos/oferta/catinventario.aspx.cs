@@ -116,9 +116,7 @@ namespace elecion.catalogos.oferta
                     con2.Close();
                 }
             }*/
-        }
-
-        
+        }        
 
         protected void eliminaObjetivo(object sender, EventArgs e)
         {
@@ -175,10 +173,7 @@ namespace elecion.catalogos.oferta
             base.Response.End();
         }
 
-      
-
-      
-
+            
         protected void guardaEdita(object sender, EventArgs e)
         {
             int existe = 0;
@@ -211,7 +206,6 @@ namespace elecion.catalogos.oferta
                         if (existe == 0)
                         {
                             //
-
                             if (Convert.ToInt32(this.idP.Value) != 0)
                             {
                                 mySqlCommand.Parameters.Clear();
@@ -249,7 +243,6 @@ namespace elecion.catalogos.oferta
                                     //SI CAMBIAN EL ESTADO
                                     if(idestadoant.Value != estado.SelectedValue)
                                     {
-
                                         mySqlCommand.Parameters.Clear();
                                         mySqlCommand.CommandText = "insert into historialbien(idbien, descripcion, fecha) values(@idbien, 'CAMBIO DE UBICACIÓN *** " + centro.SelectedItem.Text + ", RESPONSABLE: " + usuario.Text.Trim().ToUpper() + ", UBICACIÓN:" + ubicacion.Text.Trim().ToUpper() + ", ESTADO:"+estado.SelectedItem.Text+"' , current_date);";
                                         mySqlCommand.Parameters.AddWithValue("@idbien", idP.Value);
@@ -265,20 +258,13 @@ namespace elecion.catalogos.oferta
 
                                 }
                                 else
-                                {
-
-                                    
-
-
+                                {                                    
                                     //SI HAY CAMBIO DE RESPONSABLE
                                     if (!usuarioant.Value.Equals(usuario.Text.Trim().ToUpper()) || !ubicacionant.Value.Equals(ubicacion.Text.Trim().ToUpper()))
                                     {
-
-
                                         //SI CAMBIAN EL ESTADO
                                         if (idestadoant.Value != estado.SelectedValue)
                                         {
-
                                             mySqlCommand.Parameters.Clear();
                                             mySqlCommand.CommandText = "insert into historialbien(idbien, descripcion, fecha) values(@idbien, 'CAMBIO DE UBICACIÓN *** " + centro.SelectedItem.Text + ", RESPONSABLE: " + usuario.Text.Trim().ToUpper() + ", UBICACIÓN:" + ubicacion.Text.Trim().ToUpper() + ", ESTADO:" + estado.SelectedItem.Text + "' , current_date);";
                                             mySqlCommand.Parameters.AddWithValue("@idbien", idP.Value);
@@ -290,10 +276,7 @@ namespace elecion.catalogos.oferta
                                             mySqlCommand.CommandText = "insert into historialbien(idbien, descripcion, fecha) values(@idbien, 'CAMBIO DE UBICACIÓN *** " + centro.SelectedItem.Text + ", RESPONSABLE: " + usuario.Text.Trim().ToUpper() + ", UBICACIÓN:" + ubicacion.Text.Trim().ToUpper() + "' , current_date);";
                                             mySqlCommand.Parameters.AddWithValue("@idbien", idP.Value);
                                             mySqlCommand.ExecuteNonQuery();
-                                        }
-
-                                       
-
+                                        }                                       
                                     }
                                     else                      
                                     {
@@ -301,7 +284,6 @@ namespace elecion.catalogos.oferta
                                         //SI CAMBIAN EL ESTADO
                                         if (idestadoant.Value != estado.SelectedValue)
                                         {
-
                                             mySqlCommand.Parameters.Clear();
                                             mySqlCommand.CommandText = "insert into historialbien(idbien, descripcion, fecha) values(@idbien, 'CAMBIO DE ESTADO *** ESTADO:" + estado.SelectedItem.Text + "' , current_date);";
                                             mySqlCommand.Parameters.AddWithValue("@idbien", idP.Value);
@@ -314,19 +296,13 @@ namespace elecion.catalogos.oferta
                                             mySqlCommand.Parameters.AddWithValue("@idbien", idP.Value);
                                             mySqlCommand.ExecuteNonQuery();
                                         }
-
                                     }
-
-
                                 }
-
-
-
-
                             }
                             
                            
                             mySqlTransaction.Commit();
+                            bnoinventario.Text = "";
                             this.listadoClientes(sender, e);
                             ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading(); toastExito(); $('#bootstrap').modal('hide'); ", true);
 
@@ -335,9 +311,6 @@ namespace elecion.catalogos.oferta
                         {
                             ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading(); alerta('Atención','El no de inventario ingresado ya ha sido asignado previamente a otro bien, intente con otro','error',null); ", true);
                         }
-
-
-
 
                     }
                     catch (Exception exception1)
@@ -352,11 +325,8 @@ namespace elecion.catalogos.oferta
                     mySqlConnection.Close();
                 }
             }
-
         }
-
       
-
         protected void guardaObjetivo(object sender, EventArgs e)
         {
             using (MySqlConnection con = new MySqlConnection(WebConfigurationManager.ConnectionStrings["DBconexion"].ConnectionString))
@@ -446,7 +416,6 @@ namespace elecion.catalogos.oferta
             this.ExportToPDF(reporte, string.Concat("RIADC-02 Acreditación ", this.cve.Value));
         }
 
-
         protected void imprimirSubObjetivos(object sender, EventArgs e)
         {
             SubObjetivos reporte = new SubObjetivos();
@@ -493,15 +462,7 @@ namespace elecion.catalogos.oferta
 
         protected void listadoAlumnos(object sender, EventArgs e)
         {
-            try
-            {
-                this.GValumnos.DataSourceID = this.DSalumnos.ID;
-                string query = string.Concat("select concat(al.apaterno,' ', al.amaterno,' ', al.nombre)as nombrealumno, case si.becado when 1 then round(c.costo -c.costo * (si.porcentaje / 100),2) else c.costo end as costoalumno, si.folio,  cast(si.fecha as char)as fecha, si.observaciones as observacionesalumno  from alumno al  left join solicitudinscripcion si on si.idalumno = al.idalumno  left join curso c on si.idcurso = c.idcurso  where si.idcurso = ", this.idP.Value, " and si.estatus not in('CANCELADO')  order by nombrealumno");
-                this.DSalumnos.SelectCommand = query;
-            }
-            catch (Exception exception)
-            {
-            }
+           
         }
 
         
@@ -512,9 +473,7 @@ namespace elecion.catalogos.oferta
             int pag = 1;
             try
             {
-               
-                
-
+                               
                 this.lGeneral.DataSourceID = this.DsUsuarios.ID;
                 string query = "select b.*, e.estado, c.centro, cast(b.fechaalta as char)as fechaaltatext from bien b left join estado e on b.idestado = e.idestado left join centro c on c.idcentro = b.idcentro where b.idbien>0  ";
                 
@@ -534,16 +493,12 @@ namespace elecion.catalogos.oferta
                     query += " or b.noserie like '%" + busmarc.Text.Trim().ToUpper() + "%') ";
                 }
                     
-
-
                 if (!buscent.SelectedValue.Equals("-1"))
                     query += " and b.idcentro =" + buscent.SelectedValue + " ";
 
 
                 if (!busestad.SelectedValue.Equals("0"))
                     query += " and b.idestado =" + busestad.SelectedValue + " ";
-
-
 
                 query = string.Concat(query, " order by b.noinventario ");
                 this.DsUsuarios.SelectCommand = query;
@@ -554,6 +509,18 @@ namespace elecion.catalogos.oferta
                 {
                     labelConteo.Text = dvAccess.Count.ToString();
                     divNoRegistros.Visible = false;
+
+                    //Mostrar automáticamente el bien cuando se encuentra un único registro
+                    if(dvAccess.Count == 1)
+                    {
+
+                        DataTable dt = dvAccess.ToTable();
+
+                        idP.Value= dt.Rows[0]["idbien"].ToString();
+
+                        recuperaBien(sender,e);
+                    }
+
                 }
 
                 else
@@ -625,7 +592,7 @@ namespace elecion.catalogos.oferta
                    
                     rdr.Close();
                     //this.listadoAlumnos(sender, e);
-                    //this.listadoHistorial(sender, e);
+                    this.listadoHistorial(sender, e);
                     //this.listadoObjetivos(sender, e);
                     //ScriptManager.RegisterStartupScript(this, base.GetType(), "myScriptName", "cerrarLoading();  $('#bootstrap').modal('show'); $('#tabgenerales').click(); $('#fc-basic-views').fullCalendar('render'); dar(); "+bloqueo, true);
                     //ScriptManager.RegisterStartupScript(this, base.GetType(), "inicilizarMun", string.Concat("dataEvent =", json), true);
@@ -643,7 +610,11 @@ namespace elecion.catalogos.oferta
             try
             {
                 this.GVhistorial.DataSourceID = this.DShistorial.ID;
-                string query = string.Concat("SELECT cast(h.fecha as char)as fecha, cast(h.hora as char) as hora, h.observacion, u.login as usuario from historialcurso h left join usuario u on u.idusuario = h.idusuario where h.idcurso = ", this.idP.Value, " order by h.fecha, h.hora");
+                string query = "select h.*, cast(h.fecha as char) as fechatext, s.idsalida, s.descripcion, t.tipomovimiento " +
+                               "from historialbien h " +
+                               "left join salida s on s.idsalida = h.idsalida " +
+                               "left join tipomovimiento t on t.idtipomovimiento = h.idtipomovimiento " +
+                               "where h.idbien = " + idP.Value;
                 this.DShistorial.SelectCommand = query;
             }
             catch (Exception exception)
@@ -653,15 +624,7 @@ namespace elecion.catalogos.oferta
 
         protected void listadoObjetivos(object sender, EventArgs e)
         {
-            try
-            {
-                this.GVobjetivos.DataSourceID = this.DSobjetivos.ID;
-                string query = string.Concat("SELECT idobjetivo, objetivo, clave from cursoobjetivo where idcurso = ", this.idP.Value, " order by clave desc");
-                this.DSobjetivos.SelectCommand = query;
-            }
-            catch (Exception exception)
-            {
-            }
+           
         }
 
         protected void lGeneral_Sorting(object sender, GridViewSortEventArgs e)
@@ -744,12 +707,12 @@ namespace elecion.catalogos.oferta
             }*/
 
            // this.idSU.Value = this.idsucursal.ToString();
-           // if (!IsPostBack)
-           // {
+            if (!IsPostBack)
+            {
                // if (this.roles.IndexOf('1', 0) < 0)
                     this.listadoClientes(sender, e);
-           // }
-            ScriptManager.RegisterStartupScript(this, base.GetType(), "actu", "dar(); ", true);
+            }
+            
         }
 
         protected void refrescaGrid(object sender, EventArgs e)

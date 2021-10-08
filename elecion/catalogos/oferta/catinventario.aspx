@@ -189,7 +189,7 @@ body { padding-right: 0 !important }
                                                 <asp:TemplateField HeaderText="Acciones" ItemStyle-Width="120px" HeaderStyle-CssClass="centrarCelda primary" ItemStyle-CssClass="centrarCelda">
                                                     <ItemTemplate>
 
-                                                        <button type="button" class="btn btn-icon btn-warning mr-1 btn-sm tooltips" onclick="abrirModal(<%# Eval("idbien") %>)" value="" data-toggle="tooltip" data-original-title="Ver detalles"><i class="ft-edit"></i></button>
+                                                        <button type="button" class="btn btn-icon btn-warning mr-1 btn-sm tooltips" onclick="abrirModal(<%# Eval("idbien") %>)" value="" data-toggle="tooltip" data-original-title="Ver detalles"><i class="fa fa-pencil"></i></button>
                                                        
 
                                                     </ItemTemplate>
@@ -257,11 +257,9 @@ body { padding-right: 0 !important }
                             <a class="nav-link active" id="tabgenerales" data-toggle="tab" href="#generales" aria-controls="tabgenerales" aria-expanded="true"><i class="fa fa-folder"></i>Generales</a>
                         </li>
                         
+                       
                         <li class="nav-item">
-                            <a class="nav-link" id="tabalumnos" data-toggle="tab" href="#alumnos" aria-controls="tabalumnos" aria-expanded="false"><i class="fa fa-user"></i>Historial</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="tabobserv" data-toggle="tab" href="#observ" aria-controls="tabobserv" aria-expanded="false"><i class="fa fa-folder-open-o"></i>Observaciones</a>
+                            <a class="nav-link" id="tabobserv" data-toggle="tab" href="#observ" aria-controls="tabobserv" aria-expanded="false"><i class="fa fa-folder-open-o"></i>Historial</a>
                         </li>
 
                          
@@ -440,41 +438,7 @@ body { padding-right: 0 !important }
                      
                     
 
-                        <div class="tab-pane fade" id="alumnos" role="tabpanel" aria-labelledby="tabalumnos" aria-expanded="false">
-                            <asp:UpdatePanel runat="server" ID="UpdatePanel4">
-                                <ContentTemplate>
-
-                                    <div class="row">
-                                        <div class="col-md-12">
-
-                                            
-                                            <asp:GridView runat="server" ID="GValumnos" PageSize="10" AllowPaging="true"  CssClass="table table-striped lGeneral" 
-                                                AutoGenerateColumns="False" DataSourceID="DSalumnos" EnableSortingAndPagingCallbacks="true" 
-                                                GridLines="Horizontal" BorderWidth="0" RowStyle-CssClass="rowHover" ClientIDMode="Static" OnPageIndexChanged="listadoAlumnos">
-                                                
-                                                <Columns>
-                                                    <asp:TemplateField HeaderText="No." ItemStyle-Width="20px" ItemStyle-CssClass="centrarCelda font-small-2" HeaderStyle-CssClass="centrarCelda primary">
-                                                        <ItemTemplate>
-                                                            <%# Container.DataItemIndex + 1 %>
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
-                                                    <asp:BoundField DataField="nombrealumno" HeaderText="Nombre" SortExpression="nombre" ItemStyle-Font-Size="Small" HeaderStyle-CssClass="primary"/>
-                                                    <asp:BoundField DataField="costoAlumno" HeaderText="Cantidad" SortExpression="costoAlumno" ItemStyle-Width="50px" ItemStyle-Font-Size="Small" ItemStyle-CssClass="centrarCelda " HeaderStyle-CssClass="centrarCelda primary" DataFormatString="{0:c}" HtmlEncode="False"/>
-                                                    <asp:BoundField DataField="folio" HeaderText="Folio Pago" SortExpression="folio"  ItemStyle-Width="150px" ItemStyle-Font-Size="Small" ItemStyle-CssClass="centrarCelda " HeaderStyle-CssClass="centrarCelda primary"/>
-                                                    <asp:BoundField DataField="fecha" HeaderText="Fecha Ins." SortExpression="fecha" ItemStyle-Width="150px" ItemStyle-Font-Size="Small"  ItemStyle-CssClass="centrarCelda " HeaderStyle-CssClass="centrarCelda primary"/>
-                                                </Columns>
-
-                                            </asp:GridView>
-                                               
-                                            <asp:SqlDataSource ID="DSalumnos" ProviderName="MySql.Data.MySqlClient" runat="server" ConnectionString="<%$ ConnectionStrings:DBconexion %>"></asp:SqlDataSource>
-
-                                        </div>
-
-                                    </div>
-
-                                </ContentTemplate>
-                            </asp:UpdatePanel>
-                        </div>
+                       
 
                         <div class="tab-pane fade" id="observ" role="tabpanel" aria-labelledby="tabobserv" aria-expanded="false">
                             <asp:UpdatePanel runat="server" ID="UpdatePanel5">
@@ -484,21 +448,25 @@ body { padding-right: 0 !important }
                                         <div class="col-md-12">
 
                                             
-                                            <asp:GridView runat="server" ID="GVhistorial" PageSize="10" AllowPaging="true" AllowSorting="false" CssClass="table table-striped lGeneral" 
+                                            <asp:GridView runat="server" ID="GVhistorial" PageSize="8" AllowPaging="true" AllowSorting="false" CssClass="table table-striped lGeneral" 
                                                 AutoGenerateColumns="False" DataSourceID="DShistorial" EnableSortingAndPagingCallbacks="true" 
                                                 GridLines="Horizontal" BorderWidth="0" RowStyle-CssClass="rowHover" ClientIDMode="Static" OnPageIndexChanged="listadoHistorial">
                                                 
                                                 <Columns>
-                                                    <asp:TemplateField HeaderText="No." ItemStyle-Width="20px" ItemStyle-CssClass="centrarCelda Small" HeaderStyle-CssClass="centrarCelda primary">
+                                                    
+                                                    <asp:TemplateField HeaderText="Descripción" HeaderStyle-CssClass="primary">
                                                         <ItemTemplate>
-                                                            <%# Container.DataItemIndex + 1 %>
+                                                            <h7 class="font-weight-bold"><%# Eval("descripcion")%></h7>
+                                                            <br />
+                                                            <h7 class="text-bold-400 font-small-2"> <%# " FECHA "+Eval("fechatext")%></h7>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    <asp:BoundField DataField="fecha" HeaderText="Fecha" SortExpression="fecha"  ItemStyle-Width="150px" ItemStyle-Font-Size="Small" ItemStyle-CssClass="centrarCelda " HeaderStyle-CssClass="centrarCelda primary"/>
-                                                    <asp:BoundField DataField="hora" HeaderText="Hora" SortExpression="hora" ItemStyle-Width="100px" ItemStyle-Font-Size="Small"  ItemStyle-CssClass="centrarCelda  " HeaderStyle-CssClass="centrarCelda primary"/>
-                                                    <asp:BoundField DataField="usuario" HeaderText="Usuario" SortExpression="usuario" ItemStyle-Width="150px" ItemStyle-Font-Size="Small"  ItemStyle-CssClass="centrarCelda " HeaderStyle-CssClass="centrarCelda primary" />
-                                                    <asp:BoundField DataField="observacion" HeaderText="Observación" SortExpression="observacion" ItemStyle-Font-Size="Small" HeaderStyle-CssClass="primary" />
-                                                    
+
+                                                    <asp:TemplateField HeaderText="Operación"  ItemStyle-Width="20px" HeaderStyle-CssClass="centrarCelda primary" ItemStyle-CssClass="centrarCelda">
+                                                        <ItemTemplate>
+                                                            <span class="tag bg-<%# Eval("idtipomovimiento").ToString().Equals("1")?"success":Eval("idtipomovimiento").ToString().Equals("2")?"warning":Eval("idtipomovimiento").ToString().Equals("3")?"purple":Eval("idtipomovimiento").ToString().Equals("4")?"cyan":Eval("idtipomovimiento").ToString().Equals("5")?"danger":"primary"%>"><span class="text-bold-700"><%# Eval("tipomovimiento")%></span></span>                                                        
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
                                                     
                                                 </Columns>
 
@@ -515,48 +483,6 @@ body { padding-right: 0 !important }
                         </div>
 
 
-                          <div class="tab-pane fade" id="objetivos" role="tabpanel" aria-labelledby="tabobjetivos" aria-expanded="false">
-                            <asp:UpdatePanel runat="server" ID="UpdatePanel8">
-                                <ContentTemplate>
-
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                           <button type="button" id="nuevo" onclick="abrirModalObjetivo(0,'','');" class="btn btn-icon btn-primary mr-1" data-toggle="modal" >
-                                                         <i class="ft-file"></i> Nuevo Registro 
-                                           </button><br /><br />
-
-                                            
-                                            <asp:GridView runat="server" ID="GVobjetivos" PageSize="10" AllowPaging="true" AllowSorting="false" CssClass="table table-striped lGeneral" 
-                                                AutoGenerateColumns="False" DataSourceID="DSobjetivos" EnableSortingAndPagingCallbacks="true"
-                                                OnPageIndexChanged="listadoObjetivos" GridLines="Horizontal" BorderWidth="0" RowStyle-CssClass="rowHover" ClientIDMode="Static">                                                
-                                                <Columns>
-                                                    <asp:TemplateField HeaderText="No." ItemStyle-Width="20px" ItemStyle-CssClass="centrarCelda Small" HeaderStyle-CssClass="centrarCelda primary">
-                                                        <ItemTemplate>
-                                                            <%# Container.DataItemIndex + 1 %>
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
-                                                     <asp:BoundField DataField="clave" HeaderText="Clave" SortExpression="clave" ItemStyle-Font-Size="Small" ItemStyle-Width="80px" HeaderStyle-CssClass="primary"/>
-                                                    <asp:BoundField DataField="objetivo" HeaderText="Objetivo" SortExpression="objetivo" ItemStyle-Font-Size="Small" ItemStyle-Width="420px"  HeaderStyle-CssClass="primary"/>
-                                                    <asp:TemplateField HeaderText="Acciones" ItemStyle-Width="180px" HeaderStyle-CssClass="centrarCelda primary" ItemStyle-CssClass="centrarCelda" >
-                                                        <ItemTemplate>
-                                                            <button type="button" class="btn btn-icon btn-warning mr-1 btn-sm tooltips" onclick="abrirModalObjetivo(<%# Eval("idobjetivo") %>,'<%# Eval("objetivo") %>','<%# Eval("clave") %>')" value="" data-toggle="tooltip" data-original-title="Detalles"><i class="ft-edit"></i></button>
-                                                            <button type="button" class="btn btn-icon btn-danger mr-1 btn-sm tooltips" onclick="eliminarObjetivo(<%# Eval("idobjetivo") %>)" value="" data-toggle="tooltip" data-original-title="Eliminar"><i class="ft-delete"></i></button>
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
-                                                </Columns>
-
-                                            </asp:GridView>
-                                               
-                                            <asp:SqlDataSource ID="DSobjetivos" ProviderName="MySql.Data.MySqlClient" runat="server" ConnectionString="<%$ ConnectionStrings:DBconexion %>"></asp:SqlDataSource>
-
-                                        </div>
-
-                                    </div>
-
-                                </ContentTemplate>
-                            </asp:UpdatePanel>
-                        </div>
-
                        
                     </div>
                 </div>
@@ -568,7 +494,7 @@ body { padding-right: 0 !important }
                             </button>
 
                             <button id="bcerrar" type="button" class="btn btn-danger mr-1" data-dismiss="modal" id="cerrarModal">
-                                Cancelar
+                                Salir
                             </button>
 
                         
@@ -853,31 +779,7 @@ body { padding-right: 0 !important }
 
         }
        
-                
-        $('#fc-basic-views').fullCalendar({
-            header: {
-                left: 'prev,next today',
-                center: 'title',
-                right: ''
-            },
-            defaultDate: '2017-09-11',
-            lang: initialLangCode,
-            navLinks: false, // can click day/week names to navigate views
-            editable: true,
-            eventLimit: true,
-            height: 500
-
-        });
-
-
-        $('#wfechas').on('shown.bs.modal', function () {
-            //alert($("*[id$='idF']").val());
-            if ($("*[id$='idF']").val() == "0")
-                $("*[id$='fagenda']").focus();
-
-        })
-
-
+       
         function paging(pagina) {
             $("*[id$='pagina']").val(pagina);
             $('#<%= Bconsultar.ClientID %>').click();
@@ -965,241 +867,14 @@ body { padding-right: 0 !important }
         }
 
 
-        function solicita() {
-            var clave = $("*[id$='clave']").val();
-            var nombre = $("*[id$='nombre']").val();
-            var fechaini = $("*[id$='fechaini']").val();
-            var fechafin = $("*[id$='fechafin']").val(); 
-            var dias = $("*[id$='dias']").val(); 
-            var horaini = $("*[id$='horaini']").val();                        
-            var horafin = $("*[id$='horafin']").val(); 
-            var horas = $("*[id$='horas']").val(); 
-            var diascurso = $("*[id$='hdias']").val();
 
-            var costomodulo = $("*[id$='costomodulo']").val(); 
-            var costoalumno = $("*[id$='costoalumno']").val(); 
-            var pagohora = $("*[id$='pagohora']").val();
-
-            var instalacion = $("*[id$='instalacion']").val();
-            var instalacionext = $("*[id$='instalacionext']").val();
-            var instalaciondomext = $("*[id$='instalaciondomext']").val();
-            var alumnosminimo = $("*[id$='alumnosminimo']").val();
-
-            var alumnosmaximo = $("*[id$='alumnosmaximo']").val();
-
-            var fechalimite = $("*[id$='fechalimite']").val();
-            
-            walert = 1;
-
-            if (clave == '') {                
-                alerta('Atención', 'Ingrese la clave del curso', 'warning', $("*[id$='clave']"));
-                return false;                
-            }
-
-            if (nombre == '') {                
-                alerta('Atención', 'Ingrese el nombre del curso', 'warning', $("*[id$='nombre']"));
-                return false;                
-            }
-
-            
-            if (alumnosminimo == '' || alumnosminimo == '0') {                
-                alerta('Atención', 'Ingrese la cantidad mínima necesaria de alumnos inscritos', 'warning', $("*[id$='alumnosminimo']"));
-                return false;                
-            }
-
-            if (alumnosmaximo == '' || alumnosmaximo == '0') {
-                alerta('Atención', 'Ingrese la cantidad máxima de alumnos inscritos', 'warning', $("*[id$='alumnosmaximo']"));
-                return false;
-            }
-
-            if (instalacion == '9999' && instalacionext == '') {                
-                alerta('Atención', 'Ingrese el nombre de la instalación extramuros', 'warning', $("*[id$='instalacionext']"));
-                return false;                
-            }
-
-            if (instalacion == '9999' && instalaciondomext == '') {                
-                alerta('Atención', 'Ingrese la dirección de la instalación extramuros', 'warning', $("*[id$='instalaciondomext']"));
-                return false;                
-            }
-
-            /*
-             if (costomodulo == '' || costomodulo == '0') {                
-                alerta('Atención', 'Ingrese el costo por módulo del curso', 'warning', $("*[id$='costomodulo']"));
-                return false;                
-            }
-
-            if (costoalumno == '' || costoalumno == '0') {                
-                alerta('Atención', 'Ingrese el costo por alumno del curso', 'warning', $("*[id$='costoalumno']"));
-                return false;                
-            }*/
-
-            if (pagohora == '' || pagohora == '0') {                
-                alerta('Atención', 'Ingrese el pago por hora del curso', 'warning', $("*[id$='pagohora']"));
-                return false;                
-            }
-
-           /* if (fechalimite == '') {
-                alerta('Atención', 'Ingrese la fecha límite de inscripción al curso', 'warning', $("*[id$='fechalimite']"));
-                return false;
-            }
-            */
-            if (fechaini == '') {
-                alerta('Atención', 'Ingrese la fecha de inicio del curso', 'warning', $("*[id$='fechaini']"));
-                return false;
-            }
-
-            if (fechafin == '') {
-                alerta('Atención', 'Ingrese la fecha de término del curso', 'warning', $("*[id$='fechafin']"));
-                return false;
-            }
-                       
-            if (dias == '' || dias=='0') {
-                alerta('Atención', 'Ingrese la duración en días del curso', 'warning', $("*[id$='dias']"));
-                return false;
-            }
-
-            if (horaini == '') {
-                alerta('Atención', 'Ingrese el horario (hora de inicio) del curso', 'warning', $("*[id$='horaini']"));
-                return false;
-            }
-
-
-            if (horafin == '') {
-                alerta('Atención', 'Ingrese el horario (hora de término) del curso', 'warning', $("*[id$='horafin']"));
-                return false;
-            }
-
-            if (diascurso == '') {
-                alerta('Atención', 'Indique los días de la semana en los cuales se impartirá el curso', 'warning', $("*[id$='hdias']"));
-                return false;
-            }
-
-
-            if (horas == '' || horas =='0') {
-                alerta('Atención', 'Ingrese la duración en horas del curso', 'warning', $("*[id$='horas']"));
-                return false;
-            }
-                              
-            walert = 0;
-            
-            mostrarLoading();
-            
-            swal({
-                title: "Se solicitará la autorización para este curso, ¿Desea continuar?",
-                text: "",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: '#DD6B55',
-                confirmButtonText: 'Si',
-                cancelButtonText: "No"
-            }).then((result) => {
-                if (result.value) {
-                    mostrarLoading();
-                    
-                  }
-                }) 
-           
-                                           
-        }
-
-        
-         function abrirModalCancelacion(idcurso) {
-
-             $("*[id$='idP']").val(idcurso);
-             $("*[id$='motcancelacion']").val('');
-             $("#wcancelar").modal('show');
-
-         
-         }
-
-
-        function cancelarCurso() {
-            swal({
-                title: "Se realizará la cancelación de este curso, ¿Desea continuar?",
-                text: "",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: '#DD6B55',
-                confirmButtonText: 'Si',
-                cancelButtonText: "No"
-            }).then((result) => {
-                if (result.value) {
-                    mostrarLoading();
-                    $('#<%= Bcancelarcurso.ClientID %>').click();
-                  }
-                }) 
-         
-        }
-
-
-        
-
-        function abrirModal(idcurso, idsucursal, estatus) {                        
+        function abrirModal(idcurso) {                        
            mostrarLoading();
-            $("*[id$='idP']").val(idcurso);
-            $("*[id$='idS']").val(idsucursal);
-            $("#bootstrap").modal('show');                                   
+            $("*[id$='idP']").val(idcurso);                                
             $('#<%= Brecuperabien.ClientID %>').click();                                                            
         }
 
-        function abrirModalFechas() {
-
-            //$("*[id$='fagenda']").focus();
-            $("*[id$='idF']").val(0);
-            $("*[id$='horanini']").val($("*[id$='horaini']").val());
-            $("*[id$='horanfin']").val($("*[id$='horafin']").val());
-            $("#bguardaFecha").show();
-            $("#bborraFecha").hide();
-            //$("#divResultados").hide(); 
-
-            $("*[id$='fagenda']").removeAttr('disabled');
-            $("*[id$='horanini']").removeAttr('disabled');
-            $("*[id$='horanfin']").removeAttr('disabled');
-            
-            $("#wfechas").modal('show');
-        }
-
-        function abrirModal2(idinstructor, idsucursal, idespecialidad, profesion, idescolaridad, rfc, curp, fechanacimiento, domicilio, localidad, email, telefono, celular, observaciones, activo, nombre) {
-
-            
-            $("*[id$='idP']").val(idinstructor);
-
-            if(idsucursal>0)
-                $("*[id$='idS']").val(idsucursal);
-
-            $("*[id$='nombre']").val(nombre);
-            $("*[id$='especialidad']").val(idespecialidad);
-            $("*[id$='especialidad']").change();
-            $("*[id$='profesion']").val(profesion);
-            $("*[id$='escolaridad']").val(idescolaridad);
-            $("*[id$='escolaridad']").change();
-            $("*[id$='rfc']").val(rfc);
-            $("*[id$='curp']").val(curp);            
-            $("*[id$='fechanacimiento']").val(fechanacimiento);
-            $("*[id$='domicilio']").val(domicilio);
-            $("*[id$='localidad']").val(localidad);
-            $("*[id$='telefono']").val(telefono);
-            $("*[id$='email']").val(email);
-            $("*[id$='adicional']").val(celular);
-
-            $("*[id$='observaciones']").val(observaciones);
-            // $("*[id$='tiposucursal']").change();
-
-            if (activo == 1)
-                $("*[id$='activo']").iCheck('check');
-            else
-                $("*[id$='activo']").iCheck('uncheck');
-
-            $("#bootstrap").modal('show');
-        }
-
-        function editarRegistro(id, ids) {
-            
-            mostrarLoading();
-            $("*[id$='idP']").val(id);
-            $("*[id$='idS']").val(ids);
-           
-        }
+     
 
         function nuevoRegistro() {
             mostrarLoading();
@@ -1209,54 +884,8 @@ body { padding-right: 0 !important }
             $('#<%= Bnuevo.ClientID %>').click();
         }
 
-        $('#bootstrap').on('shown.bs.modal', function () {
-            $("#fc-basic-views").fullCalendar('render');
-        });        
-
-
-        function ver() {            
-            $("*[id$='hdias']").val($("#algo").val());           
-        }
-
-        function dar() {            
-            var valores = $("*[id$='hdias']").val();           
-            var arreglo = valores.split(","); 
-            $('#algo').val(arreglo);
-            $('#algo').trigger('change');         
-        }
-
-        function imprimirSolicitudAut() {
-            mostrarLoading();
-           
-            cerrarLoading();
-        }
-
-        function imprimirLista() {
-            mostrarLoading();
-           
-            cerrarLoading();
-        }
-
-        function imprimirRiadc() {
-            mostrarLoading();
-          
-            cerrarLoading();
-        }
-
-
-        function imprimirRiadcAcred() {
-            mostrarLoading();
-            
-            cerrarLoading();
-        }
-
-
-        function imprimirSubObjetivos() {
-            mostrarLoading();
-            
-             cerrarLoading();
-         }
-
+       
+       
         function consultaPrincipal(op) {
             mostrarLoading();
 
@@ -1269,36 +898,6 @@ body { padding-right: 0 !important }
             cerrarLoading();
         }
 
-        function abrirModalObjetivo(idobjetivo, objetivo, clave) {
-            $("*[id$='idobj']").val(idobjetivo);
-            $("*[id$='objetcl']").val(clave); 
-            $("*[id$='objetivo']").val(objetivo);                       
-            $("#wobjetivo").modal('show');
-        }
-
-        function guardarObjetivo() {
-            mostrarLoading();
-            $('#<%= Bguardaobjetivo.ClientID %>').click();
-        }
-
-        function eliminarObjetivo(idobjetivo) {
-            swal({
-                title: "Se eliminará el objetivo del curso, ¿Desea continuar?",
-                text: "",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: '#DD6B55',
-                confirmButtonText: 'Si',
-                cancelButtonText: "No"
-            }).then((result) => {
-                if (result.value) {
-                    $("*[id$='idobj']").val(idobjetivo);
-                    mostrarLoading();
-                    $('#<%= Beliminaobjetivo.ClientID %>').click();
-                  }
-                }) 
-         
-        }
              
     </script>
 </asp:Content>
